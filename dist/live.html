@@ -29,18 +29,19 @@
     <div class="plans">
       <article class="plan luma">
         <div class="client"><span class="client-mark" aria-hidden="true">L</span><div><small>Client 01 · Guest app</small><h2>Luma Hotels</h2></div></div>
-        <p class="planned"><img src="assets/openai.svg" alt="">Planned by <b>Leah</b> with <b>ChatGPT</b></p>
+        <p class="planned"><img src="assets/openai.svg" alt="">Planned by <b>Leah</b> with <b>ChatGPT</b><span class="private">Private session</span></p>
         <div class="booking"><span>Launch specialist<br>Mon–Fri, Nov 9–13</span><strong>Alex · 40h</strong></div>
         <p class="plan-ok"><span aria-hidden="true">✓</span> Plan looks complete</p>
       </article>
       <article class="plan rally">
         <div class="client"><span class="client-mark" aria-hidden="true">R</span><div><small>Client 02 · Member app</small><h2>Rally Fitness</h2></div></div>
-        <p class="planned"><img src="assets/copilot.webp" alt="">Planned by <b>Marcus</b> with <b>Copilot</b></p>
+        <p class="planned"><img src="assets/copilot.webp" alt="">Planned by <b>Marcus</b> with <b>Copilot</b><span class="private">Private session</span></p>
         <div class="booking"><span>Launch specialist<br>Mon–Fri, Nov 9–13</span><strong>Alex · 40h</strong></div>
         <p class="plan-ok"><span aria-hidden="true">✓</span> Plan looks complete</p>
       </article>
     </div>
     <p class="callout warn"><strong>Same person. Same week.</strong> Neither plan can see the other.</p>
+    <p class="stat-note"><strong>69%</strong> say most AI-assisted work happens in private sessions, not shared spaces. <cite>Miro, State of Intelligent Collaboration, Nov 2026, n=9,500+</cite></p>
   </section>
 
   <section class="scene" data-scene="2" aria-label="The shared specialist is double booked" hidden>
@@ -70,11 +71,12 @@
         <li class="fire"><time>Wed, Nov 11 · 5:52 PM</time><p><b>Rally Fitness · VP Marketing</b>“We announced Friday to 40,000 members. We can’t move it.”</p></li>
       </ol>
       <aside class="cost"><div class="cost-head"><p class="eyebrow">What it costs</p><span class="tag">Illustrative</span></div>
-        <ul><li><strong>1 launch slips</strong> after the client announced it</li><li><strong>1 escalation</strong> straight to your CEO</li><li><strong>3 people, 3 days</strong> of firefighting</li></ul>
+        <ul><li><strong>1 launch slips</strong> after the client announced it</li><li><strong>1 escalation</strong> straight to your CEO</li></ul>
         <p class="verdict">Every AI did its job. The company still broke a promise.</p>
+        <p class="cost-stat"><span>Real data</span><strong>Nearly 40%</strong> of the time AI saves is lost to rework. <cite>Workday, Jan 2026, n=3,200</cite></p>
       </aside>
     </div>
-    <p class="callout warn"><strong>This isn’t a staffing problem.</strong> It’s every handoff between two people’s AI: the quote Sales sent that Finance can’t bill, the contract change Delivery never saw, the date Support promised that Product can’t hit.</p>
+    <p class="callout warn"><strong>This isn’t a staffing problem.</strong> It’s every handoff between two people’s AI: quotes, contracts, customer promises.</p>
   </section>
 
   <section class="scene" data-scene="4" aria-label="The Launch Desk prepares a source-backed staffing change" hidden>
@@ -114,7 +116,7 @@
         <div class="handoff"><span class="tick" aria-hidden="true">✓</span><div><b>Allocation recorded: Jamie · Rally · 40h</b><p>Kantata · <span class="sim">simulated here, uses the Kantata API in a real build</span></p></div></div>
         <div class="handoff"><span class="tick" aria-hidden="true">✓</span><div><b>Leah and Marcus notified</b><p>Teams · same change, same reason</p></div></div>
         <div class="handoff reply"><span class="tick" aria-hidden="true">✓</span><div><b>Marcus got his answer</b><p class="message-text">“Confirmed: Jamie leads Rally, November 9–13. Alex stays on Luma.”</p></div></div>
-        <div class="handoff"><span class="tick" aria-hidden="true">✓</span><div><b>Audit trail saved</b><p>What was read, who confirmed, who approved</p></div></div>
+        <div class="handoff"><span class="tick" aria-hidden="true">✓</span><div><b>Audit trail saved</b><p>Proposed by Launch Desk · confirmed by Maya 9:04 · approved by COO 9:06 · written to Kantata, SharePoint, Teams</p></div></div>
       </section>
     </div>
   </section>
@@ -133,7 +135,7 @@
   </section>
 
   <aside id="cuebox" class="presenter-only" hidden><div class="cue-heading"><b>Rehearsal cues</b><span id="time"></span></div><p id="say"></p><p id="point"></p></aside>
-  <footer class="controls"><button type="button" id="back" disabled>← Back</button><span id="counter">1 of 7</span><a href="host-guide.html" target="_blank" rel="noopener" class="host-link presenter-only">Host guide ↗</a><button type="button" id="next">See what the desk finds →</button></footer>
+  <footer class="controls"><button type="button" id="back" disabled>← Back</button><span id="counter">1 of 7</span><a href="host-guide.html" target="_blank" rel="noopener" class="host-link presenter-only">Host guide ↗</a><p class="desk-note"><strong>Not bot number 41.</strong> One agent that reads across every plan, then waits for a person. <cite>84% of CIOs say employees build agents faster than IT can govern them. Dataiku / Harris Poll, Sep 2026, 685 CIOs</cite></p><button type="button" id="next">See what the desk finds →</button></footer>
   <p class="simulation">Illustrative prototype · Fictional company and data · Simulated approvals, updates and messages</p><span class="sr-only" id="announcement" aria-live="polite"></span>
 </main>
 </body></html>
