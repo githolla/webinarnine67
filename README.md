@@ -12,7 +12,7 @@ Install Node.js 20 or newer, extract this ZIP, then open a terminal in this fold
 npm run dev
 ```
 
-Open **http://localhost:3000/** for the webinar cover, **http://localhost:3000/stats.html** for the opening stats, or **http://localhost:3000/live.html** for the six-screen demo. Add `?presenter=1` to any page to show presenter controls in that browser tab; `?presenter=0` hides them again. No `npm install` or environment variables are needed because the project has zero third-party npm dependencies.
+Open **http://localhost:3000/** for the webinar cover, **http://localhost:3000/stats.html** for the opening stats, or **http://localhost:3000/live.html** for the seven-screen demo. Add `?presenter=1` to any page to show presenter controls in that browser tab; `?presenter=0` hides them again. No `npm install` or environment variables are needed because the project has zero third-party npm dependencies.
 
 Stop the local server with Ctrl+C. Set `PORT` if 3000 is already occupied.
 
@@ -68,7 +68,7 @@ Edit `dist/site.js`:
 | File | Purpose |
 | --- | --- |
 | `dist/site.js` | Event config (booking link, slots, portraits) and presenter mode, shared by every page |
-| `dist/live.html` | Six-screen Forma Digital demo markup |
+| `dist/live.html` | Seven-screen Forma Digital demo markup |
 | `dist/guided.js` | Demo navigation, rehearsal cues, Q&A availability states, approval gating, assessment screen |
 | `dist/launch-story.css` | Demo, stats and assessment styling, including the 720p compaction rules |
 | `dist/stats.html` | Opening stats screen with sources |
@@ -87,13 +87,14 @@ Earlier CSS/JS and dashboard scenarios are intentionally retained but are no lon
 Cover → opening stats → demo:
 
 1. **Request:** Marcus asks the Launch Desk to confirm Alex for the Rally Fitness launch.
-2. **Two plans:** Leah (ChatGPT) and Marcus (Copilot) each planned a Friday launch around Alex.
-3. **Collision:** 80 hours requested against 40 available, and the four manual handoffs Maya would chase.
-4. **The desk:** a work log of what the desk read and checked, a proposal to move Rally to Jamie, and an in-card COO approval showing exactly what approving will do.
-5. **Done:** plan updated, allocation recorded (simulated), managers notified, Marcus answered, audit trail, before/after.
-6. **Your handoffs:** the complimentary workflow assessment.
+2. **Two plans:** the AI rollout worked. Leah (ChatGPT) and Marcus (Copilot) each planned a Friday launch around Alex.
+3. **Collision:** 80 hours promised against a 40-hour week, and why no system flagged it (both bookings live in AI-written documents, not Kantata).
+4. **The fallout:** what launch week looks like if nobody catches it, ending in a client escalation, plus the cost and the general pattern.
+5. **The desk:** rewind to Monday. A work log of what the desk read and checked, a proposal to move Rally to Jamie, and an in-card COO approval.
+6. **Done:** plan updated, allocation recorded (simulated), managers notified, Marcus answered, audit trail, before/after.
+7. **Your handoffs:** the complimentary workflow assessment.
 
-**Q&A · Change one fact** on screen 4 switches Jamie between confirmed, unconfirmed, and already booked. The latter two change the copy and block approval.
+**Q&A · Change one fact** on screen 5 switches Jamie between confirmed, unconfirmed, and already booked. The latter two change the copy and block approval.
 
 ## What is simulated
 
