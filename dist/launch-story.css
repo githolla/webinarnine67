@@ -818,3 +818,6 @@ body[data-step="4"] .desk-note { display: block; }
 @media (min-width: 901px) {
   .story-sidebar { max-height: max(260px, calc(100vh - 300px)); overflow-y: auto; scrollbar-width: thin; }
 }
+.ai-top > .ai-owner { text-align: right; line-height: 1.4; }
+.ai-owner b { display: block; font-size: 12px; font-weight: 600; }
+.ai-owner small { display: block; font-size: 10px; font-weight: 400; }
