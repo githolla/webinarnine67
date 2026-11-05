@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>One request, completed · Nine-67</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&display=swap"><link rel="stylesheet" href="launch-story.css"><script src="site.js"></script><script src="guided.js" defer></script></head>
-<body>
-<header class="mast"><a class="brand" href="./#webinar-1">Nine-67</a><span class="webinar-name">Your team has AI. Why is the work still manual?</span><small class="fiction">Fictional company &amp; clients · Simulated workflow</small></header>
+<body class="deck">
+<header class="mast"><a class="brand" href="./#webinar-1">Nine-67</a><span class="webinar-name">Your team has AI. Why is the work still manual?</span></header>
 <main class="stage">
-  <div class="toolbar"><ol class="steps" aria-label="Story progress"><li aria-current="step">1 · Request</li><li>2 · Two plans</li><li>3 · Collision</li><li>4 · The desk</li><li>5 · Done</li><li>6 · Your handoffs</li></ol><button type="button" id="mode" class="presenter-only">Mode: Live</button></div>
+  <div class="toolbar"><ol class="steps" aria-label="Story progress"><li aria-current="step"><button type="button" data-go="0">1 · Request</button></li><li><button type="button" data-go="1">2 · Two plans</button></li><li><button type="button" data-go="2">3 · Collision</button></li><li><button type="button" data-go="3">4 · The desk</button></li><li><button type="button" data-go="4">5 · Done</button></li><li><button type="button" data-go="5">6 · Your handoffs</button></li></ol><button type="button" id="mode" class="presenter-only">Mode: Live</button></div>
   <header class="heading"><p class="kicker" id="kicker">Forma Digital · Monday, November 2 · 9:02 AM</p><h1 id="title" tabindex="-1">A request comes in.</h1><p id="lead"></p></header>
 
   <section class="scene" data-scene="0" aria-label="A project manager asks the Launch Desk to confirm a specialist">
@@ -22,74 +22,88 @@
         </ul>
       </article>
     </div>
-    <div class="context-line"><strong>Today, a person answers this by hand.</strong><span>Open the plans, check Kantata, ask around, then reply.</span></div>
-    <p class="speaker-line">Who answers this kind of message in your company, and how long does it take?</p>
+    <p class="callout"><strong>Today, a person answers this by hand.</strong> Open the plans, check Kantata, ask around, then reply.</p>
   </section>
 
   <section class="scene" data-scene="1" aria-label="Two separately prepared project plans" hidden>
     <div class="plans">
-      <article class="plan"><div class="client"><span class="client-mark" aria-hidden="true">L</span><div><small>Client 01</small><h2>Luma Hotels</h2></div></div><div class="product"><span>Guest app</span><small>Mobile check-in · Friday launch</small></div><div class="owner"><span class="avatar" aria-hidden="true">L</span><div><b>Leah</b><small>Project manager</small></div></div><div class="ai"><img src="assets/openai.svg" alt=""><b>ChatGPT</b><span>Turned the scope into a launch plan.</span></div><div class="booking"><span>Launch specialist · Mon–Fri</span><strong>Alex · 40 hours</strong></div><p class="source"><img src="assets/ms-word.svg" alt=""><img src="assets/ms-sharepoint.svg" alt="">Word scope in SharePoint</p></article>
-      <article class="plan"><div class="client"><span class="client-mark rally" aria-hidden="true">R</span><div><small>Client 02</small><h2>Rally Fitness</h2></div></div><div class="product"><span>Member app</span><small>Class booking · Friday launch</small></div><div class="owner"><span class="avatar" aria-hidden="true">M</span><div><b>Marcus</b><small>Project manager</small></div></div><div class="ai"><img src="assets/copilot.webp" alt=""><b>Copilot</b><span>Turned the Teams recap into a launch plan.</span></div><div class="booking"><span>Launch specialist · Mon–Fri</span><strong>Alex · 40 hours</strong></div><p class="source"><img src="assets/ms-teams.svg" alt="">Project plan from Teams</p></article>
+      <article class="plan luma">
+        <div class="client"><span class="client-mark" aria-hidden="true">L</span><div><small>Client 01 · Guest app</small><h2>Luma Hotels</h2></div></div>
+        <p class="planned"><img src="assets/openai.svg" alt="">Planned by <b>Leah</b> with <b>ChatGPT</b></p>
+        <div class="booking"><span>Launch specialist<br>Mon–Fri, Nov 9–13</span><strong>Alex · 40h</strong></div>
+        <p class="plan-ok"><span aria-hidden="true">✓</span> Plan looks complete</p>
+      </article>
+      <article class="plan rally">
+        <div class="client"><span class="client-mark" aria-hidden="true">R</span><div><small>Client 02 · Member app</small><h2>Rally Fitness</h2></div></div>
+        <p class="planned"><img src="assets/copilot.webp" alt="">Planned by <b>Marcus</b> with <b>Copilot</b></p>
+        <div class="booking"><span>Launch specialist<br>Mon–Fri, Nov 9–13</span><strong>Alex · 40h</strong></div>
+        <p class="plan-ok"><span aria-hidden="true">✓</span> Plan looks complete</p>
+      </article>
     </div>
-    <div class="context-line"><strong>Each plan looks workable on its own.</strong><span>Neither manager could see the other team’s commitment.</span></div>
-    <p class="speaker-line">You’re the COO. Would you confirm both launch dates?</p>
+    <p class="callout warn"><strong>Same person. Same week.</strong> Neither plan can see the other.</p>
   </section>
 
   <section class="scene" data-scene="2" aria-label="The shared specialist is double booked" hidden>
-    <section class="capacity"><div class="capacity-top"><div><small>Alex · Requested</small><strong>80h</strong></div><div><small>Alex · Available</small><strong>40h</strong></div><div class="over"><small>Over capacity</small><strong>40h</strong></div></div><div class="week" id="conflict-week" aria-label="Alex has two eight-hour assignments on each day next week"></div></section>
+    <section class="load-card">
+      <div class="load-head"><div><small>Alex · November 9–13</small><strong>80h promised</strong></div><div><small>Available</small><strong>40h</strong></div><div class="over"><small>Over capacity</small><strong>+40h</strong></div></div>
+      <div class="bar-wrap">
+        <div class="bar" role="img" aria-label="Luma Hotels 40 hours plus Rally Fitness 40 hours, against a 40-hour week"><span class="seg luma">Luma Hotels · 40h</span><span class="seg rally over">Rally Fitness · 40h</span></div>
+        <span class="limit" aria-hidden="true"><b>Alex’s 40-hour week</b></span>
+      </div>
+    </section>
     <section class="handoff-chain" aria-label="Manual handoffs today">
-      <p class="chain-title"><strong>Without a shared check, Maya (resource manager) has to:</strong><span class="tag">Illustrative</span></p>
+      <p class="chain-title"><strong>Without a shared check, Maya the resource manager has to:</strong><span class="tag">Illustrative</span></p>
       <ol class="chain"><li>Find both plans</li><li>Compare them with Kantata</li><li>Negotiate a replacement</li><li>Update both managers</li></ol>
       <p class="chain-cost">4 manual handoffs · 3 people · usually found days before launch</p>
     </section>
-    <p class="speaker-line">Who discovers this collision in your company, and when?</p>
   </section>
 
   <section class="scene" data-scene="3" aria-label="The Launch Desk prepares a source-backed staffing change" hidden>
     <div class="resolution">
       <section class="reads"><h2>What the Launch Desk did · 9:02–9:04 AM</h2>
-        <div class="read-row"><span class="icon-pair"><img src="assets/ms-word.svg" alt=""></span><div><b>Read the Luma plan</b><p class="chips"><span>Alex</span><span>Nov 9–13</span><span>40h</span><span>Launch skill</span><em>Word scope in SharePoint</em></p></div></div>
-        <div class="read-row"><span class="icon-pair"><img src="assets/ms-teams.svg" alt=""></span><div><b>Read the Rally plan</b><p class="chips"><span>Alex</span><span>Nov 9–13</span><span>40h</span><span>Launch skill</span><em>Teams recap</em></p></div></div>
+        <div class="read-row"><span class="icon-pair"><img src="assets/ms-word.svg" alt=""></span><div><b>Read the Luma plan</b><p class="chips"><span>Alex</span><span>Nov 9–13</span><span>40h</span><em>Word scope in SharePoint</em></p></div></div>
+        <div class="read-row"><span class="icon-pair"><img src="assets/ms-teams.svg" alt=""></span><div><b>Read the Rally plan</b><p class="chips"><span>Alex</span><span>Nov 9–13</span><span>40h</span><em>Teams recap</em></p></div></div>
         <div class="read-row"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 14h18M9 4v16"/></svg><div><b>Checked the capacity export</b><p>Alex: 80h requested, 40h available. <strong class="flag">Collision flagged.</strong></p></div></div>
         <div class="read-row"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 19c.8-3.4 3.2-5 6-5s5.2 1.6 6 5"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 14.2c2.4.2 4.2 1.7 4.9 4.8"/></svg><div><b>Searched the bench</b><p id="log-bench">Jamie: launch skill ✓ · reviewed the Rally brief ✓ · 40h free ✓</p></div></div>
         <div class="read-row" id="log-confirm-row"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m7.5 12.5 3 3 6-6.5"/></svg><div><b id="log-confirm">Maya confirmed Jamie · 9:04 AM</b><p id="log-confirm-note">Resource manager checked the current snapshot.</p></div></div>
       </section>
       <section class="proposal"><p class="eyebrow">Proposed change · Rally Fitness</p><h2 id="proposal-headline">Give Jamie the second launch.</h2><div class="change"><span>Alex · 40h</span><span aria-hidden="true">→</span><strong>Jamie · 40h</strong></div><dl class="verify"><div><dt>Qualified?</dt><dd>Launch skill · reviewed the brief</dd></div><div><dt>Available?</dt><dd id="availability-proof">Confirmed by Maya · 40 free hours</dd></div><div><dt>Alex keeps</dt><dd>Luma Hotels · 40h · Mon–Fri</dd></div></dl>
-        <p class="will-do"><strong>Approving will:</strong> update the shared plan · record the allocation · notify Leah and Marcus · reply to Marcus’s request</p>
-        <div class="approve-row"><button type="button" id="approve" class="approve">Approve as COO</button><p class="source" id="proposal-source">Kantata export · Confirmed by Maya · No live sync</p></div>
+        <p class="will-do"><strong>Approving will:</strong> update the shared plan · record the allocation · notify Leah and Marcus · reply to Marcus</p>
+        <div class="approve-row"><button type="button" id="approve" class="approve">Approve as COO →</button><p class="source" id="proposal-source">Kantata export · Confirmed by Maya · No live sync</p></div>
         <p id="hold" role="status" hidden></p>
         <details id="qa-controls"><summary>Q&amp;A · Change one fact</summary><label for="availability">Jamie’s availability</label><select id="availability"><option value="ready">Confirmed · 40 hours available</option><option value="unknown">Not confirmed yet</option><option value="booked">Already booked for another project</option></select></details>
       </section>
     </div>
-    <p class="speaker-line">Nothing changes until you approve. Swap “launch specialist” for your scarce resource: a partner, a technician, a crew.</p>
   </section>
 
   <section class="scene" data-scene="4" aria-label="The request is completed after one approval" hidden>
-    <div class="resolved-grid">
+    <div class="done-grid">
       <div class="done-left">
-        <section class="capacity"><div class="capacity-top"><div><small>Alex · Luma</small><strong>40h / 40h</strong></div><div><small>Jamie · Rally</small><strong>40h / 40h</strong></div></div><div class="week" id="resolved-week" aria-label="Alex works on Luma and Jamie works on Rally, eight hours a day each"></div></section>
+        <section class="load-card resolved" aria-label="Both specialists are within capacity">
+          <p class="load-label">November 9–13 · after approval</p>
+          <div class="person"><b>Alex</b><div class="bar"><span class="seg luma">Luma Hotels · 40h</span></div><span class="fit">40 / 40h ✓</span></div>
+          <div class="person"><b>Jamie</b><div class="bar"><span class="seg rally">Rally Fitness · 40h</span></div><span class="fit">40 / 40h ✓</span></div>
+        </section>
         <section class="before-after" aria-label="Before and after, illustrative">
           <div><small>Today</small><strong>4 handoffs · 3 people</strong><span>Found days before launch</span></div>
           <div class="after"><small>With the desk</small><strong>1 approval · 5 minutes</strong><span>Found Monday, 9:04 AM</span></div>
           <span class="tag">Illustrative</span>
         </section>
       </div>
-      <section class="handoffs"><h2>Completed · 9:06–9:07 AM</h2>
-        <div class="handoff"><span class="tick" aria-hidden="true">✓</span><div><b>Shared launch plan updated</b><p>SharePoint · Leah and Marcus see the approved allocation.</p></div></div>
-        <div class="handoff"><span class="tick" aria-hidden="true">✓</span><div><b>Allocation recorded: Jamie · Rally · 40h</b><p>Kantata · <span class="sim">Simulated write. A real build uses the Kantata API.</span></p></div></div>
-        <div class="handoff"><span class="tick" aria-hidden="true">✓</span><div><b>Leah and Marcus notified</b><p>Teams · same change, same rationale, after your approval.</p></div></div>
-        <div class="handoff reply"><span class="tick" aria-hidden="true">✓</span><div><b>Replied to Marcus’s request</b><p class="message-text">“Confirmed: Jamie leads the Rally launch November 9–13. Alex stays on Luma. The brief is in the shared plan.”</p></div></div>
-        <div class="handoff"><span class="tick" aria-hidden="true">✓</span><div><b>Audit trail saved</b><p>Read 2 plans and 1 export · proposed Jamie · confirmed by Maya 9:04 · approved by COO 9:06</p></div></div>
+      <section class="handoffs"><h2>Completed after approval · 9:07 AM</h2>
+        <div class="handoff"><span class="tick" aria-hidden="true">✓</span><div><b>Shared launch plan updated</b><p>SharePoint · Leah and Marcus see the same plan</p></div></div>
+        <div class="handoff"><span class="tick" aria-hidden="true">✓</span><div><b>Allocation recorded: Jamie · Rally · 40h</b><p>Kantata · <span class="sim">simulated here, uses the Kantata API in a real build</span></p></div></div>
+        <div class="handoff"><span class="tick" aria-hidden="true">✓</span><div><b>Leah and Marcus notified</b><p>Teams · same change, same reason</p></div></div>
+        <div class="handoff reply"><span class="tick" aria-hidden="true">✓</span><div><b>Marcus got his answer</b><p class="message-text">“Confirmed: Jamie leads Rally, November 9–13. Alex stays on Luma.”</p></div></div>
+        <div class="handoff"><span class="tick" aria-hidden="true">✓</span><div><b>Audit trail saved</b><p>What was read, who confirmed, who approved</p></div></div>
       </section>
     </div>
-    <div class="outcome"><strong>The request is done. Both clients can be confirmed for Friday.</strong><p>The teams still own launch readiness. The desk removed the chasing.</p></div>
-    <p class="speaker-line">Count the handoffs in one of your workflows. That is the assessment.</p>
   </section>
 
   <section class="scene" data-scene="5" aria-label="Complimentary workflow assessment" hidden>
     <div class="cta-grid">
       <section><h2>What it is</h2><p>A 45-minute working session with Suuchi and Josh, the Forward Deployed Engineers who build these workflows.</p></section>
-      <section><h2>What you get</h2><p>A one-page map of one workflow: every handoff, the wait time, the approver, and where AI can complete the step versus assist. Plus one metric to baseline.</p></section>
+      <section><h2>What you get</h2><p>A one-page map of one workflow: every handoff, the wait time, the approver, and where AI can complete the step. Plus one metric to baseline.</p></section>
       <section><h2>What it isn’t</h2><p>No system access. No obligation. Not a sales pitch.</p></section>
     </div>
     <div class="cta-bottom">
@@ -100,7 +114,7 @@
   </section>
 
   <aside id="cuebox" class="presenter-only" hidden><div class="cue-heading"><b>Rehearsal cues</b><span id="time"></span></div><p id="say"></p><p id="point"></p></aside>
-  <footer class="controls"><button type="button" id="back" disabled>Back</button><span id="counter">1 of 6</span><a href="host-guide.html" target="_blank" rel="noopener" class="host-link presenter-only">Host guide ↗</a><button type="button" id="next">See what the desk finds →</button></footer>
-  <p class="simulation">Illustrative prototype · Fictional data · Simulated approvals, updates and messages</p><span class="sr-only" id="announcement" aria-live="polite"></span>
+  <footer class="controls"><button type="button" id="back" disabled>← Back</button><span id="counter">1 of 6</span><a href="host-guide.html" target="_blank" rel="noopener" class="host-link presenter-only">Host guide ↗</a><button type="button" id="next">See what the desk finds →</button></footer>
+  <p class="simulation">Illustrative prototype · Fictional company and data · Simulated approvals, updates and messages</p><span class="sr-only" id="announcement" aria-live="polite"></span>
 </main>
 </body></html>
