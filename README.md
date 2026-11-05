@@ -1,6 +1,6 @@
 # Nine-67 webinar: complete source
 
-The full published website for **Your team has AI. Why is the work still manual?**, including the Forma Digital staffing scenario, webinar cover, presenter guide, optional Q&A controls, and the retained earlier dashboard code.
+The full published website for **Your team has AI. Why is the work still manual?**, including the Halvane Robotics field engineer scenario, webinar cover, presenter guide, optional Q&A controls, and the retained earlier dashboard code.
 
 The HTML, CSS, JavaScript, and image assets in `dist/` are the editable application source. This project was written directly as a static website. There is no missing React project, compiled source directory, package dependency, database, or server application.
 
@@ -68,7 +68,7 @@ Edit `dist/site.js`:
 | File | Purpose |
 | --- | --- |
 | `dist/site.js` | Event config (booking link, slots, portraits) and presenter mode, shared by every page |
-| `dist/live.html` | Seven-screen Forma Digital demo markup |
+| `dist/live.html` | Seven-screen Halvane Robotics demo markup |
 | `dist/guided.js` | Demo navigation, rehearsal cues, Q&A availability states, approval gating, assessment screen |
 | `dist/launch-story.css` | Demo, stats and assessment styling, including the 720p compaction rules |
 | `dist/stats.html` | Opening stats screen with sources |
@@ -86,11 +86,11 @@ Earlier CSS/JS and dashboard scenarios are intentionally retained but are no lon
 
 Cover → opening stats → demo:
 
-1. **Meet Forma:** the fictional company, its two client teams and shared specialists, then Marcus asks Maya to confirm Alex for the Rally Fitness launch.
-2. **Two plans:** the AI rollout worked. Leah (ChatGPT) and Marcus (Copilot) each planned a Friday launch around Alex.
-3. **Collision:** 80 hours promised against a 40-hour week, and why no system flagged it (both bookings live in AI-written documents, not Kantata).
-4. **The fallout:** what launch week looks like if nobody catches it, ending in a client escalation, plus the cost and the general pattern.
-5. **The desk:** rewind to Monday. A work log of what the desk read and checked, a proposal to move Rally to Jamie, and an in-card COO approval.
+1. **Meet Halvane:** the fictional robot maker, its two customer accounts and its field engineers, then Marcus asks Maya to confirm Alex on site for the Meridian Axle go-live.
+2. **Two plans:** the AI rollout worked. Leah (ChatGPT) and Marcus (Copilot) each planned a Friday go-live around Alex, in Ohio and Tennessee.
+3. **Collision:** 80 hours promised against a 40-hour week, and why no system flagged it (both bookings live in AI-written documents, not on the dispatch board).
+4. **The fallout:** what go-live week looks like if nobody catches it, ending in a customer escalation, plus the cost and the general pattern.
+5. **The desk:** rewind to Monday. A work log of what the desk read and checked, a proposal to send Jamie to Meridian, and an in-card COO approval.
 6. **Done:** plan updated, allocation recorded (simulated), managers notified, Marcus answered, audit trail, before/after.
 7. **Your handoffs:** the complimentary workflow assessment.
 
@@ -98,7 +98,7 @@ Cover → opening stats → demo:
 
 ## What is simulated
 
-The company, clients, people, numbers, AI outputs, approvals, messages, and integrations are fictional demonstration content. This package does not call OpenAI, Microsoft, Kantata, or other APIs. Kantata is represented by a verified-export scenario, with an update queued for a person. No tasks or messages are sent. Live production integrations would require separately implemented authentication, permissions, backend services, evaluation, and connectors.
+The company, clients, people, numbers, AI outputs, approvals, messages, and integrations are fictional demonstration content. This package does not call OpenAI, Microsoft, field service systems, or other APIs. The dispatch board is represented by a verified-export scenario, with an update queued for a person. No tasks or messages are sent. Live production integrations would require separately implemented authentication, permissions, backend services, evaluation, and connectors.
 
 The app uses browser-local interactions. Reloading or restarting resets the current demo state. All core images and logos are included. The main cover requests Google Fonts; browsers use the declared fallback fonts when that service is unavailable. Asset attribution is in `dist/assets/credits.txt`.
 
