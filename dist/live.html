@@ -4,25 +4,45 @@
 <body class="deck">
 <header class="mast"><a class="brand" href="./#webinar-1">Nine-67</a><span class="webinar-name">Your team has AI. Why is the work still manual?</span></header>
 <main class="stage">
-  <div class="toolbar"><ol class="steps" aria-label="Story progress"><li aria-current="step"><button type="button" data-go="0">1 · Request</button></li><li><button type="button" data-go="1">2 · Two plans</button></li><li><button type="button" data-go="2">3 · Collision</button></li><li><button type="button" data-go="3">4 · The fallout</button></li><li><button type="button" data-go="4">5 · The desk</button></li><li><button type="button" data-go="5">6 · Done</button></li><li><button type="button" data-go="6">7 · Your handoffs</button></li></ol><button type="button" id="mode" class="presenter-only">Mode: Live</button></div>
+  <div class="toolbar"><ol class="steps" aria-label="Story progress"><li aria-current="step"><button type="button" data-go="0">1 · Meet Forma</button></li><li><button type="button" data-go="1">2 · Two plans</button></li><li><button type="button" data-go="2">3 · Collision</button></li><li><button type="button" data-go="3">4 · The fallout</button></li><li><button type="button" data-go="4">5 · The desk</button></li><li><button type="button" data-go="5">6 · Done</button></li><li><button type="button" data-go="6">7 · Your handoffs</button></li></ol><button type="button" id="mode" class="presenter-only">Mode: Live</button></div>
   <header class="heading"><p class="kicker" id="kicker">Forma Digital · Monday, November 2 · 9:02 AM</p><h1 id="title" tabindex="-1">A request comes in.</h1><p id="lead"></p><div class="clock" id="clock" aria-hidden="true"><small id="clock-day">Mon, Nov 2</small><strong id="clock-time">9:02 AM</strong><span id="clock-note">Rally launch in 11 days</span></div></header>
 
-  <section class="scene" data-scene="0" aria-label="A project manager asks the Launch Desk to confirm a specialist">
-    <div class="request-grid">
-      <article class="message-card">
-        <p class="message-meta"><img src="assets/ms-teams.svg" alt="">Teams · #rally-launch · 9:02 AM</p>
-        <div class="message-body"><span class="avatar" aria-hidden="true">M</span><div><b>Marcus</b> <small>Project manager · Rally Fitness</small><p class="message-text"><span class="mention">@Launch Desk</span> Rally wants to lock the Friday, November 13 launch. Can we confirm Alex for November 9–13?</p></div></div>
+  <section class="scene" data-scene="0" aria-label="Meet Forma Digital, its teams, and the request">
+    <div class="org">
+      <article class="team luma">
+        <p class="team-label">Client team · Luma Hotels</p>
+        <div class="who"><span class="avatar" aria-hidden="true">L</span><div><b>Leah</b><small>Project manager</small></div></div>
+        <p class="tool"><img src="assets/openai.svg" alt="">Plans with ChatGPT</p>
       </article>
-      <article class="desk-card">
-        <p class="eyebrow">Launch Desk · Request received 9:02 AM</p>
-        <ul class="desk-checks">
-          <li><span class="pulse" aria-hidden="true"></span>Finding every plan that books Alex</li>
-          <li><span class="pulse" aria-hidden="true"></span>Checking capacity for November 9–13</li>
-          <li><span class="pulse" aria-hidden="true"></span>Looking for conflicts across teams</li>
-        </ul>
+      <article class="team rally">
+        <p class="team-label">Client team · Rally Fitness</p>
+        <div class="who"><span class="avatar" aria-hidden="true">M</span><div><b>Marcus</b><small>Project manager</small></div></div>
+        <p class="tool"><img src="assets/copilot.webp" alt="">Plans with Copilot</p>
+      </article>
+      <article class="team bench">
+        <p class="team-label">Shared specialists · both teams borrow from here</p>
+        <div class="bench-people">
+          <div class="who key"><span class="avatar" aria-hidden="true">A</span><div><b>Alex</b><small>Launch specialist</small></div></div>
+          <div class="who"><span class="avatar" aria-hidden="true">J</span><div><b>Jamie</b><small>Launch specialist</small></div></div>
+          <div class="who"><span class="avatar" aria-hidden="true">M</span><div><b>Maya</b><small>Resource manager</small></div></div>
+        </div>
+        <p class="tool"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 14h18M9 4v16"/></svg>Staffing tracked in Kantata</p>
       </article>
     </div>
-    <p class="callout"><strong>Today, a person answers this by hand.</strong> Open the plans, check Kantata, ask around, then reply.</p>
+    <div class="ask">
+      <article class="message-card">
+        <p class="message-meta"><img src="assets/ms-teams.svg" alt="">Teams · #resourcing · Monday 9:02 AM</p>
+        <div class="message-body"><span class="avatar" aria-hidden="true">M</span><div><b>Marcus</b> <small>Project manager · Rally Fitness</small><p class="message-text"><span class="mention">@Maya</span> Rally wants to lock their launch for Friday, November 13. Can we confirm Alex for November 9–13?</p></div></div>
+      </article>
+      <article class="today">
+        <p class="eyebrow">How this gets answered today</p>
+        <ol>
+          <li>Maya checks Kantata. <b>Alex looks free.</b></li>
+          <li>Leah’s plan for that same week sits in her ChatGPT chat.</li>
+          <li><b>Nobody sees both.</b></li>
+        </ol>
+      </article>
+    </div>
   </section>
 
   <section class="scene" data-scene="1" aria-label="Two separately prepared project plans" hidden>

@@ -103,24 +103,35 @@ html.presenter .presenter-only:not([hidden]) { display: revert !important; }
 .glyph { width: 25px; height: 25px; fill: none; stroke: var(--forest); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; margin-top: 1px; }
 .source { display: flex; align-items: center; flex-wrap: wrap; gap: 5px; color: var(--muted); font-size: 13px; }
 
-/* 1 · Request */
-.request-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 24px; align-items: stretch; }
-.message-card, .desk-card { padding: 22px 26px; border: 1px solid var(--line); background: var(--white); border-radius: 6px; }
-.message-card { border-top: 4px solid #5b5fc7; }
-.message-meta { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); margin-bottom: 14px; }
+/* 1 · Meet Forma */
+.org { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.75fr); gap: 16px; }
+.team { display: flex; flex-direction: column; gap: 10px; padding: 14px 18px; border: 1px solid var(--line); border-top: 4px solid var(--blue); background: var(--white); border-radius: 6px; }
+.team.rally { border-top-color: var(--forest); }
+.team.bench { border-top-color: var(--ink); background: #faf6ee; }
+.team-label { font-size: 12px; font-weight: 750; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.who { display: flex; align-items: center; gap: 10px; }
+.who b { display: block; font-size: 17px; line-height: 1.2; }
+.who small { font-size: 13px; color: var(--muted); }
+.luma .avatar { background: var(--hotel); color: var(--blue); }
+.rally .avatar { background: var(--fitness); color: var(--forest); }
+.who.key .avatar { background: #fbf3e6; color: var(--ochre); box-shadow: 0 0 0 2px var(--ochre); }
+.bench-people { display: grid; grid-template-columns: repeat(3, auto); justify-content: space-between; gap: 10px; }
+.tool { display: flex; align-items: center; gap: 8px; margin-top: auto; font-size: 14px; color: var(--muted); }
+.tool img, .tool .glyph { width: 20px; height: 20px; object-fit: contain; }
+.ask { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 16px; margin-top: var(--gap); }
+.message-card { padding: 18px 24px; border: 1px solid var(--line); border-top: 4px solid #5b5fc7; background: var(--white); border-radius: 6px; }
+.message-meta { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); margin-bottom: 10px; }
 .message-meta img { width: 20px; height: 20px; }
 .message-body { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 12px; }
-.message-body .avatar { width: 40px; height: 40px; }
+.message-body .avatar { width: 40px; height: 40px; background: var(--fitness); color: var(--forest); }
 .message-body small { color: var(--muted); font-size: 13px; }
-.message-text { margin-top: 6px; font-size: clamp(19px, 1.8vw, 26px); line-height: 1.35; }
+.message-text { margin-top: 6px; font-size: clamp(18px, 1.6vw, 23px); line-height: 1.35; }
 .mention { color: #4f52b2; font-weight: 650; }
-.desk-card { border-top: 4px solid var(--forest); }
-.desk-checks { list-style: none; padding: 0; margin-top: 14px; display: grid; gap: 14px; font-size: clamp(16px, 1.4vw, 19px); }
-.desk-checks li { display: flex; align-items: center; gap: 12px; }
-.pulse { width: 10px; height: 10px; border-radius: 50%; background: var(--forest); animation: pulse 1.4s ease-in-out infinite; flex-shrink: 0; }
-.desk-checks li:nth-child(2) .pulse { animation-delay: .25s; }
-.desk-checks li:nth-child(3) .pulse { animation-delay: .5s; }
-@keyframes pulse { 0%, 100% { opacity: .25; transform: scale(.8); } 50% { opacity: 1; transform: scale(1); } }
+.today { padding: 18px 22px; border-left: 4px solid var(--ochre); background: var(--warning); border-radius: 0 6px 6px 0; }
+.today .eyebrow { color: var(--ochre); }
+.today ol { display: grid; gap: 8px; margin-top: 10px; padding-left: 22px; font-size: clamp(16px, 1.35vw, 19px); line-height: 1.35; color: #5c4e3c; }
+.today b { color: var(--ink); }
+.today li:last-child b { color: var(--red); }
 
 /* 2 · Two plans */
 .plans { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
@@ -324,7 +335,9 @@ body[data-step="4"] .desk-note { display: block; }
   .mast { padding-block: 7px; }
   .heading h1 { margin-top: 5px; }
   #lead { margin-top: 6px; }
-  .message-card, .desk-card, .plan { padding: 16px 22px; }
+  .message-card, .plan { padding: 16px 22px; }
+  .team { padding: 10px 16px; gap: 6px; }
+  .today { padding: 14px 20px; }
   .planned, .booking { margin-top: 12px; }
   .booking { padding-block: 12px; }
   .plan-ok { margin-top: 10px; }
@@ -366,7 +379,7 @@ body[data-step="4"] .desk-note { display: block; }
   .webinar-name { font-size: 12px; }
   .steps { gap: 8px; }
   .steps button { font-size: 12px; }
-  .request-grid, .plans, .resolution, .done-grid, .cta-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .org, .ask, .bench-people, .plans, .resolution, .done-grid, .cta-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
   .silos, .fallout { grid-template-columns: minmax(0, 1fr); }
   .clock { grid-column: 1; grid-row: auto; justify-self: start; margin-top: 12px; }
   .clash { display: none; }

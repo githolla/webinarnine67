@@ -86,7 +86,7 @@ Earlier CSS/JS and dashboard scenarios are intentionally retained but are no lon
 
 Cover → opening stats → demo:
 
-1. **Request:** Marcus asks the Launch Desk to confirm Alex for the Rally Fitness launch.
+1. **Meet Forma:** the fictional company, its two client teams and shared specialists, then Marcus asks Maya to confirm Alex for the Rally Fitness launch.
 2. **Two plans:** the AI rollout worked. Leah (ChatGPT) and Marcus (Copilot) each planned a Friday launch around Alex.
 3. **Collision:** 80 hours promised against a 40-hour week, and why no system flagged it (both bookings live in AI-written documents, not Kantata).
 4. **The fallout:** what launch week looks like if nobody catches it, ending in a client escalation, plus the cost and the general pattern.
