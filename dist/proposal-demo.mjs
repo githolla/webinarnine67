@@ -1,5 +1,5 @@
 import { initialState, transition, numbers, artifact, money, owners, approved } from './proposal-model.mjs';
-import { renderScene, renderSidebar, scenes, escapeHtml, roster, primaryAction, renderDetail } from './proposal-view.mjs';
+import { renderScene, scenes, escapeHtml, roster, primaryAction, renderDetail } from './proposal-view.mjs';
 let state = initialState();
 let playbackTimer;
 let openDetail = '';
@@ -14,7 +14,6 @@ function render(navigate=false){
   byId('title').textContent=scene.title;
   byId('lead').textContent=scene.lead;
   byId('scene-content').innerHTML=renderScene(state);
-  byId('explanation').innerHTML=renderSidebar(state);
   byId('people-roster').innerHTML=roster(state);
   document.body.dataset.scene=String(state.scene);
   document.querySelectorAll('[data-scene]').forEach(button=>{
@@ -76,12 +75,14 @@ function act(action,trigger){
   if(action==='manual')return dispatch({type:'MANUAL'});
   if(action==='change')return dispatch({type:'CHANGE'});
   if(action==='analyze')return dispatch({type:'ANALYZE'});
-  if(action==='run')return dispatch({type:'START_RUN'});
+  if(action==='run'){if(!state.analyzed)state=transition(state,{type:'ANALYZE'});return dispatch({type:'START_RUN'});}
+  if(action==='advance-run')return dispatch({type:'RUN_STEP'});
   if(action==='pause')return dispatch({type:'PAUSE_RUN'});
   if(action==='release'){
     if(!owners.every(owner=>approved(state,owner.id)))return;
     state=transition(state,{type:'APPROVE',id:'leadership'});
-    return dispatch({type:'SYNC'});
+    state=transition(state,{type:'SYNC'});
+    return dispatch({type:'SCENE',index:state.ready?4:3});
   }
   if(action==='return-review')return dispatch({type:'SCENE',index:3});
   if(action==='assessment')return showDetail('assessment',trigger);
@@ -94,14 +95,14 @@ document.addEventListener('click',event=>{
   if(button.dataset.detail)return showDetail(button.dataset.detail,button);
   if(button.dataset.scene!==undefined)return dispatch({type:'SCENE',index:Number(button.dataset.scene)});
   if(button.dataset.goto!==undefined)return dispatch({type:'SCENE',index:Number(button.dataset.goto)});
-  if(button.dataset.manualBeat!==undefined){state={...state,manualCount:Number(button.dataset.manualBeat)};return render();}
+  if(button.dataset.manualBeat!==undefined){if(openDetail.startsWith('handoff:')){openDetail=`handoff:${button.dataset.manualBeat}`;return updateDetail();}state={...state,manualCount:Number(button.dataset.manualBeat)};return render();}
   if(button.id==='back')return dispatch({type:'SCENE',index:state.scene-1});
   if(button.id==='reset'){stopTimer();if(dialog.open)dialog.close();openDetail='';return dispatch({type:'RESET'});}
   if(button.dataset.action)return act(button.dataset.action,button);
 });
 document.addEventListener('change',event=>{if(event.target instanceof HTMLSelectElement&&event.target.id==='fault'){dispatch({type:'FAULT',value:event.target.value});byId('fault')?.focus({preventScroll:true});}});
 document.addEventListener('keydown',event=>{
-  if(event.repeat||event.ctrlKey||event.metaKey||event.altKey||dialog.open||!(event.target instanceof Element)||event.target.closest('input,textarea,select,button,a,summary')||event.target.isContentEditable)return;
+  if(event.repeat||event.ctrlKey||event.metaKey||event.altKey||dialog.open||!(event.target instanceof Element)||event.target.closest('input,textarea,select,a,summary')||event.target.isContentEditable)return;
   if(event.key==='ArrowRight'){event.preventDefault();const action=primaryAction(state);if(!action.disabled)act(action.action);}
   if(event.key==='ArrowLeft'){event.preventDefault();dispatch({type:'SCENE',index:state.scene-1});}
 });

@@ -42,7 +42,7 @@ test('navigation cannot bypass readiness and reset clears the demonstration',()=
 test('manual walkthrough carries evidence without granting approval',()=>{
  let state=transition(initialState(),{type:'MANUAL'});assert.equal(state.manualCount,0);state=transition(state,{type:'CHANGE'});
  for(let i=0;i<9;i++)state=transition(state,{type:'MANUAL'});
- assert.equal(state.manualCount,6);assert.equal(state.ready,false);state.scene=2;assert.match(renderScene(state),/Leah → Leadership/);assert.doesNotMatch(renderScene(state),/Leah → Leah/);assert.match(renderScene(state),/Reconstruct the approval trail/);assert.deepEqual(state.approvals,{});
+ assert.equal(state.manualCount,6);assert.equal(state.ready,false);state.scene=2;assert.equal([...renderScene(state).matchAll(/data-detail="handoff:/g)].length,4);const detail=renderDetail(state,'handoff:3').html;assert.match(detail,/Leah → Leadership/);assert.doesNotMatch(detail,/Leah → Leah/);assert.match(detail,/Reconstruct the approval trail/);assert.deepEqual(state.approvals,{});
 });
 test('all five scenes and inspectable conversations render with local assets',()=>{
  const variants=[initialState(),setup(),approveAll(setup()),transition(approveAll(setup()),{type:'SYNC'})];
@@ -123,4 +123,16 @@ test('new revisions keep displayed handoffs, AI conversations and final commitme
 test('opening original contributions after the change retains their original context',()=>{
  for(const owner of owners){const html=renderDetail({...setup(),scene:0},`ai:${owner.id}`).html;assert.match(html,/Original requirement/);assert.doesNotMatch(html,/Denver|\$810,000/);}
  assert.doesNotMatch(renderDetail(initialState(),'ai:sales').html,/handoff to Leah/);
+});
+
+test('presentation path keeps optional detail out of the main sequence',()=>{
+ let state=transition(initialState(),{type:'CHANGE'});
+ assert.equal(primaryAction({...state,scene:2}).action,'next');
+ assert.equal(primaryAction({...state,scene:3}).action,'run');
+ state=transition(state,{type:'ANALYZE'});state=transition(state,{type:'START_RUN'});
+ assert.equal(primaryAction({...state,scene:3}).action,'advance-run');
+ for(let index=0;index<5;index++)state=transition(state,{type:'RUN_STEP'});
+ assert.equal(primaryAction({...state,scene:3}).action,'release');
+ assert.equal(state.ready,false);assert.equal(approved(state,'leadership'),false);
+ for(let index=0;index<4;index++)assert.doesNotMatch(renderDetail(state,`handoff:${index}`).html,/undefined|NaN/);
 });
