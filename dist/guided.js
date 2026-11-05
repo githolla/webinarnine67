@@ -195,6 +195,7 @@ function render() {
   byId('time').textContent=s.time; byId('say').textContent=s.say; byId('point').textContent=s.point;
   byId('availability').value=availability;
   byId('coordinator-state').textContent=d.state;
+  byId('sidebar-coordinator-state').textContent=d.state;
   byId('coordinator-next').textContent=d.nextAction;
   byId('approval-material').textContent=d.material;
   byId('approval-engineering').textContent=d.engineering;
