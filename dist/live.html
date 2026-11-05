@@ -18,8 +18,8 @@
       <p class="cast-label company-label">Keystone Workwear · four people touch this order</p>
       <article class="actor customer"><span class="avatar" aria-hidden="true">R</span><b>Rachel</b><small>Ridgeline Roofing</small><p>Sends the new logo</p><span class="actor-tool"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg>Email</span></article>
       <article class="actor sales"><span class="avatar" aria-hidden="true">L</span><b>Leah</b><small>Account manager</small><p>Owns the customer and the promise</p><span class="actor-tool"><img src="assets/copilot.webp" alt="">Copilot in Outlook</span></article>
-      <article class="actor design"><span class="avatar" aria-hidden="true">D</span><b>Dana</b><small>Designer</small><p>Makes the artwork print-ready</p><span class="actor-tool"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg>AI vectorize tool</span></article>
-      <article class="actor plan"><span class="avatar" aria-hidden="true">S</span><b>Sam</b><small>Production planner</small><p>Schedules the press</p><span class="actor-tool"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Shop calendar + AI assistant</span></article>
+      <article class="actor design"><span class="avatar" aria-hidden="true">D</span><b>Dana</b><small>Designer</small><p>Makes the artwork print-ready</p><span class="actor-tool"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg>ChatGPT + design tool</span></article>
+      <article class="actor plan"><span class="avatar" aria-hidden="true">S</span><b>Sam</b><small>Production planner</small><p>Schedules the press</p><span class="actor-tool"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Claude + shop calendar</span></article>
       <article class="actor press-op"><span class="avatar" aria-hidden="true">T</span><b>Theo</b><small>Press operator</small><p>Checks the first print against the ticket</p><span class="actor-tool"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="10" rx="2"/><path d="M7 8V4h10v4M7 18v2h10v-2"/><circle cx="17" cy="13" r="1"/></svg>Job ticket</span></article>
     </div>
     <div class="inbox">
@@ -44,23 +44,36 @@
   </section>
 
   <section class="scene" data-scene="1" aria-label="Three departments each used AI on order 4821" hidden>
-    <div class="depts">
+    <div class="depts ai-depts">
       <article class="dept">
-        <p class="dept-who"><img src="assets/copilot.webp" alt=""><span><b>Leah</b>Account manager</span><span class="private">Private session</span></p>
-        <p class="dept-ai"><small>How AI helped <span class="done-ok">✓ Done in 30 sec</span></small>She clicks Draft with Copilot, changes one word, and sends.</p>
-        <p class="dept-result"><small>What happened to order 4821</small>Rachel gets a confirmation. <b>Copilot never saw the order, so the new file stays in the email thread.</b></p>
+        <p class="dept-who"><span class="avatar">L</span><span><b>Leah</b>Account manager</span><span class="private">Private session</span></p>
+        <div class="ai-app ai-copilot" aria-label="Recreated Copilot in Outlook drafting interface">
+          <div class="ai-top"><img src="assets/ms-outlook.svg" alt="">Outlook<span>···</span></div>
+          <div class="ai-mail-fields">To: Rachel Ortiz<br><strong>RE: Order 4821 crew shirts</strong></div>
+          <div class="copilot-panel"><h3><img src="assets/copilot.webp" alt="">Draft with Copilot</h3><p class="ai-prompt">Confirm we’ll use the new logo on all 5,000 shirts and ship Friday.</p><div class="ai-answer">Got it. We’ll use the new logo on all 5,000 shirts. Friday works.</div><div class="ai-demo-actions" aria-hidden="true"><span class="keep-draft">Keep it</span><span>↻ Try again</span><span>Discard</span></div><small>AI-generated content may be incorrect</small></div>
+        </div>
+        <p class="dept-result"><small>What happened to order 4821</small>Leah edits the draft and sends it. <b>In this scenario, Copilot has only the email thread. The order stays unchanged.</b></p>
       </article>
       <article class="dept">
-        <p class="dept-who"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg><span><b>Dana</b>Designer</span><span class="private">Private session</span></p>
-        <p class="dept-ai"><small>How AI helped <span class="done-ok">✓ Done in 4 min</span></small>An AI vectorize tool cleans up the new logo and separates the colors. Print-ready.</p>
-        <p class="dept-result"><small>What happened to order 4821</small>The separations go to the art drive. <b>Nobody opens a new proof on 4821.</b></p>
+        <p class="dept-who"><span class="avatar">D</span><span><b>Dana</b>Designer</span><span class="private">Private session</span></p>
+        <div class="ai-app ai-chatgpt" aria-label="Recreated ChatGPT conversation">
+          <div class="ai-top"><img src="assets/openai.svg" alt="">ChatGPT <span>↗ &nbsp; ···</span></div>
+          <div class="ai-conversation"><p class="ai-upload">▧ Ridgeline_logo_v2.png</p><p class="ai-prompt">Help me prepare this logo for a two-color screen print.</p><div class="ai-answer"><strong>Here’s a prepress checklist:</strong><ol><li>Rebuild the artwork as vectors.</li><li>Separate navy and orange into spot colors.</li><li>Check line weights at print size.</li><li>Export a proof for approval.</li></ol><p>Have your designer verify the separations before printing.</p></div><div class="ai-feedback" aria-hidden="true">▢ &nbsp; ♧ &nbsp; ↻ &nbsp; ···</div></div>
+          <div class="ai-composer" aria-hidden="true">Ask anything<span>＋ <i>↑</i></span></div>
+        </div>
+        <p class="dept-result"><small>What happened to order 4821</small>Dana follows the checklist in her design tool and saves the separations. <b>Nobody opens a new proof on 4821.</b></p>
       </article>
       <article class="dept">
-        <p class="dept-who"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span><b>Sam</b>Production planner</span><span class="private">Private session</span></p>
-        <p class="dept-ai"><small>How AI helped <span class="done-ok">✓ Done in 2 min</span></small>An AI assistant resequences the week to protect Friday.</p>
-        <p class="dept-result"><small>What happened to order 4821</small>4821 moves from Tuesday to today, 1:00 PM on Press 3. <b>Its screens were burned from proof v1.</b></p>
+        <p class="dept-who"><span class="avatar">S</span><span><b>Sam</b>Production planner</span><span class="private">Private session</span></p>
+        <div class="ai-app ai-claude" aria-label="Recreated Claude conversation">
+          <div class="ai-top"><img src="assets/claude.svg" alt="">Claude<span>Press schedule &nbsp; ▾</span></div>
+          <div class="ai-conversation"><p class="ai-upload">▧ press_schedule.csv</p><p class="ai-prompt">Resequence this week’s jobs so order 4821 still ships Friday.</p><div class="ai-answer"><img class="claude-response-mark" src="assets/claude.svg" alt=""><p>Move WO 4821 to Press 3 today at 1:00 PM. Based on the schedule you shared, this leaves time for packing before Friday.</p><div class="ai-artifact"><span>▤</span><div><strong>Revised press schedule</strong><small>Document · Suggested sequence</small></div></div></div><div class="ai-feedback" aria-hidden="true">▢ &nbsp; ↻ &nbsp; ···</div></div>
+          <div class="ai-composer" aria-hidden="true">Reply to Claude…<span>＋ <i>↑</i></span></div>
+        </div>
+        <p class="dept-result"><small>What happened to order 4821</small>Sam moves 4821 to today, 1:00 PM on Press 3. <b>The schedule contains no logo change. Its screens still come from proof v1.</b></p>
       </article>
     </div>
+    <p class="ai-recreation-note">Illustrative conversations · Recreated product interfaces, simplified for presentation</p>
     <p class="callout warn"><strong>Three good AI outputs. Nobody changed the order.</strong> Each one stopped at its own department.</p>
     <div class="stat-pair"><p class="stat-note"><strong>69%</strong> say most AI work happens in private sessions, like these. <cite>Miro, Nov 2026</cite></p><p class="stat-note"><strong>52.7%</strong> of merch firms: top AI barrier is no integration with their systems. <cite>PPAI, Jul 2026</cite></p></div>
   </section>
