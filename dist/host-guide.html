@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Host guide · Nine-67 webinar</title>
+  <style>
+    :root { color-scheme: light; --ink:#171b22; --muted:#565a5d; --paper:#f6f2ea; --line:#d8d2c8; --blue:#234e71; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; scroll-padding-top:5em; }
+    body { margin:0; background:var(--paper); color:var(--ink); font:1rem/1.52 system-ui,sans-serif; }
+    header { display:flex; justify-content:space-between; align-items:center; gap:1em; padding:.9em max(5vw,calc((100vw - 860px)/2)); background:var(--ink); color:white; }
+    header strong { font-size:1.2rem; letter-spacing:-.05em; }
+    a { color:var(--blue); }
+    header a { color:white; font-size:.85rem; text-underline-offset:.25em; }
+    main, nav > div { max-width:860px; margin:auto; padding-inline:clamp(1.1rem,4vw,2rem); }
+    .intro { padding-block:2.2rem 1.5rem; }
+    h1,h2,h3,p,blockquote { margin:0; }
+    h1,h2,h3 { line-height:1.14; letter-spacing:-.04em; }
+    h1 { font-size:clamp(2.5rem,7vw,4.25rem); margin:.25em 0; }
+    h2 { font-size:clamp(1.55rem,4.5vw,2.15rem); margin:.2em 0 .55em; }
+    h3 { font-size:1.17rem; }
+    .label,.time { color:var(--blue); font-weight:700; font-size:.75rem; letter-spacing:.1em; text-transform:uppercase; }
+    .setup { color:var(--muted); max-width:70ch; }
+    nav { position:sticky; top:0; z-index:1; background:var(--paper); border-block:1px solid var(--line); }
+    nav > div { display:flex; gap:.4em; padding-block:.55em; overflow-x:auto; }
+    nav a { font-size:.82rem; padding:.32em .64em; text-decoration:none; border-radius:99px; white-space:nowrap; font-weight:600; }
+    nav a:hover, nav a:focus-visible { background:#e5e8e8; }
+    section.beat { border-bottom:1px solid var(--line); padding-block:1.65rem; }
+    .cue { margin:.72em 0; }
+    .action { color:var(--muted); font-size:.9rem; }
+    .action strong { color:var(--blue); }
+    .demo-steps { display:grid; gap:.7em; padding:0; list-style:none; }
+    .demo-steps li { background:#fffdf8; padding:1em 1.1em; border:1px solid var(--line); border-radius:12px; }
+    .rehearse { margin:1.6rem 0 3rem; border-left:3px solid var(--blue); padding-left:1em; }
+    a:focus-visible { outline:3px solid #4088ac; outline-offset:3px; }
+    @media (max-width:480px) { nav > div { gap:0; } nav a { padding-inline:.46em; } header { padding-inline:1.1rem; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+  </style>
+</head>
+<body>
+  <header><strong>Nine-67</strong><a href="live.html" target="_blank" rel="noopener">Open guided demo ↗</a></header>
+  <main class="intro">
+    <div class="label">Suuchi Ramesh + Josh Lee · 30 minutes</div>
+    <h1>Host guide</h1>
+    <p><strong>Your Team Has AI. So Why Is the Work Still Manual?</strong></p>
+    <p class="setup">Open <a href="live.html#slide-1" target="_blank" rel="noopener">the two launch plans</a> and keep this guide on a second screen. Rehearse shows the speaking cues. Start live hides them and resets the opening. Three clicks carry the audience from two plans to one staffing decision.</p>
+  </main>
+  <nav aria-label="Jump to a cue"><div><a href="#open">Opening</a><a href="#demo">Demo</a><a href="#debrief">Debrief</a><a href="#exercise">Chat exercise</a><a href="#pilot">First pilot</a><a href="#questions">Q&amp;A</a><a href="#close">Close</a></div></nav>
+  <main>
+    <section class="beat" id="open">
+      <div class="time">0–3 min · Suuchi</div>
+      <h2>Two teams promise the same person’s week</h2>
+      <p><b>Suuchi · First 20 seconds</b> “Two managers have used AI to prepare their client launch plans. Both plans look ready. Both clients expect to launch Friday. Who checks whether the business can deliver both?”</p>
+      <p class="action">Invite a quick show of hands or a word in chat. Move on after five seconds.</p>
+      <p class="cue">“We’re going to follow one fictional team through that decision. Forma Digital builds customer apps. Josh, show us what each manager has planned.”</p>
+      <details><summary>Optional survey context</summary>
+        <p class="cue">“Salesforce surveyed 250 U.S. executives who make AI investment decisions. Fifty-nine percent reported weekly stalls because work was stuck in one person’s AI tool.”</p>
+        <p class="action"><a href="https://www.salesforce.com/news/stories/work-stalls-isolated-ai-tools/" target="_blank" rel="noopener">Salesforce survey, October 2026</a></p>
+      </details>
+    </section>
+    <section class="beat" id="demo">
+      <div class="time">3–10 min · Josh shares the demo</div>
+      <h2>Run the case in three minutes, then ask the room</h2>
+      <p class="action">Start with Live selected. Advance once at the end of each of the first three cues. Let the numbers and calendar carry the explanation.</p>
+      <ol class="demo-steps">
+        <li>
+          <div class="time">3:00–3:40 · <a href="live.html#slide-1" target="_blank" rel="noopener">Screen 1 · The plans</a></div>
+          <h3>Give the room one decision</h3>
+          <p class="cue"><b>Say</b> “Leah used ChatGPT and the Word scope in SharePoint to plan Luma Hotels’ guest app. Marcus used Copilot and Teams to plan Rally Fitness’ member app. Both need to launch Friday. Would you commit to both?”</p>
+          <p class="action"><b>Point</b> To Alex’s 40 hours on each plan. Pause for five seconds, then advance to the shared calendar.</p>
+        </li>
+        <li>
+          <div class="time">3:40–4:25 · <a href="live.html#slide-2" target="_blank" rel="noopener">Screen 2 · The collision</a></div>
+          <h3>Show the impossible week</h3>
+          <p class="cue"><b>Say</b> “Alex has 80 hours promised and 40 hours available. Each manager got a useful plan. Someone still has to discover that they both promised the same person.”</p>
+          <p class="action"><b>Point</b> To the overlapping Monday–Friday bookings. Ask, “Which client hears about this first?” Give the room a beat, then advance.</p>
+          <p class="cue">“One deadline needs to move, or the team needs more capacity. Maya now has to compare the plans, check availability and coordinate a change.”</p>
+        </li>
+        <li>
+          <div class="time">4:25–5:30 · <a href="live.html#slide-3" target="_blank" rel="noopener">Screen 3 · The proposal</a></div>
+          <h3>Show what Nine-67 can build</h3>
+          <p class="cue"><b>Say</b> “The Launch Desk reads both plans and matches Alex and the week. It checks the allocations against Maya’s Kantata export. Jamie has the right skills and 40 hours free. The desk proposes Jamie for Rally, with Alex staying on Luma.”</p>
+          <p class="action"><b>Point</b> To the verified availability and the proposed assignment. Ask, “Would you approve this change?” Then approve once.</p>
+          <p class="cue">“Maya confirmed this snapshot. If availability is unconfirmed or Jamie is already booked, the proposal waits for a human to resolve it.”</p>
+        </li>
+        <li>
+          <div class="time">5:30–6:15 · <a href="live.html#slide-4" target="_blank" rel="noopener">Screen 4 · The shared plan</a></div>
+          <h3>Keep the calendar in view</h3>
+          <p class="cue"><b>Say</b> “Alex now has 40 hours on Luma. Jamie has 40 hours on Rally. Both project managers see the same approved allocation. Their update drafts are ready, and Maya has a queued change to enter in Kantata.”</p>
+          <p class="action"><b>Point</b> To the two separate assignments, then the handoff to each owner. The simulation resolves the staffing conflict. The teams still own launch readiness and their client commitments.</p>
+        </li>
+      </ol>
+      <p class="cue"><b>6:15–10 · Suuchi</b> “Where could two good plans compete for the same resource in your company?”</p>
+      <p class="action">Take one or two responses. It could be a technician, delivery slot, production line or specialist. Ask who discovers the clash, how late they find it and who has to update the plan.</p>
+    </section>
+    <section class="beat" id="debrief">
+      <div class="time">10–12 min · 1:10–1:12 PM ET · Suuchi + Josh</div>
+      <h2>Make the business consequence concrete</h2>
+      <p class="cue"><b>Suuchi</b> “When a clash like this reaches a customer, what happens? Does a date move, do you bring in extra help, or does another project lose its people?”</p>
+      <p class="cue"><b>Josh</b> “The workflow can bring the conflict forward, attach the facts and route one decision to its owner. A pilot tells us how often that happens and what it changes for your team.”</p>
+      <details><summary>A manufacturing example if useful</summary>
+        <p class="cue">Microsoft describes Pamarco, with roughly 225 people. Its plant managers receive a Monday morning report showing which jobs need attention. Its sales director receives populated figures for a board report and adds the business explanation.</p>
+        <p class="action"><a href="https://www.microsoft.com/en/customers/story/27289-pamarco-technologies-dynamics-365-finance" target="_blank" rel="noopener">Microsoft customer interview with Pamarco, September 2026</a></p>
+      </details>
+    </section>
+    <section class="beat" id="exercise">
+      <div class="time">12–15 min · 1:12–1:15 PM ET · Suuchi facilitates</div>
+      <h2>Let attendees name one handoff</h2>
+      <p class="cue"><b>Suuchi</b> “Think of something that waited on another team last week. Finish this sentence in chat or jot it down for yourself. ‘Before my team can ___, someone has to chase ___ for ___.’”</p>
+      <p class="action">Give them 15 seconds. Read one example aloud. Josh asks, “Who can confirm that answer, and where does the next person need to see it?”</p>
+      <p class="cue"><b>If chat is quiet</b>, Josh says, “Before Leah can commit Alex to the launch, Maya has to check the other project plans and confirm who is free. Who fills Maya’s role in your company?”</p>
+    </section>
+    <section class="beat" id="pilot">
+      <div class="time">15–18 min · 1:15–1:18 PM ET · Josh</div>
+      <h2>Turn one handoff into a pilot</h2>
+      <p class="cue"><b>Josh</b> “Choose one team and one recurring commitment, such as next week’s staffing. Replay a sample of recent plans against the assignments that were actually confirmed. Ask the resource owner to verify every conflict.”</p>
+      <p class="cue">“Measure the time spent reconciling plans, how early valid conflicts were found and how many suggestions needed correction. Then track the approved changes that reached every owner. That gives you a baseline for deciding whether to expand.”</p>
+      <p class="action">At 1:18, Suuchi opens Q&amp;A. If time is short, name one measure and keep the handoff on time.</p>
+    </section>
+    <section class="beat" id="questions">
+      <div class="time">18–29 min · 1:18–1:29 PM ET · Suuchi moderates</div>
+      <h2>Work through a real exception</h2>
+      <p><b>18–23 · Start with an attendee’s situation.</b> Suuchi asks, “Which shared resource causes the most surprises, and who owns the final commitment?” Josh maps their answer to the source, the owner and the next action.</p>
+      <p class="cue"><b>23–28 · Test one change in the Launch Desk.</b> Return to <a href="live.html#slide-3" target="_blank" rel="noopener">the proposal</a>. Change one Q&amp;A scenario and let the room predict whether approval is available.</p>
+      <ul>
+        <li><b>Ready.</b> Maya has confirmed Jamie’s eligibility and availability. The proposed reassignment can be approved.</li>
+        <li><b>Availability unconfirmed.</b> The desk holds approval and asks Maya for a current answer. A blank calendar alone does not establish availability.</li>
+        <li><b>Jamie already booked.</b> The desk holds approval. The team must find another qualified person or change a commitment.</li>
+        <li><b>“Does this automatically update Kantata?”</b> This case uses an export and a queued update for Maya. Maya enters the change in Kantata and confirms it. A direct connector would need its own tested permissions and update behavior.</li>
+        <li><b>“Does the client message go out?”</b> The demo prepares update drafts. The project owners review their client commitments and decide what to send.</li>
+      </ul>
+      <details><summary><b>How would we connect this to the client’s systems?</b></summary>
+        <p class="cue"><b>Josh</b> “Start with the plans, assignments and availability records your team can access. Match the same person, skill requirement and dates across them. Keep the source time visible and route an uncertain match to the resource owner.”</p>
+        <p class="cue">“AI can read the plan and prepare the change. The application checks capacity and permissions, keeps the decision with its evidence, and tracks the update through to its owner.”</p>
+        <p class="action">For technical follow-up use <a href="https://learn.microsoft.com/en-us/graph/api/listitem-list?view=graph-rest-1.0" target="_blank" rel="noopener">SharePoint list items</a>, <a href="https://learn.microsoft.com/en-us/graph/api/channel-list-messages?view=graph-rest-1.0" target="_blank" rel="noopener">Teams channel messages</a>, <a href="https://learn.microsoft.com/en-us/microsoft-365-copilot/microsoft-365-copilot-architecture" target="_blank" rel="noopener">how Copilot uses work content</a>, and <a href="https://developer.kantata.com/kantata/specification/section/authentication" target="_blank" rel="noopener">Kantata OX API authentication</a>.</p>
+      </details>
+      <details><summary><b>Other examples if the room asks</b></summary>
+        <p class="cue"><b>Operating partners.</b> “Agree whether you are counting a flagged conflict, a verified conflict or a completed change before comparing teams or portfolio companies.”</p>
+        <p class="cue"><b>Order entry.</b> MCR Safety used shared queues to connect orders and inquiries. Esker reports average elapsed processing time fell from 12–24 hours to under an hour. Ask where a customer waits for acknowledgment today. <a href="https://www.esker.com/resources/customer-story/mcr-safety/" target="_blank" rel="noopener">Esker customer account</a></p>
+        <p class="cue"><b>Human review.</b> Morgan Stanley says its meeting assistant saves a note in Salesforce and drafts a follow-up. The advisor edits and decides whether to send it. Ask who approves an external commitment in the attendee’s process. <a href="https://www.morganstanley.com/press-releases/ai-at-morgan-stanley-debrief-launch" target="_blank" rel="noopener">Morgan Stanley announcement</a></p>
+      </details>
+      <p><b>28–29 · Take one last short question.</b> If it needs company-specific design, say, “We’d want to see one example and how your team handled it.” At 1:29, hand back to Suuchi.</p>
+    </section>
+    <section class="beat" id="close">
+      <div class="time">29–30 min · 1:29–1:30 PM ET · Suuchi</div>
+      <h2>Invite people to bring their own workflow</h2>
+      <p>“Bring us one example where someone used AI and the next person still had to chase the answer. In our complimentary workflow assessment, Josh and I will map the sources, the person who can approve the exception, and the draft or task the next team needs. We’ll pick one measure you can check on real work.”</p>
+      <p class="cue">“If you’d like us to follow up, put ‘assessment’ and the name of your workflow in chat. A few words like ‘weekly resource planning’ are enough. Thanks for spending your Friday with us.”</p>
+      <p class="action">Josh notes the people who ask for follow-up and the workflow each person named. End at 1:30 PM ET.</p>
+    </section>
+    <aside class="rehearse">
+      <h3>One rehearsal before Friday</h3>
+      <p>Open <a href="live.html#slide-1" target="_blank" rel="noopener">the four-screen case</a> in Rehearse. Practice pointing to the same person on both plans, then to the 80-hour collision. Choose Start live and run the three clicks. Leave the final assignments visible for the room.</p>
+      <p class="cue">If the shared screen freezes, say, “Both managers booked Alex for the same week. The shared desk found the conflict, Maya verified Jamie’s availability, and a human approved Jamie for the second project. The owners received one shared plan and their next actions.”</p>
+    </aside>
+  </main>
+</body>
+</html>

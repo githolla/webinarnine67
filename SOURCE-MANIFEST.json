@@ -1,0 +1,195 @@
+{
+  "source_commit": "c4be3c6e77ef761911150d28487a496dbfad2793",
+  "original_tracked_files": [
+    {
+      "path": ".openai/hosting.json",
+      "bytes": 106,
+      "sha256": "013b7e3c6bb0a7d5a233fbff74d0b9ee52402f3277895095f8e74b02b690a5f6"
+    },
+    {
+      "path": "dist/assets/brand-architecture-reference.png",
+      "bytes": 1743077,
+      "sha256": "9b0149a05441662a3af90b7b58037dd16d71f787f5e5b5bd8f549761cb058b20"
+    },
+    {
+      "path": "dist/assets/claude-text.svg",
+      "bytes": 2488,
+      "sha256": "f882c1f1c9e735e1ebcb3bef76a622da4cb0e25738649d8b0deccbeaad069afa"
+    },
+    {
+      "path": "dist/assets/claude.svg",
+      "bytes": 1696,
+      "sha256": "a3101f3047a119aa11825ad9369510f0c472428c8c52d420e31bc62db44a8364"
+    },
+    {
+      "path": "dist/assets/copilot-text.svg",
+      "bytes": 2683,
+      "sha256": "f42dcff6f2df06f16ef43e86ad804d7f77827f43a9ec7f0bdbcf637caf0700c1"
+    },
+    {
+      "path": "dist/assets/copilot.webp",
+      "bytes": 6206,
+      "sha256": "93f8d479e674e9d5fce9498f971b0c6124ac32e7887161f9e8843beecceaf7d2"
+    },
+    {
+      "path": "dist/assets/credits.txt",
+      "bytes": 707,
+      "sha256": "71701aac15fea12c11e761d0c5d717cd586b3dc6384ef501ea228c02f9edf375"
+    },
+    {
+      "path": "dist/assets/gemini-text.svg",
+      "bytes": 2569,
+      "sha256": "d0d96b1c6def6990cab126243b11429b93598de1bd50576bba1b53f2ff496247"
+    },
+    {
+      "path": "dist/assets/gemini.svg",
+      "bytes": 2836,
+      "sha256": "8ab0a9bafec11f7e69bcb9fc4ffd8f1bc927d1ddcbbb6ff36dee5ae8b5a9d602"
+    },
+    {
+      "path": "dist/assets/kantata.png",
+      "bytes": 596,
+      "sha256": "1c269b119dddf5903c9bce8b3227116243d7b46ce5d2aab6dd307fbed7540205"
+    },
+    {
+      "path": "dist/assets/kestrel-t1.webp",
+      "bytes": 58464,
+      "sha256": "6a1037d893a8d46a56bf3c0e301017fc3b4e04631541395965cadd1035b3b154"
+    },
+    {
+      "path": "dist/assets/microsoft-text.svg",
+      "bytes": 3681,
+      "sha256": "b748f7d258a441a4cd133bfd3d6b84c61e6d8a824b55e1dbfbd613c110c9895e"
+    },
+    {
+      "path": "dist/assets/microsoft.svg",
+      "bytes": 399,
+      "sha256": "5cfb0ffa3231313c2968b5e3fedfcce8e2e96c61bde4572384c3889a77a80350"
+    },
+    {
+      "path": "dist/assets/ms-excel.svg",
+      "bytes": 4991,
+      "sha256": "c4cc7955b3ef3519b23889ccfc6caff14ad9c2ac42fabf8fc02295deeb7bdc63"
+    },
+    {
+      "path": "dist/assets/ms-onenote.svg",
+      "bytes": 3593,
+      "sha256": "6957e5a102605bcfd089374d9720b1f930be39095679f0eead07a72acfa2d3e8"
+    },
+    {
+      "path": "dist/assets/ms-sharepoint.svg",
+      "bytes": 6733,
+      "sha256": "536fcbf879426cb2d5dad5f1dea28afb249bab96ce4c3532fc77622c403fd415"
+    },
+    {
+      "path": "dist/assets/ms-teams.svg",
+      "bytes": 6172,
+      "sha256": "26792823a8b4b78a5fa9b8c05dfd6c2fb543aec3b1cba8fae73001d2b849dafe"
+    },
+    {
+      "path": "dist/assets/ms-word.svg",
+      "bytes": 6432,
+      "sha256": "751e372dbb2b6f2237026a6e00e490dd6b09527bea92124081d597928a1606fb"
+    },
+    {
+      "path": "dist/assets/openai-text.svg",
+      "bytes": 1389,
+      "sha256": "fd61627c78d160b6391aaf72f29cf51547327d05ed19366c511d07578fc0099e"
+    },
+    {
+      "path": "dist/assets/openai.svg",
+      "bytes": 1687,
+      "sha256": "a595df6b423920c67a7f8f73c063e4bfb72d415948097b6cac063a2366bb5186"
+    },
+    {
+      "path": "dist/assets/perplexity-text.svg",
+      "bytes": 3975,
+      "sha256": "1df8f4f2bdfc04823822b7274e83b06be159d882fe8bfbdf82e11a39f8c0a76f"
+    },
+    {
+      "path": "dist/assets/perplexity.svg",
+      "bytes": 603,
+      "sha256": "8353f3ab20822f1a933224b0ea32cc39f0c32d5740f4af8c254b0f418e0a3a70"
+    },
+    {
+      "path": "dist/billing-review.css",
+      "bytes": 3636,
+      "sha256": "ae4cc027d74fc49643db027ea86388527b4cbfb6211cb40c99d550003c1a62cd"
+    },
+    {
+      "path": "dist/billing-story.css",
+      "bytes": 16870,
+      "sha256": "947cd2d6f35ce84cfdaee1816e943d8172a7b195ab6cbc3f7424bf1e626bd32d"
+    },
+    {
+      "path": "dist/brand.css",
+      "bytes": 14963,
+      "sha256": "e25087a8f79e13141658f33469279d7d477370d0be4073e0b8be31b17bff5923"
+    },
+    {
+      "path": "dist/decision.css",
+      "bytes": 2593,
+      "sha256": "5838cdb7f79b20947855520abd8d66e73be9ccd65a2b432aa49f828fc51711d5"
+    },
+    {
+      "path": "dist/explore.html",
+      "bytes": 329,
+      "sha256": "bdc94eaa71c73b66ceaa45d4014386c7fb0db83e86f08b33323f7cc8085891d1"
+    },
+    {
+      "path": "dist/guided.css",
+      "bytes": 15901,
+      "sha256": "7b84fb241c1f2639ae2f3f03b96dbc1bb7e49a0e1811a4c2cf75e0efa6f8acf7"
+    },
+    {
+      "path": "dist/guided.js",
+      "bytes": 6044,
+      "sha256": "597b74816b93e3807c83e3da351dcca9f96ae740fed89ef5e8e05d4d9a35bd36"
+    },
+    {
+      "path": "dist/host-guide.html",
+      "bytes": 16652,
+      "sha256": "e2dfce4cf56ef5610dd6d11b07aabad7562ec668e3039d3c1a801e0bbebe9425"
+    },
+    {
+      "path": "dist/index.html",
+      "bytes": 33902,
+      "sha256": "936ba11ed29aa2e83463add51b8b081226eefa4f2ecb5c79cdd9f51c64e80abe"
+    },
+    {
+      "path": "dist/launch-story.css",
+      "bytes": 16370,
+      "sha256": "0569acadeb027630ac546d0f5aeb3fedd15eb4c3a791e8299faa4e5b3ceff5b6"
+    },
+    {
+      "path": "dist/live.css",
+      "bytes": 20383,
+      "sha256": "efc1c3d8576e42d14ed6cb1047d7920a8ab05a0d56e9b0bd6d9ba8c4ae5e2d6b"
+    },
+    {
+      "path": "dist/live.html",
+      "bytes": 8015,
+      "sha256": "4372d3a60c992367e9932c81e43bf803fc300ab71bc5fb720bec9907a7ee55ed"
+    },
+    {
+      "path": "dist/live.js",
+      "bytes": 2438,
+      "sha256": "4e389d8ac9fac4008aa811b087f77485eb4d34f520d582c30dbdb667fa38c706"
+    },
+    {
+      "path": "dist/order-desk.css",
+      "bytes": 5939,
+      "sha256": "2c2e31b9ce6bd0ee33c4a6118c4ee13e8de59aabc6abbe0158890251ab79d5e6"
+    },
+    {
+      "path": "dist/webinar.css",
+      "bytes": 74317,
+      "sha256": "afa98b3b73cda1e8c03aa56df0c553d44a698c57458731d5806cadc3c0b7b5c5"
+    },
+    {
+      "path": "dist/webinar.js",
+      "bytes": 54736,
+      "sha256": "f813ce47090a59b305b7dfe6361b1e21540c2d06b9cc6e8329b321cdca5449ab"
+    }
+  ]
+}
