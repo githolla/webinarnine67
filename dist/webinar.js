@@ -18,6 +18,15 @@ function coverScene(){
   const toolMarks = aiTools.map(tool =>
     `<li>${toolLogo(tool)}<span>${tool.name}</span></li>`
   ).join('');
+  const presenterLinks = window.N67_PRESENTER ? `<div class="extended-links">
+        <details><summary>Presenter resources</summary>
+          <div class="extended-links">
+            <a class="text-action guide-link" href="host-guide.html" target="_blank" rel="noopener">Host guide ↗</a>
+            <a class="text-action guide-link" href="stats.html">Opening stats</a>
+            ${['Request','Two plans','Collision','The desk','Done','Your handoffs'].map((s,i)=>`<a class="text-action guide-link" href="live.html#slide-${i+1}">${i+1}. ${s}</a>`).join('')}
+          </div>
+        </details>
+      </div>` : '';
   return `<style>
     .staffing-cover .staffing-context{color:#625d53;font-size:14px;margin:0 0 16px;line-height:1.45}
     .staffing-cover .launch-cover-plan{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 14px;border-top:1px solid #d6d0c4;padding:16px 0}
@@ -27,31 +36,26 @@ function coverScene(){
     .staffing-cover .launch-cover-plan .launch-person strong{display:block;font-size:28px;line-height:1.1;letter-spacing:-.04em}
     .staffing-cover .launch-owner{grid-column:1/-1;display:flex;align-items:center;gap:6px;color:#4f5953;font-size:12px}
     .staffing-cover .launch-owner img{width:19px;height:19px;object-fit:contain}
-    .staffing-cover .staffing-total{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:14px 0 0;border-top:2px solid #273c33;margin:0}
-    .staffing-cover .staffing-total dt{font-size:13px;line-height:1.3;color:#4f5953}
-    .staffing-cover .staffing-total dd{font-size:32px;line-height:1.1;letter-spacing:-.045em;font-weight:650;margin:4px 0 0;color:#222727}
-    .staffing-cover .staffing-total div:first-child dd{color:#854a2e}
+    .staffing-cover .staffing-question{padding:14px 0 0;border-top:2px solid #273c33;margin:0;font:700 22px/1.25 'Libre Caslon Text',Georgia,serif;color:#222727}
+    .staffing-cover h1{font-family:'Libre Caslon Text',Georgia,serif;font-weight:700;letter-spacing:-.02em;line-height:1.06;font-size:clamp(38px,3.9vw,56px);max-width:none;margin-bottom:20px}
+    .staffing-cover .cover-date{margin:-8px 0 18px;font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#11151d}
+    .staffing-cover .presenters{display:flex;gap:26px;flex-wrap:wrap;margin:22px 0 4px}
+    .staffing-cover .presenter{display:flex;align-items:center;gap:11px;margin:0}
+    .staffing-cover .presenter-face{width:52px;height:52px;border-radius:50%;object-fit:cover;filter:grayscale(1);background:#e2dcd0}
+    .staffing-cover .presenter-initials{display:grid;place-items:center;font:18px 'Libre Caslon Text',Georgia,serif;color:#4a4740}
+    .staffing-cover .presenter strong{display:block;font:700 16px 'Libre Caslon Text',Georgia,serif;color:#11151d}
+    .staffing-cover .presenter span{font-size:12px;color:#5b605a}
   </style><div class="hero-cinema executive-hero staffing-cover">
     <div class="hero-copy">
-      <div class="slide-kicker"><span class="live-signal"></span>Executive webinar · Fictional case</div>
-      <h1>Your Team Has AI.<br><em>So Why Is the Work Still Manual?</em></h1>
-      <p class="lead">Two managers used AI to prepare their client launch plans. Both booked the same specialist for the same week. <strong>Who catches the collision before a client is disappointed?</strong></p>
+      <div class="slide-kicker"><span class="live-signal"></span>Free live webinar · 30 minutes</div>
+      <h1>Your team has AI.<br>Why is the work still manual?</h1>
+      <p class="cover-date">Friday, November 6 · 1:00–1:30 PM ET</p>
+      <p class="lead">See how AI turns a request into completed work. <strong>We’ll follow one request through a fictional agency, from the first message to the finished work.</strong></p>
+      <div class="presenters">${window.N67_presenterMarkup()}</div>
       <div class="hero-actions">
-        <a class="primary live-link" href="live.html">See the two launch plans <span aria-hidden="true">→</span></a>
+        <a class="primary live-link" href="stats.html">Start <span aria-hidden="true">→</span></a>
       </div>
-      <div class="extended-links">
-        <details><summary>Presenter resources</summary>
-          <div class="extended-links">
-            <a class="text-action guide-link" href="host-guide.html" target="_blank" rel="noopener">Host guide ↗</a>
-            <a class="text-action guide-link" href="live.html#slide-1">1. Two plans</a>
-            <a class="text-action guide-link" href="live.html#slide-2">2. One collision</a>
-            <a class="text-action guide-link" href="live.html#slide-3">3. Review the change</a>
-            <a class="text-action guide-link" href="live.html#slide-4">4. One shared plan</a>
-            <button onclick="startOpening()">Alternate leadership-report example</button>
-            <button onclick="workspace()">Explore the workspace</button>
-          </div>
-        </details>
-      </div>
+      ${presenterLinks}
     </div>
     <section class="decision-memo" aria-labelledby="staffing-cover-heading">
       <div class="memo-topline"><span>Forma Digital</span><span>Fictional team</span></div>
@@ -59,18 +63,15 @@ function coverScene(){
         <p class="staffing-context" id="staffing-cover-heading">Forma builds customer apps. Both clients expect to launch next Friday.</p>
         <article class="launch-cover-plan">
           <div><h3>Luma Hotels</h3><p>Guest app · Launch Friday</p></div>
-          <div class="launch-person">Alex<strong>40 hours</strong></div>
+          <div class="launch-person">Launch specialist<strong>Alex</strong></div>
           <div class="launch-owner"><img src="assets/openai.svg" alt="">Leah + ChatGPT · Word scope in SharePoint</div>
         </article>
         <article class="launch-cover-plan">
           <div><h3>Rally Fitness</h3><p>Member app · Launch Friday</p></div>
-          <div class="launch-person">Alex<strong>40 hours</strong></div>
+          <div class="launch-person">Launch specialist<strong>Alex</strong></div>
           <div class="launch-owner"><img src="assets/copilot.webp" alt="">Marcus + Copilot · Teams launch plan</div>
         </article>
-        <dl class="staffing-total">
-          <div><dt>Alex’s time promised</dt><dd>80 hours</dd></div>
-          <div><dt>Alex’s time available</dt><dd>40 hours</dd></div>
-        </dl>
+        <p class="staffing-question">Two good plans. Who checks whether both can happen?</p>
       </div>
     </section>
     <div class="executive-tool-strip">
@@ -163,11 +164,11 @@ function pilotScene(){return slideIntro('How to start · 5 minutes','Bring one r
 const qaTopics=[['Shared information','Which records should the workflow use? Who controls access, and how does the team identify missing or stale inputs?'],['Tool & model guidance','Which tool fits this job? What instructions, quality checks, review needs, and available integrations should guide the choice?'],['Human review','Which output can be drafted automatically, who checks it, and what must remain a person’s decision?'],['Follow-through','Where should the result go, who owns the next action, and how will the team know the work was completed?']];
 function qaScene(){return slideIntro('Questions & next steps · 9 minutes','Where does useful AI work<br>stop with its author?','Pick one recurring handoff in your business. What information, review, or ownership is missing?')+`<div class="qa-topics" role="group" aria-label="Discussion topics">${qaTopics.map((x,i)=>`<button class="${qaTopic===i?'selected':''}" onclick="qaTopic=${i};renderStage()" aria-pressed="${qaTopic===i}">${x[0]}</button>`).join('')}</div><div class="qa-question"><div class="eyebrow">${qaTopics[qaTopic][0]}</div><h2>${qaTopics[qaTopic][1]}</h2></div><div class="qa-exploration"><span>Optional detail for the discussion</span><button onclick="showAllTools=true;changeScene(1)">Other AI tools ↗</button><button onclick="workspace('sources')">Source records ↗</button><button onclick="workspace('detail')">Financial analysis ↗</button></div><div class="pilot-invitation"><div><h2>Bring one recurring workflow.</h2><p>We’ll identify where the handoffs break and outline a practical first pilot.</p></div><button class="primary" onclick="changeScene(6)">Discuss a workflow review →</button></div>`}
 let showPilot=false;
-function renderStage(){const dark=scene===0&&!opening;document.body.classList.toggle('cinematic',dark);document.getElementById('stage').innerHTML=`<div class="stage-top"><a href="#webinar-1" class="brand" onclick="changeScene(0)">Nine-67</a><span class="stage-label">${opening?'BUSINESS-FIRST OPENING · 3 MIN':scene===0?'EXECUTIVE WEBINAR · 30 MIN':scene<2?'THE PROBLEM · 4 MIN':scene<6?'ONE WORKFLOW DEMO · 12 MIN':scene===6?'HOW TO START · 5 MIN':'QUESTIONS & NEXT STEP · 9 MIN'}</span><div class="stage-tools"><button onclick="notes=!notes;renderStage()" aria-pressed="${notes}">${notes?'Hide':'Show'} on-screen notes</button><button onclick="resetPresentation()" aria-label="Reset all demo progress">Reset ↺</button><button class="fullscreen-btn" onclick="toggleFullscreen()">Full screen ⛶</button>${scene===0?'<a class="guide-link" href="host-guide.html" target="_blank" rel="noopener">Host guide ↗</a>':'<button onclick="workspace()">Workspace ↗</button>'}</div></div><section class="slide scene-${scene}" tabindex="-1" aria-label="${opening?'Opening walkthrough':sceneNames[scene]}">${stageView()}</section>${notes?`<div class="present-notes"><div class="present-note-label">Presenter cue · Visible on the shared screen</div>${opening?openingCues[openingStep]:notesText[scene]}</div>`:''}<div class="stage-bottom">${opening?`<div class="opening-progress" aria-label="Opening steps">${['Name the job','Reveal the work','Define responsibilities','Bridge to the demo'].map((x,i)=>`<button class="${i===openingStep?'active':''}" onclick="openingStep=${i};renderStage()">${i+1}. ${x}</button>`).join('')}</div>`:`<div class="slide-dots" aria-label="Presentation chapters">${scene===0?['Two plans','The collision','The shared check','The new plan'].map((s,i)=>`<button title="${s}" aria-label="${i+1}. ${s}" class="slide-dot" onclick="location.assign('live.html#slide-${i+1}')"></button>`).join(''):sceneNames.map((s,i)=>`<button title="${s}" aria-label="${i+1}. ${s}" aria-current="${scene===i?'step':'false'}" class="slide-dot ${scene===i?'on':''}" onclick="changeScene(${i})"></button>`).join('')}</div>`}<span class="slide-index">${opening?`OPEN ${openingStep+1}/4`:scene===0?'4-SCREEN WALKTHROUGH':`${String(scene+1).padStart(2,'0')} / ${String(sceneNames.length).padStart(2,'0')}`}</span><span class="stage-disclosure">Fictional data · Simulated workflow · No live integrations</span><div class="stage-nav"><button class="secondary" onclick="${opening?'previousOpening()':'changeScene(scene-1)'}" ${scene===0&&!opening?'disabled':''}>← Back</button><button class="primary" onclick="${opening?'nextOpening()':scene===0?"location.assign('live.html')":scene===7?'resetPresentation()':'changeScene(scene+1)'}">${opening?(openingStep===3?'Begin the demo →':'Next reveal →'):scene===0?'Start the demo →':scene===7?'Restart ↺':'Next →'}</button></div><span class="keyboard-hint">← →</span></div>`}
+function renderStage(){const dark=scene===0&&!opening;document.body.classList.toggle('cinematic',dark);document.getElementById('stage').innerHTML=`<div class="stage-top"><a href="#webinar-1" class="brand" onclick="changeScene(0)">Nine-67</a><span class="stage-label">${opening?'BUSINESS-FIRST OPENING · 3 MIN':scene===0?'FREE LIVE WEBINAR · 30 MIN':scene<2?'THE PROBLEM · 4 MIN':scene<6?'ONE WORKFLOW DEMO · 12 MIN':scene===6?'HOW TO START · 5 MIN':'QUESTIONS & NEXT STEP · 9 MIN'}</span>${window.N67_PRESENTER?`<div class="stage-tools"><button onclick="notes=!notes;renderStage()" aria-pressed="${notes}">${notes?'Hide':'Show'} on-screen notes</button><button onclick="resetPresentation()" aria-label="Reset all demo progress">Reset ↺</button><button class="fullscreen-btn" onclick="toggleFullscreen()">Full screen ⛶</button>${scene===0?'<a class="guide-link" href="host-guide.html" target="_blank" rel="noopener">Host guide ↗</a>':'<button onclick="workspace()">Workspace ↗</button>'}</div>`:''}</div><section class="slide scene-${scene}" tabindex="-1" aria-label="${opening?'Opening walkthrough':sceneNames[scene]}">${stageView()}</section>${notes&&window.N67_PRESENTER?`<div class="present-notes"><div class="present-note-label">Presenter cue · Visible on the shared screen</div>${opening?openingCues[openingStep]:notesText[scene]}</div>`:''}<div class="stage-bottom">${opening?`<div class="opening-progress" aria-label="Opening steps">${['Name the job','Reveal the work','Define responsibilities','Bridge to the demo'].map((x,i)=>`<button class="${i===openingStep?'active':''}" onclick="openingStep=${i};renderStage()">${i+1}. ${x}</button>`).join('')}</div>`:`<div class="slide-dots" aria-label="Presentation chapters">${scene===0?['Request','Two plans','Collision','The desk','Done','Your handoffs'].map((s,i)=>`<button title="${s}" aria-label="${i+1}. ${s}" class="slide-dot" onclick="location.assign('live.html#slide-${i+1}')"></button>`).join(''):sceneNames.map((s,i)=>`<button title="${s}" aria-label="${i+1}. ${s}" aria-current="${scene===i?'step':'false'}" class="slide-dot ${scene===i?'on':''}" onclick="changeScene(${i})"></button>`).join('')}</div>`}<span class="slide-index">${opening?`OPEN ${openingStep+1}/4`:scene===0?'6-SCREEN WALKTHROUGH':`${String(scene+1).padStart(2,'0')} / ${String(sceneNames.length).padStart(2,'0')}`}</span><span class="stage-disclosure">Fictional data · Simulated workflow · Product names belong to their owners, no affiliation implied</span><div class="stage-nav"><button class="secondary" onclick="${opening?'previousOpening()':'changeScene(scene-1)'}" ${scene===0&&!opening?'disabled':''}>← Back</button><button class="primary" onclick="${opening?'nextOpening()':scene===0?"location.assign('stats.html')":scene===7?'resetPresentation()':'changeScene(scene+1)'}">${opening?(openingStep===3?'Begin the demo →':'Next reveal →'):scene===0?'Start →':scene===7?'Restart ↺':'Next →'}</button></div><span class="keyboard-hint">← →</span></div>`}
 function changeScene(i){opening=false;clearTimeout(playback);playing=false;scene=Number.isFinite(i)?Math.max(0,Math.min(sceneNames.length-1,Math.trunc(i))):0;document.body.classList.add('presentation');document.getElementById('return-presentation')?.remove();history.replaceState(null,'','#webinar-'+(scene+1));renderStage();document.querySelector('#stage .slide')?.focus({preventScroll:true});window.scrollTo(0,0)}
 function workspace(page='overview'){clearTimeout(playback);playing=false;document.body.classList.remove('presentation','cinematic');go(page);if(!document.getElementById('return-presentation')){let b=document.createElement('button');b.id='return-presentation';b.className='primary work-return';b.textContent='← Return to webinar';b.onclick=()=>changeScene(scene);document.body.appendChild(b)}}
 async function toggleFullscreen(){try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen()}catch(e){toast('Use your browser’s full-screen control.')}}
-document.addEventListener('keydown',e=>{if(!document.body.classList.contains('presentation')||['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)||document.activeElement.isContentEditable)return;if(e.key==='ArrowRight'){e.preventDefault();opening?nextOpening():scene===0?location.assign('live.html'):changeScene(scene+1)}if(e.key==='ArrowLeft'){e.preventDefault();opening?previousOpening():changeScene(scene-1)}if(e.key.toLowerCase()==='n'){notes=!notes;renderStage()}});
+document.addEventListener('keydown',e=>{if(!document.body.classList.contains('presentation')||['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)||document.activeElement.isContentEditable)return;if(e.key==='ArrowRight'){e.preventDefault();opening?nextOpening():scene===0?location.assign('stats.html'):changeScene(scene+1)}if(e.key==='ArrowLeft'){e.preventDefault();opening?previousOpening():changeScene(scene-1)}if(e.key.toLowerCase()==='n'&&window.N67_PRESENTER){notes=!notes;renderStage()}});
 window.addEventListener('hashchange',()=>{if(location.hash.startsWith('#webinar'))changeScene(Number(location.hash.split('-')[1]||1)-1);else document.body.classList.remove('presentation','cinematic')});
 function resetPresentation(){clearTimeout(playback);Object.assign(state,{approved:false,assigned:false,generated:false,resolved:false,tour:-1});prepared=false;metric='margin';evidence='facts';notes=false;person=0;opening=false;openingStep=0;remainingWork=false;showAllTools=false;qaTopic=0;selectedTool=0;coordinationFocus=0;coordinationProgress.fill(0);personalReveal=false;connected=false;loss=0;guidance=false;runStep=0;playing=false;showPilot=false;changeScene(0)}
 if(!entryHash||entryHash.startsWith('#webinar'))changeScene(Number(entryHash.split('-')[1]||1)-1);else workspace(current);

@@ -1,6 +1,6 @@
-# Nine-67 webinar — complete source
+# Nine-67 webinar: complete source
 
-The full published website for **Your Team Has AI. So Why Is the Work Still Manual?**, including the Forma Digital staffing scenario, webinar cover, presenter guide, optional Q&A controls, and the retained earlier dashboard code.
+The full published website for **Your team has AI. Why is the work still manual?**, including the Forma Digital staffing scenario, webinar cover, presenter guide, optional Q&A controls, and the retained earlier dashboard code.
 
 The HTML, CSS, JavaScript, and image assets in `dist/` are the editable application source. This project was written directly as a static website. There is no missing React project, compiled source directory, package dependency, database, or server application.
 
@@ -12,7 +12,7 @@ Install Node.js 20 or newer, extract this ZIP, then open a terminal in this fold
 npm run dev
 ```
 
-Open **http://localhost:3000/live.html** for the current four-screen demo, or **http://localhost:3000/** for the webinar cover. No `npm install` or environment variables are needed because the project has zero third-party npm dependencies.
+Open **http://localhost:3000/** for the webinar cover, **http://localhost:3000/stats.html** for the opening stats, or **http://localhost:3000/live.html** for the six-screen demo. Add `?presenter=1` to any page to show presenter controls in that browser tab; `?presenter=0` hides them again. No `npm install` or environment variables are needed because the project has zero third-party npm dependencies.
 
 Stop the local server with Ctrl+C. Set `PORT` if 3000 is already occupied.
 
@@ -55,31 +55,45 @@ Included `vercel.json` and `netlify.toml` declare the build command and output d
 
 The original `.openai/hosting.json` is preserved for completeness. Its project ID identifies the existing ChatGPT Site; it is not an API key. Other hosts do not need that file. The existing Site's private access controls do **not** travel with these static files. Configure access in your chosen host if the demo should remain private.
 
+## Before the webinar
+
+Edit `dist/site.js`:
+
+- `bookingUrl` (and optional `bookingLabel`): shows the booking link and a QR code on the assessment screen.
+- `novemberSlots`: shows "we are holding N sessions in November".
+- `presenters[].portrait`: path to a portrait image in `dist/assets/` (shown in grayscale). Initials show until set.
+
 ## Where to edit
 
 | File | Purpose |
 | --- | --- |
-| `dist/live.html` | Current four-screen Forma Digital demo markup and story |
-| `dist/guided.js` | Navigation, calendar content, rehearsal cues, availability cases, approval gating, replay |
-| `dist/launch-story.css` | Current demo styling and responsive layout |
-| `dist/index.html` | Main application shell and retained dashboard implementation, including inline JavaScript |
-| `dist/webinar.js` | Webinar cover, presentation navigation, retained presentation scenes |
-| `dist/webinar.css`, `dist/brand.css` | Cover, presentation, and brand styling |
-| `dist/host-guide.html` | Presenter cues and 30-minute webinar running order |
-| `dist/explore.html` | Redirect to the staffing Q&A controls |
-| `dist/assets/` | All bundled logos, illustrations, reference image, and asset credits |
+| `dist/site.js` | Event config (booking link, slots, portraits) and presenter mode, shared by every page |
+| `dist/live.html` | Six-screen Forma Digital demo markup |
+| `dist/guided.js` | Demo navigation, rehearsal cues, Q&A availability states, approval gating, assessment screen |
+| `dist/launch-story.css` | Demo, stats and assessment styling, including the 720p compaction rules |
+| `dist/stats.html` | Opening stats screen with sources |
+| `dist/webinar.js` | Webinar cover (`coverScene`) and presentation shell; later scenes are the retained earlier deck |
+| `dist/index.html` | Cover entry point and retained dashboard implementation |
+| `dist/webinar.css`, `dist/brand.css` | Cover and brand styling |
+| `dist/host-guide.html` | 30-minute run-of-show, scripts, polls, Q&A answers, stats wording, go-live checklist |
+| `dist/explore.html` | Redirect to the Q&A controls on screen 4 |
+| `dist/assets/` | Logos, illustrations, reference image, and asset credits |
 | `scripts/` | Dependency-free local server, validation, and build scripts |
 
-Earlier CSS/JS and dashboard scenarios are intentionally retained so this is a complete export. The active webinar cover links to the current demo in `live.html`.
+Earlier CSS/JS and dashboard scenarios are intentionally retained but are no longer linked from the cover.
 
-## Current demo flow
+## Current flow
 
-1. Two managers prepare separate AI-assisted app launch plans for Luma Hotels and Rally Fitness.
-2. Both plans book Alex for the same week: 80 hours requested against 40 hours available.
-3. The proposed Launch Desk checks shared capacity and prepares Jamie as a replacement for Rally.
-4. COO approval changes the simulated shared plan and shows the next owner for each handoff.
+Cover → opening stats → demo:
 
-Use **Rehearse** for speaking cues and **Start live** to reset the opening. **Q&A · Change one fact** on screen 3 switches Jamie between confirmed, unconfirmed, and already booked. The latter two block approval.
+1. **Request:** Marcus asks the Launch Desk to confirm Alex for the Rally Fitness launch.
+2. **Two plans:** Leah (ChatGPT) and Marcus (Copilot) each planned a Friday launch around Alex.
+3. **Collision:** 80 hours requested against 40 available, and the four manual handoffs Maya would chase.
+4. **The desk:** a work log of what the desk read and checked, a proposal to move Rally to Jamie, and an in-card COO approval showing exactly what approving will do.
+5. **Done:** plan updated, allocation recorded (simulated), managers notified, Marcus answered, audit trail, before/after.
+6. **Your handoffs:** the complimentary workflow assessment.
+
+**Q&A · Change one fact** on screen 4 switches Jamie between confirmed, unconfirmed, and already booked. The latter two change the copy and block approval.
 
 ## What is simulated
 
