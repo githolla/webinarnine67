@@ -24,9 +24,12 @@
     </div>
     <div class="inbox">
       <article class="email">
-        <p class="message-meta"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg>Outlook · Leah’s inbox · Monday 8:41 AM</p>
-        <div class="message-body"><span class="avatar" aria-hidden="true">R</span><div><b>Rachel Ortiz</b> <small>Ridgeline Roofing</small><p class="message-text">We approved the new logo this morning. Please use the attached file on all 5,000 shirts. Are we still good for Friday?</p></div></div>
-        <div class="reply"><img src="assets/copilot.webp" alt=""><div><small>Leah · drafted with Copilot · 8:47 AM</small><p>“Got it. We’ll use the new logo on all 5,000 shirts. Friday works.”</p></div></div>
+        <p class="app-bar"><img src="assets/ms-outlook.svg" alt=""><b>Outlook</b><span class="app-search">Search</span><span>Inbox · Leah</span></p>
+        <div class="mail">
+          <p class="subject">RE: Order 4821 crew shirts · new logo</p>
+          <div class="message-body"><span class="avatar" aria-hidden="true">R</span><div><p class="from"><b>Rachel Ortiz</b> <small>Ridgeline Roofing · 8:41 AM</small><span class="attach"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6v18h12V7z"/><path d="M14 3v4h4"/></svg>Ridgeline_logo_v2.ai<small>1.4 MB</small></span></p><p class="message-text">We approved the new logo this morning. Please use the attached file on all 5,000 shirts. Are we still good for Friday?</p></div></div>
+          <div class="reply"><img src="assets/copilot.webp" alt=""><div><small><b>Draft with Copilot</b> · Leah changed one word · <span class="sent">Sent 8:47 AM</span></small><p>“Got it. We’ll use the new logo on all 5,000 shirts. Friday works.”</p></div></div>
+        </div>
       </article>
       <article class="logos">
         <p class="eyebrow">WO 4821 · 5,000 crew tees · 2-color screen print</p>
@@ -83,7 +86,7 @@
       <section class="blind-spot" aria-label="Where the new logo actually is">
         <p class="blind-title"><strong>What the operator can’t see.</strong> The new logo exists. Just not here.</p>
         <ul class="silos">
-          <li><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg><div><b>Leah’s email thread</b><span>New logo attached · Rachel told “Got it”</span></div></li>
+          <li><img src="assets/ms-outlook.svg" alt=""><div><b>Leah’s Outlook thread</b><span>New logo attached · Rachel told “Got it”</span></div></li>
           <li><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><div><b>Art drive</b><span>Print-ready v2 separations, saved by design</span></div></li>
           <li class="empty"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 14h18M9 4v16"/></svg><div><b>Shop system · WO 4821</b><span>Still on proof v1 · no new proof sent</span></div></li>
         </ul>
@@ -95,10 +98,10 @@
   <section class="scene" data-scene="3" aria-label="What happens if the run goes through" hidden>
     <div class="fallout">
       <ol class="timeline">
-        <li><time>Mon, Nov 2 · 1:00 PM</time><p><b>Press 3 log</b>“WO 4821 press check signed. Art: proof v1.”</p></li>
-        <li><time>Tue, Nov 3 · 6:10 AM</time><p><b>Sam · Production</b>“2,000 on first shift, the rest overnight. All boxed.”</p></li>
-        <li class="hot"><time>Fri, Nov 6 · 9:10 AM</time><p><b>Ridgeline · Denver branch</b>“These have our old logo. Are these the right shirts?”</p></li>
-        <li class="fire"><time>Fri, Nov 6 · 2:45 PM</time><p><b>Rachel Ortiz · Ridgeline</b>“We relaunch at 40 branches Monday. You confirmed the change.”</p></li>
+        <li class="ch-log"><time>Mon, Nov 2 · 1:00 PM</time><p><b>Press 3 · job log</b><code>13:00:12  WO-4821  PRESS CHECK SIGNED  ART=PROOF_V1</code></p></li>
+        <li class="ch-teams"><time>Tue, Nov 3 · 6:10 AM</time><p><b><img src="assets/ms-teams.svg" alt="">Sam · Teams · Production channel</b>2,000 on first shift, the rest overnight. All boxed. 👍</p></li>
+        <li class="hot ch-sms"><time>Fri, Nov 6 · 9:10 AM</time><p><b><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>Text to Leah · Ridgeline Denver branch</b><span class="bubble">These have our old logo?? Are these the right shirts</span></p></li>
+        <li class="fire ch-mail"><time>Fri, Nov 6 · 2:45 PM</time><p><b><img src="assets/ms-outlook.svg" alt="">Rachel Ortiz · <span class="imp">! High importance</span> · RE: Order 4821</b>We relaunch at 40 branches Monday. You confirmed the change.</p></li>
       </ol>
       <aside class="cost"><div class="cost-head"><p class="eyebrow">What it costs</p><span class="tag">Illustrative</span></div>
         <ul><li><strong>5,000 shirts reprinted</strong> new screens, two shifts, rush freight</li><li><strong>1 brand launch at risk</strong> plus the job that got bumped</li></ul>
@@ -112,13 +115,13 @@
   <section class="scene" data-scene="4" aria-label="The order desk applies the change to order 4821" hidden>
     <div class="resolution">
       <section class="reads"><h2>What the Order Desk did · 8:44–10:12 AM</h2>
-        <div class="read-row"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg><div><b>Matched Rachel’s email to WO 4821</b><p class="chips"><span>New logo</span><span>All 5,000</span><span>Friday</span><em>Outlook thread</em></p></div></div>
+        <div class="read-row"><img src="assets/ms-outlook.svg" alt=""><div><b>Matched Rachel’s email to WO 4821</b><p class="chips"><span>New logo</span><span>All 5,000</span><span>Friday</span><em>Outlook thread</em></p></div></div>
         <div class="read-row"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 14h18M9 4v16"/></svg><div><b>Found the conflict</b><p>WO 4821 runs proof v1 at 1:00 PM today. <strong class="flag">Screens burned from the old logo.</strong></p></div></div>
-        <div class="read-row"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 9v6M14 9v6"/></svg><div><b>Leah approved a hold in Teams · 8:47</b><p>Press 3 skips WO 4821 only. Nothing else moves.</p></div></div>
+        <div class="read-row"><img src="assets/ms-teams.svg" alt=""><div><b>Leah approved a hold in Teams · 8:47</b><p>Press 3 skips WO 4821 only. Nothing else moves.</p></div></div>
         <div class="read-row"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg><div><b>Dana sent proof v2 to Rachel · 8:58</b><p id="log-bench">Logo v2: vector ✓ · 2 colors ✓ · proof v2 on WO 4821</p></div></div>
         <div class="read-row" id="log-confirm-row"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m7.5 12.5 3 3 6-6.5"/></svg><div><b id="log-confirm">Rachel approved proof v2 · 10:12 AM</b><p id="log-confirm-note">Screen room: new screens ordered from v2.</p></div></div>
       <p class="stat-note"><strong>27%</strong> of organizations trust fully autonomous AI agents, down from 43% a year earlier. That’s why every step here waits for a person. <cite>Capgemini Research Institute, Jul 2025</cite></p></section>
-      <section class="proposal"><p class="eyebrow">Sam · Release WO 4821?</p><h2 id="proposal-headline">Release with proof v2.</h2><div class="change"><svg class="shirt small" viewBox="0 0 200 180" aria-hidden="true"><use href="#shirt"/><use href="#logo-old" x="56" y="40" width="88" height="60"/></svg><span aria-hidden="true">→</span><svg class="shirt small" viewBox="0 0 200 180" aria-hidden="true"><use href="#shirt"/><use href="#logo-new" x="56" y="40" width="88" height="60"/></svg><p class="urgent"><b>5,000 shirts</b> were set to print the <b>old logo at 1:00 today</b></p></div><dl class="verify"><div><dt>Proof v2</dt><dd id="availability-proof">Approved by Rachel · 10:12 AM</dd></div><div><dt>Screens</dt><dd>Re-burned from v2</dd></div><div><dt>Press time</dt><dd>Press 3 at 3:00 PM · Friday holds</dd></div></dl>
+      <section class="proposal"><p class="eyebrow via"><img src="assets/ms-teams.svg" alt="">Approval card in Teams · Sam · Release WO 4821?</p><h2 id="proposal-headline">Release with proof v2.</h2><div class="change"><svg class="shirt small" viewBox="0 0 200 180" aria-hidden="true"><use href="#shirt"/><use href="#logo-old" x="56" y="40" width="88" height="60"/></svg><span aria-hidden="true">→</span><svg class="shirt small" viewBox="0 0 200 180" aria-hidden="true"><use href="#shirt"/><use href="#logo-new" x="56" y="40" width="88" height="60"/></svg><p class="urgent"><b>5,000 shirts</b> were set to print the <b>old logo at 1:00 today</b></p></div><dl class="verify"><div><dt>Proof v2</dt><dd id="availability-proof">Approved by Rachel · 10:12 AM</dd></div><div><dt>Screens</dt><dd>Re-burned from v2</dd></div><div><dt>Press time</dt><dd>Press 3 at 3:00 PM · Friday holds</dd></div></dl>
         <p class="will-do"><strong>Releasing will:</strong> run WO 4821 on proof v2 and the new screens · release the hold · log who approved what</p>
         <div class="approve-row"><button type="button" id="approve" class="approve">Release with proof v2 →</button><p class="source" id="proposal-source">No live sync</p></div>
         <p id="hold" role="status" hidden></p>
@@ -154,7 +157,7 @@
         <div class="handoff"><span class="tick" aria-hidden="true">✓</span><div><b>WO 4821 moved to proof v2</b><p>Hold and approval in the shop system · <span class="sim">simulated here</span></p></div></div>
         <div class="handoff"><span class="tick" aria-hidden="true">✓</span><div><b>Proof v2 approved by Rachel</b><p>Sent by Dana 8:58 · approved 10:12 AM</p></div></div>
         <div class="handoff"><span class="tick" aria-hidden="true">✓</span><div><b>New screens, hold released</b><p>Sam · Press 3 at 3:00 PM · Friday holds</p></div></div>
-        <div class="handoff reply"><span class="tick" aria-hidden="true">✓</span><div><b>Leah’s reply, sent with the proof · 8:58</b><p class="message-text">“We’ve held order 4821 so it doesn’t print the old logo. Proof v2 is attached. Approve it by noon and we still ship Friday to all 40 branches.”</p></div></div>
+        <div class="handoff reply"><span class="tick" aria-hidden="true">✓</span><div><b class="mail-line"><img src="assets/ms-outlook.svg" alt="">Leah to Rachel · Proof_v2_WO4821.pdf attached · 8:58</b><p class="message-text">“We’ve held order 4821 so it doesn’t print the old logo. Proof v2 is attached. Approve it by noon and we still ship Friday to all 40 branches.”</p></div></div>
         <div class="handoff"><span class="tick" aria-hidden="true">✓</span><div><b>Audit trail saved</b><p>Change by Ridgeline 8:41 · hold by Leah 8:47 · proof v2 by Dana 8:58 · approved by Rachel 10:12 · released by Sam 10:15</p></div></div>
       </section>
     </div>

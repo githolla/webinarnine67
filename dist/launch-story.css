@@ -129,7 +129,19 @@ html.presenter .presenter-only:not([hidden]) { display: revert !important; }
 .scene:not([hidden]) .actor:nth-of-type(5) { animation-delay: .85s; }
 .inbox { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr); gap: 24px; align-items: stretch; }
 .email, .logos { padding: 18px 24px; border: 1px solid var(--line); background: var(--white); border-radius: 6px; }
-.email { border-top: 4px solid #0f6cbd; }
+.email { padding: 0; overflow: hidden; }
+.app-bar { display: flex; align-items: center; gap: 8px; padding: 6px 14px; background: #0f6cbd; color: #fff; font-size: 13px; }
+.app-bar img { width: 18px; height: 18px; padding: 1px; background: #fff; border-radius: 3px; }
+.app-bar .app-search { flex: 1; max-width: 220px; margin-left: 10px; padding: 2px 10px; border-radius: 4px; background: rgba(255, 255, 255, .22); color: rgba(255, 255, 255, .85); }
+.app-bar span:last-child { margin-left: auto; opacity: .9; }
+.mail { padding: 12px 20px 16px; }
+.subject { margin-bottom: 8px; font-size: 17px; font-weight: 700; }
+.from { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; }
+.from .attach { margin: 0 0 0 auto; }
+.attach { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px 3px 6px; border: 1px solid var(--line); border-radius: 4px; background: var(--paper); font-size: 13px; font-weight: 650; }
+.attach .glyph { width: 16px; height: 16px; color: #b3541e; }
+.attach small { margin-left: 4px; font-weight: 400; }
+.reply .sent { color: #0f6cbd; font-weight: 700; }
 .logos { display: flex; flex-direction: column; border-top: 4px solid var(--ink); }
 .message-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 13px; color: var(--muted); }
 .message-meta img, .message-meta .glyph { width: 20px; height: 20px; }
@@ -234,6 +246,15 @@ html.presenter .presenter-only:not([hidden]) { display: revert !important; }
 .timeline .fire { border-color: #e2b4aa; border-left-color: var(--red); background: var(--red-bg); }
 .timeline .fire time, .timeline .fire b { color: var(--red); }
 .timeline .fire p { font-weight: 650; }
+.timeline b img, .timeline b .glyph, .mail-line img { display: inline-block; width: 15px; height: 15px; margin-right: 5px; vertical-align: -2px; }
+.timeline .ch-log { border-color: #1c2421; background: #1c2421; }
+.timeline .ch-log time, .timeline .ch-log b { color: #9fb3a8; }
+.timeline .ch-log code { display: block; margin-top: 2px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: clamp(12px, 1vw, 14px); color: #8fd19e; }
+.timeline .ch-teams { border-left-color: #5b5fc7; background: #f5f5fc; }
+.timeline .ch-teams b { color: #4b4fa8; }
+.timeline .ch-sms .bubble { display: inline-block; margin-top: 3px; padding: 5px 14px; border-radius: 18px 18px 18px 4px; background: #e5e5ea; color: #1c1c1e; }
+.timeline .ch-mail .imp { color: var(--red); font-weight: 800; }
+.eyebrow.via img { display: inline-block; width: 15px; height: 15px; margin-right: 6px; vertical-align: -3px; }
 .cost { display: flex; flex-direction: column; padding: 18px 22px; border-radius: 6px; background: #2a1f1c; color: #f6ece6; }
 .scene:not([hidden]) .cost { animation: reveal .5s ease-out 5.8s both; }
 .cost-head { display: flex; justify-content: space-between; align-items: center; }
@@ -359,6 +380,10 @@ body[data-step="4"] .desk-note { display: block; }
   #lead { margin-top: 6px; }
   .clock { padding: 8px 14px; }
   .email, .logos { padding: 12px 20px; }
+  .email { padding: 0; }
+  .mail { padding: 8px 18px 12px; }
+  .subject { margin-bottom: 4px; font-size: 16px; }
+  .app-bar { padding-block: 4px; }
   .reply { margin-top: 10px; padding-block: 8px; }
   .attachment { margin-top: 6px; }
   .shirt { width: 112px; }
@@ -366,10 +391,12 @@ body[data-step="4"] .desk-note { display: block; }
   .actor { padding: 9px 12px; }
   .actor p { margin-top: 5px; }
   .actor-tool { margin-top: 5px; padding-top: 5px; }
-  .cast { margin-bottom: 12px; }
+  .cast { margin-bottom: 8px; }
+  .message-body { gap: 10px; }
+  .reply { margin-top: 8px; padding-block: 6px; }
   .email .message-meta { margin-bottom: 6px; }
   .email .message-text { font-size: 17px; }
-  .reply p { font-size: 16px; }
+  .reply p { font-size: 15px; }
   .dept-result { padding: 8px 10px; }
   .stat-note { margin-top: 6px; }
   .dept { padding: 14px 18px; gap: 8px; }
