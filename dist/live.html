@@ -9,7 +9,7 @@
 </defs></svg>
 <header class="mast"><a class="brand" href="./#webinar-1">Nine-67</a><span class="webinar-name">Your team has AI. Why is the work still manual?</span></header>
 <main class="stage">
-  <div class="toolbar"><ol class="steps" aria-label="Story progress"><li aria-current="step"><button type="button" data-go="0">1 · The order</button></li><li><button type="button" data-go="1">2 · Three AIs</button></li><li><button type="button" data-go="2">3 · The press</button></li><li><button type="button" data-go="3">4 · The fallout</button></li><li><button type="button" data-go="4">5 · The desk</button></li><li><button type="button" data-go="5">6 · Right shirt</button></li><li><button type="button" data-go="6">7 · Your handoffs</button></li></ol><button type="button" id="mode" class="presenter-only">Mode: Live</button></div>
+  <div class="toolbar"><ol class="steps" aria-label="Story progress"><li aria-current="step"><button type="button" data-go="0">1 · The order</button></li><li><button type="button" data-go="1">2 · The handoffs</button></li><li><button type="button" data-go="2">3 · The press</button></li><li><button type="button" data-go="3">4 · The fallout</button></li><li><button type="button" data-go="4">5 · The desk</button></li><li><button type="button" data-go="5">6 · Right shirt</button></li><li><button type="button" data-go="6">7 · Your handoffs</button></li></ol><button type="button" id="mode" class="presenter-only">Mode: Live</button></div>
   <header class="heading"><p class="kicker" id="kicker">The company in this story · Fictional</p><h1 id="title" tabindex="-1">Meet Keystone Workwear.</h1><p id="lead"></p><div class="clock" id="clock" aria-hidden="true"><small id="clock-day">Mon, Nov 2</small><strong id="clock-time">8:47 AM</strong><span id="clock-note">Shirts ship Friday</span></div></header>
 
   <section class="scene" data-scene="0" aria-label="Meet Keystone Workwear and the customer request">
@@ -44,6 +44,31 @@
   </section>
 
   <section class="scene" data-scene="1" aria-label="Three departments each used AI on order 4821" hidden>
+    <div class="notification-flow" aria-label="How the customer change reaches each person">
+      <article class="notification-step">
+        <p class="notification-label">1 · Customer emails Leah</p>
+        <div class="native-window outlook-window"><div class="native-title"><img src="assets/ms-outlook.svg" alt="">Outlook<span>8:41 AM</span></div><div class="compact-mail"><p class="mail-subject">RE: Order 4821 crew shirts</p><div class="compact-sender"><span class="native-avatar">RO</span><div><strong>Rachel Ortiz</strong><small>To: Leah</small></div></div><p>Use the new logo on all 5,000 shirts. Are we still good for Friday?</p><span class="file-chip">▧ Ridgeline_logo_v2.ai</span></div></div>
+        <p class="notification-outcome">Leah logs the request in Kantata at 8:43, confirms Friday by email at 8:47, then sends two separate Teams messages.</p>
+      </article>
+      <article class="notification-step">
+        <p class="notification-label">2 · Leah notifies Dana separately</p>
+        <div class="native-window teams-window"><div class="native-title"><img src="assets/ms-teams.svg" alt="">Microsoft Teams<span>Chat</span></div><div class="channel-title">Leah + Dana <span>1:1 chat</span></div><div class="teams-post"><span class="native-avatar">L</span><div><p class="native-meta"><strong>Leah</strong><small>8:48 AM</small></p><p>Rachel sent a new logo for WO 4821. Please prep it for all 5,000 shirts. Here’s the file from her email.</p><span class="file-chip">▧ Ridgeline_logo_v2.ai</span></div></div><div class="teams-post teams-ack"><span class="native-avatar">D</span><div><p class="native-meta"><strong>Dana</strong><small>8:49 AM</small></p><p>Got it. I’ll prep the artwork and save the separations to the art drive.</p></div></div></div>
+        <p class="notification-outcome">Dana gets the artwork request and file, logs the change in HubSpot, then uses ChatGPT and her design tool.</p>
+      </article>
+      <article class="notification-step">
+        <p class="notification-label">3 · Leah notifies Sam separately</p>
+        <div class="native-window teams-window"><div class="native-title"><img src="assets/ms-teams.svg" alt="">Microsoft Teams<span>Chat</span></div><div class="channel-title">Leah + Sam <span>1:1 chat</span></div><div class="teams-post"><span class="native-avatar">L</span><div><p class="native-meta"><strong>Leah</strong><small>8:50 AM</small></p><p>Logo change came in for WO 4821. Dana is handling the art. I confirmed Friday for all 5,000 shirts. Can you protect the ship date?</p></div></div><div class="teams-post teams-ack"><span class="native-avatar">S</span><div><p class="native-meta"><strong>Sam</strong><small>8:51 AM</small></p><p>I’ll resequence the press schedule to keep Friday.</p></div></div></div>
+        <p class="notification-outcome">Sam records the request on his production board, then takes a schedule export to Claude.</p>
+      </article>
+    </div>
+    <h2 class="ai-section-title system-section-title">Everyone updates their system.</h2>
+    <div class="system-updates" aria-label="Separate saved updates in three systems">
+      <article class="system-record kantata-record"><div class="system-brand"><img src="assets/kantata.png" alt="">Kantata <span>Project workspace</span></div><div class="system-record-body"><small>PROJECT · WO 4821</small><h3>Ridgeline crew shirts</h3><div class="system-tabs">Activity <span>Tasks &nbsp; Files</span></div><p class="saved-update">✓ Posted by Leah · 8:43 AM</p><p>Customer change received: replace the logo on all 5,000 shirts. Requested ship date: Friday.</p><span class="file-chip">▧ Ridgeline_logo_v2.ai</span><dl><div><dt>Change request</dt><dd>Logged</dd></div><div><dt>Follow-up</dt><dd>Notify art + production</dd></div></dl><p class="system-boundary">Saved in Kantata. No linked update to the CRM or production ticket in this demo.</p></div></article>
+      <article class="system-record hubspot-record"><div class="system-brand">HubSpot <span>CRM · Deals</span></div><div class="system-record-body"><small>DEAL · WO 4821</small><h3>Ridgeline · 5,000 shirts</h3><div class="system-tabs">Activities <span>Notes &nbsp; Attachments</span></div><p class="saved-update">✓ Note added by Dana · 8:52 AM</p><p>New logo received from Leah in Teams. Artwork revision in progress. Preparing two-color separations.</p><span class="file-chip">▧ Ridgeline_logo_v2.ai</span><dl><div><dt>Artwork update</dt><dd>In progress</dd></div><div><dt>Later note · 9:05</dt><dd>Separations saved</dd></div></dl><p class="system-boundary">Saved in HubSpot. The production ticket still points to the previous approved proof.</p></div></article>
+      <article class="system-record production-record"><div class="system-brand">Production board <span>Shop scheduling</span></div><div class="system-record-body"><small>JOB · WO 4821</small><h3>Press 3 · Ridgeline</h3><div class="system-tabs">Schedule <span>Job ticket &nbsp; Art</span></div><p class="saved-update">✓ Note saved by Sam · 8:53 AM</p><p>Logo change requested. Dana handling art. Keep Friday shipping. Review the press schedule.</p><dl><div><dt>After Claude · 9:02</dt><dd>Moved to Mon, 1:00 PM</dd></div><div><dt>Ship date</dt><dd>Friday</dd></div><div class="stale-record"><dt>Production proof</dt><dd>v1 · approved Oct 14</dd></div><div class="stale-record"><dt>Screens</dt><dd>Burned from v1</dd></div></dl><p class="system-boundary">Schedule saved. A job note does not replace the approved proof or trigger new screens.</p></div></article>
+    </div>
+    <p class="notification-gap"><strong>Three saved updates. Three separate versions of the situation.</strong> In this demo, the systems are not connected and the AI sessions have no shared context. People still have to carry the change across every handoff.</p>
+    <h2 class="ai-section-title">Then each AI works with only what its person provides.</h2>
     <div class="depts ai-depts">
       <article class="dept">
         <p class="dept-who"><span class="avatar">L</span><span><b>Leah</b>Account manager</span><span class="private">Private session</span></p>
@@ -52,7 +77,7 @@
           <div class="ai-mail-fields">To: Rachel Ortiz<br><strong>RE: Order 4821 crew shirts</strong></div>
           <div class="copilot-panel"><h3><img src="assets/copilot.webp" alt="">Draft with Copilot</h3><p class="ai-prompt">Confirm we’ll use the new logo on all 5,000 shirts and ship Friday.</p><div class="ai-answer">Got it. We’ll use the new logo on all 5,000 shirts. Friday works.</div><div class="ai-demo-actions" aria-hidden="true"><span class="keep-draft">Keep it</span><span>↻ Try again</span><span>Discard</span></div><small>AI-generated content may be incorrect</small></div>
         </div>
-        <p class="dept-result"><small>What happened to order 4821</small>Leah edits the draft and sends it. <b>In this scenario, Copilot has only the email thread. The order stays unchanged.</b></p>
+        <p class="dept-result"><small>What happened to order 4821</small>Leah logs the change in Kantata and sends the reply. <b>Copilot sees the email, but not HubSpot’s artwork status or the production board’s proof and screens.</b></p>
       </article>
       <article class="dept">
         <p class="dept-who"><span class="avatar">D</span><span><b>Dana</b>Designer</span><span class="private">Private session</span></p>
@@ -61,7 +86,7 @@
           <div class="ai-conversation"><p class="ai-upload">▧ Ridgeline_logo_v2.png</p><p class="ai-prompt">Help me prepare this logo for a two-color screen print.</p><div class="ai-answer"><strong>Here’s a prepress checklist:</strong><ol><li>Rebuild the artwork as vectors.</li><li>Separate navy and orange into spot colors.</li><li>Check line weights at print size.</li><li>Export a proof for approval.</li></ol><p>Have your designer verify the separations before printing.</p></div><div class="ai-feedback" aria-hidden="true">▢ &nbsp; ♧ &nbsp; ↻ &nbsp; ···</div></div>
           <div class="ai-composer" aria-hidden="true">Ask anything<span>＋ <i>↑</i></span></div>
         </div>
-        <p class="dept-result"><small>What happened to order 4821</small>Dana follows the checklist in her design tool and saves the separations. <b>Nobody opens a new proof on 4821.</b></p>
+        <p class="dept-result"><small>What happened to order 4821</small>Dana updates HubSpot and saves the separations. <b>ChatGPT sees the logo and prompt, but not Leah’s promise in Kantata or Sam’s revised press time.</b></p>
       </article>
       <article class="dept">
         <p class="dept-who"><span class="avatar">S</span><span><b>Sam</b>Production planner</span><span class="private">Private session</span></p>
@@ -70,11 +95,11 @@
           <div class="ai-conversation"><p class="ai-upload">▧ press_schedule.csv</p><p class="ai-prompt">Resequence this week’s jobs so order 4821 still ships Friday.</p><div class="ai-answer"><img class="claude-response-mark" src="assets/claude.svg" alt=""><p>Move WO 4821 to Press 3 today at 1:00 PM. Based on the schedule you shared, this leaves time for packing before Friday.</p><div class="ai-artifact"><span>▤</span><div><strong>Revised press schedule</strong><small>Document · Suggested sequence</small></div></div></div><div class="ai-feedback" aria-hidden="true">▢ &nbsp; ↻ &nbsp; ···</div></div>
           <div class="ai-composer" aria-hidden="true">Reply to Claude…<span>＋ <i>↑</i></span></div>
         </div>
-        <p class="dept-result"><small>What happened to order 4821</small>Sam moves 4821 to today, 1:00 PM on Press 3. <b>The schedule contains no logo change. Its screens still come from proof v1.</b></p>
+        <p class="dept-result"><small>What happened to order 4821</small>Sam saves the revised schedule on his production board. <b>Claude sees the schedule export, but not the Kantata change request or HubSpot artwork updates. Proof v1 stays on the ticket.</b></p>
       </article>
     </div>
-    <p class="ai-recreation-note">Illustrative conversations · Recreated product interfaces, simplified for presentation</p>
-    <p class="callout warn"><strong>Three good AI outputs. Nobody changed the order.</strong> Each one stopped at its own department.</p>
+    <p class="ai-recreation-note">Illustrative workflow · Recreated interfaces · Production board is a fictional shop system · Integrations are not enabled in this scenario</p>
+    <p class="callout warn"><strong>Your team has AI. Why is the work still manual?</strong> Everyone updated their system. No AI had the full picture to coordinate the change from request to production.</p>
     <div class="stat-pair"><p class="stat-note"><strong>69%</strong> say most AI work happens in private sessions, like these. <cite>Miro, Nov 2026</cite></p><p class="stat-note"><strong>52.7%</strong> of merch firms: top AI barrier is no integration with their systems. <cite>PPAI, Jul 2026</cite></p></div>
   </section>
 
@@ -97,11 +122,11 @@
         <span class="stamp" aria-hidden="true">Old logo</span>
       </section>
       <section class="blind-spot" aria-label="Where the new logo actually is">
-        <p class="blind-title"><strong>What the operator can’t see.</strong> The new logo exists. Just not here.</p>
+        <p class="blind-title"><strong>What the operator can’t see.</strong> The updates exist. The production proof is still v1.</p>
         <ul class="silos">
-          <li><img src="assets/ms-outlook.svg" alt=""><div><b>Leah’s Outlook thread</b><span>New logo attached · Rachel told “Got it”</span></div></li>
-          <li><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><div><b>Art drive</b><span>Print-ready v2 separations, saved by design</span></div></li>
-          <li class="empty"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 14h18M9 4v16"/></svg><div><b>Shop system · WO 4821</b><span>Still on proof v1 · no new proof sent</span></div></li>
+          <li><img src="assets/ms-outlook.svg" alt=""><div><b>Leah’s Kantata project + Outlook</b><span>Change logged · new logo attached · Friday confirmed</span></div></li>
+          <li><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><div><b>Dana’s HubSpot record + art drive</b><span>Artwork update saved · v2 separations ready</span></div></li>
+          <li class="empty"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 14h18M9 4v16"/></svg><div><b>Shop system · WO 4821</b><span>Sam updated the schedule · production proof still v1</span></div></li>
         </ul>
         <p class="stat-note late"><strong>59%</strong> of U.S. executives see work stall because it’s trapped in one person’s AI tool. <cite>Salesforce Pulse Survey, Oct 2026, n=250</cite></p>
       </section>
@@ -122,14 +147,14 @@
         <p class="cost-stat"><span>Real data · this reprint is that rework</span><strong>Nearly 40%</strong> of the time AI saves is lost to rework. <cite>Workday, Jan 2026, n=3,200</cite></p>
       </aside>
     </div>
-    <p class="callout warn"><strong>This isn’t a printing problem.</strong> It’s every handoff between two people’s AI: quotes, orders, customer promises.</p>
+    <p class="callout warn"><strong>This isn’t a printing problem.</strong> It’s the manual handoff between systems and AI sessions: the request was recorded, but the production change was never completed.</p>
   </section>
 
   <section class="scene" data-scene="4" aria-label="The order desk applies the change to order 4821" hidden>
     <div class="resolution">
       <section class="reads"><h2>What the Order Desk did · 8:44–10:12 AM</h2>
-        <div class="read-row"><img src="assets/ms-outlook.svg" alt=""><div><b>Matched Rachel’s email to WO 4821</b><p class="chips"><span>New logo</span><span>All 5,000</span><span>Friday</span><em>Outlook thread</em></p></div></div>
-        <div class="read-row"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 14h18M9 4v16"/></svg><div><b>Found the conflict</b><p>WO 4821 runs proof v1 at 1:00 PM today. <strong class="flag">Screens burned from the old logo.</strong></p></div></div>
+        <div class="read-row"><img src="assets/ms-outlook.svg" alt=""><div><b>Connected the email and Kantata change to WO 4821</b><p class="chips"><span>New logo</span><span>All 5,000</span><span>Friday</span><em>Outlook thread</em></p></div></div>
+        <div class="read-row"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 14h18M9 4v16"/></svg><div><b>Found the conflict</b><p>HubSpot says new art is ready. Production still has proof v1 at 1:00 PM. <strong class="flag">Screens burned from the old logo.</strong></p></div></div>
         <div class="read-row"><img src="assets/ms-teams.svg" alt=""><div><b>Leah approved a hold in Teams · 8:47</b><p>Press 3 skips WO 4821 only. Nothing else moves.</p></div></div>
         <div class="read-row"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg><div><b>Dana sent proof v2 to Rachel · 8:58</b><p id="log-bench">Logo v2: vector ✓ · 2 colors ✓ · proof v2 on WO 4821</p></div></div>
         <div class="read-row" id="log-confirm-row"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m7.5 12.5 3 3 6-6.5"/></svg><div><b id="log-confirm">Rachel approved proof v2 · 10:12 AM</b><p id="log-confirm-note">Screen room: new screens ordered from v2.</p></div></div>
