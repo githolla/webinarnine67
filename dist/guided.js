@@ -2,14 +2,23 @@
 const DESK = 4;
 const DONE = 5;
 const scenes = [
-  {kicker:'Forma Digital · Monday, November 2 · 9:02 AM',title:'A request comes in.',lead:'Forma Digital builds customer apps. Marcus needs one answer before he can confirm a client launch.',next:'See the two plans →',time:'1:04:30–1:05:15',say:'“Monday, 9:02. Marcus asks one simple question: can Alex do the Rally launch? Your team answers messages like this by hand every week.”',point:'Point to the message, then the desk card. Suuchi asks: “Who answers this in your company, and how long does it take?”'},
-  {kicker:'Forma Digital · Two client launches · November 9–13',title:'Two plans. Both written with AI.',lead:'Your AI rollout worked. Leah and Marcus each wrote a solid launch plan in minutes.',next:'Check Alex’s week →',time:'1:05:15–1:06:00',say:'“This is the company that did everything right. Leah used ChatGPT, Marcus used Copilot. Two good plans in minutes. You’re the COO. Would you confirm both?”',point:'Let the two Alex boxes light up, then point at both. Pause before advancing.'},
-  {kicker:'Forma Digital · Alex’s week · November 9–13',title:'Alex has 80 hours promised. And a 40-hour week.',lead:'Each AI did its job. Nobody’s job was to check across them.',next:'What happens next →',time:'1:06:00–1:07:00',say:'“Luma fills Alex’s week. Rally goes straight past the line. And no system flags it, because both bookings live in AI-written documents. Kantata hasn’t seen either one.”',point:'Wait for the striped bar to cross the dashed line. Then point at the three boxes along the bottom, ending on Kantata.'},
-  {kicker:'If nobody checks across teams · November 2–11',title:'Nobody finds out until launch week.',lead:'Both plans get confirmed on Monday. Here is how launch week goes.',next:'Rewind to Monday →',time:'1:07:00–1:08:15',say:'“Monday, Marcus confirms. A week later Alex asks which launch to work on. Tuesday, Leah won’t give him up. Wednesday night, the client says they announced Friday to 40,000 members and can’t move it. Every AI did its job. The company still broke a promise.”',point:'Read the four messages slowly, top to bottom. Pause on the last one. Suuchi: “How many of these are in flight in your company right now?”'},
-  {kicker:'Rewind · Launch Desk · Monday, November 2 · 9:04 AM',title:'Same Monday. Caught by 9:04 AM.',lead:'',next:'Approve as COO →',time:'1:08:15–1:10:00',say:'“Same Monday, two minutes after Marcus asked. The desk read both plans, checked capacity, and found Jamie. Maya confirmed. Now I have one decision, and I can see exactly what approving will do. Nothing changes until a person approves.”',point:'Let the work log finish. Point to “Approving will”. Click Approve as COO inside the card, or press →. Use Change one fact only in Q&A.'},
-  {kicker:'Launch Desk · Monday, November 2 · 9:07 AM',title:'Request completed. One approval.',lead:'Both launches stay on schedule. Alex keeps Luma, Jamie takes Rally.',next:'Find your handoffs →',time:'1:10:00–1:11:00',say:'“Five minutes after Marcus asked, it is done: plan updated, allocation recorded, both managers told, Marcus answered, and a full audit trail. No escalation, no slipped launch. Swap launch specialist for whatever is scarce in your business.”',point:'Point to the two bars, then the before and after. Say the Kantata write is simulated here and uses its API in a real build.'},
+  {kicker:'Forma Digital · A client app agency',title:'A request comes in.',lead:'Forma Digital builds customer apps. Marcus needs one answer before he can confirm a client launch.',next:'See the two plans →',time:'1:04:30–1:05:15',say:'“Monday, 9:02. Marcus asks one simple question: can Alex do the Rally launch? Your team answers messages like this by hand every week.”',point:'Point to the message, then the desk card. Suuchi asks: “Who answers this in your company, and how long does it take?”'},
+  {kicker:'Forma Digital · Two client launches · November 9–13',title:'Two plans. Both written with AI.',lead:'Your AI rollout worked. Leah and Marcus each wrote a solid launch plan in minutes.',next:'Check Alex’s week →',time:'1:05:15–1:06:00',say:'“This is the company that did everything right. Leah used ChatGPT, Marcus used Copilot. Two good plans in minutes. You’re the COO. Would you confirm both?”',point:'Wait for the “Same person” badge to pop between the two red Alex boxes. Pause before advancing.'},
+  {kicker:'Forma Digital · Alex’s week · November 9–13',title:'Alex has 80 hours promised. And a 40-hour week.',lead:'Each AI did its job. Nobody’s job was to check across them.',next:'What happens next →',time:'1:06:00–1:07:00',say:'“Luma fills Alex’s week. Rally goes straight past the line. And no system flags it, because both bookings live in AI-written documents. Kantata hasn’t seen either one.”',point:'Wait for the Double-booked stamp to land. Then point at the three boxes along the bottom, ending on Kantata.'},
+  {kicker:'If nobody checks across teams',title:'Nobody finds out until launch week.',lead:'Both plans get confirmed on Monday. Here is how launch week goes.',next:'Rewind to Monday →',time:'1:07:00–1:08:15',say:'“Monday, Marcus confirms. A week later Alex asks which launch to work on. Tuesday, Leah won’t give him up. Wednesday night, the client says they announced Friday to 40,000 members and can’t move it. Every AI did its job. The company still broke a promise.”',point:'Read the four messages as they appear. The clock counts down to launch and turns red. Pause on the last one. Suuchi: “How many of these are in flight in your company right now?”'},
+  {kicker:'Rewind · Same request · Launch Desk',title:'Same Monday. Caught by 9:04 AM.',lead:'',next:'Approve as COO →',time:'1:08:15–1:10:00',say:'“Same Monday, two minutes after Marcus asked. The desk read both plans, checked capacity, and found Jamie. Maya confirmed. Now I have one decision, and I can see exactly what approving will do. Nothing changes until a person approves.”',point:'Let the rewind play before speaking, then let the work log finish. Point to “Approving will”. Click Approve as COO inside the card, or press →. Use Change one fact only in Q&A.'},
+  {kicker:'Launch Desk · After one approval',title:'Request completed. One approval.',lead:'Both launches stay on schedule. Alex keeps Luma, Jamie takes Rally.',next:'Find your handoffs →',time:'1:10:00–1:11:00',say:'“Five minutes after Marcus asked, it is done: plan updated, allocation recorded, both managers told, Marcus answered, and a full audit trail. No escalation, no slipped launch. Swap launch specialist for whatever is scarce in your business.”',point:'Point to the two bars, then the before and after. Say the Kantata write is simulated here and uses its API in a real build.'},
   {kicker:'Complimentary workflow assessment',title:'Find your manual handoffs.',lead:'Bring one workflow. We will map it the way we just mapped Marcus’s request.',next:'Back to the start ↺',time:'1:16:00 and 1:27:30',say:'“What you typed in chat is step one of the assessment. Type ‘assessment’ and your workflow, or use the link if you’d rather keep it private.”',point:'Leave this screen up through Q&A and the close.'}
 ];
+const monday = {d:'Mon, Nov 2',t:'9:02 AM',n:'Rally launch in 11 days'};
+const clocks = [
+  [monday],[monday],[monday],
+  [{d:'Mon, Nov 2',t:'10:15 AM',n:'Launch in 11 days'},{at:1800,d:'Mon, Nov 9',t:'8:40 AM',n:'Launch in 4 days',tone:'warn'},{at:3300,d:'Tue, Nov 10',t:'9:05 AM',n:'Launch in 3 days',tone:'warn'},{at:4800,d:'Wed, Nov 11',t:'5:52 PM',n:'Launch in 2 days',tone:'fire'}],
+  [{...monday,tone:'calm'},{at:2000,d:'Mon, Nov 2',t:'9:03 AM',n:'Checking capacity',tone:'calm'},{at:3600,d:'Mon, Nov 2',t:'9:04 AM',n:'Caught 11 days early',tone:'calm'}],
+  [{d:'Mon, Nov 2',t:'9:07 AM',n:'Both launches on track',tone:'calm'}],
+  null
+];
+const rewindDays = ['Wed, Nov 11','Tue, Nov 10','Mon, Nov 9','Sun, Nov 8','Sat, Nov 7','Fri, Nov 6','Thu, Nov 5','Wed, Nov 4','Tue, Nov 3','Mon, Nov 2'];
 const leads = {
   ready:'The desk read both plans, found a qualified replacement, and Maya confirmed. You approve.',
   unknown:'The desk found a qualified replacement. Maya has not confirmed availability yet, so it holds.',
@@ -27,6 +36,9 @@ const presenter = window.N67_PRESENTER === true;
 let current = 0;
 let rehearsal = false;
 let availability = 'ready';
+let timers = [];
+const calm = window.matchMedia('(prefers-reduced-motion: reduce)');
+const later = (ms,fn) => timers.push(setTimeout(fn,ms));
 
 function fillAssessment() {
   const event = window.N67_EVENT;
@@ -79,12 +91,40 @@ function render() {
   byId('hold').hidden=availability==='ready';
   byId('hold').textContent=d.hold;
 }
+function setClock(f) {
+  const clock=byId('clock');
+  clock.hidden=!f;
+  if(!f)return;
+  byId('clock-day').textContent=f.d; byId('clock-time').textContent=f.t; byId('clock-note').textContent=f.n;
+  clock.className='clock'; void clock.offsetWidth; clock.className='clock flip'+(f.tone?' '+f.tone:'');
+}
+function playClock(index) {
+  const frames=clocks[index];
+  if(!frames||calm.matches){setClock(frames?frames[frames.length-1]:null);return;}
+  frames.forEach(f=>f.at?later(f.at,()=>setClock(f)):setClock(f));
+}
+function rewind() {
+  const overlay=byId('rewind');
+  overlay.hidden=false;
+  setClock(clocks[DESK][0]);
+  rewindDays.forEach((day,i)=>later(i*110,()=>{byId('rewind-day').textContent=day;}));
+  later(1150,()=>{byId('rewind-day').textContent='Mon, Nov 2 · 9:02 AM';});
+  later(1900,()=>{
+    overlay.hidden=true;
+    const panel=panels[DESK]; panel.hidden=true; void panel.offsetWidth; panel.hidden=false;
+    playClock(DESK);
+  });
+}
 function show(index,navigate=false) {
   if(index<0 || index>=scenes.length)return;
   if(index===DONE && current===DESK && availability!=='ready')return;
+  const from=current;
   current=index;
   if(current!==DESK){availability='ready';byId('qa-controls').open=false;}
+  timers.forEach(clearTimeout); timers=[];
+  byId('rewind').hidden=true;
   render();
+  if(navigate && index===DESK && from===DESK-1 && !calm.matches)rewind(); else playClock(index);
   if(navigate){history.replaceState(null,'','#slide-'+(index+1));byId('title').focus({preventScroll:true});window.scrollTo(0,0);byId('announcement').textContent=scenes[index].title;}
 }
 function advance(){if(!byId('next').disabled)show((current+1)%scenes.length,true);}

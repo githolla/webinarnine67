@@ -5,7 +5,7 @@
 <header class="mast"><a class="brand" href="./#webinar-1">Nine-67</a><span class="webinar-name">Your team has AI. Why is the work still manual?</span></header>
 <main class="stage">
   <div class="toolbar"><ol class="steps" aria-label="Story progress"><li aria-current="step"><button type="button" data-go="0">1 · Request</button></li><li><button type="button" data-go="1">2 · Two plans</button></li><li><button type="button" data-go="2">3 · Collision</button></li><li><button type="button" data-go="3">4 · The fallout</button></li><li><button type="button" data-go="4">5 · The desk</button></li><li><button type="button" data-go="5">6 · Done</button></li><li><button type="button" data-go="6">7 · Your handoffs</button></li></ol><button type="button" id="mode" class="presenter-only">Mode: Live</button></div>
-  <header class="heading"><p class="kicker" id="kicker">Forma Digital · Monday, November 2 · 9:02 AM</p><h1 id="title" tabindex="-1">A request comes in.</h1><p id="lead"></p></header>
+  <header class="heading"><p class="kicker" id="kicker">Forma Digital · Monday, November 2 · 9:02 AM</p><h1 id="title" tabindex="-1">A request comes in.</h1><p id="lead"></p><div class="clock" id="clock" aria-hidden="true"><small id="clock-day">Mon, Nov 2</small><strong id="clock-time">9:02 AM</strong><span id="clock-note">Rally launch in 11 days</span></div></header>
 
   <section class="scene" data-scene="0" aria-label="A project manager asks the Launch Desk to confirm a specialist">
     <div class="request-grid">
@@ -36,7 +36,7 @@
       <article class="plan rally">
         <div class="client"><span class="client-mark" aria-hidden="true">R</span><div><small>Client 02 · Member app</small><h2>Rally Fitness</h2></div></div>
         <p class="planned"><img src="assets/copilot.webp" alt="">Planned by <b>Marcus</b> with <b>Copilot</b><span class="private">Private session</span></p>
-        <div class="booking"><span>Launch specialist<br>Mon–Fri, Nov 9–13</span><strong>Alex · 40h</strong></div>
+        <div class="booking"><span>Launch specialist<br>Mon–Fri, Nov 9–13</span><strong>Alex · 40h</strong><i class="clash" aria-hidden="true">Same<br>person</i></div>
         <p class="plan-ok"><span aria-hidden="true">✓</span> Plan looks complete</p>
       </article>
     </div>
@@ -50,6 +50,7 @@
       <div class="bar-wrap">
         <div class="bar" role="img" aria-label="Luma Hotels 40 hours plus Rally Fitness 40 hours, against a 40-hour week"><span class="seg luma">Luma Hotels · 40h</span><span class="seg rally over">Rally Fitness · 40h</span></div>
         <span class="limit" aria-hidden="true"><b>Alex’s 40-hour week</b></span>
+        <span class="stamp" aria-hidden="true">Double-booked</span>
       </div>
     </section>
     <section class="blind-spot" aria-label="Why no system flagged it">
@@ -103,7 +104,7 @@
         <section class="load-card resolved" aria-label="Both specialists are within capacity">
           <p class="load-label">November 9–13 · after approval</p>
           <div class="person"><b>Alex</b><div class="bar"><span class="seg luma">Luma Hotels · 40h</span></div><span class="fit">40 / 40h ✓</span></div>
-          <div class="person"><b>Jamie</b><div class="bar"><span class="seg rally">Rally Fitness · 40h</span></div><span class="fit">40 / 40h ✓</span></div>
+          <div class="person moved"><b>Jamie</b><div class="bar"><span class="seg rally">Rally Fitness · 40h</span></div><span class="fit">40 / 40h ✓</span></div>
         </section>
         <section class="before-after" aria-label="Before and after, illustrative">
           <div><small>Without the desk</small><strong>Found launch week</strong><span>Launch slips · client escalates</span></div>
@@ -138,4 +139,5 @@
   <footer class="controls"><button type="button" id="back" disabled>← Back</button><span id="counter">1 of 7</span><a href="host-guide.html" target="_blank" rel="noopener" class="host-link presenter-only">Host guide ↗</a><p class="desk-note"><strong>Not bot number 41.</strong> One agent that reads across every plan, then waits for a person. <cite>84% of CIOs say employees build agents faster than IT can govern them. Dataiku / Harris Poll, Sep 2026, 685 CIOs</cite></p><button type="button" id="next">See what the desk finds →</button></footer>
   <p class="simulation">Illustrative prototype · Fictional company and data · Simulated approvals, updates and messages</p><span class="sr-only" id="announcement" aria-live="polite"></span>
 </main>
+<div class="rewind" id="rewind" aria-hidden="true" hidden><span class="spin">↺</span><small>Rewind</small><strong id="rewind-day">Wed, Nov 11</strong><p>What if someone checked on Monday?</p></div>
 </body></html>
