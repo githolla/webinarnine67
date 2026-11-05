@@ -13,39 +13,39 @@ const scenes = [
   },
   {
     "kicker": "AI in every department",
-    "title": "Everyone updates their system.",
-    "lead": "Each person uses AI responsibly. Each local update is accurate. The cross-system work is still waiting.",
+    "title": "Everyone completes a different check.",
+    "lead": "Request captured. Commercial scope updated. Capacity checked. Material and engineering reviews requested.",
     "next": "Compare the records →",
     "time": "1:05:15–1:07:00",
-    "say": "Show the two separate Teams requests. Read each AI conversation, including what it can and cannot access. Each person reviews and saves the prepared update. Show the precise replies to Leah. Nobody omits the specification or overstates readiness.",
-    "point": "Show the two separate Teams requests. Read each AI conversation, including what it can and cannot access. Each person reviews and saves the prepared update. Show the precise replies to Leah. Nobody omits the specification or overstates readiness."
+    "say": "Read the extended AI conversations. Each assistant accurately distinguishes its completed local check from the unresolved delivery decision. Show Leah’s follow-up tasks, Dana’s conditional amendment and Sam’s submitted PUR-91 and ECO-27 requests. Everyone saves the right update and communicates the limits.",
+    "point": "Read the extended AI conversations. Each assistant accurately distinguishes its completed local check from the unresolved delivery decision. Show Leah’s follow-up tasks, Dana’s conditional amendment and Sam’s submitted PUR-91 and ECO-27 requests. Everyone saves the right update and communicates the limits."
   },
   {
     "kicker": "The manufacturing dependency",
-    "title": "Three correct answers. No complete plan.",
-    "lead": "Requested scope, purchased material and available machine time are different kinds of readiness.",
+    "title": "The open checks are known. Their answers are disconnected.",
+    "lead": "A 316L price is not a material allocation. Available hours are not a verified delivery plan.",
     "next": "See the delay →",
     "time": "1:07:00–1:08:00",
-    "say": "Compare revision B, purchase order PO-730 and the capacity plan. The 304 stock belongs to revision A. Machine hours alone cannot prove material readiness. This needs reconciliation and controlled record updates, not just a shared message.",
-    "point": "Compare revision B, purchase order PO-730 and the capacity plan. The 304 stock belongs to revision A. Machine hours alone cannot prove material readiness. This needs reconciliation and controlled record updates, not just a shared message."
+    "say": "State clearly: Sam already requested material and engineering validation. Page 3 is not a hidden problem his AI failed to mention. The purchasing record belongs to revision A; revision B needs a new supply commitment. Point to the three queues and their owners. Their results do not automatically trigger reconciliation or update the other systems. A Teams channel shares awareness, but people still need to collect evidence, compare revisions and complete the updates.",
+    "point": "State clearly: Sam already requested material and engineering validation. Page 3 is not a hidden problem his AI failed to mention. The purchasing record belongs to revision A; revision B needs a new supply commitment. Point to the three queues and their owners. Their results do not automatically trigger reconciliation or update the other systems. A Teams channel shares awareness, but people still need to collect evidence, compare revisions and complete the updates."
   },
   {
     "kicker": "The cost of disconnected work",
-    "title": "The delay lives between the systems.",
-    "lead": "The team catches the conflict before production. The customer still loses time while the checks happen manually.",
+    "title": "Local work finished. Shared work waited.",
+    "lead": "The delay comes from following up, collecting evidence and reconciling answers across separate queues.",
     "next": "Connect the workflow →",
     "time": "1:08:00–1:09:00",
-    "say": "The manufacturing process catches the issue safely. The failure is delay and lost supply optionality while people perform cross-system checks manually. All timing and supply outcomes are illustrative.",
-    "point": "The manufacturing process catches the issue safely. The failure is delay and lost supply optionality while people perform cross-system checks manually. All timing and supply outcomes are illustrative."
+    "say": "No person forgot a step or used a bad prompt. The local tasks finished, while known dependencies awaited answers and manual reconciliation. The material mismatch is resolved when people compare the underlying records; the late resolution loses the earlier supply option in this fictional example. The manufacturing release remains safely held.",
+    "point": "No person forgot a step or used a bad prompt. The local tasks finished, while known dependencies awaited answers and manual reconciliation. The material mismatch is resolved when people compare the underlying records; the late resolution loses the earlier supply option in this fictional example. The manufacturing release remains safely held."
   },
   {
     "kicker": "Rewind · Connected workflow",
-    "title": "Same people. Same systems. A shared picture.",
-    "lead": "One workflow checks the dependencies and prepares a coordinated, reviewable plan.",
+    "title": "A connected workflow completes the open checks.",
+    "lead": "Track the dependencies, collect the evidence, recalculate the plan and verify the approved updates.",
     "next": "Approve coordinated update →",
     "time": "1:09:00–1:10:00",
-    "say": "Rewind to the same customer request. Show linked records and the missing 316L supply evidence. Purchasing and engineering validate their parts. The agent prepares a consistent plan and waits for approval. Try both blocked states in Q&A.",
-    "point": "Rewind to the same customer request. Show linked records and the missing 316L supply evidence. Purchasing and engineering validate their parts. The agent prepares a consistent plan and waits for approval. Try both blocked states in Q&A."
+    "say": "The connected workflow matches order and revision, compares the existing allocation, and tracks PUR-91 and ECO-27 to evidence-backed answers. It follows up or escalates overdue requests. Confirmed material and engineering results trigger a fresh capacity check and amended customer terms. People approve their decisions. The workflow writes consistent records, verifies success and only then prepares the customer confirmation. A missing answer remains a hold, not an invented fact.",
+    "point": "The connected workflow matches order and revision, compares the existing allocation, and tracks PUR-91 and ECO-27 to evidence-backed answers. It follows up or escalates overdue requests. Confirmed material and engineering results trigger a fresh capacity check and amended customer terms. People approve their decisions. The workflow writes consistent records, verifies success and only then prepares the customer confirmation. A missing answer remains a hold, not an invented fact."
   },
   {
     "kicker": "Request → completed work",
@@ -77,7 +77,7 @@ const deskCopy = {
     "source": "Simulation · no live writes",
     "bench": "316L supply confirmed · BOM B validated · split delivery feasible",
     "confirm": "Customer accepted the revised price and split delivery",
-    "note": "All affected records are ready for an approved, coordinated update.",
+    "note": "Supplier, engineering, capacity and customer evidence are linked to revision B.",
     "hold": ""
   },
   "unknown": {
