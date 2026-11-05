@@ -1,111 +1,107 @@
-# Nine-67 webinar: complete source
+# Nine-67 webinar source
 
-The full published website for **Your team has AI. Why is the work still manual?**, including the Summit Advisory proposal-coordination scenario, webinar cover, presenter guide, optional Q&A controls, and the retained earlier dashboard code.
+The website for **Your team has AI. Why is the work still manual?** The current demo follows a customer change at fictional **Harbor Event Rentals**: 120 guests become 160, with the same Friday, 9 AM delivery. Three employees use AI successfully, but the order still needs coordinated decisions and verified updates.
 
-The HTML, CSS, JavaScript, and image assets in `dist/` are the editable application source. This project was written directly as a static website. There is no missing React project, compiled source directory, package dependency, database, or server application.
+The editable application source is in `dist/`. This is a static HTML, CSS and JavaScript application with no third-party npm dependencies, database or backend service.
 
 ## Run locally
 
-Install Node.js 20 or newer, extract this ZIP, then open a terminal in this folder:
+Use Node.js 20 or newer:
 
 ```sh
 npm run dev
 ```
 
-Open **http://localhost:3000/** for the webinar cover, **http://localhost:3000/stats.html** for the opening stats, or **http://localhost:3000/live.html** for the five-scene interactive demo. Add `?presenter=1` to any page to show presenter controls in that browser tab; `?presenter=0` hides them again. No `npm install` or environment variables are needed because the project has zero third-party npm dependencies.
+Open:
 
-Stop the local server with Ctrl+C. Set `PORT` if 3000 is already occupied.
+- `http://localhost:3000/` for the webinar cover.
+- `http://localhost:3000/stats.html` for the research introduction.
+- `http://localhost:3000/live.html` for the five-scene demo.
+- `http://localhost:3000/host-guide.html` for Josh and Suuchi’s five-minute walkthrough.
 
-## Check and build
+Set `PORT` if 3000 is occupied. Stop the server with Ctrl+C. Serve the app over HTTP so ES modules load with the correct MIME type. No `npm install` is needed.
+
+## Test and build
 
 ```sh
+npm test
 npm run check
 npm run build
 npm run preview
 ```
 
-The check validates JavaScript syntax (including inline scripts) and local HTML/CSS references. The build checks the app and copies the editable `dist/` files to `build/`. Preview serves `build/` at the same local address. Run only one local server on a port at a time.
+The tests exercise application behavior. The check validates JavaScript syntax and local HTML/CSS references. The build copies the checked source from `dist/` to `build/`. Preview serves `build/` locally. Run only one server on a port at a time.
 
-## Put it in Git
+## Current story
 
-Create an empty GitHub repository, then run these commands inside this extracted folder. Replace the example URL with your repository URL.
+1. **The customer request.** Rachel at Northstar adds 40 guests, keeping Friday’s 9 AM delivery and the same venue.
+2. **Three successful AI tasks.** Leah in Customer Service uses ChatGPT and HubSpot. Sam in Warehouse uses Copilot and the sample Rental inventory. Dana in Dispatch uses Claude and the sample Dispatch board. Each saves a useful local result.
+3. **The manual coordination.** Leah still needs to combine the equipment plan, truck plan and full additional charge before she can make a complete customer commitment.
+4. **The connected workflow.** Sam and Dana review the shared revision, Rachel approves the $580 additional charge, and Leah releases it. The workflow applies and verifies the approved order, dispatch and CRM updates.
+5. **The customer outcome.** One confirmation draft covers 160 chairs, 40 tables, Friday at 9 AM, the same venue, and $2,100 before tax.
 
-```sh
-git init
-git add .
-git commit -m "Add complete Nine-67 webinar demo"
-git branch -M main
-git remote add origin https://github.com/YOUR-ACCOUNT/YOUR-REPOSITORY.git
-git push -u origin main
-```
+The main story should stay readable without opening every detail. AI conversations show useful work, not invented mistakes. A pending plan is distinct from a released order. A customer approval is distinct from an AI-generated draft.
 
-The ZIP excludes the original `.git` directory and credentials so you can create your own repository. All application source and assets from the published source snapshot are included. `build/` is ignored because it can be regenerated.
+## Scenario arithmetic
 
-## Deploy
+| Item | Original | Revised |
+| --- | --- | --- |
+| Chairs at $5 each | 120 / $600 | 160 / $800 |
+| Tables at $20 each | 30 / $600 | 40 / $800 |
+| Delivery | $320 | $500 |
+| Total before tax | $1,520 | $2,100 |
+| Additional charge | | $580 |
 
-This is a static site. Serve the contents of `build/`, or serve `dist/` directly if your host does not need a build step. Keep the HTML filenames and relative folder structure intact.
-
-- Build command: `npm run build`
-- Output directory: `build`
-- Framework: Other / static
-- Entry point: `index.html`
-- Direct live demo route: `/live.html`
-
-Included `vercel.json` and `netlify.toml` declare the build command and output directory. Import your repository into your hosting account and use the extracted project folder as the project root. No SPA rewrite is required. Deployment to a new account has not been performed as part of this export.
-
-The original `.openai/hosting.json` is preserved for completeness. Its project ID identifies the existing ChatGPT Site; it is not an API key. Other hosts do not need that file. The existing Site's private access controls do **not** travel with these static files. Configure access in your chosen host if the demo should remain private.
-
-## Before the webinar
-
-Edit `dist/site.js`:
-
-- `bookingUrl` (and optional `bookingLabel`): shows the booking link and a QR code on the assessment screen.
-- `novemberSlots`: shows "we are holding N sessions in November".
-- `presenters[].portrait`: path to a portrait image in `dist/assets/` (shown in grayscale). Initials show until set.
+The increase is $400 in equipment and $180 for a second truck. These are fictional scenario assumptions, not a vendor quote or a measured saving.
 
 ## Where to edit
 
 | File | Purpose |
 | --- | --- |
-| `dist/site.js` | Event config (booking link, slots, portraits) and presenter mode, shared by every page |
-| `dist/live.html` | Five-scene proposal application shell |
-| `dist/proposal-model.mjs` | Requirements, approval dependencies, safe retries and release state |
-| `dist/proposal-view.mjs` | Five scene views, sample artifacts, AI conversations and sidebars |
-| `dist/proposal-demo.mjs`, `dist/proposal.css` | Interactive application controller and responsive styling |
-| `tests/proposal.test.mjs` | Approval, revision, retry, readiness and render tests |
-| `dist/guided.js` | Retained previous manufacturing demo logic; not loaded by the current app |
-| `dist/launch-story.css` | Opening stats and retained earlier demo styles |
-| `dist/stats.html` | Opening stats screen with sources |
-| `dist/webinar.js` | Webinar cover (`coverScene`) and presentation shell; later scenes are the retained earlier deck |
-| `dist/index.html` | Cover entry point and retained dashboard implementation |
+| `dist/site.js` | Shared event and presenter configuration |
+| `dist/live.html` | Current five-scene application shell |
+| `dist/event-model.mjs` | Rental change data, decisions and workflow state |
+| `dist/event-view.mjs` | Scene rendering, AI conversations and visible artifacts |
+| `dist/event-demo.mjs` | Interactive controls and navigation |
+| `dist/event.css` | Current demo styling |
+| `tests/*.test.mjs` | Behavioral and rendering checks |
+| `dist/stats.html` | Research introduction with source links |
+| `dist/host-guide.html` | Five-minute walkthrough for Josh and Suuchi |
+| `dist/webinar.js`, `dist/index.html` | Webinar cover and retained earlier presentation code |
 | `dist/webinar.css`, `dist/brand.css` | Cover and brand styling |
-| `dist/host-guide.html` | Five-minute proposal demo walkthrough, exception tests and closing message |
-| `dist/explore.html` | Redirect to the Q&A controls on screen 4 |
-| `dist/assets/` | Logos, illustrations, reference image, and asset credits |
-| `scripts/` | Dependency-free local server, validation, and build scripts |
+| `dist/assets/` | Local logos, images and attribution |
+| `scripts/` | Local server, validation and build scripts |
 
-Earlier CSS/JS and dashboard scenarios are intentionally retained but are no longer linked from the cover.
+Earlier proposal, manufacturing and dashboard files remain in the repository as legacy source. They do not define the current event-rental story.
 
-## Current flow
+## Demonstration boundaries
 
-Cover → opening stats → demo:
+Harbor Event Rentals, Northstar, the people, equipment availability, rates, messages, AI outputs and approvals are fictional. The sample Rental inventory and Dispatch board are generic demonstration applications. Their presence does not claim a live integration with a rental or routing vendor.
 
-1. **Five finished tasks:** explore sales, delivery, finance, legal and marketing AI conversations and original Austin deliverables.
-2. **One client change:** record Rachel’s request to add Denver after all original contributions are complete.
-3. **Leah connects it all:** walk six manual handoffs with explicitly illustrative effort and waiting assumptions.
-4. **Connected workflow:** trace the requirement, approve dependent revisions, authorize the packet and simulate verified writes. Test CRM failure and a new source revision.
-5. **One finished proposal:** review the aligned summary and draft customer email; download a sample HTML summary; invite the workflow assessment.
+The prototype simulates system writes and recorded responses. It does not reserve equipment, book a truck, charge the customer, send an email or call AI-provider APIs. The connected workflow uses approved source records and work products; it does not silently read private AI conversations.
 
-Run `npm test`, `npm run check`, and `npm run build`. The application has no external runtime dependencies. ES modules must be served over HTTP; `npm run dev` provides the correct MIME types. The final scene stays blocked until all approvals and simulated writes pass. A new revision clears prior approval; failed writes can be retried without repeating completed writes.
+Live implementation would require authorized connectors, identity and permission controls, a durable workflow, explicit approval handling, verified writes and recovery behavior. Measure actual coordination time, waiting and rework in a pilot before claiming savings. The research introduction supports the problem framing, not measured Nine-67 results.
 
-## What is simulated
+## Webinar configuration
 
-The company, clients, people, numbers, AI outputs, approvals, messages, and integrations are fictional demonstration content. This package does not call OpenAI, Microsoft, business systems, or other APIs. Word, spreadsheet and PDF imports are represented by structured sample content. SharePoint, HubSpot and Jira writes are simulated. The downloadable artifact is an HTML proposal summary, not a native Office file. The 160 minutes of active effort and up to three days elapsed are scenario assumptions, not measured ROI. No tasks or messages are sent. Live production integrations would require separately implemented authentication, permissions, backend services, evaluation, and connectors.
+Edit the event settings in `dist/site.js`, including the booking URL, label and presenter information. The complimentary workflow assessment takes place separately after the webinar. Josh hosts and drives the demo; Suuchi explains the build and supports questions.
 
-The app uses browser-local interactions. Reloading or restarting resets the current demo state. All core images and logos are included. The main cover requests Google Fonts; browsers use the declared fallback fonts when that service is unavailable. Asset attribution is in `dist/assets/credits.txt`.
+## Deploy
 
-## Export provenance
+This is a static site:
 
-Published source snapshot: `c4be3c6e77ef761911150d28487a496dbfad2793`.
+- Build command: `npm run build`
+- Output directory: `build`
+- Framework: Other / static
+- Entry point: `index.html`
+- Direct demo route: `/live.html`
 
-Application files were copied unchanged from that snapshot. Portable run/build scripts, deployment configuration, Git ignore rules, this README, and a source checksum manifest were added for the export. `SOURCE-MANIFEST.json` records SHA-256 hashes for all original tracked files so they can be compared with the source snapshot.
+Preserve relative paths and HTML filenames. `vercel.json` and `netlify.toml` contain hosting configuration. No SPA rewrite is required. `build/` is generated and ignored by Git.
+
+Use a working branch for changes. Run tests, checks and the build before publishing. Hosting access controls must be configured in the destination account; they are not carried by the static files.
+
+## Historical export files
+
+The repository includes provenance from the original source export at commit `c4be3c6e77ef761911150d28487a496dbfad2793`. `SOURCE-MANIFEST.json` describes that original snapshot. The current application has since changed, so those historical hashes are not a manifest of the current demo.
+
+The original `.openai/hosting.json` is retained for provenance. Other hosts do not need it. All core logos and images are local; Google Fonts has browser fallbacks. Asset attribution is in `dist/assets/credits.txt`.
