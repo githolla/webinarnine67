@@ -153,6 +153,8 @@ html.presenter .presenter-only:not([hidden]) { display: revert !important; }
 .shirt { display: block; width: clamp(110px, 11vw, 170px); height: auto; margin: 4px auto; }
 .arrow { font-size: 28px; color: var(--muted); }
 .logos .shirt { width: clamp(110px, 10vw, 160px); }
+.logo-pair .logo-label { display: block; max-width: 18ch; margin-inline: auto; }
+.order-facts { margin-top: auto; padding-top: 10px; border-top: 1px solid var(--line); font-size: 14px; font-weight: 650; text-align: center; color: var(--muted); }
 .due { margin-top: auto; padding-top: 10px; border-top: 1px solid var(--line); font-size: 15px; line-height: 1.35; color: var(--muted); }
 .due b { color: var(--ink); }
 
@@ -188,6 +190,7 @@ html.presenter .presenter-only:not([hidden]) { display: revert !important; }
 .press dt { color: #9fb3a8; }
 .press dd { font-weight: 700; text-align: right; }
 .press dd.ok { color: #8fd19e; }
+.press-check { margin: 10px 22px 0; font-size: 14px; font-weight: 750; color: #8fd19e; }
 .start { display: inline-block; margin: 14px 22px 0; padding: 10px 24px; border-radius: 6px; background: #2f8f4e; color: #fff; font-size: 16px; font-weight: 750; }
 .press:not(.fixed) .start { animation: throb 1.6s ease-in-out infinite; }
 .stamp { position: absolute; top: 64%; left: 34px; z-index: 2; padding: 5px 14px; border: 3px solid #e0563f; border-radius: 4px; background: rgba(255, 253, 248, .94); color: var(--red); font-size: clamp(14px, 1.3vw, 18px); font-weight: 850; letter-spacing: .1em; text-transform: uppercase; transform: translateY(-50%) rotate(-8deg); }
@@ -362,6 +365,9 @@ body[data-step="4"] .desk-note { display: block; }
   .press .shirt { width: 136px; }
   .press dl > div { padding-block: 5px; }
   .start { margin-top: 10px; padding-block: 8px; }
+  .press-check { margin-top: 6px; }
+  .press dl > div { padding-block: 4px; }
+  .order-facts { padding-top: 6px; }
   .silos li { padding-block: 9px; }
   .timeline { gap: 8px; }
   .timeline li { padding-block: 8px; }

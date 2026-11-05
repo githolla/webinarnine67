@@ -3,7 +3,7 @@ let playback=null;
 const sceneNames=['The problem','Individual use & the handoff','What Nine-67 coordinates','Prepare the shared update','The executive result','Review & assign','Your first workflow','Questions & next steps'];
 let showAllTools=false,qaTopic=0,opening=false,openingStep=0,remainingWork=false;
 const notesText=[
-'OPENING · Keystone Workwear prints uniforms. Ask, “The customer changed the logo on 5,000 shirts. Sales, design and production each used AI on the order. Would the operator print the right shirt?” Open the email, then the press screen, and pause on the old logo marked Approved.',
+'OPENING · Keystone Workwear prints uniforms. Ask, “The customer changed the logo on 5,000 shirts. Sales, design and production each used AI on the order. Would the operator print the right shirt?” Open the email, then the job ticket, and pause on the old logo marked Approved.',
 'PROBLEM → DEMO · Show only ChatGPT and Claude in the main walkthrough. They are familiar examples, not a product ranking. Pick one output, identify its handoff gap, and click the three coordination steps. The output becomes a contribution to the same leadership update. Other tools are available for Q&A.',
 'DEMONSTRATION · 12 minutes across screens 3–6. State the role clearly: “We help turn individual AI use into repeatable work your team can share, review, and act on.” Explain sources, instructions, review, and handoffs. Show one coordination tab in depth; keep the others brief. No need to connect every platform.',
 'DEMONSTRATION · Run the fixed sample sequence. Explain which preparation task each step handles: gathering approved inputs, checking definitions, identifying the issue, keeping a missing explanation visible, and preparing the draft. This is a simulated workflow, not live AI or an integration test.',
@@ -67,9 +67,9 @@ function coverScene(){
           <div class="launch-owner"><img src="assets/copilot.webp" alt="">Leah + Copilot · “Got it. We’ll use the new logo.”</div>
         </article>
         <article class="launch-cover-plan">
-          <div><h3>The press operator’s screen</h3><p>Monday 12:58 PM · Press 3</p></div>
+          <div><h3>The press operator’s job ticket</h3><p>Monday 12:58 PM · Press 3</p></div>
           <div class="launch-person">Logo<strong>Old</strong></div>
-          <div class="launch-owner">Work order 4821 · Artwork: Approved ✓</div>
+          <div class="launch-owner">WO 4821 · Art: proof v1 approved ✓ · Screens burned</div>
         </article>
         <p class="staffing-question">You confirmed the change. Which shirt gets printed?</p>
       </div>
