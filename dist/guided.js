@@ -131,7 +131,7 @@ const deskCopy = {
     "headline": "Hold: the commercial update did not save.",
     "proof": "Customer accepted B; system update incomplete",
     "source": "Write verification failed",
-    "bench": "Kantata saved; HubSpot write failed. The ERP release remains held.",
+    "bench": "Jira saved; HubSpot write failed. The ERP release remains held.",
     "confirm": "Integration owner receives a failed-update task",
     "note": "Retry the failed step safely and read back the result. Do not repeat completed writes or issue the customer confirmation.",
     "hold": "Held. One required system update failed. Show the partial state, retry or assign recovery, and verify all prerequisites before release.",

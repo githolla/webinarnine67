@@ -675,7 +675,7 @@ body[data-step="4"] .desk-note { display: block; }
 .record-note { display: flex; gap: 8px; margin-top: 16px; padding: 12px; background: #f4f7fa; border: 1px solid #e1e7ed; border-radius: 5px; }
 .record-note p { font-size: 11px; line-height: 1.6; }
 .record-note b { font-size: 10px; }
-.kantata-record .system-brand { background: #122b3b; border-bottom: 3px solid #54c4cd; }
+.jira-record .system-brand { background: #122b3b; border-bottom: 3px solid #54c4cd; }
 .hubspot-record .system-record-body { background: #f9fbfd; }
 .hubspot-record .record-note { background: white; border-left: 3px solid #ff7a59; }
 .production-record .system-record-body > small { font-family: ui-monospace, monospace; }

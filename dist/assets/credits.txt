@@ -5,3 +5,5 @@ Microsoft Word, Teams, Outlook, Excel, SharePoint and OneNote product icons: Mic
 Kantata mark: vendor site favicon, https://www.kantata.com/images/favicon.ico (original 48 px artwork, losslessly converted to PNG).
 
 HubSpot mark: Simple Icons, https://cdn.simpleicons.org/hubspot/FF7A59. HubSpot retains its trademark rights.
+
+Jira mark: Simple Icons, https://cdn.simpleicons.org/jira/0052CC. Atlassian retains its trademark rights.

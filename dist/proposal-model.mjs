@@ -1,6 +1,6 @@
 export const owners = [
   { id: 'sales', name: 'Leah', department: 'Sales · Proposal owner', ai: 'ChatGPT', icon: 'openai.svg', system: 'HubSpot', systemIcon: 'hubspot.svg', file: 'Client_brief.docx', format: 'Word', deliverable: 'Scope and client needs', minutes: 12 },
-  { id: 'delivery', name: 'Sam', department: 'Delivery', ai: 'Copilot', icon: 'copilot.webp', system: 'Kantata', systemIcon: 'kantata.png', file: 'Staffing_plan.docx', format: 'Word', deliverable: 'Staffing and timeline', minutes: 18 },
+  { id: 'delivery', name: 'Sam', department: 'Delivery', ai: 'Copilot', icon: 'copilot.webp', system: 'Jira', systemIcon: 'jira.svg', file: 'Staffing_plan.docx', format: 'Word', deliverable: 'Staffing and timeline', minutes: 18 },
   { id: 'finance', name: 'Priya', department: 'Finance', ai: 'ChatGPT', icon: 'openai.svg', system: 'Excel', systemIcon: 'ms-excel.svg', file: 'Pricing_model.xlsx', format: 'Excel', deliverable: 'Pricing and margin', minutes: 15 },
   { id: 'legal', name: 'Alex', department: 'Legal', ai: 'Claude', icon: 'claude.svg', system: 'Word', systemIcon: 'ms-word.svg', file: 'Engagement_terms.pdf', format: 'PDF', deliverable: 'Terms and risks', minutes: 14 },
   { id: 'marketing', name: 'Maya', department: 'Marketing', ai: 'Copilot', icon: 'copilot.webp', system: 'SharePoint', systemIcon: 'ms-sharepoint.svg', file: 'Executive_summary.docx', format: 'Word', deliverable: 'Summary and proposal assembly', minutes: 10 }
@@ -9,13 +9,13 @@ export const dependencies = { sales: [], delivery: ['sales'], finance: ['deliver
 export const manualSteps = [
   { title: 'Collect the latest files', minutes: 15, tools: 'Teams → SharePoint → Downloads', detail: 'Leah asks five people which version is current, downloads their files, and creates a working folder. Each original file correctly covers Austin.' },
   { title: 'Translate the new requirement into handoffs', minutes: 25, tools: 'Outlook → HubSpot → Teams', detail: 'Leah records Denver and asks Sam for the extra staffing, Priya for the fee impact, Alex for the revised terms, and Maya to hold the final summary.' },
-  { title: 'Reconcile delivery and finance replies', minutes: 40, tools: 'Kantata → Excel → Teams', detail: 'Sam confirms 30 additional consultant-days. Priya initially has the correct original Austin model. Leah carries Sam’s new estimate into the pricing conversation: +$45,000 cost and +$60,000 fee.' },
+  { title: 'Reconcile delivery and finance replies', minutes: 40, tools: 'Jira → Excel → Teams', detail: 'Sam confirms 30 additional consultant-days. Priya initially has the correct original Austin model. Leah carries Sam’s new estimate into the pricing conversation: +$45,000 cost and +$60,000 fee.' },
   { title: 'Carry the approved assumptions into legal', minutes: 20, tools: 'Excel → Word → Email', detail: 'Leah copies the two-location scope, $810,000 fee and unchanged 90-day duration into Alex’s review request, then follows up for the updated terms.' },
   { title: 'Assemble one consistent proposal', minutes: 25, tools: 'Word → SharePoint → PDF', detail: 'Leah sends Maya the latest staffing, price and terms, checks the summary against them, and replaces the previous proposal version.' },
   { title: 'Build the approval packet and chase sign-off', minutes: 35, tools: 'SharePoint → Teams → Email', detail: 'Leah documents who approved which version, routes the combined proposal to leadership, and follows up. The final release still needs a recorded leadership decision.' }
 ];
 export function initialState() {
-  return { scene: 0, selectedOwner: 'sales', changed: false, analyzed: false, revision: 1, sites: ['Austin'], manualCount: 0, selectedReview: 'sales', approvals: {}, writes: {}, audit: [], fault: 'none', ready: false, notice: '' };
+  return { scene: 0, selectedOwner: 'sales', changed: false, analyzed: false, revision: 1, sites: ['Austin'], manualCount: 0, selectedReview: 'sales', approvals: {}, writes: {}, audit: [], fault: 'none', ready: false, notice: '', playing: false, runPhase: 'idle', runStep: 0 };
 }
 export function numbers(state) {
   const extra = state.sites.length - 1;
@@ -48,24 +48,56 @@ export function transition(current, action) {
         log(state, `Matched requirement revision ${state.revision} to five deliverables; routed affected sections to their owners.`);
       }
       break;
+    case 'START_RUN':
+      if (!state.changed || !state.analyzed || state.ready) break;
+      state.runStep = owners.filter(owner => approved(state, owner.id)).length;
+      state.playing = state.runStep < owners.length;
+      state.runPhase = state.playing ? 'running' : 'review';
+      if (state.playing) state.selectedReview = owners.find(owner => canApprove(state, owner.id)).id;
+      break;
+    case 'RUN_STEP': {
+      if (!state.playing || !state.changed || !state.analyzed || state.ready) break;
+      const owner = owners.find(candidate => canApprove(state, candidate.id));
+      if (owner) {
+        state.approvals[owner.id] = state.revision;
+        state.selectedReview = owner.id;
+        log(state, `Simulated recorded human response: ${owner.name} (${owner.department}) approved revision ${state.revision}; dependent work can continue.`);
+      }
+      state.runStep = owners.filter(candidate => approved(state, candidate.id)).length;
+      if (state.runStep === owners.length) {
+        state.playing = false;
+        state.runPhase = 'review';
+      } else if (!owner) {
+        state.playing = false;
+        state.runPhase = 'paused';
+      }
+      break;
+    }
+    case 'PAUSE_RUN':
+      if (state.playing) { state.playing = false; state.runPhase = 'paused'; }
+      break;
     case 'SELECT_REVIEW': if (Object.hasOwn(dependencies, action.id)) state.selectedReview = action.id; break;
     case 'APPROVE':
       if (canApprove(state, action.id)) {
         state.approvals[action.id] = state.revision;
+        state.runStep = owners.filter(owner => approved(state, owner.id)).length;
+        if (state.runStep === owners.length) { state.playing = false; state.runPhase = 'review'; }
         log(state, `${action.id === 'leadership' ? 'Leadership' : owners.find(owner => owner.id === action.id).name} approved revision ${state.revision}; dependent review steps unlocked.`);
       }
       break;
     case 'FAULT': if (['none', 'crm', 'revision'].includes(action.value)) state.fault = action.value; break;
     case 'SYNC':
       if (!allApproved(state) || state.ready) break;
+      state.playing = false;
       if (state.fault === 'revision') {
         state.revision++; state.sites.push(`Additional site ${state.sites.length + 1}`);
         state.approvals = {}; state.writes = {}; state.analyzed = false; state.fault = 'none';
+        state.runPhase = 'idle'; state.runStep = 0;
         state.notice = 'A new client revision arrived before release. Approvals were invalidated. Trace the updated requirement and review the affected documents again.';
         log(state, 'Source revision changed before write. Release stopped; prior decisions retained in the audit trail.');
         break;
       }
-      for (const destination of ['SharePoint', 'HubSpot', 'Kantata']) {
+      for (const destination of ['SharePoint', 'HubSpot', 'Jira']) {
         if (state.writes[destination] === state.revision) continue;
         if (destination === 'HubSpot' && state.fault === 'crm') {
           state.notice = 'Simulated HubSpot update failed. SharePoint is saved; client release remains blocked. Select “No fault” and retry to continue without repeating completed writes.';
@@ -75,7 +107,7 @@ export function transition(current, action) {
         state.writes[destination] = state.revision;
         log(state, `${destination}: simulated update saved and read back for revision ${state.revision}.`);
       }
-      state.ready = true; state.notice = 'All required approvals and simulated writes verified. Leah can review the final proposal and client email.';
+      state.ready = true; state.runPhase = 'complete'; state.notice = 'All required approvals and simulated writes verified. Leah can review the final proposal and client email.';
       log(state, 'Proposal ready for Leah’s final send review. No client message has been sent.');
       break;
     case 'RESET': return initialState();
