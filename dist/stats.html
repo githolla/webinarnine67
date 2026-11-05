@@ -8,7 +8,8 @@
 .stat { border-top: 1px solid var(--line); padding-top: 22px; }
 .num { display: block; font-family: var(--serif); font-size: clamp(64px, 6.4vw, 88px); line-height: 1; letter-spacing: -.045em; }
 .num small { font: 20px/1.2 -apple-system, sans-serif; letter-spacing: 0; }
-.stat p { margin-top: 16px; font-size: clamp(18px, 1.7vw, 23px); line-height: 1.4; max-width: 24ch; }
+.stat h2 { font-size: 23px; line-height: 1.25; font-weight: 650; margin: 18px 0 10px; }
+.stat p { font-size: 17px; line-height: 1.5; color: var(--muted); max-width: 29ch; }
 .stat cite { display: block; margin-top: 16px; font-style: normal; font-size: 12px; }
 .stat cite a { color: var(--muted); text-underline-offset: 3px; }
 .bridge { border-left: 3px solid var(--forest); padding: 12px 20px; background: #e7ede3; font-size: clamp(19px, 1.8vw, 25px); line-height: 1.4; }
@@ -23,12 +24,12 @@
   <p class="kicker">2026 research · The gap we’re about to show</p>
   <h1>AI speeds up tasks.<br>Who connects the work?</h1>
   <div class="stat-row">
-    <section class="stat"><strong class="num">83%</strong><p>say AI helps people get<br><b>more done individually.</b></p><cite><a href="https://miro.com/blog/state-of-intelligent-collaboration-2026/" target="_blank" rel="noopener">Miro · 2026 survey ↗</a></cite></section>
-    <section class="stat"><strong class="num">69%</strong><p>say most AI work happens<br>in <b>separate, private sessions.</b></p><cite><a href="https://miro.com/blog/state-of-intelligent-collaboration-2026/" target="_blank" rel="noopener">Miro · 2026 survey ↗</a></cite></section>
-    <section class="stat"><strong class="num"><small>Only </small>29%</strong><p>have AI built into<br><b>how their work gets done.</b></p><cite><a href="https://www.atlassian.com/blog/state-of-teams-2026" target="_blank" rel="noopener">Atlassian · Knowledge workers, 2026 ↗</a></cite></section>
+    <section class="stat"><strong class="num">83%</strong><h2>People get more done.</h2><p>83% of respondents say AI makes individuals more productive.</p><cite><a href="https://miro.com/blog/state-of-intelligent-collaboration-2026/" target="_blank" rel="noopener">Miro · 2026 survey ↗</a></cite></section>
+    <section class="stat"><strong class="num">69%</strong><h2>AI work happens separately.</h2><p>69% say most AI work happens in private sessions: separate AI conversations rather than shared workspaces.</p><cite><a href="https://miro.com/blog/state-of-intelligent-collaboration-2026/" target="_blank" rel="noopener">Miro · 2026 survey ↗</a></cite></section>
+    <section class="stat"><strong class="num">87%</strong><h2>Little time to coordinate.</h2><p>87% of knowledge workers say they lack the time or capacity to coordinate while everyone focuses on execution.</p><cite><a href="https://www.atlassian.com/blog/state-of-teams-2026" target="_blank" rel="noopener">Atlassian · Knowledge workers, 2026 ↗</a></cite></section>
   </div>
-  <p class="bridge">One customer change. Three people using AI. Watch what happens when their work is connected.</p>
-  <p class="scope-note">Self-reported vendor surveys. Illustrative demo, not measured Nine-67 results.</p>
+  <p class="bridge">The gap: getting your own task done is different from getting the whole job finished.</p>
+  <p class="scope-note">Self-reported vendor surveys with different respondent groups. The demo illustrates the coordination gap; it is not measured Nine-67 performance.</p>
   <footer class="controls"><button type="button" id="back">Back</button><span id="counter">Research → Demo</span><button type="button" id="next">Start the demo →</button></footer>
 </main>
 <script>
