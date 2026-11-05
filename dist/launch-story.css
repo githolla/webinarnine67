@@ -179,6 +179,11 @@ html.presenter .presenter-only:not([hidden]) { display: revert !important; }
 .private { margin-left: auto; padding: 2px 9px; border: 1px dashed #9aa39b; border-radius: 99px; font-size: 12px; font-weight: 650; color: var(--muted); white-space: nowrap; }
 .stat-note { margin-top: 10px; font-size: 14px; color: var(--muted); }
 .stat-note strong { color: var(--ink); font-size: 16px; }
+.stat-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.stat-pair .stat-note { line-height: 1.35; }
+.scene:not([hidden]) .stat-note.late { animation: reveal .45s ease-out 5.2s both; }
+.cta-grid .stat-note { margin-top: 10px; font-size: 13px; line-height: 1.4; }
+.cta-grid .stat-note strong { font-size: 13px; }
 .stat-note cite, .cost-stat cite, .desk-note cite { font-style: normal; font-size: 12px; opacity: .85; }
 
 /* 3 · The press */
@@ -396,6 +401,9 @@ body[data-step="4"] .desk-note { display: block; }
   .handoff { padding: 6px 0; }
   .handoff b { font-size: 16px; }
   .cta-grid section { padding: 12px 18px; }
+  .cta-grid h2 { margin-bottom: 4px; font-size: 20px; }
+  .cta-grid p { font-size: 15px; line-height: 1.4; }
+  .cta-grid .stat-note { margin-top: 6px; font-size: 12px; }
   .stack-strip li { padding-block: 6px; }
 }
 
@@ -413,6 +421,7 @@ body[data-step="4"] .desk-note { display: block; }
   .cast { grid-template-columns: minmax(0, 1fr); }
   .company-label { grid-column: 1; }
   .actor::after { display: none; }
+  .stat-pair { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .stack-strip { grid-template-columns: minmax(0, 1fr); }
   .stack-strip li { border-right: 1px solid var(--line); }
   .stack-strip li::after { display: none; }
