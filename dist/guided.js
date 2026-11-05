@@ -31,21 +31,21 @@ const scenes = [
   },
   {
     "kicker": "The cost of disconnected work",
-    "title": "Local work finished. Shared work waited.",
-    "lead": "The delay comes from following up, collecting evidence and reconciling answers across separate queues.",
+    "title": "Everyone did their job. The order still stalled.",
+    "lead": "The missing capability was completing the handoffs between their jobs.",
     "next": "Connect the workflow →",
     "time": "1:08:00–1:09:00",
-    "say": "No person forgot a step or used a bad prompt. The local tasks finished, while known dependencies awaited answers and manual reconciliation. The material mismatch is resolved when people compare the underlying records; the late resolution loses the earlier supply option in this fictional example. The manufacturing release remains safely held.",
-    "point": "No person forgot a step or used a bad prompt. The local tasks finished, while known dependencies awaited answers and manual reconciliation. The material mismatch is resolved when people compare the underlying records; the late resolution loses the earlier supply option in this fictional example. The manufacturing release remains safely held."
+    "say": "Each department completed its assigned task accurately. The workflow had separate queues but no shared dependency state, deadline handling or automatic continuation. People still had to collect and reconcile the results. The resulting wait loses an earlier supply option in this fictional case. Show that the customer cannot schedule installation even though every local update was saved.",
+    "point": "Point to what worked, what broke down and the business consequence before reading the timeline."
   },
   {
     "kicker": "Rewind · Connected workflow",
-    "title": "A connected workflow completes the open checks.",
-    "lead": "Track the dependencies, collect the evidence, recalculate the plan and verify the approved updates.",
+    "title": "Here is what we would build.",
+    "lead": "One change coordinator connects the evidence, tracks the checks and verifies the approved updates.",
     "next": "Approve coordinated update →",
     "time": "1:09:00–1:10:00",
-    "say": "The connected workflow matches order and revision, compares the existing allocation, and tracks PUR-91 and ECO-27 to evidence-backed answers. It follows up or escalates overdue requests. Confirmed material and engineering results trigger a fresh capacity check and amended customer terms. People approve their decisions. The workflow writes consistent records, verifies success and only then prepares the customer confirmation. A missing answer remains a hold, not an invented fact.",
-    "point": "The connected workflow matches order and revision, compares the existing allocation, and tracks PUR-91 and ECO-27 to evidence-backed answers. It follows up or escalates overdue requests. Confirmed material and engineering results trigger a fresh capacity check and amended customer terms. People approve their decisions. The workflow writes consistent records, verifies success and only then prepares the customer confirmation. A missing answer remains a hold, not an invented fact."
+    "say": "Show the six build components: permitted system connections, a shared change record, durable dependency tracking, AI with relevant source evidence, approved writes and verification, and an operational view. Open the implementation detail if asked how it is built. Walk the example coordinator log. This is a proposed workflow and simulated interface, not a claim that live integrations already exist. The coordinator cannot create material supply; it follows up, escalates, holds or replans. Demonstrate the missing acceptance, unavailable supply, changed revision and failed-write cases using Change one fact.",
+    "point": "Start with the build blueprint, then the coordinator view. Explain that local assistants remain useful, while the coordinator carries the shared work across systems. Use the approval control after discussing the exception cases."
   },
   {
     "kicker": "Request → completed work",
@@ -69,7 +69,7 @@ const scenes = [
 const clocks = [[{"d": "Mon, Nov 2", "t": "8:55 AM", "n": "Request acknowledged"}], [{"d": "Mon, Nov 2", "t": "9:20 AM", "n": "Three local updates saved"}], [{"d": "Mon, Nov 2", "t": "9:20 AM", "n": "Cross-system validation pending", "tone": "warn"}], [{"d": "Wed, Nov 4", "t": "10:25 AM", "n": "Customer still waiting", "tone": "warn"}], [{"d": "Mon, Nov 2", "t": "11:15 AM", "n": "Dependencies verified", "tone": "calm"}], [{"d": "Mon, Nov 2", "t": "11:28 AM", "n": "Customer can schedule installation", "tone": "calm"}], null];
 const rewindDays = ["Wed, Nov 4","Tue, Nov 3","Mon, Nov 2"];
 const rewindTo = "Mon, Nov 2 · 8:41 AM";
-const leads = {"ready": "Approve the coordinated plan.", "unknown": "Hold: customer acceptance pending.", "booked": "Replan: 316L cannot arrive in time."};
+const leads = {"ready": "Approve the coordinated plan.", "unknown": "Hold: customer acceptance pending.", "booked": "Replan: 316L cannot arrive in time.", "stale": "Hold: the customer changed the revision.", "write_failed": "Hold: the commercial update did not save."};
 const deskCopy = {
   "ready": {
     "headline": "Approve the coordinated plan.",
@@ -78,7 +78,12 @@ const deskCopy = {
     "bench": "316L supply confirmed · BOM B validated · split delivery feasible",
     "confirm": "Customer accepted the revised price and split delivery",
     "note": "Supplier, engineering, capacity and customer evidence are linked to revision B.",
-    "hold": ""
+    "hold": "",
+    "state": "Evidence verified",
+    "nextAction": "Awaiting coordinated-update approval",
+    "material": "316L allocation confirmed",
+    "engineering": "BOM + routing B validated",
+    "delivery": "400 Fri / 800 next Fri"
   },
   "unknown": {
     "headline": "Hold: customer acceptance pending.",
@@ -87,7 +92,12 @@ const deskCopy = {
     "bench": "Material and capacity checked; commercial acceptance still needed.",
     "confirm": "Leah requests customer acceptance",
     "note": "Keep the manufacturing release on hold until the revised terms are accepted.",
-    "hold": "Held. No coordinated release until Rachel accepts the amended scope, price and delivery plan."
+    "hold": "Held. No coordinated release until Rachel accepts the amended scope, price and delivery plan.",
+    "state": "Customer acceptance pending",
+    "nextAction": "Leah follows up with Rachel",
+    "material": "316L allocation confirmed",
+    "engineering": "BOM + routing B validated",
+    "delivery": "Proposed split; not accepted"
   },
   "booked": {
     "headline": "Replan: 316L cannot arrive in time.",
@@ -96,7 +106,40 @@ const deskCopy = {
     "bench": "316L arrival misses the first production window.",
     "confirm": "Sam prepares a feasible alternative",
     "note": "Dana updates the amendment; Leah asks Rachel to approve the new split or date.",
-    "hold": "Held. Machine capacity cannot compensate for unavailable material. Replan and get customer acceptance before release."
+    "hold": "Held. Machine capacity cannot compensate for unavailable material. Replan and get customer acceptance before release.",
+    "state": "Material dependency blocked",
+    "nextAction": "Sam replans against supplier availability",
+    "material": "316L cannot arrive in time",
+    "engineering": "BOM + routing B validated",
+    "delivery": "Replan required"
+  },
+  "stale": {
+    "headline": "Hold: the customer changed the revision.",
+    "proof": "Revision B acceptance is no longer sufficient",
+    "source": "Revision changed",
+    "bench": "Revision C received. Earlier evidence must be checked against the new requirements.",
+    "confirm": "Leah reviews the new request",
+    "note": "Reopen affected checks and approvals. Preserve the audit trail; do not reuse a stale release decision.",
+    "hold": "Held. Source versions changed during approval. Reconcile revision C and obtain the required acceptance before applying updates.",
+    "state": "Revision changed",
+    "nextAction": "Reopen affected checks for revision C",
+    "material": "Revalidation required",
+    "engineering": "Revision C review required",
+    "delivery": "Revalidation required"
+  },
+  "write_failed": {
+    "headline": "Hold: the commercial update did not save.",
+    "proof": "Customer accepted B; system update incomplete",
+    "source": "Write verification failed",
+    "bench": "Kantata saved; HubSpot write failed. The ERP release remains held.",
+    "confirm": "Integration owner receives a failed-update task",
+    "note": "Retry the failed step safely and read back the result. Do not repeat completed writes or issue the customer confirmation.",
+    "hold": "Held. One required system update failed. Show the partial state, retry or assign recovery, and verify all prerequisites before release.",
+    "state": "Partial update; release held",
+    "nextAction": "Integration owner retries or recovers failed write",
+    "material": "316L allocation confirmed",
+    "engineering": "BOM + routing B validated",
+    "delivery": "Do not confirm until recovery"
   }
 };
 const byId = id => document.getElementById(id);
@@ -151,6 +194,11 @@ function render() {
   byId('cuebox').hidden=!(presenter && rehearsal); byId('mode').textContent=rehearsal?'Mode: Rehearsal':'Mode: Live';
   byId('time').textContent=s.time; byId('say').textContent=s.say; byId('point').textContent=s.point;
   byId('availability').value=availability;
+  byId('coordinator-state').textContent=d.state;
+  byId('coordinator-next').textContent=d.nextAction;
+  byId('approval-material').textContent=d.material;
+  byId('approval-engineering').textContent=d.engineering;
+  byId('approval-delivery').textContent=d.delivery;
   byId('proposal-headline').textContent=d.headline;
   byId('availability-proof').textContent=d.proof;
   byId('proposal-source').textContent=d.source;
