@@ -1,6 +1,6 @@
 # Nine-67 webinar: complete source
 
-The full published website for **Your team has AI. Why is the work still manual?**, including the Keystone Workwear logo-change scenario, webinar cover, presenter guide, optional Q&A controls, and the retained earlier dashboard code.
+The full published website for **Your team has AI. Why is the work still manual?**, including the Summit Advisory proposal-coordination scenario, webinar cover, presenter guide, optional Q&A controls, and the retained earlier dashboard code.
 
 The HTML, CSS, JavaScript, and image assets in `dist/` are the editable application source. This project was written directly as a static website. There is no missing React project, compiled source directory, package dependency, database, or server application.
 
@@ -12,7 +12,7 @@ Install Node.js 20 or newer, extract this ZIP, then open a terminal in this fold
 npm run dev
 ```
 
-Open **http://localhost:3000/** for the webinar cover, **http://localhost:3000/stats.html** for the opening stats, or **http://localhost:3000/live.html** for the seven-screen demo. Add `?presenter=1` to any page to show presenter controls in that browser tab; `?presenter=0` hides them again. No `npm install` or environment variables are needed because the project has zero third-party npm dependencies.
+Open **http://localhost:3000/** for the webinar cover, **http://localhost:3000/stats.html** for the opening stats, or **http://localhost:3000/live.html** for the five-scene interactive demo. Add `?presenter=1` to any page to show presenter controls in that browser tab; `?presenter=0` hides them again. No `npm install` or environment variables are needed because the project has zero third-party npm dependencies.
 
 Stop the local server with Ctrl+C. Set `PORT` if 3000 is already occupied.
 
@@ -68,14 +68,18 @@ Edit `dist/site.js`:
 | File | Purpose |
 | --- | --- |
 | `dist/site.js` | Event config (booking link, slots, portraits) and presenter mode, shared by every page |
-| `dist/live.html` | Seven-screen Keystone Workwear demo markup |
-| `dist/guided.js` | Demo navigation, rehearsal cues, Q&A availability states, approval gating, assessment screen |
-| `dist/launch-story.css` | Demo, stats and assessment styling, including the 720p compaction rules |
+| `dist/live.html` | Five-scene proposal application shell |
+| `dist/proposal-model.mjs` | Requirements, approval dependencies, safe retries and release state |
+| `dist/proposal-view.mjs` | Five scene views, sample artifacts, AI conversations and sidebars |
+| `dist/proposal-demo.mjs`, `dist/proposal.css` | Interactive application controller and responsive styling |
+| `tests/proposal.test.mjs` | Approval, revision, retry, readiness and render tests |
+| `dist/guided.js` | Retained previous manufacturing demo logic; not loaded by the current app |
+| `dist/launch-story.css` | Opening stats and retained earlier demo styles |
 | `dist/stats.html` | Opening stats screen with sources |
 | `dist/webinar.js` | Webinar cover (`coverScene`) and presentation shell; later scenes are the retained earlier deck |
 | `dist/index.html` | Cover entry point and retained dashboard implementation |
 | `dist/webinar.css`, `dist/brand.css` | Cover and brand styling |
-| `dist/host-guide.html` | 30-minute run-of-show, scripts, polls, Q&A answers, stats wording, go-live checklist |
+| `dist/host-guide.html` | Five-minute proposal demo walkthrough, exception tests and closing message |
 | `dist/explore.html` | Redirect to the Q&A controls on screen 4 |
 | `dist/assets/` | Logos, illustrations, reference image, and asset credits |
 | `scripts/` | Dependency-free local server, validation, and build scripts |
@@ -86,19 +90,17 @@ Earlier CSS/JS and dashboard scenarios are intentionally retained but are no lon
 
 Cover → opening stats → demo:
 
-1. **The order:** Keystone Workwear, a fictional uniform maker. Ridgeline Roofing emails a new logo for an approved 5,000-shirt order; Leah replies “Got it” with Copilot. Both logos shown side by side.
-2. **Three AIs:** sales, design and production each used AI on order 4821, and each stopped at its own department.
-3. **The press:** the operator’s job ticket shows proof v1 approved and screens burned from it. “Would you hit Start?” and where the new logo actually is.
-4. **The fallout:** the run goes through; the shirts reach 40 branches with the old logo. Cost and the general pattern.
-5. **The desk:** rewind to Monday. The desk matches the email to the order, Leah holds the job, design sends proof v2, the customer approves it, and production releases it.
-6. **Right shirt:** the job ticket swaps to proof v2 and new screens, Press 3 at 3:00 PM, Friday holds. Leah’s reply promised only what the order could do.
-7. **Your handoffs:** the complimentary workflow assessment.
+1. **Five finished tasks:** explore sales, delivery, finance, legal and marketing AI conversations and original Austin deliverables.
+2. **One client change:** record Rachel’s request to add Denver after all original contributions are complete.
+3. **Leah connects it all:** walk six manual handoffs with explicitly illustrative effort and waiting assumptions.
+4. **Connected workflow:** trace the requirement, approve dependent revisions, authorize the packet and simulate verified writes. Test CRM failure and a new source revision.
+5. **One finished proposal:** review the aligned summary and draft customer email; download a sample HTML summary; invite the workflow assessment.
 
-**Q&A · Change one fact** on screen 5 switches proof v2 between approved by the customer, not approved yet, and a new file that fails the print check. The latter two hold the job and block release.
+Run `npm test`, `npm run check`, and `npm run build`. The application has no external runtime dependencies. ES modules must be served over HTTP; `npm run dev` provides the correct MIME types. The final scene stays blocked until all approvals and simulated writes pass. A new revision clears prior approval; failed writes can be retried without repeating completed writes.
 
 ## What is simulated
 
-The company, clients, people, numbers, AI outputs, approvals, messages, and integrations are fictional demonstration content. This package does not call OpenAI, Microsoft, shop management systems, or other APIs. The shop-system job is represented by a simulated update, with an update queued for a person. No tasks or messages are sent. Live production integrations would require separately implemented authentication, permissions, backend services, evaluation, and connectors.
+The company, clients, people, numbers, AI outputs, approvals, messages, and integrations are fictional demonstration content. This package does not call OpenAI, Microsoft, business systems, or other APIs. Word, spreadsheet and PDF imports are represented by structured sample content. SharePoint, HubSpot and Kantata writes are simulated. The downloadable artifact is an HTML proposal summary, not a native Office file. The 160 minutes of active effort and up to three days elapsed are scenario assumptions, not measured ROI. No tasks or messages are sent. Live production integrations would require separately implemented authentication, permissions, backend services, evaluation, and connectors.
 
 The app uses browser-local interactions. Reloading or restarting resets the current demo state. All core images and logos are included. The main cover requests Google Fonts; browsers use the declared fallback fonts when that service is unavailable. Asset attribution is in `dist/assets/credits.txt`.
 
