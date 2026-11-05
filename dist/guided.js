@@ -2,34 +2,102 @@
 const DESK = 4;
 const DONE = 5;
 const scenes = [
-  {kicker:'The company in this story · Fictional',title:'Meet Keystone Workwear.',lead:'Keystone prints uniforms for national service companies. Order 4821 is approved and ships Friday.',next:'Follow the notifications →',time:'1:04:30–1:05:15',say:'“Meet Keystone Workwear. They print uniforms for national service companies. Order 4821, 5,000 crew shirts, was approved back in October and ships Friday. Monday, 8:41, Ridgeline emails: we approved a new logo, use it on all 5,000 shirts, are we still good for Friday? Leah, the account manager, clicks Draft with Copilot: got it, we’ll use the new logo. Look at both logos. Remember the new one.”',point:'Walk the five cards left to right: who does what on order 4821. Then the email, Leah’s reply, and the two shirts: proof v1 approved Oct 14, and the new logo that only lives in the email. Pause on the new logo. Suuchi asks: “When a customer changes an order in your company, where does that change actually land?”'},
-  {kicker:'Keystone Workwear · Order 4821 · Monday morning',title:'Everyone updated their system. AI still missed the full picture.',lead:'Kantata, HubSpot and the production board each have an update. The handoffs between them are still manual.',next:'Go to the press →',time:'1:05:15–1:06:00',say:'“Rachel emails Leah at 8:41. Leah replies with Copilot, then messages Dana at 8:48 with the new artwork. At 8:50, she separately messages Sam to protect Friday. Dana acknowledges the art task. Sam acknowledges the schedule task. Dana uses ChatGPT and her design tool; Sam uses Claude. Leah logs the change in Kantata. Dana logs the artwork update in HubSpot. Sam logs the request and updates his production board. They all did their part. But Copilot only sees the email, ChatGPT only sees the logo and prompt, and Claude only sees the schedule export. These systems are not connected in this scenario. No AI sees enough to reconcile the new art, the customer promise, the approved proof and the press time.”',point:'Read the customer email, then the separate Leah + Dana and Leah + Sam chats. Emphasize what each recipient received. Scroll to each saved system update, then each AI session. Show which context is missing. The schedule changed, but the production proof and screens did not. Pause.'},
-  {kicker:'Keystone Workwear · Press 3 · Monday 12:58 PM',title:'Knowing what this operator knows, would you hit Start?',lead:'The first print matches the ticket. Art approved, screens burned. The new logo is somewhere else.',next:'What happens next →',time:'1:06:00–1:07:00',say:'“This is Theo’s job ticket at 12:58. He pulls the first print and holds it against the ticket. Logo matches, placement matches, ink matches. Proof approved, screens burned. Knowing what this operator knows, would you hit Start? Of course you would. Every control worked. They all checked version one. Leah logged the request in Kantata. Dana recorded the artwork update in HubSpot. Sam saved the new schedule. Those updates never reconciled the production proof and screens.”',point:'Ask the question and wait three seconds before the Old logo stamp lands. Then point to the three boxes on the right, ending on the shop system.'},
-  {kicker:'If nobody connects the change',title:'Nobody finds out until the shirts arrive.',lead:'Theo signs the press check at 1:00 PM. Here is how the week goes.',next:'Rewind to Monday →',time:'1:07:00–1:08:15',say:'“1:00 PM, the press starts. About 2,000 by end of shift, second shift finishes overnight. All 5,000 boxed, ahead of schedule. Friday morning, a branch in Denver opens the box: these have our old logo. Friday afternoon, Rachel writes: we relaunch at 40 branches Monday. You confirmed the change. Keystone eats it. Leah confirmed the new logo in writing.”',point:'Read the four messages as they appear. The clock jumps from Monday to Friday and turns red. Pause on “You confirmed the change.” Suuchi: “How many of these are in flight in your company right now?”'},
-  {kicker:'Rewind · Same email · Order Desk',title:'Same email. Fixed before the press starts.',lead:'',next:'Release with proof v2 →',time:'1:08:15–1:10:00',say:'“Back to Monday, 8:44. Same email. This is the rule your shop already has: a change means a new proof. The agent makes sure the email reaches the job. It connects the email, Kantata request, HubSpot artwork status and production ticket, then shows Leah the one fact that matters: 5,000 shirts print the old logo at 1:00 today. Leah approves a hold in Teams. Dana sends proof v2 to Rachel. Rachel approves at 10:12, the screen room burns new screens, and Sam releases. Nothing prints until a person approves.”',point:'Let the rewind play, then let the log finish. Point to the two shirts and the red line: 5,000 shirts at 1:00 today. Click Release with proof v2, or press →. Use Change one fact only in Q&A.'},
-  {kicker:'Order Desk · Monday 10:15 AM',title:'The right shirt. Still on time.',lead:'New screens, same press, Friday holds. Leah promised only what the order could do.',next:'Find your handoffs →',time:'1:10:00–1:11:00',say:'“Back to Theo’s ticket. Watch the logo change. Proof v2, new screens, same press, Friday holds. And look at Leah’s reply: held, proof attached, approve by noon and we still ship Friday. Same people, same AI, same software. The change finally reached the job. The customer asked us to change what went on the shirt. We used AI to answer the email, prep the artwork, and schedule the press. Who changed what went on the shirt?”',point:'Let the old shirt fade into the new one. Then the checklist, ending on Leah’s confirmation. Say the shop-system update is simulated here. In a real build the agent writes it where the shop system’s API allows, such as Printavo, and hands it to a person where it doesn’t. Land the closing question and pause.'},
-  {kicker:'Complimentary workflow assessment',title:'Find your manual handoffs.',lead:'Bring one workflow. We will map it the way we just mapped order 4821.',next:'Back to the start ↺',time:'1:16:00 and 1:27:30',say:'“What you typed in chat is step one of the assessment. Type ‘assessment’ and your workflow, or use the link if you’d rather keep it private.”',point:'Leave this screen up through Q&A and the close.'}
+  {
+    "kicker": "The customer request",
+    "title": "Your team has AI. Why is the work still manual?",
+    "lead": "Meet Keystone Fabrication. A customer changes the material, quantity and delivery split on an active order.",
+    "next": "Follow the handoffs →",
+    "time": "1:04:30–1:05:15",
+    "say": "Introduce Rachel as the customer and Leah as account manager. Read the full request, the accurate acknowledgment and Rachel’s positive reply. Leah has not promised an unverified date.",
+    "point": "Introduce Rachel as the customer and Leah as account manager. Read the full request, the accurate acknowledgment and Rachel’s positive reply. Leah has not promised an unverified date."
+  },
+  {
+    "kicker": "AI in every department",
+    "title": "Everyone updates their system.",
+    "lead": "Each person uses AI responsibly. Each local update is accurate. The cross-system work is still waiting.",
+    "next": "Compare the records →",
+    "time": "1:05:15–1:07:00",
+    "say": "Show the two separate Teams requests. Read each AI conversation, including what it can and cannot access. Each person reviews and saves the prepared update. Show the precise replies to Leah. Nobody omits the specification or overstates readiness.",
+    "point": "Show the two separate Teams requests. Read each AI conversation, including what it can and cannot access. Each person reviews and saves the prepared update. Show the precise replies to Leah. Nobody omits the specification or overstates readiness."
+  },
+  {
+    "kicker": "The manufacturing dependency",
+    "title": "Three correct answers. No complete plan.",
+    "lead": "Requested scope, purchased material and available machine time are different kinds of readiness.",
+    "next": "See the delay →",
+    "time": "1:07:00–1:08:00",
+    "say": "Compare revision B, purchase order PO-730 and the capacity plan. The 304 stock belongs to revision A. Machine hours alone cannot prove material readiness. This needs reconciliation and controlled record updates, not just a shared message.",
+    "point": "Compare revision B, purchase order PO-730 and the capacity plan. The 304 stock belongs to revision A. Machine hours alone cannot prove material readiness. This needs reconciliation and controlled record updates, not just a shared message."
+  },
+  {
+    "kicker": "The cost of disconnected work",
+    "title": "The delay lives between the systems.",
+    "lead": "The team catches the conflict before production. The customer still loses time while the checks happen manually.",
+    "next": "Connect the workflow →",
+    "time": "1:08:00–1:09:00",
+    "say": "The manufacturing process catches the issue safely. The failure is delay and lost supply optionality while people perform cross-system checks manually. All timing and supply outcomes are illustrative.",
+    "point": "The manufacturing process catches the issue safely. The failure is delay and lost supply optionality while people perform cross-system checks manually. All timing and supply outcomes are illustrative."
+  },
+  {
+    "kicker": "Rewind · Connected workflow",
+    "title": "Same people. Same systems. A shared picture.",
+    "lead": "One workflow checks the dependencies and prepares a coordinated, reviewable plan.",
+    "next": "Approve coordinated update →",
+    "time": "1:09:00–1:10:00",
+    "say": "Rewind to the same customer request. Show linked records and the missing 316L supply evidence. Purchasing and engineering validate their parts. The agent prepares a consistent plan and waits for approval. Try both blocked states in Q&A.",
+    "point": "Rewind to the same customer request. Show linked records and the missing 316L supply evidence. Purchasing and engineering validate their parts. The agent prepares a consistent plan and waits for approval. Try both blocked states in Q&A."
+  },
+  {
+    "kicker": "Request → completed work",
+    "title": "Now the customer can act on the answer.",
+    "lead": "The approved scope, material allocation, manufacturing plan and customer commitment agree.",
+    "next": "Find your handoffs →",
+    "time": "1:10:00–1:11:00",
+    "say": "Read the verified records and customer correspondence. The same people and AI now work with reconciled evidence. The customer can schedule installation. All writes and approvals in this demo are simulated.",
+    "point": "Read the verified records and customer correspondence. The same people and AI now work with reconciled evidence. The customer can schedule installation. All writes and approvals in this demo are simulated."
+  },
+  {
+    "kicker": "Complimentary workflow assessment",
+    "title": "Find your manual handoffs.",
+    "lead": "Bring one workflow. We will map the systems, decisions and dependencies that keep it manual.",
+    "next": "Back to the start ↺",
+    "time": "1:16:00 and 1:27:30",
+    "say": "Offer the complimentary workflow assessment, scheduled separately after the webinar. Map one workflow, its dependencies and one measurable outcome.",
+    "point": "Offer the complimentary workflow assessment, scheduled separately after the webinar. Map one workflow, its dependencies and one measurable outcome."
+  }
 ];
-const clocks = [
-  [{d:'Mon, Nov 2',t:'8:47 AM',n:'Shirts ship Friday'}],
-  [{d:'Mon, Nov 2',t:'11:30 AM',n:'Press moved up to 1:00 PM'}],
-  [{d:'Mon, Nov 2',t:'12:58 PM',n:'Press starts in 2 minutes',tone:'warn'}],
-  [{d:'Mon, Nov 2',t:'1:00 PM',n:'Press running',tone:'warn'},{at:1800,d:'Tue, Nov 3',t:'6:10 AM',n:'5,000 shirts printed',tone:'warn'},{at:3300,d:'Fri, Nov 6',t:'9:10 AM',n:'Rollout in 3 days',tone:'fire'},{at:4800,d:'Fri, Nov 6',t:'2:45 PM',n:'Rollout in 3 days',tone:'fire'}],
-  [{d:'Mon, Nov 2',t:'8:44 AM',n:'Press starts at 1:00 PM',tone:'calm'},{at:2000,d:'Mon, Nov 2',t:'8:47 AM',n:'WO 4821 on hold',tone:'calm'},{at:3600,d:'Mon, Nov 2',t:'10:12 AM',n:'Proof v2 approved',tone:'calm'}],
-  [{d:'Mon, Nov 2',t:'10:15 AM',n:'Press 3 at 3:00 PM · ships Friday',tone:'calm'}],
-  null
-];
-const rewindDays = ['Fri, Nov 6','Thu, Nov 5','Wed, Nov 4','Tue, Nov 3','Mon, Nov 2'];
-const rewindTo = 'Mon, Nov 2 · 8:44 AM';
-const leads = {
-  ready:'The desk matched the email to the order, Leah held the job, and Rachel approved proof v2. Production releases.',
-  unknown:'The job is on hold. Rachel has not approved proof v2 yet, so nothing prints.',
-  booked:'The new file fails the print check. Leah needs a better file from the customer before anything prints.'
-};
+const clocks = [[{"d": "Mon, Nov 2", "t": "8:55 AM", "n": "Request acknowledged"}], [{"d": "Mon, Nov 2", "t": "9:20 AM", "n": "Three local updates saved"}], [{"d": "Mon, Nov 2", "t": "9:20 AM", "n": "Cross-system validation pending", "tone": "warn"}], [{"d": "Wed, Nov 4", "t": "10:25 AM", "n": "Customer still waiting", "tone": "warn"}], [{"d": "Mon, Nov 2", "t": "11:15 AM", "n": "Dependencies verified", "tone": "calm"}], [{"d": "Mon, Nov 2", "t": "11:28 AM", "n": "Customer can schedule installation", "tone": "calm"}], null];
+const rewindDays = ["Wed, Nov 4","Tue, Nov 3","Mon, Nov 2"];
+const rewindTo = "Mon, Nov 2 · 8:41 AM";
+const leads = {"ready": "Approve the coordinated plan.", "unknown": "Hold: customer acceptance pending.", "booked": "Replan: 316L cannot arrive in time."};
 const deskCopy = {
-  ready:{headline:'Release with proof v2.',proof:'Approved by Rachel · 10:12 AM',source:'No live sync',bench:'Logo v2: vector ✓ · 2 colors ✓ · proof v2 on WO 4821',confirm:'Rachel approved proof v2 · 10:12 AM',note:'Screen room: new screens ordered from v2.',hold:''},
-  unknown:{headline:'Hold: waiting on Rachel.',proof:'Sent 8:58 · not approved yet',source:'Proof pending',bench:'Logo v2: vector ✓ · 2 colors ✓ · proof v2 on WO 4821',confirm:'Waiting on Rachel',note:'“Use the new logo” in an email is not an approved proof.',hold:'Held. WO 4821 stays off Press 3 until Rachel approves proof v2.'},
-  booked:{headline:'Hold: the new file can’t print.',proof:'Not sent · file failed',source:'File rejected',bench:'Logo v2: low-resolution image, prints blurry. Needs a vector file.',confirm:'Design flagged the file · customer file needed',note:'Ask Ridgeline for a vector file, or agree a new ship date.',hold:'Held. The new file fails the print check. Leah asks Ridgeline for a vector file before anything prints or anyone confirms Friday.'}
+  "ready": {
+    "headline": "Approve the coordinated plan.",
+    "proof": "Rachel approved amendment B",
+    "source": "Simulation · no live writes",
+    "bench": "316L supply confirmed · BOM B validated · split delivery feasible",
+    "confirm": "Customer accepted the revised price and split delivery",
+    "note": "All affected records are ready for an approved, coordinated update.",
+    "hold": ""
+  },
+  "unknown": {
+    "headline": "Hold: customer acceptance pending.",
+    "proof": "Amendment B not yet accepted",
+    "source": "Acceptance pending",
+    "bench": "Material and capacity checked; commercial acceptance still needed.",
+    "confirm": "Leah requests customer acceptance",
+    "note": "Keep the manufacturing release on hold until the revised terms are accepted.",
+    "hold": "Held. No coordinated release until Rachel accepts the amended scope, price and delivery plan."
+  },
+  "booked": {
+    "headline": "Replan: 316L cannot arrive in time.",
+    "proof": "Delivery proposal must change",
+    "source": "Supply conflict",
+    "bench": "316L arrival misses the first production window.",
+    "confirm": "Sam prepares a feasible alternative",
+    "note": "Dana updates the amendment; Leah asks Rachel to approve the new split or date.",
+    "hold": "Held. Machine capacity cannot compensate for unavailable material. Replan and get customer acceptance before release."
+  }
 };
 const byId = id => document.getElementById(id);
 const panels = Array.from(document.querySelectorAll('.scene'));
