@@ -1,6 +1,6 @@
 # Nine-67 webinar: complete source
 
-The full published website for **Your team has AI. Why is the work still manual?**, including the Halvane Robotics field engineer scenario, webinar cover, presenter guide, optional Q&A controls, and the retained earlier dashboard code.
+The full published website for **Your team has AI. Why is the work still manual?**, including the Keystone Workwear logo-change scenario, webinar cover, presenter guide, optional Q&A controls, and the retained earlier dashboard code.
 
 The HTML, CSS, JavaScript, and image assets in `dist/` are the editable application source. This project was written directly as a static website. There is no missing React project, compiled source directory, package dependency, database, or server application.
 
@@ -68,7 +68,7 @@ Edit `dist/site.js`:
 | File | Purpose |
 | --- | --- |
 | `dist/site.js` | Event config (booking link, slots, portraits) and presenter mode, shared by every page |
-| `dist/live.html` | Seven-screen Halvane Robotics demo markup |
+| `dist/live.html` | Seven-screen Keystone Workwear demo markup |
 | `dist/guided.js` | Demo navigation, rehearsal cues, Q&A availability states, approval gating, assessment screen |
 | `dist/launch-story.css` | Demo, stats and assessment styling, including the 720p compaction rules |
 | `dist/stats.html` | Opening stats screen with sources |
@@ -86,19 +86,19 @@ Earlier CSS/JS and dashboard scenarios are intentionally retained but are no lon
 
 Cover → opening stats → demo:
 
-1. **Meet Halvane:** the fictional robot maker, its two customer accounts and its field engineers, then Marcus asks Maya to confirm Alex on site for the Meridian Axle go-live.
-2. **Two plans:** the AI rollout worked. Leah (ChatGPT) and Marcus (Copilot) each planned a Friday go-live around Alex, in Ohio and Tennessee.
-3. **Collision:** 80 hours promised against a 40-hour week, and why no system flagged it (both bookings live in AI-written documents, not on the dispatch board).
-4. **The fallout:** what go-live week looks like if nobody catches it, ending in a customer escalation, plus the cost and the general pattern.
-5. **The desk:** rewind to Monday. A work log of what the desk read and checked, a proposal to send Jamie to Meridian, and an in-card COO approval.
-6. **Done:** plan updated, allocation recorded (simulated), managers notified, Marcus answered, audit trail, before/after.
+1. **The order:** Keystone Workwear, a fictional uniform maker. Ridgeline Roofing emails a new logo for 5,000 shirts; Leah replies “Got it” with Copilot. Both logos shown side by side.
+2. **Three AIs:** sales, design and production each used AI on order 4821, and each stopped at its own department.
+3. **The press:** the operator’s screen shows the old logo marked Approved. “Would you hit Start?” and where the new logo actually is.
+4. **The fallout:** the run goes through; the shirts reach 40 branches with the old logo. Cost and the general pattern.
+5. **The desk:** rewind to Monday. The desk matches the email to the order, Leah holds the job, design approves the proof, and production releases it.
+6. **Right shirt:** the operator’s screen swaps to the new logo, same 1:00 PM slot, and only then Leah confirms with the customer.
 7. **Your handoffs:** the complimentary workflow assessment.
 
-**Q&A · Change one fact** on screen 5 switches Jamie between confirmed, unconfirmed, and already booked. The latter two change the copy and block approval.
+**Q&A · Change one fact** on screen 5 switches the new artwork between proof approved, proof not approved yet, and failing the print check. The latter two hold the job and block release.
 
 ## What is simulated
 
-The company, clients, people, numbers, AI outputs, approvals, messages, and integrations are fictional demonstration content. This package does not call OpenAI, Microsoft, field service systems, or other APIs. The dispatch board is represented by a verified-export scenario, with an update queued for a person. No tasks or messages are sent. Live production integrations would require separately implemented authentication, permissions, backend services, evaluation, and connectors.
+The company, clients, people, numbers, AI outputs, approvals, messages, and integrations are fictional demonstration content. This package does not call OpenAI, Microsoft, ERP systems, or other APIs. The work order is represented by a simulated update, with an update queued for a person. No tasks or messages are sent. Live production integrations would require separately implemented authentication, permissions, backend services, evaluation, and connectors.
 
 The app uses browser-local interactions. Reloading or restarting resets the current demo state. All core images and logos are included. The main cover requests Google Fonts; browsers use the declared fallback fonts when that service is unavailable. Asset attribution is in `dist/assets/credits.txt`.
 

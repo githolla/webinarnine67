@@ -2,142 +2,147 @@
 <html lang="en">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>One request, completed · Nine-67</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&display=swap"><link rel="stylesheet" href="launch-story.css"><script src="site.js"></script><script src="guided.js" defer></script></head>
 <body class="deck">
+<svg class="defs" aria-hidden="true"><defs>
+  <symbol id="shirt" viewBox="0 0 200 180"><path d="M62 12 85 4c4 10 26 10 30 0l23 8 50 30-18 32-22-12v112H52V62L30 74 12 42z" fill="#e8e4da" stroke="#b9b2a3" stroke-width="2" stroke-linejoin="round"/><path d="M85 4c4 10 26 10 30 0" fill="none" stroke="#b9b2a3" stroke-width="2"/></symbol>
+  <symbol id="logo-old" viewBox="0 0 120 80"><path d="M22 40 60 12l38 28" fill="none" stroke="#9b2c22" stroke-width="7" stroke-linejoin="round"/><path d="M80 18v10" stroke="#9b2c22" stroke-width="6"/><text x="60" y="62" text-anchor="middle" font-family="Georgia, serif" font-size="17" font-weight="700" fill="#9b2c22">Ridgeline</text><text x="60" y="76" text-anchor="middle" font-family="Georgia, serif" font-size="9" letter-spacing="3" fill="#9b2c22">ROOFING CO.</text></symbol>
+  <symbol id="logo-new" viewBox="0 0 120 80"><circle cx="60" cy="30" r="24" fill="#1d3557"/><path d="M42 36 60 22l18 14" fill="none" stroke="#f08a3c" stroke-width="5" stroke-linejoin="round"/><path d="M48 44 60 35l12 9" fill="none" stroke="#fff" stroke-width="4" stroke-linejoin="round"/><text x="60" y="72" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="800" letter-spacing="2" fill="#1d3557">RIDGELINE</text></symbol>
+</defs></svg>
 <header class="mast"><a class="brand" href="./#webinar-1">Nine-67</a><span class="webinar-name">Your team has AI. Why is the work still manual?</span></header>
 <main class="stage">
-  <div class="toolbar"><ol class="steps" aria-label="Story progress"><li aria-current="step"><button type="button" data-go="0">1 · Meet Halvane</button></li><li><button type="button" data-go="1">2 · Two plans</button></li><li><button type="button" data-go="2">3 · Collision</button></li><li><button type="button" data-go="3">4 · The fallout</button></li><li><button type="button" data-go="4">5 · The desk</button></li><li><button type="button" data-go="5">6 · Done</button></li><li><button type="button" data-go="6">7 · Your handoffs</button></li></ol><button type="button" id="mode" class="presenter-only">Mode: Live</button></div>
-  <header class="heading"><p class="kicker" id="kicker">The company in this story · Fictional</p><h1 id="title" tabindex="-1">Meet Halvane Robotics.</h1><p id="lead"></p><div class="clock" id="clock" aria-hidden="true"><small id="clock-day">Mon, Nov 2</small><strong id="clock-time">9:02 AM</strong><span id="clock-note">Meridian go-live in 11 days</span></div></header>
+  <div class="toolbar"><ol class="steps" aria-label="Story progress"><li aria-current="step"><button type="button" data-go="0">1 · The order</button></li><li><button type="button" data-go="1">2 · Three AIs</button></li><li><button type="button" data-go="2">3 · The press</button></li><li><button type="button" data-go="3">4 · The fallout</button></li><li><button type="button" data-go="4">5 · The desk</button></li><li><button type="button" data-go="5">6 · Right shirt</button></li><li><button type="button" data-go="6">7 · Your handoffs</button></li></ol><button type="button" id="mode" class="presenter-only">Mode: Live</button></div>
+  <header class="heading"><p class="kicker" id="kicker">The company in this story · Fictional</p><h1 id="title" tabindex="-1">Meet Keystone Workwear.</h1><p id="lead"></p><div class="clock" id="clock" aria-hidden="true"><small id="clock-day">Mon, Nov 2</small><strong id="clock-time">8:47 AM</strong><span id="clock-note">Shirts ship Friday</span></div></header>
 
-  <section class="scene" data-scene="0" aria-label="Meet Halvane Robotics, its teams, and the request">
-    <div class="org">
-      <article class="team frost">
-        <p class="team-label">Customer · Frostline Foods</p>
-        <div class="who"><span class="avatar" aria-hidden="true">L</span><div><b>Leah</b><small>Account manager</small></div></div>
-        <p class="tool"><img src="assets/openai.svg" alt="">Plans with ChatGPT</p>
+  <section class="scene" data-scene="0" aria-label="Meet Keystone Workwear and the customer request">
+    <div class="inbox">
+      <article class="email">
+        <p class="message-meta"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg>Outlook · Leah’s inbox · Monday 8:41 AM</p>
+        <div class="message-body"><span class="avatar" aria-hidden="true">R</span><div><b>Rachel Ortiz</b> <small>Brand director · Ridgeline Roofing</small><p class="message-text">We approved the new logo this morning. Please use the attached file on all 5,000 shirts. Are we still good for Friday?</p><p class="attachment"><svg class="logo" viewBox="0 0 120 80" aria-hidden="true"><use href="#logo-new"/></svg><span><b>Ridgeline_logo_v2.ai</b>Attached · 1 file</span></p></div></div>
+        <div class="reply"><img src="assets/copilot.webp" alt=""><div><small>Leah · Account manager · drafted with Copilot · 8:47 AM</small><p>“Got it. We’ll use the new logo on all 5,000 shirts. Friday works.”</p></div></div>
       </article>
-      <article class="team meridian">
-        <p class="team-label">Customer · Meridian Axle</p>
-        <div class="who"><span class="avatar" aria-hidden="true">M</span><div><b>Marcus</b><small>Account manager</small></div></div>
-        <p class="tool"><img src="assets/copilot.webp" alt="">Plans with Copilot</p>
-      </article>
-      <article class="team bench">
-        <p class="team-label">Field engineering · every go-live needs one on site</p>
-        <div class="bench-people">
-          <div class="who key"><span class="avatar" aria-hidden="true">A</span><div><b>Alex</b><small>Field engineer</small></div></div>
-          <div class="who"><span class="avatar" aria-hidden="true">J</span><div><b>Jamie</b><small>Field engineer</small></div></div>
-          <div class="who"><span class="avatar" aria-hidden="true">M</span><div><b>Maya</b><small>Field service manager</small></div></div>
+      <article class="logos">
+        <p class="eyebrow">Order 4821 · 5,000 crew shirts · 40 branches</p>
+        <div class="logo-pair">
+          <figure><span class="logo-label">Old logo</span><svg class="shirt" viewBox="0 0 200 180" aria-hidden="true"><use href="#shirt"/><use href="#logo-old" x="56" y="40" width="88" height="60"/></svg><figcaption>On the shirts until today</figcaption></figure>
+          <span class="arrow" aria-hidden="true">→</span>
+          <figure class="is-new"><span class="logo-label">New logo</span><svg class="shirt" viewBox="0 0 200 180" aria-hidden="true"><use href="#shirt"/><use href="#logo-new" x="56" y="40" width="88" height="60"/></svg><figcaption>Approved this morning</figcaption></figure>
         </div>
-        <p class="tool"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 14h18M9 4v16"/></svg>Scheduled on the dispatch board</p>
-      </article>
-    </div>
-    <div class="ask">
-      <article class="message-card">
-        <p class="message-meta"><img src="assets/ms-teams.svg" alt="">Teams · #field-service · Monday 9:02 AM</p>
-        <div class="message-body"><span class="avatar" aria-hidden="true">M</span><div><b>Marcus</b> <small>Account manager · Meridian Axle</small><p class="message-text"><span class="mention">@Maya</span> Meridian wants their 24-robot fleet live on Friday, November 13. Can we confirm Alex on site in Tennessee, November 9–13?</p></div></div>
-      </article>
-      <article class="today">
-        <p class="eyebrow">How this gets answered today</p>
-        <ol>
-          <li>Maya checks the dispatch board. <b>Alex looks free.</b></li>
-          <li>Leah’s Frostline plan for that same week sits in her ChatGPT chat.</li>
-          <li><b>Nobody sees both.</b></li>
-        </ol>
+        <p class="due">Ridgeline relaunches its brand at 40 branches next Monday. <b>The shirts must ship Friday.</b></p>
       </article>
     </div>
   </section>
 
-  <section class="scene" data-scene="1" aria-label="Two separately prepared install plans" hidden>
-    <div class="plans">
-      <article class="plan frost">
-        <div class="client"><span class="client-mark" aria-hidden="true">F</span><div><small>Freezer warehouse · Columbus, Ohio</small><h2>Frostline Foods</h2></div></div>
-        <p class="planned"><img src="assets/openai.svg" alt="">Planned by <b>Leah</b> with <b>ChatGPT</b><span class="private">Private session</span></p>
-        <div class="booking"><span>Field engineer on site<br>Mon–Fri, Nov 9–13</span><strong>Alex · Ohio</strong></div>
-        <p class="plan-ok"><span aria-hidden="true">✓</span> 18 robots · plan looks complete</p>
+  <section class="scene" data-scene="1" aria-label="Three departments each used AI on order 4821" hidden>
+    <div class="depts">
+      <article class="dept">
+        <p class="dept-who"><img src="assets/copilot.webp" alt=""><span><b>Leah</b>Account manager</span><span class="private">Private session</span></p>
+        <p class="dept-ai"><small>How AI helped</small>Copilot in Outlook drafts a reply confirming the new artwork.</p>
+        <p class="dept-result"><small>What happened to order 4821</small>The customer gets a confirmation. <b>The new file stays in the email thread.</b></p>
       </article>
-      <article class="plan meridian">
-        <div class="client"><span class="client-mark" aria-hidden="true">M</span><div><small>EV parts plant · Chattanooga, Tennessee</small><h2>Meridian Axle</h2></div></div>
-        <p class="planned"><img src="assets/copilot.webp" alt="">Planned by <b>Marcus</b> with <b>Copilot</b><span class="private">Private session</span></p>
-        <div class="booking"><span>Field engineer on site<br>Mon–Fri, Nov 9–13</span><strong>Alex · Tennessee</strong><i class="clash" aria-hidden="true">Same<br>person</i></div>
-        <p class="plan-ok"><span aria-hidden="true">✓</span> 24 robots · plan looks complete</p>
+      <article class="dept">
+        <p class="dept-who"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg><span><b>Dana</b>Designer</span><span class="private">Private session</span></p>
+        <p class="dept-ai"><small>How AI helped</small>An AI artwork tool checks the new file for print quality. It passes.</p>
+        <p class="dept-result"><small>What happened to order 4821</small>The print-ready logo is saved to the shared drive. <b>The work order still points to the old file.</b></p>
+      </article>
+      <article class="dept">
+        <p class="dept-who"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span><b>Sam</b>Production planner</span><span class="private">Private session</span></p>
+        <p class="dept-ai"><small>How AI helped</small>A scheduling copilot finds an earlier press slot to protect Friday.</p>
+        <p class="dept-result"><small>What happened to order 4821</small>The job moves up two hours, to 1:00 PM today. <b>It prints the artwork marked Approved.</b></p>
       </article>
     </div>
-    <p class="callout warn"><strong>Same engineer. Same week. Two states apart.</strong> Neither plan can see the other.</p>
+    <p class="callout warn"><strong>Three good AI outputs. Nobody changed the order.</strong> Each one stopped at its own department.</p>
     <p class="stat-note"><strong>69%</strong> say most AI-assisted work happens in private sessions, not shared spaces. <cite>Miro, State of Intelligent Collaboration, Nov 2026, n=9,500+</cite></p>
   </section>
 
-  <section class="scene" data-scene="2" aria-label="The field engineer is double booked" hidden>
-    <section class="load-card">
-      <div class="load-head"><div><small>Alex · November 9–13</small><strong>80h on site</strong></div><div><small>Available</small><strong>40h</strong></div><div class="over"><small>Over capacity</small><strong>+40h</strong></div></div>
-      <div class="bar-wrap">
-        <div class="bar" role="img" aria-label="Frostline in Ohio 40 hours plus Meridian in Tennessee 40 hours, against a 40-hour week"><span class="seg frost">Frostline · Ohio · 40h</span><span class="seg meridian over">Meridian · Tennessee · 40h</span></div>
-        <span class="limit" aria-hidden="true"><b>Alex’s 40-hour week</b></span>
-        <span class="stamp" aria-hidden="true">Double-booked</span>
-      </div>
-    </section>
-    <section class="blind-spot" aria-label="Why no system flagged it">
-      <p class="blind-title"><strong>Why no system flagged it:</strong> both bookings live in AI-written documents, not on the dispatch board.</p>
-      <ul class="silos">
-        <li><img src="assets/ms-word.svg" alt=""><div><b>Frostline plan</b><span>Word doc · drafted with ChatGPT</span></div></li>
-        <li><img src="assets/ms-teams.svg" alt=""><div><b>Meridian plan</b><span>Teams recap · drafted with Copilot</span></div></li>
-        <li class="empty"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 14h18M9 4v16"/></svg><div><b>Dispatch board</b><span>Neither visit entered yet</span></div></li>
-      </ul>
-    </section>
+  <section class="scene" data-scene="2" aria-label="The press operator's screen shows the old logo as approved" hidden>
+    <div class="operator-grid">
+      <section class="press" aria-label="Press operator screen">
+        <p class="press-top"><span>Press 3 · Operator view</span><span>12:58 PM</span></p>
+        <div class="press-body">
+          <svg class="shirt" viewBox="0 0 200 180" aria-hidden="true"><use href="#shirt"/><use href="#logo-old" x="56" y="40" width="88" height="60"/></svg>
+          <dl>
+            <div><dt>Order</dt><dd>4821 · Ridgeline Roofing</dd></div>
+            <div><dt>Quantity</dt><dd>5,000 crew shirts</dd></div>
+            <div><dt>Artwork</dt><dd class="ok">Approved ✓</dd></div>
+            <div><dt>Ship</dt><dd>Friday</dd></div>
+          </dl>
+        </div>
+        <span class="start" aria-hidden="true">▶ Start run</span>
+        <span class="stamp" aria-hidden="true">Old logo</span>
+      </section>
+      <section class="blind-spot" aria-label="Where the new logo actually is">
+        <p class="blind-title"><strong>What the operator can’t see.</strong> The new logo exists. Just not here.</p>
+        <ul class="silos">
+          <li><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg><div><b>Leah’s email thread</b><span>New logo attached · customer told “Got it”</span></div></li>
+          <li><img src="assets/ms-sharepoint.svg" alt=""><div><b>Shared drive</b><span>Print-ready v2 saved by design</span></div></li>
+          <li class="empty"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 14h18M9 4v16"/></svg><div><b>Work order 4821</b><span>Still points to the old file</span></div></li>
+        </ul>
+      </section>
+    </div>
   </section>
 
-  <section class="scene" data-scene="3" aria-label="What happens if nobody catches the collision" hidden>
+  <section class="scene" data-scene="3" aria-label="What happens if the run goes through" hidden>
     <div class="fallout">
       <ol class="timeline">
-        <li><time>Mon, Nov 2 · 10:15 AM</time><p><b>Marcus to Meridian Axle</b>“Confirmed. Alex commissions your fleet Friday the 13th.”</p></li>
-        <li><time>Mon, Nov 9 · 6:40 AM</time><p><b>Alex</b>“Both plans have me on site all week. Ohio or Tennessee?”</p></li>
-        <li class="hot"><time>Tue, Nov 10 · 9:05 AM</time><p><b>Leah</b>“Frostline can’t go live without Alex. Peak starts Monday.”</p></li>
-        <li class="fire"><time>Wed, Nov 11 · 5:52 PM</time><p><b>Meridian Axle · Plant director</b>“30 operators retrained for Friday. We can’t move it.”</p></li>
+        <li><time>Mon, Nov 2 · 1:00 PM</time><p><b>Press 3 log</b>“Order 4821 started. Artwork: Approved.”</p></li>
+        <li><time>Mon, Nov 2 · 5:20 PM</time><p><b>Sam · Production</b>“All 5,000 printed and boxed. Ahead of schedule.”</p></li>
+        <li class="hot"><time>Fri, Nov 6 · 9:10 AM</time><p><b>Ridgeline · Denver branch</b>“These have our old logo. Are these the right shirts?”</p></li>
+        <li class="fire"><time>Fri, Nov 6 · 2:45 PM</time><p><b>Rachel Ortiz · Ridgeline</b>“We relaunch at 40 branches Monday. You confirmed the change.”</p></li>
       </ol>
       <aside class="cost"><div class="cost-head"><p class="eyebrow">What it costs</p><span class="tag">Illustrative</span></div>
-        <ul><li><strong>1 go-live slips</strong> 24 robots wait in crates on the dock</li><li><strong>1 escalation</strong> straight to your CEO</li></ul>
+        <ul><li><strong>5,000 shirts reprinted</strong> plus rush freight to 40 branches</li><li><strong>1 brand launch at risk</strong> for your customer</li></ul>
         <p class="verdict">Every AI did its job. The company still broke a promise.</p>
         <p class="cost-stat"><span>Real data</span><strong>Nearly 40%</strong> of the time AI saves is lost to rework. <cite>Workday, Jan 2026, n=3,200</cite></p>
       </aside>
     </div>
-    <p class="callout warn"><strong>This isn’t a scheduling problem.</strong> It’s every handoff between two people’s AI: quotes, orders, customer promises.</p>
+    <p class="callout warn"><strong>This isn’t a printing problem.</strong> It’s every handoff between two people’s AI: quotes, orders, customer promises.</p>
   </section>
 
-  <section class="scene" data-scene="4" aria-label="The Go-Live Desk prepares a source-backed scheduling change" hidden>
+  <section class="scene" data-scene="4" aria-label="The order desk applies the change to order 4821" hidden>
     <div class="resolution">
-      <section class="reads"><h2>What the Go-Live Desk did · 9:02–9:04 AM</h2>
-        <div class="read-row"><span class="icon-pair"><img src="assets/ms-word.svg" alt=""></span><div><b>Read the Frostline plan</b><p class="chips"><span>Alex</span><span>Nov 9–13</span><span>Ohio</span><em>Word plan in SharePoint</em></p></div></div>
-        <div class="read-row"><span class="icon-pair"><img src="assets/ms-teams.svg" alt=""></span><div><b>Read the Meridian plan</b><p class="chips"><span>Alex</span><span>Nov 9–13</span><span>Tennessee</span><em>Teams recap</em></p></div></div>
-        <div class="read-row"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 14h18M9 4v16"/></svg><div><b>Checked the dispatch board export</b><p>Alex: two sites, one week. <strong class="flag">Collision flagged.</strong></p></div></div>
-        <div class="read-row"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 19c.8-3.4 3.2-5 6-5s5.2 1.6 6 5"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 14.2c2.4.2 4.2 1.7 4.9 4.8"/></svg><div><b>Searched the field team</b><p id="log-bench">Jamie: R7 certified ✓ · read the Meridian site survey ✓ · free Nov 9–13 ✓</p></div></div>
-        <div class="read-row" id="log-confirm-row"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m7.5 12.5 3 3 6-6.5"/></svg><div><b id="log-confirm">Maya confirmed Jamie · 9:04 AM</b><p id="log-confirm-note">Field service manager checked the current schedule.</p></div></div>
+      <section class="reads"><h2>What the Order Desk did · 8:47–8:52 AM</h2>
+        <div class="read-row"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg><div><b>Read Rachel’s email</b><p class="chips"><span>New logo</span><span>All 5,000</span><span>Friday</span><em>Outlook thread</em></p></div></div>
+        <div class="read-row"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 14h18M9 4v16"/></svg><div><b>Matched it to order 4821</b><p>Prints at 1:00 PM today. <strong class="flag">Work order still uses the old logo.</strong></p></div></div>
+        <div class="read-row"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 9v6M14 9v6"/></svg><div><b>Leah requested a hold</b><p>Press 3 paused for order 4821 only. Nothing else moves.</p></div></div>
+        <div class="read-row"><img src="assets/ms-sharepoint.svg" alt=""><div><b>Checked the new file</b><p id="log-bench">Logo v2: print check passed ✓ · 2 colors ✓ · vector file ✓</p></div></div>
+        <div class="read-row" id="log-confirm-row"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m7.5 12.5 3 3 6-6.5"/></svg><div><b id="log-confirm">Dana approved the proof · 8:52 AM</b><p id="log-confirm-note">Design checked v2 against order 4821.</p></div></div>
       </section>
-      <section class="proposal"><p class="eyebrow">Proposed change · Meridian Axle</p><h2 id="proposal-headline">Send Jamie to Tennessee.</h2><div class="change"><span>Alex · Tennessee</span><span aria-hidden="true">→</span><strong>Jamie · Tennessee</strong></div><dl class="verify"><div><dt>Qualified?</dt><dd>R7 certified · read the site survey</dd></div><div><dt>Available?</dt><dd id="availability-proof">Confirmed by Maya · free Nov 9–13</dd></div><div><dt>Alex keeps</dt><dd>Frostline · Ohio · Mon–Fri</dd></div></dl>
-        <p class="will-do"><strong>Approving will:</strong> update the shared install plan · book Jamie on the dispatch board · notify Leah and Marcus · reply to Marcus</p>
-        <div class="approve-row"><button type="button" id="approve" class="approve">Approve as COO →</button><p class="source" id="proposal-source">Dispatch export · Confirmed by Maya · No live sync</p></div>
+      <section class="proposal"><p class="eyebrow">Apply change to order 4821</p><h2 id="proposal-headline">Swap the artwork, then print.</h2><div class="change"><svg class="shirt small" viewBox="0 0 200 180" aria-hidden="true"><use href="#shirt"/><use href="#logo-old" x="56" y="40" width="88" height="60"/></svg><span aria-hidden="true">→</span><svg class="shirt small" viewBox="0 0 200 180" aria-hidden="true"><use href="#shirt"/><use href="#logo-new" x="56" y="40" width="88" height="60"/></svg><p class="urgent"><b>5,000 shirts</b> scheduled to print at <b>1:00 today</b></p></div><dl class="verify"><div><dt>Print check</dt><dd>Passed · vector, 2 colors</dd></div><div><dt>Proof</dt><dd id="availability-proof">Approved by Dana · 8:52 AM</dd></div><div><dt>Press time</dt><dd>Still 1:00 PM · Friday holds</dd></div></dl>
+        <p class="will-do"><strong>Releasing will:</strong> point order 4821 at logo v2 · release the hold · then Leah confirms with Ridgeline</p>
+        <div class="approve-row"><button type="button" id="approve" class="approve">Release with new artwork →</button><p class="source" id="proposal-source">No live sync</p></div>
         <p id="hold" role="status" hidden></p>
-        <details id="qa-controls"><summary>Q&amp;A · Change one fact</summary><label for="availability">Jamie’s availability</label><select id="availability"><option value="ready">Confirmed · free November 9–13</option><option value="unknown">Not confirmed yet</option><option value="booked">Already booked at another site</option></select></details>
+        <details id="qa-controls"><summary>Q&amp;A · Change one fact</summary><label for="availability">The new artwork</label><select id="availability"><option value="ready">Proof approved by design</option><option value="unknown">Proof not approved yet</option><option value="booked">New file fails the print check</option></select></details>
       </section>
     </div>
   </section>
 
-  <section class="scene" data-scene="5" aria-label="The request is completed after one approval" hidden>
+  <section class="scene" data-scene="5" aria-label="The press runs with the new logo" hidden>
     <div class="done-grid">
       <div class="done-left">
-        <section class="load-card resolved" aria-label="Both engineers are within capacity">
-          <p class="load-label">November 9–13 · after approval</p>
-          <div class="person"><b>Alex</b><div class="bar"><span class="seg frost">Frostline · Ohio · 40h</span></div><span class="fit">40 / 40h ✓</span></div>
-          <div class="person moved"><b>Jamie</b><div class="bar"><span class="seg meridian">Meridian · Tennessee · 40h</span></div><span class="fit">40 / 40h ✓</span></div>
+        <section class="press fixed" aria-label="Press operator screen after the change">
+          <p class="press-top"><span>Press 3 · Operator view</span><span>1:00 PM</span></p>
+          <div class="press-body">
+            <div class="swap"><svg class="shirt was" viewBox="0 0 200 180" aria-hidden="true"><use href="#shirt"/><use href="#logo-old" x="56" y="40" width="88" height="60"/></svg><svg class="shirt now" viewBox="0 0 200 180" aria-hidden="true"><use href="#shirt"/><use href="#logo-new" x="56" y="40" width="88" height="60"/></svg></div>
+            <dl>
+              <div><dt>Order</dt><dd>4821 · Ridgeline Roofing</dd></div>
+              <div><dt>Quantity</dt><dd>5,000 crew shirts</dd></div>
+              <div><dt>Artwork</dt><dd class="ok">Logo v2 · proof approved ✓</dd></div>
+              <div><dt>Ship</dt><dd>Friday</dd></div>
+            </dl>
+          </div>
+          <span class="start go" aria-hidden="true">▶ Start run</span>
         </section>
         <section class="before-after" aria-label="Before and after, illustrative">
-          <div><small>Without the desk</small><strong>Found go-live week</strong><span>Go-live slips · customer escalates</span></div>
-          <div class="after"><small>With the desk</small><strong>Found Monday, 9:04 AM</strong><span>1 approval · both go-lives on time</span></div>
+          <div><small>Without the desk</small><strong>Found at the branches</strong><span>5,000 reprints · rush freight</span></div>
+          <div class="after"><small>With the desk</small><strong>Fixed by 8:55 AM</strong><span>1 hold · press still runs at 1:00</span></div>
           <span class="tag">Illustrative</span>
         </section>
       </div>
-      <section class="handoffs"><h2>Completed after approval · 9:07 AM</h2>
-        <div class="handoff"><span class="tick" aria-hidden="true">✓</span><div><b>Shared install plan updated</b><p>SharePoint · Leah and Marcus see the same plan</p></div></div>
-        <div class="handoff"><span class="tick" aria-hidden="true">✓</span><div><b>Jamie booked: Meridian · Nov 9–13</b><p>Dispatch board · <span class="sim">simulated here, uses its API in a real build</span></p></div></div>
-        <div class="handoff"><span class="tick" aria-hidden="true">✓</span><div><b>Leah and Marcus notified</b><p>Teams · same change, same reason</p></div></div>
-        <div class="handoff reply"><span class="tick" aria-hidden="true">✓</span><div><b>Marcus got his answer</b><p class="message-text">“Confirmed: Jamie commissions Meridian, November 9–13. Alex stays on Frostline.”</p></div></div>
-        <div class="handoff"><span class="tick" aria-hidden="true">✓</span><div><b>Audit trail saved</b><p>Proposed by Go-Live Desk · confirmed by Maya 9:04 · approved by COO 9:06 · written to the dispatch board, SharePoint, Teams</p></div></div>
+      <section class="handoffs"><h2>Completed before the press · 8:55 AM</h2>
+        <div class="handoff"><span class="tick" aria-hidden="true">✓</span><div><b>Work order 4821 updated</b><p>Logo v2 attached · <span class="sim">simulated here, ERP API in a real build</span></p></div></div>
+        <div class="handoff"><span class="tick" aria-hidden="true">✓</span><div><b>Proof approved against the order</b><p>Design · Dana · 8:52 AM</p></div></div>
+        <div class="handoff"><span class="tick" aria-hidden="true">✓</span><div><b>Hold released</b><p>Production · Press 3 still runs at 1:00 PM</p></div></div>
+        <div class="handoff reply"><span class="tick" aria-hidden="true">✓</span><div><b>Only then, Leah confirmed with Ridgeline</b><p class="message-text">“Confirmed: new logo on all 5,000 shirts. Ships Friday.”</p></div></div>
+        <div class="handoff"><span class="tick" aria-hidden="true">✓</span><div><b>Audit trail saved</b><p>Change requested by Ridgeline 8:41 · hold by Leah 8:47 · proof by Dana 8:52 · released by Sam 8:55</p></div></div>
       </section>
     </div>
   </section>
@@ -156,8 +161,8 @@
   </section>
 
   <aside id="cuebox" class="presenter-only" hidden><div class="cue-heading"><b>Rehearsal cues</b><span id="time"></span></div><p id="say"></p><p id="point"></p></aside>
-  <footer class="controls"><button type="button" id="back" disabled>← Back</button><span id="counter">1 of 7</span><a href="host-guide.html" target="_blank" rel="noopener" class="host-link presenter-only">Host guide ↗</a><p class="desk-note"><strong>Not bot number 41.</strong> One agent that reads across every plan, then waits for a person. <cite>84% of CIOs say employees build agents faster than IT can govern them. Dataiku / Harris Poll, Sep 2026, 685 CIOs</cite></p><button type="button" id="next">See what the desk finds →</button></footer>
+  <footer class="controls"><button type="button" id="back" disabled>← Back</button><span id="counter">1 of 7</span><a href="host-guide.html" target="_blank" rel="noopener" class="host-link presenter-only">Host guide ↗</a><p class="desk-note"><strong>Not bot number 41.</strong> One agent that connects the email, the file and the work order, then waits for a person. <cite>84% of CIOs say employees build agents faster than IT can govern them. Dataiku / Harris Poll, Sep 2026, 685 CIOs</cite></p><button type="button" id="next">See what the desk finds →</button></footer>
   <p class="simulation">Illustrative prototype · Fictional company and data · Simulated approvals, updates and messages</p><span class="sr-only" id="announcement" aria-live="polite"></span>
 </main>
-<div class="rewind" id="rewind" aria-hidden="true" hidden><span class="spin">↺</span><small>Rewind</small><strong id="rewind-day">Wed, Nov 11</strong><p>What if someone checked on Monday?</p></div>
+<div class="rewind" id="rewind" aria-hidden="true" hidden><span class="spin">↺</span><small>Rewind</small><strong id="rewind-day">Fri, Nov 6</strong><p>What if the email changed the order?</p></div>
 </body></html>
