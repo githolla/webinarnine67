@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Host guide · Nine-67 webinar</title>
+  <style>
+    :root { color-scheme: light; --ink:#171b22; --muted:#565a5d; --paper:#f6f2ea; --line:#d8d2c8; --blue:#234e71; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; scroll-padding-top:5em; }
+    body { margin:0; background:var(--paper); color:var(--ink); font:1rem/1.52 system-ui,sans-serif; }
+    header { display:flex; justify-content:space-between; align-items:center; gap:1em; padding:.9em max(5vw,calc((100vw - 860px)/2)); background:var(--ink); color:white; }
+    header strong { font-size:1.2rem; letter-spacing:-.05em; }
+    a { color:var(--blue); }
+    header a { color:white; font-size:.85rem; text-underline-offset:.25em; }
+    main, nav > div { max-width:860px; margin:auto; padding-inline:clamp(1.1rem,4vw,2rem); }
+    .intro { padding-block:2.2rem 1.5rem; }
+    h1,h2,h3,p,blockquote { margin:0; }
+    h1,h2,h3 { line-height:1.14; letter-spacing:-.04em; }
+    h1 { font-size:clamp(2.5rem,7vw,4.25rem); margin:.25em 0; }
+    h2 { font-size:clamp(1.55rem,4.5vw,2.15rem); margin:.2em 0 .55em; }
+    h3 { font-size:1.17rem; }
+    .label,.time { color:var(--blue); font-weight:700; font-size:.75rem; letter-spacing:.1em; text-transform:uppercase; }
+    .setup { color:var(--muted); max-width:70ch; }
+    nav { position:sticky; top:0; z-index:1; background:var(--paper); border-block:1px solid var(--line); }
+    nav > div { display:flex; gap:.4em; padding-block:.55em; overflow-x:auto; }
+    nav a { font-size:.82rem; padding:.32em .64em; text-decoration:none; border-radius:99px; white-space:nowrap; font-weight:600; }
+    nav a:hover, nav a:focus-visible { background:#e5e8e8; }
+    section.beat { border-bottom:1px solid var(--line); padding-block:1.65rem; }
+    .cue { margin:.72em 0; }
+    .action { color:var(--muted); font-size:.9rem; }
+    .action strong { color:var(--blue); }
+    .demo-steps { display:grid; gap:.7em; padding:0; list-style:none; }
+    .demo-steps li { background:#fffdf8; padding:1em 1.1em; border:1px solid var(--line); border-radius:12px; }
+    .rehearse { margin:1.6rem 0 3rem; border-left:3px solid var(--blue); padding-left:1em; }
+    a:focus-visible { outline:3px solid #4088ac; outline-offset:3px; }
+    @media (max-width:480px) { nav > div { gap:0; } nav a { padding-inline:.46em; } header { padding-inline:1.1rem; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+      .todo { background:#fbe9b7; padding:0 .3em; border-radius:3px; font-weight:600; }
+    table { width:100%; border-collapse:collapse; font-size:.9rem; margin:.8em 0; background:#fffdf8; }
+    th, td { border:1px solid var(--line); padding:.5em .65em; text-align:left; vertical-align:top; }
+    th { background:#efe9de; }
+    .checklist { list-style:none; padding:0; }
+    .checklist li::before { content:'\2610  '; color:var(--blue); }
+    dl.qa dt { font-weight:700; margin-top:.9em; }
+    dl.qa dd { margin:.2em 0 0; }
+</style>
+</head>
+<body>
+  <header><strong>Nine-67</strong><a href="live.html?presenter=1#slide-1" target="_blank" rel="noopener">Open demo in presenter mode ↗</a></header>
+  <main class="intro">
+    <div class="label">Suuchi Ramesh + Josh Lee · Friday, November 6 · 1:00–1:30 PM ET</div>
+    <h1>Host guide</h1>
+    <p><strong>Your team has AI. Why is the work still manual?</strong></p>
+    <p class="setup"><b>Present</b> at the plain address (<a href="./?presenter=0">cover</a> → <a href="stats.html">opening stats</a> → <a href="live.html#slide-1">six-screen demo</a>). Attendees see no presenter buttons. <b>Rehearse</b> by opening any page once with <code>?presenter=1</code>: that tab then shows Mode, Host guide, notes and Presenter resources. Use <code>?presenter=0</code> to switch it off. Keep this guide on a second screen, never on the shared one. Arrow keys move forward and back on every page.</p>
+    <p class="setup"><b>Core line:</b> “AI made each person faster. Nobody redesigned the handoffs between them.”</p>
+  </main>
+  <nav aria-label="Jump to a cue"><div><a href="#open">Opening</a><a href="#demo">Demo</a><a href="#debrief">Debrief</a><a href="#exercise">Chat exercise</a><a href="#pilot">Pilot</a><a href="#questions">Q&amp;A</a><a href="#close">Close</a><a href="#answers">Answers</a><a href="#stats">Stats</a><a href="#checklist">Checklist</a></div></nav>
+  <main>
+    <section class="beat" id="open">
+      <div class="time">1:00:00–1:04:00 · Suuchi · Cover, then opening stats</div>
+      <h2>Name the gap in four minutes</h2>
+      <p><b>1:00:00 · Hook</b> “Raise your hand, or type yes, if your team has ChatGPT or Copilot. Now keep it up if a request still gets copied between three tools before it’s done.”</p>
+      <p class="action"><b>Poll 1</b> (launch now): “Where does AI live in your company today?” (a) Individual chat tools (b) A few team workflows (c) Embedded in cross-team processes (d) Not sure</p>
+      <p class="cue"><b>1:00:45 · Disclosure and CTA touch #1</b> “Everything you’ll see is a fictional company and a working simulation of a pattern we build. At the end we’ll offer a small number of complimentary workflow assessments, so keep one handoff in mind as we go.”</p>
+      <p class="action"><b>Josh</b> posts the booking link in chat and the resource panel now. <span class="todo">Booking link needed</span></p>
+      <p class="cue"><b>1:01:30 · Evidence</b> Josh advances to <a href="stats.html">the stats screen</a>. Suuchi: “Atlassian found 85% of knowledge workers use AI at work, but only 29% have embedded it in their flow of work. Salesforce found 59% of U.S. executives see work stall because it’s trapped in one person’s AI tool. And Microsoft found that even among the most advanced AI users, only one in four say their handoffs are documented and repeatable.”</p>
+      <p class="cue">Read the Poll 1 result aloud. Then: “AI made each person faster. Nobody redesigned the handoffs between them. Josh, show us one.”</p>
+    </section>
+
+    <section class="beat" id="demo">
+      <div class="time">1:04:00–1:11:30 · Josh shares, Suuchi asks</div>
+      <h2>One request, start to finish, in seven minutes</h2>
+      <p class="action"><b>1:04:00 · Illustration (30 seconds).</b> Open <a href="live.html#slide-5">screen 5</a> briefly: “This is where we’ll end: one request, completed, with one approval. Let’s rewind to 9:02 Monday morning.” Then go to <a href="live.html#slide-1">screen 1</a>.</p>
+      <ol class="demo-steps">
+        <li><div class="time">1:04:30–1:05:30 · <a href="live.html#slide-1">Screen 1 · Request</a></div><h3>A request comes in</h3>
+          <p class="cue"><b>Josh</b> “Monday, 9:02. Marcus asks one simple question: can Alex do the Rally launch? This is the kind of message your team answers by hand every week.”</p>
+          <p class="action"><b>Suuchi asks</b> “Who answers this in your company, and how long does it take?”</p></li>
+        <li><div class="time">1:05:30–1:06:30 · <a href="live.html#slide-2">Screen 2 · Two plans</a></div><h3>Two good AI outputs</h3>
+          <p class="cue"><b>Josh</b> “Leah planned Luma Hotels with ChatGPT. Marcus planned Rally Fitness with Copilot. Both plans look fine. You’re the COO. Would you confirm both launch dates?”</p>
+          <p class="action"><b>Point</b> to Alex · 40 hours on each plan. Pause five seconds.</p></li>
+        <li><div class="time">1:06:30–1:07:45 · <a href="live.html#slide-3">Screen 3 · Collision</a></div><h3>The impossible week</h3>
+          <p class="cue"><b>Josh</b> “Alex has 80 hours promised and a 40-hour week. Without a shared check, Maya, the resource manager, has four handoffs to chase across three people.”</p>
+          <p class="action"><b>Suuchi asks</b> “Who discovers this in your company, and when?”</p></li>
+        <li><div class="time">1:07:45–1:09:30 · <a href="live.html#slide-4">Screen 4 · The desk</a></div><h3>The AI does the checking</h3>
+          <p class="cue"><b>Josh</b> “The desk read both plans, pulled out the person, week, hours and skill, checked the capacity export, and searched the bench. Jamie fits. Maya confirmed. Now I have one decision, and I can see exactly what approving will do.”</p>
+          <p class="cue">“Swap ‘launch specialist’ for whatever is scarce in your business: a partner, a technician, a crew, a credit approver.”</p>
+          <p class="action"><b>Click</b> Approve as COO inside the card. Say: “Nothing is written until a person approves.” Leave Change one fact for Q&amp;A.</p></li>
+        <li><div class="time">1:09:30–1:11:00 · <a href="live.html#slide-5">Screen 5 · Done</a></div><h3>Request becomes completed work</h3>
+          <p class="cue"><b>Josh</b> “Five minutes after Marcus asked, the request is done: the shared plan is updated, the allocation is recorded, both managers are told, Marcus has his answer, and there’s an audit trail. Four handoffs became one approval.”</p>
+          <p class="action"><b>Say</b> “In this demo the Kantata write is simulated. In a real build we use its API.” Point to the reply to Marcus: it closes the loop from screen 1.</p></li>
+      </ol>
+      <p class="cue"><b>1:11:00</b> Leave screen 5 up for the debrief.</p>
+    </section>
+
+    <section class="beat" id="debrief">
+      <div class="time">1:11:30–1:13:00 · Both · Screen 5</div>
+      <h2>Make the consequence concrete</h2>
+      <p class="cue"><b>Suuchi</b> “One request, three teams, one approval, done. What happens in your business when two good plans compete for one person? Type it in chat.”</p>
+      <p class="cue"><b>Josh</b> “The desk brings the conflict forward, attaches the facts, and routes one decision to its owner. Those four numbers on screen are exactly what we measure in an assessment: handoffs, wait time, approver, and one baseline metric.”</p>
+    </section>
+
+    <section class="beat" id="exercise">
+      <div class="time">1:13:00–1:16:00 · Suuchi facilitates</div>
+      <h2>Let attendees name one handoff</h2>
+      <p class="cue"><b>Suuchi</b> “Finish this sentence in chat: ‘Before my team can ___, someone has to chase ___ for ___.’”</p>
+      <p class="action"><b>Poll 2</b> (launch now): “How often does work wait on another team?” (a) Daily (b) A few times a week (c) Weekly (d) Rarely. Read two or three chat answers aloud.</p>
+      <p class="cue"><b>If chat is quiet</b>, Josh: “Before Marcus can confirm a launch, Maya has to check every plan that books Alex. Who plays Maya in your company?”</p>
+    </section>
+
+    <section class="beat" id="pilot">
+      <div class="time">1:16:00–1:19:00 · Josh · <a href="live.html#slide-6">Screen 6 · Your handoffs</a></div>
+      <h2>CTA touch #2, then the pilot</h2>
+      <p class="cue"><b>1:16 · CTA touch #2</b> “What you just typed is literally step one of the assessment. Type ‘assessment’ and that workflow, or use the link if you’d rather keep it private.”</p>
+      <p class="cue"><b>1:17 · Pilot</b> “Pick one recurring commitment, like next week’s staffing. Replay recent plans against what was actually confirmed. Measure reconciliation time, conflicts caught early, and corrections. One workflow in production beats ten pilots.”</p>
+    </section>
+
+    <section class="beat" id="questions">
+      <div class="time">1:19:00–1:27:30 · Suuchi moderates, Josh answers</div>
+      <h2>Map one attendee workflow, then Q&amp;A</h2>
+      <p><b>1:19–1:24 · Attendee case.</b> Take one chat answer and map its handoffs out loud: who asks, who checks, which systems, who approves, who waits.</p>
+      <p><b>1:24–1:27:30 · Q&amp;A.</b> Use the <a href="#answers">answers below</a>. To show the desk holds instead of guessing, open <a href="live.html?qa=1#slide-4">screen 4 with Change one fact</a>:</p>
+      <ul>
+        <li><b>Confirmed.</b> Approval is available.</li>
+        <li><b>Not confirmed yet.</b> The headline becomes “Hold: confirm Jamie first.” Approval is blocked until Maya confirms.</li>
+        <li><b>Already booked.</b> The headline becomes “Hold: Jamie is committed elsewhere.” The desk searches for another qualified person.</li>
+      </ul>
+    </section>
+
+    <section class="beat" id="close">
+      <div class="time">1:27:30–1:30:00 · Suuchi · Screen 6</div>
+      <h2>CTA touch #3 and end on time</h2>
+      <p class="cue">“Here’s the assessment. It’s 45 minutes with Josh and me. You leave with a one-page map of one workflow: every handoff, the wait time, the approver, and where AI can complete the step versus assist. No system access, no obligation, not a sales pitch. We run these ourselves, so we’re holding <span class="todo">[N]</span> sessions in November. Use the link, scan the code, type ‘assessment’ in chat, or reply to the follow-up email. Thanks for spending your Friday with us.”</p>
+      <p class="action">End at 1:30. Even if the demo failed, do this close.</p>
+      <p class="action"><b>Within 24 hours:</b> send the replay and booking link to all registrants. Send a personal note to everyone who typed a workflow, quoting it back. Prioritize Poll 1 answer (a).</p>
+    </section>
+
+    <section class="beat" id="answers">
+      <h2>Q&amp;A answers</h2>
+      <dl class="qa">
+        <dt>“We already pay for Copilot. Why do we need this?”</dt><dd>“Keep it. In the demo, Copilot did its job: it wrote Marcus a good plan. The delay is the handoff between people and systems. That’s the layer we build, using the tools you already own.”</dd>
+        <dt>“How do we trust it not to hallucinate?”</dt><dd>“We never design for blind trust. Every step pulls from your system of record, shows its sources, and stops for a person on anything consequential. Trust in fully autonomous agents fell from 43% to 27% in a year, per Capgemini. That’s why we build supervised workflows.”</dd>
+        <dt>“Where’s the human? Who approves?”</dt><dd>“You decide per step. Reversible, low-risk steps run on their own. Money, customer and people decisions stop for a named approver. You saw it: nothing was written until the COO approved, and when Jamie was booked, the desk held.”</dd>
+        <dt>“What data does it touch? Is it secure?”</dt><dd>“Only what that workflow needs, with its own scoped credentials, inside your tenant, and every action is logged.”</dd>
+        <dt>“Our systems are old. Is this a platform overhaul?”</dt><dd>“No. We use APIs where they exist and exports where they don’t, like the Kantata export in the demo. The assessment picks a workflow that touches only a few systems.”</dd>
+        <dt>“Was any of that real?”</dt><dd>“The company and data are fictional, and the screens are a working simulation of a pattern we build. In a real engagement the export becomes a tested API connection. We’d rather show you exactly what’s simulated than oversell it.”</dd>
+        <dt>“How do we measure ROI?”</dt><dd>“On the workflow, not the chat. Before we build, we baseline cycle time from request to done, handoffs, rework, and cost per completed request, then measure the same numbers after.”</dd>
+        <dt>“What does it cost?”</dt><dd>“Build and change management usually cost more than model usage. We set a usage budget per workflow from day one, and the assessment is free and scoped to one workflow.” <span class="todo">Agree a pilot price range before Friday</span></dd>
+        <dt>“Won’t this scare our people or cut jobs?”</dt><dd>“We start with the work people dislike: copying, chasing, re-keying. The people who do it today become the approvers and owners. In the demo, Maya still decides. She just stops chasing.”</dd>
+        <dt>“Aren’t most AI projects failing?”</dt><dd>“Many are. Gartner predicts over 40% of agentic AI projects will be canceled by the end of 2027, because of cost, unclear value or weak controls. The assessment addresses all three up front.”</dd>
+        <dt>“Are we locked into a vendor?”</dt><dd>“No. The prompts, rules, evaluations and logs are yours, and the design is model-agnostic.”</dd>
+        <dt>“Who’s accountable when it gets it wrong?”</dt><dd>“The same owner who’s accountable for that process today. Every action is logged, and high-impact steps need a named approver.”</dd>
+        <dt>“How long until something is live?”</dt><dd>“Assessment first, to map one workflow. Then a scoped build with your process owner and one IT contact.” <span class="todo">Agree a concrete timeline before Friday</span></dd>
+        <dt>“This only works for agencies, right?”</dt><dd>“Swap ‘launch specialist’ for whatever is scarce: a partner, a technician, a crew, a credit approver. Two good plans, one shared constraint, nobody checking across teams.”</dd>
+      </dl>
+    </section>
+
+    <section class="beat" id="stats">
+      <h2>Stats: safe wording</h2>
+      <p class="action">Say the year out loud. Keep each source open in a tab on the moderator’s screen.</p>
+      <table>
+        <tr><th>Say</th><th>Source</th></tr>
+        <tr><td>85% of knowledge workers use AI at work, but only 29% have embedded it in their flow of work.</td><td><a href="https://www.atlassian.com/blog/state-of-teams-2026" target="_blank" rel="noopener">Atlassian State of Teams 2026</a>, Apr 2026, n=12,035</td></tr>
+        <tr><td>89% of executives say AI increases speed; only 6% are sure they have clear examples of organization-wide AI ROI.</td><td>Same Atlassian report</td></tr>
+        <tr><td>59% of U.S. executives observe work stall because it’s trapped in one person’s AI tool. (Vendor survey)</td><td><a href="https://www.salesforce.com/news/stories/work-stalls-isolated-ai-tools/" target="_blank" rel="noopener">Salesforce Pulse Survey</a>, Oct 27, 2026, n=250 director+</td></tr>
+        <tr><td>Even among the most advanced AI users, only 25% say agent workflows, human handoffs and quality standards are documented and repeatable across their organization (14% for everyone else).</td><td><a href="https://www.microsoft.com/en-us/worklab/work-trend-index/agents-human-agency-and-the-opportunity-for-every-organization" target="_blank" rel="noopener">Microsoft Work Trend Index 2026</a>, May 2026, n=20,000 AI users</td></tr>
+        <tr><td>For most organizations, AI is speeding up existing workflows without changing the work itself.</td><td><a href="https://www.deloitte.com/us/en/about/press-room/enterprise-ai-enters-an-roi-reckoning.html" target="_blank" rel="noopener">Deloitte State of AI in the Enterprise</a>, Oct 29, 2026</td></tr>
+        <tr><td>Trust in fully autonomous AI agents dropped from 43% to 27% in a year.</td><td><a href="https://www.capgemini.com/news/press-releases/trust-and-human-ai-collaboration-set-to-define-the-next-era-of-agentic-ai-unlocking-450-billion-opportunity-by-2028/" target="_blank" rel="noopener">Capgemini Research Institute</a>, Jul 2025</td></tr>
+        <tr><td>Gartner <em>predicts</em> over 40% of agentic AI projects will be canceled by the end of 2027. (A forecast, Q&amp;A only)</td><td><a href="https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027" target="_blank" rel="noopener">Gartner</a>, Jun 2025</td></tr>
+        <tr><td>Billable utilization fell to 66.4% in 2025, the lowest SPI has recorded, against a 75% benchmark. (For PS and agency CFOs)</td><td><a href="https://www.deltek.com/en/resources/articles/5-kpis-from-the-spi-professional-services-maturity-benchmark-report-every-pso-must-track-for-sustainable-growth" target="_blank" rel="noopener">SPI Research via Deltek</a></td></tr>
+      </table>
+      <p class="action"><b>Do not use:</b> MIT’s “95% of AI pilots fail” (preliminary, publicly critiqued), any McKinsey redesign percentage you haven’t confirmed in the PDF, “Harvard research” for workslop (it was BetterUp and Stanford), or Pamarco and Esker as AI proof.</p>
+    </section>
+
+    <aside class="rehearse" id="checklist">
+      <h3>Before going live</h3>
+      <ul class="checklist">
+        <li>Fill in <code>dist/site.js</code>: booking link, November slot count, portrait files. The assessment screen and cover update automatically.</li>
+        <li>Rehearse twice in the real webinar platform at 1280×720, including both polls and posting the link in chat.</li>
+        <li>Present from the plain address with no <code>?presenter=1</code>. Confirm no Mode, Host guide, Reset or notes buttons are visible.</li>
+        <li>Share one browser window in full screen. Bookmarks bar hidden. Do Not Disturb on. Slack, Teams and mail closed on both machines.</li>
+        <li>Run a local copy too (<code>npm run dev</code>, then http://localhost:3000/) in case the network or host fails.</li>
+        <li>Record an 8-minute fallback video of the full flow and keep it open on Josh’s machine.</li>
+        <li>Suuchi has the URL and has clicked through once, in case Josh’s connection drops.</li>
+        <li>Never say “fully autonomous”.</li>
+      </ul>
+      <p class="cue"><b>If the shared screen freezes</b>, say: “Marcus asked whether Alex could take the Rally launch. Both managers had booked Alex for the same week. The desk read both plans, found Jamie, Maya confirmed, the COO approved, and five minutes later the plan, the allocation, both managers and Marcus were all updated.” Don’t retry on stage. Move on to the close.</p>
+    </aside>
+  </main>
+</body>
+</html>

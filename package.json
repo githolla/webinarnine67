@@ -1,0 +1,15 @@
+{
+  "name": "nine-67-webinar",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Complete Nine-67 executive webinar demonstration source",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "dev": "node scripts/serve.mjs dist",
+    "start": "node scripts/serve.mjs dist",
+    "check": "node scripts/check.mjs",
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/serve.mjs build"
+  }
+}
