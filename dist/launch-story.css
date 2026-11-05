@@ -172,6 +172,7 @@ html.presenter .presenter-only:not([hidden]) { display: revert !important; }
 .dept-who span:not(.private) { font-size: 13px; line-height: 1.25; color: var(--muted); }
 .dept-who b { display: block; font-size: 18px; color: var(--ink); }
 .dept small { display: block; margin-bottom: 3px; font-size: 11px; font-weight: 750; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
+.done-ok { margin-left: 6px; color: var(--forest); letter-spacing: .04em; }
 .dept-ai { font-size: clamp(15px, 1.3vw, 17px); line-height: 1.35; }
 .dept-result { margin-top: auto; padding: 10px 12px; border-radius: 4px; background: var(--red-bg); font-size: clamp(14px, 1.2vw, 16px); line-height: 1.35; color: #5c3a33; }
 .dept-result small, .dept-result b { color: var(--red); }
@@ -325,6 +326,12 @@ body[data-step="4"] .desk-note { display: block; }
 .cta-grid section { padding: 20px 24px; border: 1px solid var(--line); border-top: 3px solid var(--ink); background: var(--white); border-radius: 6px; }
 .cta-grid h2 { font-family: var(--serif); font-size: 22px; margin-bottom: 8px; }
 .cta-grid p { font-size: 16px; line-height: 1.5; color: #3b4440; }
+.stack-strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin-top: var(--gap); padding: 0; list-style: none; }
+.stack-strip li { position: relative; padding: 10px 26px 10px 16px; border: 1px solid var(--line); border-right: 0; background: var(--paper); font-size: 15px; font-weight: 650; line-height: 1.3; }
+.stack-strip li:last-child { border-right: 1px solid var(--line); }
+.stack-strip li:not(:last-child)::after { content: "→"; position: absolute; right: 6px; top: 50%; transform: translateY(-50%); color: var(--muted); }
+.stack-strip li:nth-child(2) { background: var(--white); border-top: 3px solid var(--forest); }
+.stack-strip small { display: block; margin-bottom: 2px; font-size: 11px; font-weight: 750; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
 .cta-bottom { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 18px 36px; margin-top: var(--gap); }
 .presenters { display: flex; gap: 28px; flex-wrap: wrap; }
 .presenter { display: flex; align-items: center; gap: 12px; margin: 0; }
@@ -388,7 +395,8 @@ body[data-step="4"] .desk-note { display: block; }
   .before-after > div { padding: 12px 16px; }
   .handoff { padding: 6px 0; }
   .handoff b { font-size: 16px; }
-  .cta-grid section { padding: 16px 20px; }
+  .cta-grid section { padding: 12px 18px; }
+  .stack-strip li { padding-block: 6px; }
 }
 
 /* Big shared screens: scale the whole slide up so it fills a 1080p share. */
@@ -405,6 +413,9 @@ body[data-step="4"] .desk-note { display: block; }
   .cast { grid-template-columns: minmax(0, 1fr); }
   .company-label { grid-column: 1; }
   .actor::after { display: none; }
+  .stack-strip { grid-template-columns: minmax(0, 1fr); }
+  .stack-strip li { border-right: 1px solid var(--line); }
+  .stack-strip li::after { display: none; }
   .inbox, .depts, .operator-grid, .resolution, .done-grid, .cta-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
   .fallout { grid-template-columns: minmax(0, 1fr); }
   .clock { grid-column: 1; grid-row: auto; justify-self: start; margin-top: 12px; }
