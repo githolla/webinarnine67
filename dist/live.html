@@ -7,8 +7,8 @@
 <nav class="progress" aria-label="Story progress"><button data-scene="0">01 <span>The request</span></button><button data-scene="1">02 <span>AI at work</span></button><button data-scene="2">03 <span>Still waiting</span></button><button data-scene="3">04 <span>Connected work</span></button><button data-scene="4">05 <span>Ready</span></button></nav>
 <header class="heading"><h1 id="title" tabindex="-1"></h1><p id="lead"></p></header>
 <section class="stage" id="stage" aria-label="Demonstration"></section>
-<footer class="footer"><button id="back" class="text-button">← Back</button><span id="counter"></span><button id="reset" class="text-button">Restart</button><button data-detail="build" class="text-button">What we build</button><button id="next" class="primary">Continue →</button></footer>
-<p id="announcement" class="sr-only" role="status" aria-live="polite"></p>
+<footer class="footer"><button id="back" class="text-button">← Back</button><span id="counter"></span><button id="reset" class="text-button">Restart</button><button data-detail="build" class="text-button">What we build</button><button id="notes" class="text-button" aria-pressed="false">Speaker cue</button><small class="key-hint">Space / →</small><button id="next" class="primary">Continue →</button></footer>
+<aside id="presenter-cue" aria-label="Presenter cue"></aside><p id="announcement" class="sr-only" role="status" aria-live="polite"></p>
 </main>
 <dialog id="detail-dialog"><header class="modal-header"><h2 id="detail-title"></h2><button id="close-detail" aria-label="Close details">✕</button></header><div class="modal-body" id="detail-content"></div></dialog>
 </body>
