@@ -2,49 +2,57 @@
 <html lang="en">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>The work is still manual · Nine-67</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&display=swap"><link rel="stylesheet" href="launch-story.css"><script src="site.js"></script>
 <style>
-.stats-stage { max-width: 1280px; margin: 0 auto; padding: clamp(18px, 4vh, 44px) var(--edge) 18px; }
-.stats-stage h1 { font-family: var(--serif); font-size: clamp(32px, 3.6vw, 52px); line-height: 1.08; letter-spacing: -.02em; max-width: 26ch; }
-.stats-stage .kicker { margin-bottom: 8px; }
-.stat-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; margin-top: clamp(18px, 3.5vh, 34px); }
-.stat { padding: 18px 22px 16px; background: var(--white); border-top: 2px solid var(--ink); display: flex; flex-direction: column; }
-.stat .num { font-family: var(--serif); font-size: clamp(48px, 5.4vw, 78px); line-height: 1; font-weight: 700; letter-spacing: -.03em; }
-.stat .num.pair { font-size: clamp(40px, 4.2vw, 62px); white-space: nowrap; }
-.stat .num small { font-size: .42em; font-weight: 400; color: var(--muted); letter-spacing: 0; }
-.stat p { margin-top: 10px; font-size: clamp(16px, 1.35vw, 19px); line-height: 1.4; }
-.stat .means { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); font-size: clamp(14px, 1.15vw, 16px); line-height: 1.4; color: #3b4440; }
-.stat .means small { display: block; margin-bottom: 2px; font-size: 11px; font-weight: 750; letter-spacing: .07em; text-transform: uppercase; color: var(--forest); }
-.stat cite { margin-top: auto; padding-top: 12px; font-style: normal; font-size: 12px; color: var(--muted); line-height: 1.4; }
-.stat cite a { color: var(--muted); }
-.also { margin-top: 10px; font-size: 14px; color: var(--muted); }
-.also strong { color: var(--ink); }
-.also cite { font-style: normal; font-size: 12px; }
-.thesis { margin-top: clamp(18px, 3.5vh, 34px); padding: 16px 22px; border-left: 3px solid var(--forest); background: #e7ede3; font-family: var(--serif); font-size: clamp(21px, 2vw, 28px); line-height: 1.3; }
+.stats-stage { max-width: 1340px; margin: auto; padding: 28px var(--edge) 18px; }
+.stats-stage h1 { font-family: var(--serif); font-size: clamp(32px, 3.4vw, 49px); line-height: 1.12; letter-spacing: -.025em; margin-top: 9px; }
+.intro { color: var(--muted); font-size: 17px; margin-top: 12px; }
+.stat-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 25px; }
+.stat { background: var(--white); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; }
+.evidence { padding: 21px 24px 18px; flex: 1; }
+.stat h2 { font-size: 18px; font-weight: 650; }
+.num { display: block; font-size: clamp(56px, 5.5vw, 76px); font-family: var(--serif); line-height: 1; letter-spacing: -.045em; margin: 17px 0 12px; }
+.evidence p { font-size: 17px; line-height: 1.45; min-height: 74px; }
+.stat cite { display: block; margin-top: 14px; font-style: normal; font-size: 12px; color: var(--muted); }
+.stat cite a { color: var(--muted); text-underline-offset: 3px; }
+.demo-link { padding: 16px 24px; background: #edf0e9; border-top: 1px solid var(--line); }
+.demo-link small, .bridge small { display: block; font-size: 10px; letter-spacing: .09em; font-weight: 750; text-transform: uppercase; margin-bottom: 5px; color: var(--forest); }
+.demo-link p { font-size: 16px; line-height: 1.4; }
+.bridge { margin-top: 20px; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 20px 24px; background: #203b32; border-radius: 10px; color: white; }
+.bridge small { color: #c4d8c7; }
+.bridge h2 { font-family: var(--serif); font-size: 25px; line-height: 1.25; font-weight: 400; }
+.bridge p { max-width: 32ch; font-size: 15px; color: #e1ebe3; }
+.scope-note { font-size: 11px; color: var(--muted); margin-top: 10px; }
 @media (min-width: 901px) and (max-height: 800px) {
-  .stats-stage { padding-top: 14px; }
-  .stat-row { margin-top: 14px; }
-  .stat { padding: 12px 20px; }
-  .stat .num { font-size: 54px; }
-  .stat .num.pair { font-size: 46px; }
-  .stat p { margin-top: 6px; font-size: 16px; }
-  .stat .means { margin-top: 8px; padding-top: 6px; font-size: 14px; }
-  .stat cite { padding-top: 8px; }
-  .thesis { margin-top: 14px; padding: 10px 20px; font-size: 21px; }
+.stats-stage { padding-top: 18px; } .stats-stage h1 { font-size: 38px; }
+.stat-row { margin-top: 18px; } .evidence { padding: 16px 20px 13px; }
+.num { font-size: 60px; margin: 12px 0 9px; } .evidence p { font-size: 16px; min-height: 68px; }
+.demo-link { padding: 12px 20px; } .bridge { padding: 14px 20px; margin-top: 16px; }
+.controls { margin-top: 12px; }
 }
-@media (max-width: 900px) { .stat-row { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 900px) { .stat-row { grid-template-columns: 1fr; } .evidence p { min-height: 0; } .bridge { align-items: flex-start; flex-direction: column; gap: 12px; } .bridge p { max-width: none; } .mast .fiction { display: none; } }
 </style></head>
 <body>
 <header class="mast"><a class="brand" href="./#webinar-1">Nine-67</a><span class="webinar-name">Your team has AI. Why is the work still manual?</span><small class="fiction">Published survey data · Sources below each figure</small></header>
 <main class="stats-stage">
-  <p class="kicker">What the 2026 research says</p>
-  <h1>Your team has AI. The work between people is still manual.</h1>
+  <p class="kicker">What the 2026 research shows</p>
+  <h1>Faster people. Still disconnected work.</h1>
+  <p class="intro">Two large surveys point to the gap our demo explores: individual AI gains still need team coordination.</p>
   <div class="stat-row">
-    <section class="stat"><div class="num pair">80%<small> vs </small>37%</div><p>say AI improved their own productivity. Only 37% see any impact on EBIT, flat from last year.</p><p class="means"><small>Why it matters here</small>People feel faster, but the P&amp;L doesn’t move. The gain gets lost between people, in handoffs like the one you’re about to see.</p><cite>McKinsey, <a href="https://fortune.com/2026/09/02/companies-getting-the-most-from-ai-rethinking-how-work-gets-done-cfo/" target="_blank" rel="noopener">The State of AI in 2026</a> · September 2026 · 1,719 respondents</cite></section>
-    <section class="stat"><div class="num pair">85%<small> vs </small>29%</div><p>of knowledge workers use AI at work, but only 29% have embedded it in their flow of work.</p><p class="means"><small>Why it matters here</small>Most AI sits next to the work, not inside it. A Copilot reply that never reaches the order is AI outside the flow of work.</p><cite>Atlassian, <a href="https://www.atlassian.com/blog/state-of-teams-2026" target="_blank" rel="noopener">State of Teams 2026</a> · April 2026 · 12,035 workers</cite></section>
-    <section class="stat"><div class="num">69%</div><p>say most AI-assisted work happens in private sessions, not in shared spaces.</p><p class="means"><small>Why it matters here</small>When AI work is private, nobody else sees what changed. That’s how a customer change stays in one inbox while the job runs from another system.</p><cite>Miro, <a href="https://miro.com/blog/state-of-intelligent-collaboration-2026/" target="_blank" rel="noopener">State of Intelligent Collaboration 2026</a> · November 2026 · 9,500+ respondents · vendor survey</cite></section>
+    <section class="stat">
+      <div class="evidence"><h2>01 · AI is helping people</h2><strong class="num">83%</strong><p>of respondents agree AI has made individuals more productive.</p><cite><a href="https://miro.com/blog/state-of-intelligent-collaboration-2026/" target="_blank" rel="noopener">Miro · State of Intelligent Collaboration ↗</a><br>November 2026 · 9,500+ leaders and employees</cite></div>
+      <div class="demo-link"><small>In the demo</small><p>Five employees use AI to complete their contributions faster.</p></div>
+    </section>
+    <section class="stat">
+      <div class="evidence"><h2>02 · The work stays separate</h2><strong class="num">69%</strong><p>say most AI-assisted work happens in private sessions rather than shared spaces.</p><cite><a href="https://miro.com/blog/state-of-intelligent-collaboration-2026/" target="_blank" rel="noopener">Miro · State of Intelligent Collaboration ↗</a><br>November 2026 · Same survey</cite></div>
+      <div class="demo-link"><small>In the demo</small><p>Their outputs sit in separate tools. Leah carries the updates between them.</p></div>
+    </section>
+    <section class="stat">
+      <div class="evidence"><h2>03 · Coordination still matters</h2><strong class="num">29%</strong><p>of knowledge workers have embedded AI in their flow of work, even as 85% use it at work.</p><cite><a href="https://www.atlassian.com/blog/state-of-teams-2026" target="_blank" rel="noopener">Atlassian · State of Teams ↗</a><br>April 2026 · 12,035 knowledge workers surveyed</cite></div>
+      <div class="demo-link"><small>In the demo</small><p>The proposal still needs aligned scope, pricing, terms, and approvals.</p></div>
+    </section>
   </div>
-  <p class="thesis">AI made each person faster. It didn’t make the company faster, because nobody connected the work between them.</p>
-  <p class="also"><strong>For the CEOs in the room:</strong> 50% of CEOs say rapid AI investment left them with disconnected, piecemeal technology. <cite>IBM Institute for Business Value, May 2025, 2,000 CEOs</cite></p>
-  <footer class="controls"><button type="button" id="back">Back</button><span id="counter">Opening</span><button type="button" id="next">See one order →</button></footer>
+  <section class="bridge" aria-label="From research to demonstration"><div><small>What we’ll demonstrate next</small><h2>Connect the work. Keep people in control.</h2></div><p>One client change moves through shared context, owner decisions, and coordinated updates.</p></section>
+  <p class="scope-note">Vendor-sponsored, self-reported surveys from different samples. They support the problem framing; the fictional demo illustrates an approach, not measured Nine-67 results.</p>
+  <footer class="controls"><button type="button" id="back">Back</button><span id="counter">Research → Demonstration</span><button type="button" id="next">See the proposal workflow →</button></footer>
 </main>
 <script>
 'use strict';
