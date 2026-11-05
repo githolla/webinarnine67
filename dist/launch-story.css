@@ -478,3 +478,64 @@ body[data-step="4"] .desk-note { display: block; }
   .read-row { opacity: 1; }
   .rewind { display: none; }
 }
+
+/* App-specific message surfaces retain the slide's reading scale. */
+.email, .native-window, .proposal, .handoff.reply { font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif; }
+.email { background: #fff; border-color: #d6d9df; }
+.mail-ribbon { display: flex; gap: 20px; padding: 7px 18px; background: #fafafa; border-bottom: 1px solid #e5e5e5; font-size: 11px; color: #444; }
+.mail-ribbon span { color: #666; }
+.recipient { display: block; color: #666; font-size: 11px; font-weight: 400; }
+.email .subject { font-family: inherit; font-weight: 600; }
+.email .reply.sent-email { background: #fff; border-top: 1px solid #e5e5e5; border-radius: 0; }
+.sent-email p { font-style: normal; }
+.copilot-note { display: flex; align-items: center; gap: 5px; margin-top: 8px; color: #777; font-size: 10px; }
+.copilot-note img { width: 14px; height: 14px; }
+.timeline { gap: 10px; }
+.timeline li:not(.ch-log) { padding: 0; border: 0; background: transparent; grid-template-columns: 108px minmax(0, 1fr); gap: 14px; }
+.native-window { overflow: hidden; border: 1px solid #d8dbe1; border-radius: 8px; box-shadow: 0 3px 10px #20203009; }
+.native-title { display: flex; align-items: center; gap: 7px; padding: 7px 12px; background: #f0f0f5; color: #292929; font-size: 12px; font-weight: 600; }
+.native-title img { width: 18px; height: 18px; object-fit: contain; }
+.native-title > span { margin-left: auto; font-size: 11px; font-weight: 400; }
+.channel-title { display: flex; align-items: center; gap: 20px; padding: 7px 12px; border-bottom: 1px solid #e3e3e8; background: #fff; font-size: 13px; font-weight: 600; }
+.channel-title span { font-size: 11px; color: #656575; font-weight: 400; }
+.teams-window { background: #f5f5f5; }
+.teams-post { display: flex; align-items: flex-start; gap: 10px; margin: 10px; padding: 10px; background: #fff; border: 1px solid #e5e5ea; border-radius: 5px; }
+.native-avatar { display: grid; place-items: center; flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; background: #e8dff5; color: #514064; font-size: 11px; font-weight: 600; }
+.timeline .native-meta { display: flex; align-items: baseline; gap: 9px; font-size: 12px; margin-bottom: 4px; }
+.native-meta small { font-size: 10px; color: #777; }
+.thread-reply { display: block; margin-top: 8px; color: #6264a7; font-size: 11px; }
+.sms-window { max-width: 350px; background: #fff; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+.sms-header { position: relative; display: grid; justify-items: center; gap: 3px; padding: 7px; background: #f5f5f7; border-bottom: 1px solid #ddd; font-size: 10px; }
+.back-chevron { position: absolute; left: 14px; top: 10px; color: #007aff; font-size: 30px; }
+.contact-avatar { display: grid; place-items: center; width: 27px; height: 27px; border-radius: 50%; background: #92959e; color: white; font-size: 10px; }
+.sms-content { padding: 8px 14px 12px; }
+.sms-content > small { display: block; text-align: center; font-size: 9px; color: #777; line-height: 1.4; margin-bottom: 6px; }
+.timeline .ch-sms .bubble { max-width: 90%; padding: 7px 12px; font-size: 15px; font-weight: 400; }
+.outlook-window { background: white; }
+.outlook-window .native-title { background: #0f6cbd; color: #fff; }
+.compact-mail { padding: 10px 14px; }
+.timeline .mail-subject { font-size: 15px; font-weight: 600; }
+.importance { display: block; padding-block: 4px; color: #a4262c; font-size: 10px; }
+.compact-sender { display: flex; gap: 8px; align-items: center; margin: 4px 0 8px; font-size: 12px; }
+.compact-sender small { display: block; font-size: 10px; color: #666; }
+.timeline .ch-mail .compact-mail > p:last-child { font-size: 15px; font-weight: 400; }
+.proposal { border-top: 1px solid #d8dbe1; background: #fff; }
+.proposal > .native-title { margin: -16px -20px 0; }
+.proposal > .channel-title { margin: 0 -20px 14px; }
+.proposal .eyebrow.via { font-size: 10px; text-transform: none; letter-spacing: 0; color: #666; }
+.proposal h2 { font-family: inherit; font-weight: 600; }
+.proposal .approve { background: #5b5fc7; border-color: #5b5fc7; }
+.handoff.reply { display: block; padding: 0; background: #fff; border: 1px solid #d8dbe1; border-radius: 6px; overflow: hidden; }
+.handoff.reply > .tick { display: none; }
+.handoff.reply .mail-line, .handoff.reply .recipient, .handoff.reply .message-text { margin: 8px 12px; }
+.handoff.reply .mail-line { font-size: 14px; }
+.handoff.reply .message-text { font-style: normal; }
+.file-chip { display: inline-block; margin: 0 12px; padding: 5px 8px; border: 1px solid #ddd; background: #fafafa; font-size: 11px; }
+@media (min-width: 901px) { .fallout { grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); } }
+@media (max-width: 900px) { .timeline li:not(.ch-log) { grid-template-columns: 1fr; gap: 6px; } .timeline time br { display: none; } }
+@media (min-height: 801px) { .proposal > .native-title { margin: -22px -26px 0; } .proposal > .channel-title { margin-inline: -26px; } }
+@media (min-width: 901px) { .deck .scene { min-height: 0; overflow-y: auto; flex-shrink: 1; } }
+.email .sent-email { grid-template-columns: 32px minmax(0, 1fr); }
+.email .sent-email .avatar { width: 30px; height: 30px; font-size: 12px; }
+.email .sent-email .copilot-note img { width: 14px; height: 14px; }
+.handoff.reply .native-title img { width: 18px; height: 18px; margin: 0; }
