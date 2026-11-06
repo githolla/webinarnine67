@@ -1,46 +1,58 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>The work is still manual · Nine-67</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&display=swap"><link rel="stylesheet" href="launch-story.css"><script src="site.js"></script>
-<style>
-.stats-stage { max-width: 1280px; margin: auto; padding: clamp(28px, 6vh, 64px) var(--edge) 24px; }
-.stats-stage h1 { font-family: var(--serif); font-size: clamp(34px, 4.1vw, 56px); line-height: 1.12; letter-spacing: -.03em; margin-top: 12px; }
-.stat-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 34px; margin: 40px 0 32px; }
-.stat { border-top: 1px solid var(--line); padding-top: 22px; }
-.num { display: block; font-family: var(--serif); font-size: clamp(64px, 6.4vw, 88px); line-height: 1; letter-spacing: -.045em; }
-.num.pair { font-size: clamp(42px, 4.2vw, 58px); min-height: 88px; display: flex; align-items: center; gap: 10px; white-space: nowrap; }
-.num small { font: 20px/1.2 -apple-system, sans-serif; letter-spacing: 0; }
-.stat h2 { font-size: 23px; line-height: 1.25; font-weight: 650; margin: 18px 0 10px; }
-.stat p { font-size: 17px; line-height: 1.5; color: var(--muted); max-width: 29ch; }
-.stat cite { display: block; margin-top: 16px; font-style: normal; font-size: 12px; }
-.stat cite a { color: var(--muted); text-underline-offset: 3px; }
-.bridge { border-left: 3px solid var(--forest); padding: 12px 20px; background: #e7ede3; font-size: clamp(19px, 1.8vw, 25px); line-height: 1.4; }
-.scope-note { color: var(--muted); font-size: 11px; margin-top: 15px; }
-.controls { margin-top: 24px; }
-@media (min-width: 801px) and (max-height: 740px) { .stats-stage { padding-top: 24px; } .stat-row { margin: 28px 0 24px; } .num { font-size: 68px; } }
-@media (max-width: 800px) { .stat-row { grid-template-columns: 1fr; gap: 24px; } .stat p { max-width: none; } .mast .fiction { display: none; } }
-</style><link rel="stylesheet" href="editorial-theme.css"></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>People are faster. The work isn't connected. · Nine-67</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;650;700;750&display=swap"><link rel="stylesheet" href="launch-story.css"><script src="site.js"></script></head>
 <body>
-<header class="mast"><a class="brand" href="./#webinar-1">Nine-67</a><span class="webinar-name">Your team has AI. Why is the work still manual?</span><small class="fiction"></small></header>
-<main class="stats-stage">
-  <p class="kicker">2026 research · The gap we’re about to show</p>
-  <h1>AI speeds up tasks.<br>Who connects the work?</h1>
-  <div class="stat-row">
-    <section class="stat"><strong class="num">83%</strong><h2>People get more done.</h2><p>83% of respondents say AI makes individuals more productive.</p><cite><a href="https://miro.com/blog/state-of-intelligent-collaboration-2026/" target="_blank" rel="noopener">Miro · 2026 survey ↗</a></cite></section>
-    <section class="stat"><strong class="num">69%</strong><h2>AI work happens separately.</h2><p>69% say most AI work happens in private sessions: separate AI conversations rather than shared workspaces.</p><cite><a href="https://miro.com/blog/state-of-intelligent-collaboration-2026/" target="_blank" rel="noopener">Miro · 2026 survey ↗</a></cite></section>
-    <section class="stat"><strong class="num pair">85% <small>/</small> 29%</strong><h2>Using AI is only the start.</h2><p>85% use AI at work. Only 29% have embedded it into their workflow. Leah’s Friday shows the work still in between.</p><cite><a href="https://www.atlassian.com/blog/state-of-teams-2026" target="_blank" rel="noopener">Atlassian · Knowledge workers, 2026 ↗</a></cite></section>
-  </div>
-  <p class="bridge">First, see how six people actually use AI. Then see what reaches their CEO.</p>
-  <p class="scope-note">Self-reported vendor surveys with different respondent groups. The demo illustrates the coordination gap; it is not measured Nine-67 performance.</p>
-  <footer class="controls"><button type="button" id="back">Back</button><span id="counter">Research → Demo</span><button type="button" id="next">Start the demo →</button></footer>
-</main>
+<div class="deck">
+  <header class="topbar"><a class="wordmark" href="./">Nine-67</a><span class="topbar-meta">Research · 2026</span></header>
+  <main class="research">
+    <div><p class="eyebrow">What the 2026 research says</p><h1>People are faster. The work isn't connected.</h1></div>
+    <div class="research-cards">
+      <section class="rcard">
+        <p class="rcard-top">People get more done.</p>
+        <strong class="hero-num">83%</strong>
+        <h2 class="claim">say AI makes them more productive</h2>
+        <div class="meter win" role="img" aria-label="83 percent of respondents"><i style="width:83%"></i></div>
+        <div class="at-parkside"><p>At Parkside:</p><ul><li class="ptok v-win"><i aria-hidden="true">D</i><span>Dana</span></li><li class="ptok v-win"><i aria-hidden="true">B</i><span>Ben</span></li><li class="ptok v-win"><i aria-hidden="true">P</i><span>Priya</span></li><li class="ptok v-win"><i aria-hidden="true">N</i><span>Nina</span></li></ul></div>
+        <p class="source"><a href="https://miro.com/blog/state-of-intelligent-collaboration-2026/" target="_blank" rel="noopener">Miro, 2026 ↗</a></p>
+      </section>
+      <section class="rcard">
+        <p class="rcard-top">Most AI work happens privately.</p>
+        <strong class="hero-num">69%</strong>
+        <h2 class="claim">of AI work happens in private sessions</h2>
+        <div class="meter stuck" role="img" aria-label="69 percent say most AI work happens in private sessions"><i style="width:69%"></i></div>
+        <div class="at-parkside"><p>At Parkside:</p><ul><li class="ptok v-diff"><i aria-hidden="true">M</i><span>Marcus</span></li><li class="ptok v-win"><i aria-hidden="true">B</i><span>Ben</span></li></ul></div>
+        <p class="source"><a href="https://miro.com/blog/state-of-intelligent-collaboration-2026/" target="_blank" rel="noopener">Miro, 2026 ↗</a></p>
+      </section>
+      <section class="rcard climax">
+        <p class="rcard-top">85% use AI at work.</p>
+        <strong class="hero-num stuck">29%</strong>
+        <h2 class="claim">embed it in workflows</h2>
+        <div class="bars" role="img" aria-label="85 percent use AI at work; 29 percent embed it in workflows; the 56 point difference is the gap">
+          <div><i class="use">85% use AI</i></div>
+          <div><i class="embed">29%</i><i class="gap"><b>the gap</b></i></div>
+        </div>
+        <div class="at-parkside"><p>At Parkside, still by hand:</p><ul><li class="ptok v-glue"><i aria-hidden="true">L</i><span>Leah</span></li></ul></div>
+        <p class="source"><a href="https://www.atlassian.com/blog/state-of-teams-2026" target="_blank" rel="noopener">Atlassian, 2026 ↗</a></p>
+      </section>
+    </div>
+    <div class="band"><div><strong>Individual wins are real. The work between people is still manual.</strong><span>So we sat beside nine people at Parkside →</span></div><a class="btn light" id="next" href="live.html#slide-1">Start the demo →</a></div>
+    <p class="method">Separate self-reported surveys, not one funnel. Parkside is illustrative, not a measured case study.</p>
+  </main>
+</div>
 <script>
 'use strict';
-document.getElementById('back').addEventListener('click', () => location.assign('./#webinar-1'));
-document.getElementById('next').addEventListener('click', () => location.assign('live.html#slide-1'));
+function fitDeck() {
+  const s = Math.min(innerWidth / 1920, innerHeight / 1080), root = document.documentElement.style;
+  root.setProperty('--s', s);
+  root.setProperty('--dx', (innerWidth - 1920 * s) / 2 + 'px');
+  root.setProperty('--dy', (innerHeight - 1080 * s) / 2 + 'px');
+}
+fitDeck();
+addEventListener('resize', fitDeck);
 document.addEventListener('keydown', event => {
   if (event.repeat || event.ctrlKey || event.metaKey || event.altKey) return;
-  if (event.key === 'ArrowRight') { event.preventDefault(); location.assign('live.html#slide-1'); }
-  if (event.key === 'ArrowLeft') { event.preventDefault(); location.assign('./#webinar-1'); }
+  if (['ArrowRight', 'PageDown', ' '].includes(event.key)) { event.preventDefault(); location.assign('live.html#slide-1'); }
+  if (['ArrowLeft', 'PageUp'].includes(event.key)) { event.preventDefault(); location.assign('./'); }
 });
 </script>
 </body></html>
