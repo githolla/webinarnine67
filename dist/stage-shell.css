@@ -458,3 +458,23 @@ p.sh-tie{display:block;margin:auto 0 0;padding-top:20px;font-size:28px;line-heig
 .dn-snap{margin-top:10px}
 .dn-claude header span{display:inline-flex;align-items:center;gap:6px}
 .dn-claude header span img{width:18px;height:18px}
+/* Claude-created PowerPoint */
+.dn-pptx{border-radius:14px;border:1px solid #e8e4da;background:#fff;overflow:hidden;box-shadow:0 6px 18px #0e17260f}
+.dn-file{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid #f0ece3;background:#fbfaf7}
+.dn-file img{width:30px;height:30px}
+.dn-file b{display:block;font-size:18px;color:#1f1e1d}
+.dn-file span{display:block;font-size:14px;color:#6b6a63}
+.dn-file em{margin-left:auto;font-style:normal;font-size:14px;font-weight:700;color:#c43e1c;border:1px solid #f1c4b5;padding:4px 10px;border-radius:8px;background:#fff}
+.dn-claude .dn-pptx .dn-slide{margin:14px 16px 16px;border-radius:6px;border:1px solid #e5e5e5;border-top:6px solid #c43e1c;box-shadow:0 8px 22px #0e172614;aspect-ratio:16/9;padding:18px 24px}
+.dn-claude .dn-pptx .dn-slide h3{font-size:30px;margin:2px 0 10px}
+.dn-claude .dn-pptx .dn-slide strong{font-size:30px}
+.dn-claude .dn-pptx .dn-slide li{padding:8px 12px}
+.dn-claude .dn-pptx .dn-slide li span{font-size:16px}
+.dn-claude .dn-pptx .dn-status{margin-top:8px;font-size:16px}
+.dn-ask{font-size:18px}
+.dn-claude .dn-pptx .dn-slide{aspect-ratio:auto;padding:16px 22px 14px}
+.dn-claude .dn-pptx .dn-slide ul{grid-template-columns:repeat(4,1fr);flex:none}
+.dn-claude .dn-pptx .dn-slide li{padding:10px 12px;justify-content:flex-start}
+.dn-claude .dn-pptx .dn-slide strong{font-size:32px}
+.dn-claude .dn-pptx .dn-slide li span{font-size:15px}
+.dn-claude .dn-chat{gap:12px;padding:16px 20px}
