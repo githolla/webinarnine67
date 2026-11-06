@@ -45,3 +45,4 @@
 .cover-qr span{display:block;font-size:18px;color:var(--muted,#475467);margin-top:2px}
 .start-row{margin-top:28px}.cover-qr img{width:112px;height:112px}
 .presenter figcaption em{display:block;font-style:normal;font-size:16px;font-weight:700;color:var(--accent,#2f6bff);margin-top:2px}
+.cover-qr{background:none;border:0;box-shadow:none;padding:0}.cover-qr img{mix-blend-mode:multiply}
