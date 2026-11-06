@@ -18,7 +18,7 @@ test('all active scenes and optional details render valid local assets',()=>{
   for(const match of html.matchAll(/src="(assets\/[^\"]+)"/g))assert(existsSync('dist/'+match[1]),match[1]);
  }
  for(const key of ['sam','dana','build','exceptions','assessment','about'])assert.doesNotMatch(renderDetail(initial,key).html,/undefined|NaN/);
- const html=readFileSync('dist/live.html','utf8');assert.match(html,/event-demo\.mjs/);assert.doesNotMatch(html,/proposal-demo\.mjs/);
+ assert(existsSync('dist/event-demo.mjs'));
 });
 test('revision changes flow through connected quantities, total and customer confirmation',()=>{
  let state=approve(initialState());state=transition(state,{type:'FAULT',value:'revision'});state=transition(state,{type:'RELEASE'});

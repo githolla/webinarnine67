@@ -53,7 +53,7 @@ test('all five scenes and inspectable conversations render with local assets',()
  for(const owner of owners){const detail=renderDetail(initialState(),`ai:${owner.id}`);assert.match(detail.html,new RegExp(owner.file.replace('.','\\.')));assert.match(detail.html,/Illustrative conversation/);assert.equal([...detail.html.matchAll(/class="chat-turn/g)].length,4);}
  assert.equal(primaryAction({...setup(),scene:3}).action,'run');
  assert.equal(primaryAction({...approveAll(setup()),scene:3}).action,'release');
- const html=readFileSync('dist/live.html','utf8');assert.equal([...html.matchAll(/data-scene="/g)].length,5);
+ assert(existsSync('dist/proposal-demo.mjs'));
 });
 
 

@@ -1,15 +1,21 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>One Customer Change. Three AI Tools. · Nine-67</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&display=swap"><link rel="stylesheet" href="event.css"><script src="site.js"></script><script type="module" src="event-demo.mjs"></script></head>
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>We Bought Copilot. Then We Asked People to Show Us Last Tuesday. · Nine-67</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&display=swap">
+<link rel="stylesheet" href="company.css"><script src="site.js"></script><script type="module" src="company-demo.mjs"></script>
+</head>
 <body>
-<header class="mast"><a class="brand" href="./#webinar-1">Nine-67</a><span>Your team has AI. Why is the work still manual?</span><button data-detail="about" class="text-button">Illustrative demo ⓘ</button></header>
-<main id="app">
-<nav class="progress" aria-label="Story progress"><button data-scene="0">01 <span>The request</span></button><button data-scene="1">02 <span>AI at work</span></button><button data-scene="2">03 <span>Still waiting</span></button><button data-scene="3">04 <span>Connected work</span></button><button data-scene="4">05 <span>Ready</span></button></nav>
-<header class="heading"><h1 id="title" tabindex="-1"></h1><p id="lead"></p></header>
-<section class="stage" id="stage" aria-label="Demonstration"></section>
-<footer class="footer"><button id="back" class="text-button">← Back</button><span id="counter"></span><button id="reset" class="text-button">Restart</button><button data-detail="build" class="text-button">What we build</button><button id="notes" class="text-button" aria-pressed="false">Speaker cue</button><small class="key-hint">Space / →</small><button id="next" class="primary">Continue →</button></footer>
-<aside id="presenter-cue" aria-label="Presenter cue"></aside><p id="announcement" class="sr-only" role="status" aria-live="polite"></p>
+<header class="mast"><a class="brand" href="./#webinar-1">Nine-67</a><span>Your team has AI. Why is the work still manual?</span><button class="text-button" data-detail="about">Fictional company · Illustrative demo ⓘ</button></header>
+<main id="company-app">
+<nav class="story-progress" aria-label="Story progress"><button data-scene="0">01 <span>The CEO</span></button><button data-scene="1">02 <span>Last Tuesday</span></button><button data-scene="2">03 <span>What reaches her</span></button><button data-scene="3">04 <span>Friday afternoon</span></button><button data-scene="4">05 <span>Discover</span></button><button data-scene="5">06 <span>Connect</span></button><button data-scene="6">07 <span>Start here</span></button></nav>
+<header class="page-heading"><h1 id="title" tabindex="-1"></h1><p id="lead"></p></header>
+<section id="stage" class="stage" aria-label="Interactive company walkthrough"></section>
+<footer class="controls"><button id="back" class="text-button">← Back</button><span id="counter"></span><button id="reset" class="text-button">Restart</button><button id="notes" class="text-button" aria-pressed="false">Speaker cue</button><button data-detail="research" class="text-button">Research</button><small class="key-hint">Space / →</small><button id="next" class="primary">Continue →</button></footer>
+<aside id="presenter-cue" aria-label="Speaker cue"></aside><p id="announcement" class="sr-only" role="status" aria-live="polite"></p>
 </main>
-<dialog id="detail-dialog"><header class="modal-header"><h2 id="detail-title"></h2><button id="close-detail" aria-label="Close details">✕</button></header><div class="modal-body" id="detail-content"></div></dialog>
+<dialog id="detail-dialog"><header class="modal-header"><h2 id="detail-title"></h2><button id="close-detail" aria-label="Close details">✕</button></header><div id="detail-content" class="modal-body"></div></dialog>
 </body>
 </html>

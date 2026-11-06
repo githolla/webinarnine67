@@ -7,6 +7,7 @@
 .stat-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 34px; margin: 40px 0 32px; }
 .stat { border-top: 1px solid var(--line); padding-top: 22px; }
 .num { display: block; font-family: var(--serif); font-size: clamp(64px, 6.4vw, 88px); line-height: 1; letter-spacing: -.045em; }
+.num.pair { font-size: clamp(42px, 4.2vw, 58px); min-height: 88px; display: flex; align-items: center; gap: 10px; white-space: nowrap; }
 .num small { font: 20px/1.2 -apple-system, sans-serif; letter-spacing: 0; }
 .stat h2 { font-size: 23px; line-height: 1.25; font-weight: 650; margin: 18px 0 10px; }
 .stat p { font-size: 17px; line-height: 1.5; color: var(--muted); max-width: 29ch; }
@@ -26,9 +27,9 @@
   <div class="stat-row">
     <section class="stat"><strong class="num">83%</strong><h2>People get more done.</h2><p>83% of respondents say AI makes individuals more productive.</p><cite><a href="https://miro.com/blog/state-of-intelligent-collaboration-2026/" target="_blank" rel="noopener">Miro · 2026 survey ↗</a></cite></section>
     <section class="stat"><strong class="num">69%</strong><h2>AI work happens separately.</h2><p>69% say most AI work happens in private sessions: separate AI conversations rather than shared workspaces.</p><cite><a href="https://miro.com/blog/state-of-intelligent-collaboration-2026/" target="_blank" rel="noopener">Miro · 2026 survey ↗</a></cite></section>
-    <section class="stat"><strong class="num">87%</strong><h2>Little time to coordinate.</h2><p>87% of knowledge workers say they lack the time or capacity to coordinate while everyone focuses on execution.</p><cite><a href="https://www.atlassian.com/blog/state-of-teams-2026" target="_blank" rel="noopener">Atlassian · Knowledge workers, 2026 ↗</a></cite></section>
+    <section class="stat"><strong class="num pair">85% <small>/</small> 29%</strong><h2>Using AI is only the start.</h2><p>85% use AI at work. Only 29% have embedded it into their workflow. Leah’s Friday shows the work still in between.</p><cite><a href="https://www.atlassian.com/blog/state-of-teams-2026" target="_blank" rel="noopener">Atlassian · Knowledge workers, 2026 ↗</a></cite></section>
   </div>
-  <p class="bridge">The gap: getting your own task done is different from getting the whole job finished.</p>
+  <p class="bridge">First, see how six people actually use AI. Then see what reaches their CEO.</p>
   <p class="scope-note">Self-reported vendor surveys with different respondent groups. The demo illustrates the coordination gap; it is not measured Nine-67 performance.</p>
   <footer class="controls"><button type="button" id="back">Back</button><span id="counter">Research → Demo</span><button type="button" id="next">Start the demo →</button></footer>
 </main>
