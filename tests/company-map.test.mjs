@@ -36,10 +36,10 @@ test('connected view reveals only the selected improvement', () => {
     assert.match(html, new RegExp(`data-build="${id}"`));
     assert.match(html, new RegExp(`<b>${title.replace('+','\\+')}</b>`));
     assert.equal([...html.matchAll(/class="flow-step-number"/g)].length, 4);
-    assert.equal([...html.matchAll(/class="selected-improvement"/g)].length, 1);
+    assert.equal([...html.matchAll(/class="map-payoff selected-improvement"/g)].length, 1);
     assert.doesNotMatch(html, /undefined|NaN/);
   }
-  assert.doesNotMatch(renderCompanyMap({networkMode:'fragmented'}), /class="selected-improvement"/);
+  assert.doesNotMatch(renderCompanyMap({networkMode:'fragmented'}), /class="map-payoff selected-improvement"/);
   assert.match(renderCompanyMap({networkMode:'connected',improvement:'unknown'}), /data-build="priya"/);
 });
 

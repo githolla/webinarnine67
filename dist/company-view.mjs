@@ -9,7 +9,7 @@ const atlassian='https://www.atlassian.com/blog/state-of-teams-2026';
 export const scenes=[
  {title:'What Dana thinks is happening.',lead:'Parkside · A fictional 150-person company · Everyone has a Copilot license.'},
  {title:'Individual progress. A company-wide gap.',lead:'Three research findings explain why access alone is not the whole story.'},
- {title:'Meet the company.',lead:'Nine people. Different kinds of AI use. Click a person to sit beside them.'},
+ {title:'Same tools. Very different work.',lead:'Nine people. Different kinds of AI use. Click a person to sit beside them.'},
  {title:'See what people have figured out.',lead:'Explore Ben’s forecast review, Priya’s monthly reporting tool and Nina’s department bot.'},
  {title:'The same access. Very different needs.',lead:'Ava needs context. Elena needs a usable workflow. Marcus needs clarity and a way to share his technique.'},
  {title:'See the work between departments.',lead:'Leah gathers, compares and reconciles the updates before Dana ever opens her briefing.'},
