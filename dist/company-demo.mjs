@@ -1,16 +1,17 @@
 import { initialState, transition, people } from './company-model.mjs';
-import { renderStack, renderCrowd, scenes, cues, renderScene, renderDetail, primaryAction, rosterStrip, tourPeople, discoveryPeople } from './company-view.mjs';
-import { renderHow } from './company-how.mjs';
+import { renderStack, renderCrowd, scenes, cues, renderScene, renderDetail, primaryAction, rosterStrip, tourPeople, discoveryPeople, viewCopy } from './company-view.mjs';
+import { renderBuildMap, renderWatch, renderPlan, fixCopy, fixCues, WATCH_LAST } from './company-fix.mjs';
+import { mapHeading } from './company-map.mjs';
 import { tourStops, enterTourStop, firstStopForScene } from './company-tour.mjs';
 import { workspaceHeading } from './company-workspaces.mjs';
-let guided=true;let tourIndex=0;let mapReturn=null;
+let guided=true;let tourIndex=0;let mapReturn=null;let fixStep=0;
 let state=initialState();let detailKey='';let detailTrigger;let playback=[];let idleTimer;
 const $=id=>document.getElementById(id);const dialog=$('detail-dialog');
 const acts=['Belief','Evidence','The people','The fix','Connected'];
 const actStarts=[0,1,3,9,11];
 const actOf=i=>i===0?0:i<3?1:i<9?2:i<11?3:4;
 const sceneAct=[0,1,2,2,2,2,3,3,4];
-const nextNames={0:'The research',1:'Parkside’s AI stack',2:'All 150 people',3:'Nine of them',8:'How it works',9:'See it work',10:'The connected company',11:'Where to start'};
+const nextNames={0:'The research',1:'Parkside’s AI stack',2:'All 150 people',3:'Nine of them',8:'What we build',9:'Watch it happen',10:'The connected company',11:'How we build it'};
 const tourView=()=>guided&&!state.workspace?tourStops[tourIndex]?.view:undefined;const onStack=()=>tourView()==='stack';
 const tourWorkspaces=tourStops.filter(stop=>stop.workspace).map(stop=>stop.workspace);
 const buildOrder=['priya','elena','nina'];
@@ -60,15 +61,16 @@ function tourAction(){
  return {label:`Next: ${nextName(tourIndex)} →`,action:'tour-next'};
 }
 function goTour(index){
- stopPlayback();tourIndex=Math.max(0,Math.min(tourStops.length-1,index));
+ stopPlayback();fixStep=0;tourIndex=Math.max(0,Math.min(tourStops.length-1,index));
  state=enterTourStop(state,tourIndex);render(true);
 }
 function heading(){
- if(tourView()==='how')return {eyebrow:'The fix',title:'Everyone keeps their AI. The results connect.',lead:'Nine-67 builds the connections between the tools people already use.'};
- if(tourView()==='crowd')return {eyebrow:'The company',title:'150 people. Most use AI. Not all.',lead:'Each dot is a person, colored by the AI they use most. Close to the 85% in the research.'};
- if(onStack())return {eyebrow:'The company',title:'Parkside’s AI stack. Approved vs. actually used.',lead:'150 people. Microsoft 365 and Copilot for everyone. Then everything else.'};
+ const view=tourView();
+ if(fixCopy[view])return fixCopy[view];
+ if(view==='crowd'||view==='stack'){const {eyebrow,title,lead}=viewCopy[view];return {eyebrow,title,lead};}
+ if(state.scene===2&&state.networkMode==='connected')return {eyebrow:guided?'The fix · 3 of 3':'',...mapHeading(state)};
  if(state.workspace)return {eyebrow:guided&&tourWorkspaces.includes(state.workspace)?`Meet the people · ${tourWorkspaces.indexOf(state.workspace)+1} of ${tourWorkspaces.length}`:`The nine · Person ${tourPeople.indexOf(state.workspace)+1} of 9`,title:workspaceHeading(state),lead:''};
- if(state.scene===2)return state.networkMode==='connected'?{eyebrow:'',title:'Same seven AI tools. Now the work connects.',lead:'We don’t replace anyone’s AI. We connect the work between them.'}:{eyebrow:'',title:scenes[2].title,lead:guided?'Nine of the 150, with the AI each one uses. We’ll sit beside the four outlined.':scenes[2].lead};
+ if(state.scene===2)return {eyebrow:'',title:scenes[2].title,lead:guided?'Nine of the 150, with the AI each one uses. We’ll sit beside the four outlined.':scenes[2].lead};
  if(state.scene===6){const id=discoveryOrder.includes(state.discovery)?state.discovery:'reuse';return {eyebrow:`What discovery finds · ${discoveryOrder.indexOf(id)+1} of 3`,title:discoveryTitles[id],lead:''};}
  if(state.scene===7){const lifted=$('stage').querySelector('[data-stage-title], .build-heading h2');if(lifted)lifted.classList.add('sh-lifted');return {eyebrow:guided?'The fix':`Discover & build · Build ${Math.max(0,buildOrder.indexOf(state.improvement))+1} of 3`,title:lifted?.textContent||scenes[7].title,lead:''};}
  return {eyebrow:'',title:scenes[state.scene].title,lead:scenes[state.scene].lead};
@@ -88,7 +90,7 @@ function roster(){
 function armIdle(){clearTimeout(idleTimer);document.body.classList.remove('controls-idle');if(guided&&tourIndex===tourStops.length-1)idleTimer=setTimeout(()=>document.body.classList.add('controls-idle'),4000);}
 function render(navigate=false){
  document.body.classList.toggle('guided-tour',guided);document.body.classList.toggle('is-tour',guided);
- $('stage').innerHTML=onStack()?renderStack():tourView()==='crowd'?renderCrowd():tourView()==='how'?renderHow():renderScene(state);
+ $('stage').innerHTML=onStack()?renderStack():tourView()==='crowd'?renderCrowd():tourView()==='build'?renderBuildMap():tourView()==='watch'?renderWatch(fixStep):tourView()==='plan'?renderPlan():renderScene(state);
  if(guided)markTourFocus();
  const head=heading();
  $('eyebrow').textContent=head.eyebrow;$('eyebrow').hidden=!head.eyebrow;$('title').textContent=head.title;$('lead').textContent=head.lead;$('lead').hidden=!head.lead;
@@ -100,7 +102,7 @@ function render(navigate=false){
  const action=tourAction();$('next').textContent=action.label;$('next').dataset.action=action.action;$('next').disabled=false;$('next').title=action.label;
  $('hint').hidden=action.action!=='build-choose';
  $('back').disabled=guided?tourIndex===0:state.scene===0;$('counter').textContent=guided?`${tourIndex+1} / ${tourStops.length}`:`${state.scene+1} / ${scenes.length}`;
- $('presenter-cue').textContent=tourView()==='how'?'Josh: Answer the question before they ask it. Nobody switches tools. We take the finished result, a person reviews it, and it lands in the next person’s tool with an owner and a date. Next: watch it happen.':tourView()==='crowd'?'Josh: Zoom out to the whole company. Most people use something. Seven different tools, and some people none at all. Then we follow nine of them.':onStack()?'Josh: This is how most companies look now. One official rollout, then department bots and personal tools nobody tracks. Next: who uses what.':cues[state.scene];document.body.dataset.scene=String(state.scene);document.body.dataset.stop=guided?String(tourIndex+1):'';
+ $('presenter-cue').textContent={stack:viewCopy.stack.cue,crowd:viewCopy.crowd.cue,build:fixCues.build,watch:fixCues.watch[fixStep],plan:fixCues.plan}[tourView()]??(state.scene===2&&state.networkMode==='connected'?fixCues.connected:cues[state.scene]);document.body.dataset.scene=String(state.scene);document.body.dataset.stop=guided?String(tourIndex+1):'';
  if(navigate){history.replaceState(null,'',guided?`#stop-${tourIndex+1}`:`#slide-${state.scene+1}`);$('title').focus({preventScroll:true});window.scrollTo(0,0);}
  if(detailKey)updateDetail();$('announcement').textContent=head.title||'Dana’s view: “We gave everyone AI. I thought we were in pretty good shape.”';
  armIdle();
@@ -150,6 +152,7 @@ document.addEventListener('click',event=>{
  if(b.id==='back')return goBack();
  if(b.id==='reset'){stopPlayback();return dispatch({type:'RESET'});}
  if(b.id==='notes'){document.body.classList.toggle('show-notes');b.setAttribute('aria-pressed',String(document.body.classList.contains('show-notes')));return;}
+ if(b.dataset.fixStep){fixStep=Math.min(WATCH_LAST,Number(b.dataset.fixStep));return render();}
  if(b.dataset.action)act(b.dataset.action,b);
 });
 document.addEventListener('click',()=>{if(!dialog.open&&document.activeElement instanceof HTMLElement&&document.activeElement!==document.body)document.activeElement.blur();});
@@ -164,7 +167,7 @@ document.addEventListener('keydown',event=>{
 });
 addEventListener('mousemove',armIdle);addEventListener('keydown',armIdle,true);
 dialog.addEventListener('close',()=>{detailKey='';if(!guided&&detailTrigger?.isConnected)return detailTrigger.focus({preventScroll:true});if(document.activeElement instanceof HTMLElement)document.activeElement.blur();});
-function followHash(){stopPlayback();const stop=location.hash.match(/^#stop-(\d+)/);const slide=location.hash.match(/^#slide-(\d+)$/);
+function followHash(){stopPlayback();fixStep=0;const stop=location.hash.match(/^#stop-(\d+)/);const slide=location.hash.match(/^#slide-(\d+)$/);
  if(stop&&guided){tourIndex=Math.max(0,Math.min(tourStops.length-1,Number(stop[1])-1));state=enterTourStop(state,tourIndex);return render();}
  const scene=slide?Number(slide[1])-1:0;if(guided){tourIndex=firstStopForScene(scene);state=enterTourStop(state,tourIndex);}else state=transition(state,{type:'SCENE',index:scene});render();}
 window.addEventListener('hashchange',followHash);followHash();

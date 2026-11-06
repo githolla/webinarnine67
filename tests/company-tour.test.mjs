@@ -4,6 +4,7 @@ import { initialState, people } from '../dist/company-model.mjs';
 import { tourStops, enterTourStop, firstStopForScene } from '../dist/company-tour.mjs';
 import { workspaceStories } from '../dist/company-workspaces.mjs';
 import { renderScene } from '../dist/company-view.mjs';
+import { renderWatch, renderBuildMap, renderPlan, fixCopy, fixCues, WATCH_LAST } from '../dist/company-fix.mjs';
 
 test('guided path shows one person per verdict with their work already visible',()=>{
  let state=initialState();const seen=[];
@@ -15,12 +16,30 @@ test('guided path shows one person per verdict with their work already visible',
  assert.deepEqual(seen,['priya','marcus','elena','leah']);
  assert(people.every(person=>workspaceStories[person.id]),'every employee keeps a workspace for explore mode');
 });
-test('research follows the opening and connected graph concludes the builds',()=>{
+test('research follows the opening and connected graph follows the fix',()=>{
  assert.equal(tourStops[1].scene,1);
+ assert.deepEqual(tourStops.map(s=>s.view).filter(Boolean),['stack','crowd','build','watch','plan']);
  const connected=tourStops.findIndex(stop=>stop.networkMode==='connected');
- assert(connected>tourStops.findIndex(stop=>stop.improvement==='nina'&&stop.scene===7));
+ assert(connected>tourStops.findIndex(stop=>stop.view==='watch'));
  assert.equal(enterTourStop(initialState(),connected).networkMode,'connected');
- assert.equal(tourStops.at(-1).scene,8);
+ assert.equal(tourStops.at(-1).scene,8);assert.equal(tourStops.at(-1).view,'plan');
+});
+test('fix screens show what gets built, where, and how, with no invented numbers',()=>{
+ const outputs=[];
+ for(let s=0;s<=WATCH_LAST;s++){
+  const html=renderWatch(s);outputs.push(html);
+  assert.doesNotMatch(html,/undefined|NaN|—/);
+  assert.equal(/data-step-forward/.test(html),s<WATCH_LAST);
+ }
+ const last=outputs.at(-1);
+ for(const id of ['HF-01','REC-07','T-41','CALL-12','Leah to confirm'])assert.match(last,new RegExp(id));
+ assert.doesNotMatch(last,/Grok/);
+ const build=renderBuildMap();
+ for(const re of [/Parkside Work Register/,/Never/,/Call Prep Coach/,/we never connect to it/])assert.match(build,re);
+ const plan=renderPlan();
+ for(const re of [/Discover/,/Prioritize/,/Build/,/Measure/,/discovery/])assert.match(plan,re);
+ const copy=JSON.stringify([fixCopy,fixCues]);
+ for(const html of [...outputs,build,plan,copy]){assert.doesNotMatch(html,/\d+ weeks?|\$\d+k|ROI/i);assert.doesNotMatch(html,/undefined|NaN|—/);}
 });
 test('tour navigation preserves review gates and never approves a build',()=>{
  let state=initialState();

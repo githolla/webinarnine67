@@ -75,7 +75,7 @@ export function transitionBuild(current, action) {
 const crew = {
   priya: { name: 'Priya', role: 'Finance Analyst', ai: 'Claude', icon: 'claude.svg', verdict: 'win' },
   nina: { name: 'Nina', role: 'Operations', ai: 'Ask Ops', icon: 'ms-teams.svg', verdict: 'win' },
-  marcus: { name: 'Marcus', role: 'Account Manager', ai: 'Grok', icon: 'grok.svg', verdict: 'diff' },
+  marcus: { name: 'Marcus', role: 'Account Manager', ai: 'Call Prep Coach', icon: 'openai.svg', verdict: 'diff' },
   leah: { name: 'Leah', role: 'Chief of Staff', ai: 'Copilot', icon: 'copilot.webp', verdict: 'glue' }
 };
 const verdictLabel = { win: 'AI WIN', diff: 'DIFFERENT WAY', stuck: 'STRUGGLING', glue: 'THE GLUE' };
