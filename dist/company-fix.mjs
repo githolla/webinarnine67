@@ -4,7 +4,7 @@ const person=id=>people.find(x=>x.id===id);
 export const WATCH_LAST=4;
 export const fixCopy={
  build:{eyebrow:'The fix · 1 of 3',title:'Meet the Parkside AI Register.',lead:''},
- watch:{eyebrow:'The fix · 2 of 3 · Example',title:'How the AI Register works.',lead:''},
+ watch:{eyebrow:'The fix · 2 of 3 · Example',title:'How the AI Register works: one day, every tool.',lead:''},
  connected:{eyebrow:'The fix · 3 of 3',title:'Same people, same AI. Now the work connects.',lead:'Every tool reads one Register. Nothing counts until a named owner approves it.'},
  plan:{eyebrow:'Where to start',title:'How it gets built, with your people.',lead:''},
  qa:{eyebrow:'Q&A',title:'',lead:''}
@@ -12,12 +12,13 @@ export const fixCopy={
 export const fixCues={
  build:'Josh: This is the AI Register. In the middle, one Register: a SharePoint list in your own Microsoft 365. Around it, tools built from each person’s real work, on the AI Parkside already pays for. Left side, Copilot agents. Right side, a shared Claude project and a company GPT. Some tools propose items, some only read. Personal apps stay outside: we learn from them, we never connect them. Next: see the Register at work.',
  watch:[
-  'Josh: Monday. A customer emails: setup is done, who do we call? Ask Ops, the Operations agent, sees nobody owns it and proposes Nina. Nina approves in one click. It lands in the Register on the right. Press →.',
-  'Josh: Tuesday. Priya’s month-end method is now a shared Claude project. It reconciles all three branch files and flags the duplicate without deleting anything. Maya already ran it at her branch. Priya approves the exception. Press →.',
-  'Josh: Wednesday. Elena’s Copilot agent reads Thursday’s recap, sees a row with no owner, checks the Register and proposes Nina. Nina approves, and Elena’s tracker fills itself in. Press →.',
-  'Josh: Thursday. Marcus asks his Call Prep Coach in the company ChatGPT to prep his Northwind call. It pulls everything approved this week from the Register, and even gives him his line. The note goes to HubSpot. Press →.',
-  'Josh: Friday. Leah’s brief writes itself from four approved items, each one traced to who approved it, and it flags the one thing it can’t know. Four tools, four people, one Register. Leah edits instead of stitching.'
+  'Josh: 8:47 in the morning. A customer emails: setup is done, who do we call? Ask Ops sees nobody owns it, proposes Nina, and drafts the reply. Nina reads it, approves, and it is sent. Five minutes, not four days. Press →.',
+  'Josh: 9:10. Priya’s Claude project reconciles the branch files, flags the duplicate invoice, and drafts the note to Maya at the East branch. Priya approves and sends. Press →.',
+  'Josh: 9:30. Elena’s Copilot agent sees a tracker row with no owner, finds Nina in the Register, fills it in, and drafts the update for the team channel. Nina approves. Press →.',
+  'Josh: 10:40. Marcus has an 11 o’clock with Northwind. His Call Prep Coach pulls what the company knows this morning and gives him his line. After the call, the follow-up email is already written. He approves it and it logs to HubSpot. Press →.',
+  'Josh: 4 PM. Leah’s brief writes itself from everything approved today, and flags the one thing it can’t know. Same day, not Friday. Every message was drafted by a tool and sent by a person.'
  ],
+
 
 
  connected:'Josh: Same nine people, same company AI. The by-hand lines into Leah are gone. Every tool reads the Register, and nothing counts until a named owner approves it. Personal apps sit outside, never connected. Daniel’s team approves every connector.',
@@ -31,7 +32,7 @@ const tools={
  copilot:{icon:'copilot.webp',name:'Microsoft 365 Copilot + Copilot Studio',items:[
   ['elena','Project Tracker Assist','Proposes owners and dates for her tracker','proposes'],
   ['nina','Ask Ops','Proposes findings from Ops cases','proposes'],
-  ['leah','Friday Brief','Drafts Dana’s brief from approved rows','reads'],
+  ['leah','Daily Brief','Drafts Dana’s brief from approved rows','reads'],
   ['daniel','Ask Parkside','Answers “who owns this?” for anyone','reads']]},
  claude:{icon:'claude.svg',name:'Claude · company plan',items:[
   ['priya','Month-End Reconciliation','Her method, shared. Maya runs it at her branch.','proposes'],
@@ -51,7 +52,7 @@ function link(x1,y1,x2,y2,verb,labelX){
 const flowIn=[
  ['copilot.webp','Project Tracker Assist','Elena · Copilot Studio'],
  ['ms-teams.svg','Ask Ops','Nina · Copilot Studio'],
- ['copilot.webp','Friday Brief','Leah · Copilot Studio'],
+ ['copilot.webp','Daily Brief','Leah · Copilot Studio'],
  ['ms-teams.svg','Ask Parkside','Daniel · Copilot Studio'],
  ['claude.svg','Month-End Reconciliation','Priya · Claude'],
  ['claude.svg','Board prep','Dana · Claude'],
@@ -61,7 +62,7 @@ const flowOut=[
  ['ms-teams.svg','Teams','Approvals and channels'],
  ['ms-excel.svg','Excel','Trackers and month-end files'],
  ['hubspot.svg','HubSpot','Account notes'],
- ['ms-outlook.svg','Outlook','Leah’s Friday brief']
+ ['ms-outlook.svg','Outlook','Leah’s daily brief']
 ];
 function curve(x1,y1,x2,y2){const xm=(x1+x2)/2,ym=(y1+y2)/2,dx=x2-x1;return `<path class="fx2-link" d="M${x1} ${y1} C${x1+dx*.3} ${y1} ${xm-dx*.12} ${ym} ${xm} ${ym} C${xm+dx*.12} ${ym} ${x2-dx*.3} ${y2} ${x2} ${y2}" marker-mid="url(#fx2-arrow)"/>`;}
 export function renderBuildMap(){
@@ -116,34 +117,36 @@ function register(s){
  return `<section class="rx-win rx-teams fx-win fx-register"><header class="rx-title">${img('ms-sharepoint.svg')}<b>Parkside AI Register</b><span>SharePoint list · Microsoft 365</span>${ctl}</header><table><thead><tr><th scope="col">ID</th><th scope="col">Item</th><th scope="col">Owner</th><th scope="col">Due</th><th scope="col">Status</th></tr></thead><tbody>${body}${empty}</tbody></table></section>`;
 }
 const week=[
- {day:'Mon',who:'nina',tool:'Ask Ops',icon:'ms-teams.svg',app:'teams',caption:'Monday: a customer question finds its owner in minutes.'},
- {day:'Tue',who:'priya',tool:'Claude project',icon:'claude.svg',app:'claude',caption:'Tuesday: Priya’s Claude project runs month-end for every branch.'},
- {day:'Wed',who:'elena',tool:'Copilot agent',icon:'copilot.webp',app:'excel',caption:'Wednesday: Elena’s tracker fills itself in from the Register.'},
- {day:'Thu',who:'marcus',tool:'Call Prep Coach',icon:'openai.svg',app:'gpt',caption:'Thursday: Marcus walks into his call knowing everything the company knows.'},
- {day:'Fri',who:'leah',tool:'Friday Brief',icon:'ms-outlook.svg',app:'outlook',caption:'Friday: Leah’s brief writes itself. She edits instead of stitching.'}
+ {day:'8:47 AM',who:'nina',tool:'Ask Ops',icon:'ms-teams.svg',caption:'8:47 AM: a customer asks. Five minutes later, they have an answer.'},
+ {day:'9:10 AM',who:'priya',tool:'Claude project',icon:'claude.svg',caption:'9:10 AM: Priya’s Claude project catches a duplicate and drafts the note to the branch.'},
+ {day:'9:30 AM',who:'elena',tool:'Copilot agent',icon:'copilot.webp',caption:'9:30 AM: Elena’s tracker fills itself in, and her team gets the update.'},
+ {day:'10:40 AM',who:'marcus',tool:'Call Prep Coach',icon:'openai.svg',caption:'10:40 AM: Marcus preps his 11 AM call. The follow-up email is already written.'},
+ {day:'4:00 PM',who:'leah',tool:'Daily brief',icon:'ms-outlook.svg',caption:'4:00 PM: Leah’s brief writes itself. Same day, not Friday.'}
 ];
 const regRows=[
- ['ms-teams.svg','HF-01','Northwind: next step owned','Nina','Tue'],
- ['claude.svg','REC-07','Duplicate invoice N101 held','Priya','Fri'],
- ['copilot.webp','T-41','Rollout scope assigned','Nina','Tue'],
- ['openai.svg','CALL-12','Northwind wants one contact','Marcus','Mon']
+ ['ms-teams.svg','HF-01','Northwind: next step owned','Nina','today 3 PM'],
+ ['claude.svg','REC-07','Duplicate invoice N101 held','Priya','today noon'],
+ ['copilot.webp','T-41','Rollout scope assigned','Nina','Nov 10'],
+ ['openai.svg','CALL-12','Northwind: one contact, Marcus','Marcus','today']
 ];
-const ok=(who,t)=>`<p class="fx4-ok">✓ Approved by ${who}<span>${t}</span></p>`;
+const sent=(who,t,what='sent')=>`<p class="fx4-ok">✓ ${who} approved and ${what}<span>${t}</span></p>`;
+const draft=(to,text)=>`<div class="fx4-draft"><small>✎ Drafted for you · ${to}</small><p>${text}</p></div>`;
 function hero(i){
  const head=(cls,icon,app,path)=>`<header class="fx4-bar fx4-${cls}"><img src="assets/${icon}" alt=""><b>${app}</b><span>${path}</span></header>`;
- if(i===0)return `<section class="fx4-win">${head('teams','ms-teams.svg','Teams','Operations › Handoffs')}<div class="fx4-body"><div class="fx4-in"><small>Customer email · via Zendesk · 8:47 AM</small><p>“Your team says setup is done. Who do we call now?”</p><span>Sam Ortiz, Northwind</span></div><div class="fx4-bot"><p class="fx4-from"><img src="assets/ms-teams.svg" alt=""><b>Ask Ops</b><em>Agent</em><time>8:52 AM</time></p><p class="fx4-alert">Nobody owns Northwind’s next step. Setup was marked complete on CASE-201.</p><p class="fx4-prop">Proposed: <b>Owner Nina · Due Tue Nov 10</b></p>${ok('Nina','9:05 AM')}</div></div></section>`;
- if(i===1)return `<section class="fx4-win fx4-cl">${head('claude','claude.svg','Claude','Projects › Month-End Reconciliation · shared with Finance')}<div class="fx4-body"><p class="fx4-user"><small>Priya</small>November files are in: North, East and West.</p><div class="fx4-ai"><p>Reconciled 3 branch files into one checked report. <b>1 exception:</b> invoice N101 ($1,200) appears twice in East. I have not removed it.</p><table class="fx4-tbl"><tr><th>Vendor</th><th>Invoice</th><th>Amount</th><th>Check</th></tr><tr><td>Acme Ltd</td><td>N101</td><td>$1,200</td><td>OK</td></tr><tr class="is-flag"><td>ACME LTD.</td><td>N101</td><td>$1,200</td><td>Duplicate?</td></tr><tr><td>North Office</td><td>W203</td><td>$850</td><td>OK</td></tr></table></div><div class="fx4-row"><span class="fx4-chip">✓ Maya ran it at the East branch, 7:40 AM</span>${ok('Priya','9:14 AM')}</div></div></section>`;
- if(i===2)return `<section class="fx4-win fx4-xl">${head('excel','ms-excel.svg','Excel','Thursday commitments.xlsx')}<div class="fx4-split"><table class="fx4-grid"><tr><th></th><th>A · Commitment</th><th>B · Owner</th><th>C · Due</th></tr><tr class="is-new"><td>2</td><td>Confirm rollout scope</td><td><s>Unassigned</s> <b>Nina</b></td><td><b>Nov 10</b></td></tr><tr><td>3</td><td>Validate branch totals</td><td>Priya</td><td>Nov 9</td></tr><tr><td>4</td><td>Send account update</td><td>Marcus</td><td>Nov 10</td></tr></table><aside class="fx4-pane"><p class="fx4-from"><img src="assets/copilot.webp" alt=""><b>Project Tracker Assist</b></p><p>From Thursday’s Ops sync, “Confirm rollout scope” had no owner. The Register shows Nina owns Northwind (HF-01).</p><p class="fx4-prop">Proposed: <b>Nina · Nov 10</b></p>${ok('Nina','10:02 AM')}</aside></div></section>`;
- if(i===3)return `<section class="fx4-win fx4-gp">${head('gpt','openai.svg','ChatGPT','Parkside workspace · Call Prep Coach')}<div class="fx4-body"><p class="fx4-user"><small>Marcus</small>Prep me for Monday’s Northwind call.</p><div class="fx4-ai"><p><b>From the AI Register:</b></p><ul class="fx4-facts"><li><i>HF-01</i>Nina owns the next step, due Tue</li><li><i>T-41</i>Rollout scope is assigned to Nina</li><li><i>REC-07</i>One invoice on hold, Priya reviewing</li></ul><p class="fx4-try"><small>Try saying</small>“I’m your contact. Nina owns setup and will call you Tuesday.”</p></div><div class="fx4-row"><span class="fx4-chip">${'<img src="assets/hubspot.svg" alt="">'}Logged to Northwind in HubSpot</span>${ok('Marcus','2:40 PM')}</div></div></section>`;
- return `<section class="fx4-win fx4-ol">${head('outlook','ms-outlook.svg','Outlook','Draft · Friday brief · To: Dana')}<div class="fx4-body"><p class="fx4-written"><img src="assets/copilot.webp" alt="">Written by Friday Brief from 4 approved items</p><ul class="fx4-brief">${[['ms-teams.svg','Operations','Nina owns Northwind’s next step, due Tue.','HF-01'],['claude.svg','Finance','Duplicate invoice N101 held for Priya’s review.','REC-07'],['copilot.webp','Projects','Rollout scope assigned to Nina, Nov 10.','T-41'],['openai.svg','Accounts','Northwind asked for one setup contact. Marcus.','CALL-12']].map(([ic,d,t,id])=>`<li><img src="assets/${ic}" alt=""><div><b>${d}</b>${t}</div><i>${id}</i></li>`).join('')}</ul><p class="fx4-flag">⚑ Leah to confirm: is “NW Services” the same account as Northwind?</p></div></section>`;
+ if(i===0)return `<section class="fx4-win">${head('teams','ms-teams.svg','Teams','Operations › Handoffs')}<div class="fx4-body"><div class="fx4-in"><small>Customer email · via Zendesk · 8:47 AM</small><p>“Your team says setup is done. Who do we call now?”</p><span>Sam Ortiz, Northwind</span></div><div class="fx4-bot"><p class="fx4-from"><img src="assets/ms-teams.svg" alt=""><b>Ask Ops</b><em>Agent</em><time>8:48 AM</time></p><p class="fx4-alert">Nobody owns Northwind’s next step. Proposed owner: <b>Nina</b>.</p>${draft('reply to Sam','Hi Sam, Nina owns your next step and will call you by 3 PM today.')}${sent('Nina','8:52 AM')}</div></div></section>`;
+ if(i===1)return `<section class="fx4-win fx4-cl">${head('claude','claude.svg','Claude','Projects › Month-End Reconciliation · shared with Finance')}<div class="fx4-body"><div class="fx4-ai"><p>Reconciled North, East and West into one report. <b>1 exception:</b> invoice N101 ($1,200) appears twice in East. Held, not removed.</p><table class="fx4-tbl"><tr><th>Vendor</th><th>Invoice</th><th>Amount</th><th>Check</th></tr><tr><td>Acme Ltd</td><td>N101</td><td>$1,200</td><td>OK</td></tr><tr class="is-flag"><td>ACME LTD.</td><td>N101</td><td>$1,200</td><td>Duplicate?</td></tr></table></div>${draft('note to Maya, East branch','Hi Maya, invoice N101 ($1,200) shows up twice in East. I held the second one. Can you confirm by noon?')}${sent('Priya','9:14 AM')}</div></section>`;
+ if(i===2)return `<section class="fx4-win fx4-xl">${head('excel','ms-excel.svg','Excel','Rollout tracker.xlsx')}<div class="fx4-split"><table class="fx4-grid"><tr><th></th><th>A · Commitment</th><th>B · Owner</th><th>C · Due</th></tr><tr class="is-new"><td>2</td><td>Confirm rollout scope</td><td><s>Unassigned</s> <b>Nina</b></td><td><b>Nov 10</b></td></tr><tr><td>3</td><td>Validate branch totals</td><td>Priya</td><td>Nov 9</td></tr><tr><td>4</td><td>Send account update</td><td>Marcus</td><td>Nov 10</td></tr></table><aside class="fx4-pane"><p class="fx4-from"><img src="assets/copilot.webp" alt=""><b>Project Tracker Assist</b></p><p>“Confirm rollout scope” had no owner. The Register shows Nina owns Northwind.</p>${draft('Teams post to #rollout','Update: Nina owns “Confirm rollout scope,” due Nov 10.')}${sent('Nina','9:33 AM','posted')}</aside></div></section>`;
+ if(i===3)return `<section class="fx4-win fx4-gp">${head('gpt','openai.svg','ChatGPT','Parkside workspace · Call Prep Coach')}<div class="fx4-body"><p class="fx4-user"><small>Marcus</small>Prep me for my 11 AM Northwind call.</p><div class="fx4-ai"><ul class="fx4-facts"><li><i>HF-01</i>Nina owns setup, calling Sam by 3 PM</li><li><i>T-41</i>Rollout scope assigned to Nina</li></ul><p class="fx4-try"><small>Say this</small>“I’m your single contact. Nina owns setup and calls you by 3 today.”</p></div>${draft('follow-up email to Sam','Sam, as promised: I’m your single contact. Nina owns setup and will call you by 3 PM today.')}<div class="fx4-row"><span class="fx4-chip"><img src="assets/hubspot.svg" alt="">Logged to Northwind in HubSpot</span>${sent('Marcus','11:32 AM')}</div></div></section>`;
+ return `<section class="fx4-win fx4-ol">${head('outlook','ms-outlook.svg','Outlook','Draft · Today’s brief · To: Dana')}<div class="fx4-body"><p class="fx4-written"><img src="assets/copilot.webp" alt="">Written from 4 items approved today</p><ul class="fx4-brief">${[['ms-teams.svg','Operations','Northwind answered in 5 minutes. Nina calls Sam by 3 PM.','HF-01'],['claude.svg','Finance','Duplicate invoice N101 held. Maya confirming.','REC-07'],['copilot.webp','Projects','Rollout scope assigned to Nina, Nov 10.','T-41'],['openai.svg','Accounts','Marcus is Northwind’s single contact. Follow-up sent.','CALL-12']].map(([ic,d,t,id])=>`<li><img src="assets/${ic}" alt=""><div><b>${d}</b>${t}</div><i>${id}</i></li>`).join('')}</ul><p class="fx4-flag">⚑ Leah to confirm: is “NW Services” the same account as Northwind?</p></div></section>`;
 }
 export function renderWatch(step=0){
  const s=Math.max(0,Math.min(WATCH_LAST,Number(step)||0));
  const rail=`<ol class="fx4-week">${week.map((d,i)=>`<li class="${i<s?'is-done':i===s?'is-on':'is-next'}"><b>${d.day}</b><span class="fx4-ring"><img src="assets/${d.icon}" alt=""></span><div><strong>${person(d.who).name}</strong><small>${d.tool}</small></div></li>`).join('')}</ol>`;
  const shown=regRows.slice(0,Math.min(s+1,4));
- const reg=`<aside class="fx4-reg"><header><span class="fx4-dots" aria-hidden="true"><i></i><i></i><i></i></span><b>AI Register</b><em>${shown.length} approved</em></header><ul>${shown.map(([ic,id,t,o,d],i)=>`<li class="${i===s?'is-new':''}"><img src="assets/${ic}" alt=""><div><i>${id}</i><b>${t}</b><span>${o} · due ${d}</span></div><em>✓</em></li>`).join('')}${s<4?`<li class="fx4-wait">Next approval lands here</li>`:`<li class="fx4-read">Friday Brief reads all 4 →</li>`}</ul></aside>`;
+ const reg=`<aside class="fx4-reg"><header><span class="fx4-dots" aria-hidden="true"><i></i><i></i><i></i></span><b>AI Register</b><em>${shown.length} approved today</em></header><ul>${shown.map(([ic,id,t,o,d],i)=>`<li class="${i===s?'is-new':''}"><img src="assets/${ic}" alt=""><div><i>${id}</i><b>${t}</b><span>${o} · due ${d}</span></div><em>✓</em></li>`).join('')}${s<4?`<li class="fx4-wait">Next approval lands here</li>`:`<li class="fx4-read">Today’s brief reads all 4 →</li>`}</ul></aside>`;
  const footer=s<WATCH_LAST?`<footer class="build-footer"><button class="build-primary" data-step-forward data-fix-step="${s+1}" aria-label="Next: ${escapeHtml(week[s+1].day)}">Next step →</button></footer>`:'';
- return `<section class="fx fx-watch fx4" aria-label="One week with the Parkside AI Register, ${week[s].day}"><p class="fx4-caption" aria-live="polite">${week[s].caption}</p><div class="fx4-stage">${rail}<div class="fx4-hero">${hero(s)}</div>${reg}</div>${footer}</section>`;
+ const impact=s===WATCH_LAST?`<ul class="fx4-impact">${[['1','working day'],['5','company AI tools'],['5','messages drafted for people'],['4','approved by a person'],['0','hand-stitching']].map(([n,l])=>`<li><b>${n}</b><span>${l}</span></li>`).join('')}</ul>`:'';
+ return `<section class="fx fx-watch fx4" aria-label="One working day with the Parkside AI Register, ${week[s].day}"><p class="fx4-caption" aria-live="polite">${week[s].caption}</p><div class="fx4-stage">${rail}<div class="fx4-hero">${hero(s)}</div>${reg}</div>${impact}${footer}</section>`;
 }
 
 const plan=[

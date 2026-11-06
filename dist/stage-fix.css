@@ -365,3 +365,19 @@ tr.fx-new th,tr.fx-new td{font-weight:800}
 .fx4-reg li.is-new{background:#2f6bff40;box-shadow:inset 0 0 0 2px #7fa6ff}
 .fx4-reg .fx4-wait{border:2px dashed #ffffff33;background:none;color:#a9b4c8;font-size:15px;justify-content:center}
 .fx4-reg .fx4-read{background:#47cd8926;color:#a6f4c5;font-size:16px;font-weight:700;justify-content:center}
+.fx4-draft{padding:10px 14px;border-radius:12px;background:#f4f3ff;border:1px solid #d9d6fe}
+.fx4-draft small{display:block;font-size:14px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#6938ef;margin-bottom:4px}
+.fx4-draft p{margin:0;font-size:19px;line-height:1.35;font-weight:600;color:#0e1726}
+.fx4-week li>b{width:72px;font-size:15px}
+.fx4-stage{grid-template-columns:300px 1fr 400px}
+.fx4-body{gap:10px;padding:16px 20px}
+.fx4-in p{font-size:22px}
+.fx4-pane .fx4-draft p{font-size:17px}
+.fx4-impact{list-style:none;margin:0;padding:14px 24px;display:grid;grid-template-columns:repeat(5,1fr);gap:12px;border-radius:20px;background:linear-gradient(110deg,#0e1726,#1e3a8a 60%,#2f6bff);color:#fff}
+.fx4-impact li{display:flex;align-items:baseline;gap:10px}
+.fx4-impact b{font-size:44px;line-height:1;font-weight:800}
+.fx4-impact span{font-size:18px;line-height:1.2;color:#c7d7fe;font-weight:600}
+.fx4-impact li:last-child b{color:#47cd89}
+.fx4-impact{flex:none}
+.fx4:has(.fx4-impact) .fx4-stage{max-height:500px}
+.fx.fx4 .fx4-impact{padding:18px 28px;min-height:86px;align-items:center}.fx.fx4 .fx4-impact li{align-items:center}
