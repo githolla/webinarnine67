@@ -62,7 +62,7 @@ function goTour(index){
 }
 function heading(){
  if(state.workspace)return {eyebrow:`The nine · Person ${tourPeople.indexOf(state.workspace)+1} of 9`,title:workspaceHeading(state),lead:''};
- if(state.scene===2)return state.networkMode==='connected'?{eyebrow:'',title:'Same nine people. Now the work connects.',lead:''}:{eyebrow:'',title:scenes[2].title,lead:scenes[2].lead};
+ if(state.scene===2)return state.networkMode==='connected'?{eyebrow:'',title:'Same nine people. Now the work connects.',lead:'Same tools. Methods get reused, and findings reach the next owner.'}:{eyebrow:'',title:scenes[2].title,lead:scenes[2].lead};
  if(state.scene===6){const id=discoveryOrder.includes(state.discovery)?state.discovery:'reuse';return {eyebrow:`What discovery finds · ${discoveryOrder.indexOf(id)+1} of 3`,title:discoveryTitles[id],lead:''};}
  if(state.scene===7){const lifted=$('stage').querySelector('[data-stage-title], .build-heading h2');if(lifted)lifted.classList.add('sh-lifted');return {eyebrow:`Discover & build · Build ${Math.max(0,buildOrder.indexOf(state.improvement))+1} of 3`,title:lifted?.textContent||scenes[7].title,lead:''};}
  return {eyebrow:'',title:scenes[state.scene].title,lead:scenes[state.scene].lead};

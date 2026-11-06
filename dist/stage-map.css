@@ -64,4 +64,4 @@ body:has(.org-graph.is-today) #lead{display:block!important;font-size:0!importan
 body:has(.org-graph.is-today) #lead::before{content:"150 people. One Copilot rollout. Useful work stays local.";display:block;font-size:var(--lead-size,28px);line-height:1.35;font-weight:500;color:var(--ink,#151820)}
 body:has(.org-graph.is-connected) #title{font-size:0!important;letter-spacing:0!important}
 body:has(.org-graph.is-connected) #title::before{content:"Same nine people. Now the work connects.";display:block;font-size:var(--h1-size,52px);line-height:1.12;letter-spacing:-.02em}
-body:has(.org-graph.is-connected) #lead{display:none}
+

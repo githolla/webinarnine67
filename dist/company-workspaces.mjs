@@ -106,6 +106,6 @@ export function renderWorkspace(state,personId=state.workspace||state.person) {
  const p=person(personId)||person('priya');const id=p.id;const story=workspaceStories[id];const step=state.workSteps?.[id]||0;
  const done=step>=story.max;const peer=done&&story.peer;
  if(id==='leah'&&done)return leahFunnel(state,story);
- return `<section class="employee-workspace ws-${id}"><header class="ws-head">${personToken(id,'L')}<div class="ws-quote"><small>The nine · Person ${tourOrder.indexOf(id)+1} of 9</small><blockquote>${story.quote}</blockquote></div></header><div class="ws-columns"><section class="ws-surface">${workSurface(id,step)}</section><aside class="ws-side">${stops(id,story,peer)}${actions(id,state,done)}</aside></div>${employeeStrip(id)}</section>`;
+ return `<section class="employee-workspace ws-${id}"><header class="ws-head">${personToken(id,'L')}<div class="ws-quote"><blockquote>${story.quote}</blockquote></div></header><div class="ws-columns"><section class="ws-surface">${workSurface(id,step)}</section><aside class="ws-side">${stops(id,story,peer)}${actions(id,state,done)}</aside></div>${employeeStrip(id)}</section>`;
 }
 export function workspaceHeading(state) {const id=state.workspace||state.person;return workspaceStories[id]?.title;}

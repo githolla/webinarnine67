@@ -66,7 +66,7 @@ body.is-tour .x-explore,body.is-tour [data-close-workspace],body.is-tour .map-mo
 .deck .build-choices button{min-height:56px;font-size:22px;font-weight:700;border-radius:12px}
 .deck .build-choices .build-secondary,.deck .build-choices button[aria-pressed=false]{background:#fff;color:var(--ink);border:2px solid var(--ink);opacity:1}
 .deck .build-choices .build-primary,.deck .build-choices button[aria-pressed=true]{background:var(--ink);color:#fff;border:2px solid var(--ink);opacity:1}
-.deck .build-choices .build-primary::before,.deck .build-choices button[aria-pressed=true]::before{content:'✓ '}
+.deck .build-choices .build-primary::before{content:'✓ '}
 
 /* Shared pieces */
 .sh-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:32px;box-shadow:0 1px 0 #0000000a,0 8px 24px #1518200d}
