@@ -362,3 +362,32 @@ body:not(.guided-tour):not(.is-tour) .employee-workspace>.employee-strip span{di
 .ws-phone-scene .ws-annotations li{padding:8px 14px;font-size:19px}
 .ws-phone-scene .ws-annotations li:before{width:28px}
 .ws-block-a.has-uses+.ws-block-b{padding-bottom:28px}
+/* Leah by hand */
+.ws-leah .ws-funnel{grid-template-columns:minmax(0,1fr) 56px minmax(0,1.15fr) 56px minmax(0,1fr)}
+.lh-step{display:block;margin-bottom:8px;font-size:18px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--glue)}
+.lh-hand{display:flex;flex-direction:column;min-height:0}
+.lh-card{flex:1;display:flex;flex-direction:column;gap:12px;padding:18px 22px;background:var(--glue-tint);border:2px dashed var(--glue);border-radius:16px}
+.lh-head{display:flex;align-items:center;gap:12px}
+.lh-head b{display:block;font-size:22px;color:#0e1726}
+.lh-head span{display:block;font-size:17px;color:#475467}
+.lh-tasks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.lh-tasks li{display:flex;gap:12px;align-items:flex-start;padding:8px 12px;border-radius:10px;background:#fff}
+.lh-tasks i{flex:none;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;font-style:normal;font-weight:800;font-size:16px;color:#fff;background:#079455;margin-top:2px}
+.lh-wait i{background:#dc6803}
+.lh-miss i{background:#d92d20}
+.lh-tasks time{display:block;font-size:15px;font-weight:700;color:#667085}
+.lh-tasks p{margin:0;font-size:19px;line-height:1.3;font-weight:600;color:#0e1726}
+.lh-miss p{color:#912018}
+.lh-why{margin:auto 0 0;padding:10px 14px;border-radius:10px;background:#6938ef;color:#fff;font-size:19px;line-height:1.3}
+.ws-dana-sees .lh-step{color:#475467}
+.ws-inbound .lh-step{color:#475467}
+.ws-leah .ws-funnel{grid-template-columns:minmax(0,1fr) 40px minmax(0,1.1fr) 40px minmax(0,1fr)}
+.ws-leah .ws-funnel>*{min-width:0}
+.ws-leah .ws-dana-sees{overflow:hidden}
+.ws-leah .ws-thesis{font-size:44px;white-space:normal;min-height:0;padding:28px 36px}
+.lh-card{gap:8px;padding:14px 18px}
+.lh-tasks{gap:6px}
+.lh-tasks li{padding:6px 10px}
+.lh-tasks p{font-size:18px}
+.lh-tasks time{font-size:14px}
+.lh-why{font-size:18px;padding:8px 12px}
