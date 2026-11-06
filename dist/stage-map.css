@@ -60,10 +60,6 @@ body.guided-tour .org-graph .map-explore,body.is-tour .org-graph .map-explore{di
 /* Header zone: show the h1 on the graph stops (older CSS hid it). Copy until the shell reads mapHeading(). */
 body[data-scene="2"]:has(.org-graph) .page-heading{display:block}
 body[data-scene="2"]:has(.org-graph) #stage{margin-top:0}
-body:has(.org-graph.is-today) #lead{display:block!important;font-size:0!important}
-body:has(.org-graph.is-today) #lead::before{content:"150 people. One Copilot rollout. Useful work stays local. We’ll sit beside four of them.";display:block;font-size:var(--lead-size,28px);line-height:1.35;font-weight:500;color:var(--ink,#0e1726)}
-body:has(.org-graph.is-connected) #title{font-size:0!important;letter-spacing:0!important}
-body:has(.org-graph.is-connected) #title::before{content:"Same nine people. Now the work connects.";display:block;font-size:var(--h1-size,52px);line-height:1.12;letter-spacing:-.02em}
 
 body.guided-tour .org-graph.is-today .pg-card:not(.is-featured) .pg-num{display:none}
 body.guided-tour .org-graph.is-today .pg-card.is-featured{box-shadow:0 0 0 calc(var(--u) * 4) #2f6bff}

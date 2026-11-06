@@ -82,7 +82,7 @@ function legend(connected){
  return `<div class="pg-legend" style="${at(24,644)}"><div>${Object.entries(verdictLabels).map(([v,label])=>`<span class="pg-chip v-${v}">${label}</span>`).join('')}</div><p>${connected?'<i class="pg-key-solid"></i>Green line = the work connects':'<b class="pg-key-x">✕</b>stays here · <i class="pg-key-dash"></i>purple dashed = done by hand'}</p></div>`;
 }
 export function mapHeading(state={}){
- return state.networkMode==='connected'?{title:'Same nine people. Now the work connects.',lead:''}:{title:'Same tools. Very different work.',lead:'150 people. One Copilot rollout. Useful work stays local.'};
+ return state.networkMode==='connected'?{title:'Same seven AI tools. Now the work connects.',lead:''}:{title:'Same tools. Very different work.',lead:'150 people. One Copilot rollout. Useful work stays local.'};
 }
 function explore(connected,id){
  return `<nav class="map-explore" aria-label="Explore the company graph"><div class="map-mode" role="group" aria-label="Connection mode"><button data-network-mode="fragmented" aria-pressed="${!connected}">Today’s company</button><button data-network-mode="connected" aria-pressed="${connected}">After Nine-67</button></div>${connected?`<div class="improvement-selector" role="group" aria-label="Choose one improvement">${Object.entries(improvements).map(([key,item])=>`<button data-improvement="${key}" aria-pressed="${key===id}">${escapeHtml(item.label)}</button>`).join('')}</div><button class="primary" data-build="${id}">Watch this improvement work →</button>`:''}</nav>`;

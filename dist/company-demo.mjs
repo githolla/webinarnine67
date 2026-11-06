@@ -66,7 +66,7 @@ function heading(){
  if(tourView()==='crowd')return {eyebrow:'The company',title:'150 people. Most use AI. Not all.',lead:'Each dot is a person, colored by the AI they use most. Close to the 85% in the research.'};
  if(onStack())return {eyebrow:'The company',title:'Parkside’s AI stack. Approved vs. actually used.',lead:'150 people. Microsoft 365 and Copilot for everyone. Then everything else.'};
  if(state.workspace)return {eyebrow:guided&&tourWorkspaces.includes(state.workspace)?`Meet the people · ${tourWorkspaces.indexOf(state.workspace)+1} of ${tourWorkspaces.length}`:`The nine · Person ${tourPeople.indexOf(state.workspace)+1} of 9`,title:workspaceHeading(state),lead:''};
- if(state.scene===2)return state.networkMode==='connected'?{eyebrow:'',title:'Same nine people. Now the work connects.',lead:'Same tools. Methods get reused, and findings reach the next owner.'}:{eyebrow:'',title:scenes[2].title,lead:scenes[2].lead};
+ if(state.scene===2)return state.networkMode==='connected'?{eyebrow:'',title:'Same seven AI tools. Now the work connects.',lead:'We don’t replace anyone’s AI. We connect the work between them.'}:{eyebrow:'',title:scenes[2].title,lead:guided?'Nine of the 150, with the AI each one uses. We’ll sit beside the four outlined.':scenes[2].lead};
  if(state.scene===6){const id=discoveryOrder.includes(state.discovery)?state.discovery:'reuse';return {eyebrow:`What discovery finds · ${discoveryOrder.indexOf(id)+1} of 3`,title:discoveryTitles[id],lead:''};}
  if(state.scene===7){const lifted=$('stage').querySelector('[data-stage-title], .build-heading h2');if(lifted)lifted.classList.add('sh-lifted');return {eyebrow:guided?'The fix':`Discover & build · Build ${Math.max(0,buildOrder.indexOf(state.improvement))+1} of 3`,title:lifted?.textContent||scenes[7].title,lead:''};}
  return {eyebrow:'',title:scenes[state.scene].title,lead:scenes[state.scene].lead};
@@ -74,7 +74,7 @@ function heading(){
 function markTourFocus(){
  const stage=$('stage');
  stage.querySelectorAll('.org-graph.is-today .pg-card').forEach(card=>{const order=tourWorkspaces.indexOf(card.dataset.workspace);const num=card.querySelector('.pg-num');card.classList.toggle('is-featured',order>=0);if(num)num.textContent=order>=0?String(order+1):'';});
- const eyebrow=stage.querySelector('.bx-eyebrow');if(eyebrow)eyebrow.textContent='The fix';
+ const eyebrow=stage.querySelector('.bx-eyebrow');if(eyebrow)eyebrow.textContent='The fix · No new AI tool';
 }
 function roster(){
  if(state.workspace){return rosterStrip({current:state.workspace,visited:tourPeople});}

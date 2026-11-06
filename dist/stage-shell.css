@@ -305,3 +305,10 @@ body .deck .ws-thesis b{color:var(--accent-on-dark)}
 .cr-take span{font-size:24px;line-height:1.3;font-weight:600;color:var(--dark-muted)}
 .cr-take .cr-none{color:var(--accent-on-dark,#7fa6ff)}
 .cr-take b{font-size:30px}.cr-take span{font-size:22px}.cr-take{padding:24px}.cr-legend{align-self:start}
+.sh-tie{margin-top:auto;padding-top:20px;border-top:1px solid var(--line);display:flex;align-items:center;gap:20px}
+.sh-tie p{margin:0;font-size:18px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);max-width:130px}
+.sh-tie>div{display:flex;gap:18px}
+.sh-tie .sh-pt-s{display:flex;flex-direction:column;align-items:center;gap:4px}
+.sh-tie .sh-pt-s b{font-size:18px;font-weight:700;color:var(--ink)}
+.sh-stat .sh-source{margin-top:16px}
+p.sh-tie{display:block;margin:auto 0 0;padding-top:20px;font-size:28px;line-height:1.3;font-weight:700;letter-spacing:-.01em;text-transform:none;color:var(--ink);max-width:none}
