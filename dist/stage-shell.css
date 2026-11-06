@@ -363,3 +363,53 @@ p.sh-tie{display:block;margin:auto 0 0;padding-top:20px;font-size:28px;line-heig
 .stk-who em,.stk-who span{font-style:normal;font-size:18px;line-height:1;font-weight:700;padding:5px 10px;border-radius:999px;background:#f2f4f7;color:#344054}
 .stk-who span{font-weight:600;color:var(--muted);background:none;border:1px dashed #d0d5dd}
 .stk-band{font-size:36px;padding:22px 32px;white-space:nowrap}
+/* Dana PowerPoint polish */
+.pp-tools{display:flex;align-items:center;gap:14px;padding:8px 16px;font-size:15px;color:#444}
+.pp-tools b,.pp-tools em,.pp-tools u{font-size:16px;color:#333;width:22px;text-align:center}
+.pp-tools em{font-style:italic}
+.pp-tool{padding:3px 8px;border-radius:6px;background:#f3f3f3;color:#333;font-size:14px;display:inline-flex;align-items:center;gap:6px}
+.pp-tool img{width:16px;height:16px}
+.pp-copilot{margin-left:auto;background:#fdf1ee;color:#b7472a;font-weight:700}
+.pp-sep{width:1px;height:20px;background:#ddd}
+.pp-rail li i{display:flex;flex-direction:column;gap:4px;padding:6px;background:#fff;border:1px solid #ddd;aspect-ratio:16/9;width:100%;overflow:hidden}
+.pp-rail li.is-on i{border:2px solid #c43e1c}
+.pp-rail li i b{font-size:9px;line-height:1;color:#c43e1c;font-weight:800}
+.pp-rail li i em{display:block}
+.pp-rail .t-kpi{display:inline-block;width:22%;height:14px;margin-right:2%;background:#fde7e1;border-radius:2px}
+.pp-rail li:first-child i{flex-direction:row;flex-wrap:wrap;align-content:flex-start}
+.pp-rail li:first-child i b{width:100%}
+.pp-rail .t-bars{display:flex;align-items:flex-end;gap:4px;height:26px}
+.pp-rail .t-bars s{display:block;width:12px;background:#c43e1c;opacity:.75}
+.pp-rail .t-line{height:5px;background:#e5e5e5;border-radius:2px}
+.pp-rail .t-line.short{width:60%}
+.pp-slide{display:flex;flex-direction:column;padding:28px 34px}
+.pp-slide h3{font-size:36px;line-height:1.1;margin:4px 0 22px;color:#1f1f1f}
+.pp-kpis{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pp-kpis li{display:flex;flex-direction:column;gap:4px;padding:16px 18px;border-radius:10px;background:#fdf1ee;border-left:6px solid #c43e1c}
+.pp-kpis strong{font-size:44px;line-height:1;font-weight:800;color:#1f1f1f}
+.pp-kpis span{font-size:18px;line-height:1.25;color:#444}
+.pp-foot{margin:18px 0 0;display:flex;align-items:center;gap:10px;font-size:18px;font-weight:700;color:#1b7a3d}
+.pp-foot i{width:14px;height:14px;border-radius:50%;background:#1b9a4d}
+/* Slide 1 redesign */
+.dn{height:100%;display:grid;grid-template-columns:760px 1fr;grid-template-rows:minmax(0,1fr) 112px;column-gap:56px;row-gap:28px}
+.dn-left{display:grid;grid-template-columns:280px 1fr;gap:36px;align-items:center;min-height:0}
+.dn-photo{position:relative;height:100%;max-height:560px;min-height:420px;border-radius:24px;background:#d0d5dd url('assets/editorial-work.png') -138px 0/auto 120% no-repeat;box-shadow:0 18px 40px #0e17261f;overflow:hidden}
+.dn-tag{position:absolute;left:14px;right:14px;bottom:14px;display:flex;flex-direction:column;padding:12px 16px;border-radius:14px;background:#0e1726d9;color:#c9d2e0;font-size:16px;backdrop-filter:blur(4px)}
+.dn-tag b{font-size:24px;color:#fff}
+.dn-copy blockquote{margin:0;font-size:52px;line-height:1.08;font-weight:800;letter-spacing:-.025em;color:#0e1726}
+.dn-copy p{margin:24px 0 0;font-size:24px;line-height:1.4;color:#475467}
+.dn-deck{margin:0;align-self:center;display:flex;flex-direction:column;border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 30px 60px #0e172626,0 2px 6px #0e17260f}
+.dn-deck header{display:flex;align-items:center;gap:10px;padding:10px 16px;background:#c43e1c;color:#fff;font-size:16px}
+.dn-deck header img{width:20px;height:20px;background:#fff;border-radius:4px;padding:2px}
+.dn-deck header span{margin-left:auto;font-size:14px;color:#ffd9cc;font-weight:700}
+.dn-slide{aspect-ratio:16/9;padding:36px 44px;display:flex;flex-direction:column;background:linear-gradient(180deg,#fff 0,#fff 85%,#fdf6f3 100%);border-top:8px solid #c43e1c}
+.dn-kicker{margin:0;font-size:16px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#c43e1c}
+.dn-slide h3{margin:6px 0 24px;font-size:44px;line-height:1.05;font-weight:800;color:#1f1f1f;letter-spacing:-.02em}
+.dn-slide ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:16px;flex:1}
+.dn-slide li{display:flex;flex-direction:column;justify-content:center;gap:6px;padding:16px 20px;border-radius:12px;background:#fdf1ee;border-left:6px solid #c43e1c}
+.dn-slide strong{font-size:48px;line-height:1;font-weight:800;color:#1f1f1f}
+.dn-slide li span{font-size:19px;line-height:1.25;color:#444}
+.dn-status{margin:18px 0 0;display:flex;align-items:center;gap:10px;font-size:19px;font-weight:700;color:#1b7a3d}
+.dn-status i{width:14px;height:14px;border-radius:50%;background:#1b9a4d;box-shadow:0 0 0 5px #1b9a4d26}
+.dn-deck figcaption{padding:10px 16px;font-size:15px;color:#667085;background:#f8f9fb;border-top:1px solid #eef0f3}
+.dn .sh-dana-band{grid-column:1/-1}
