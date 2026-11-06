@@ -4,7 +4,8 @@ export const fixCopy={
  build:{eyebrow:'The fix · 1 of 3',title:'Meet the Parkside AI Register.',lead:''},
  watch:{eyebrow:'The fix · 2 of 3 · Simulated',title:'The AI Register we built, live for one week.',lead:''},
  connected:{eyebrow:'The fix · 3 of 3',title:'Same people, same AI. Now the work connects.',lead:'Every tool reads one Register. Nothing counts until a named owner approves it.'},
- plan:{eyebrow:'Where to start',title:'How we build it, with your people.',lead:''}
+ plan:{eyebrow:'Where to start',title:'How we build it, with your people.',lead:''},
+ qa:{eyebrow:'Q&A',title:'',lead:''}
 };
 export const fixCues={
  build:'Josh: This is what we build. In the middle, one Register: a SharePoint list in your own Microsoft 365. Around it, tools built from each person’s real work, on the AI Parkside already pays for. Left side, Copilot agents. Right side, a shared Claude project and a company GPT. Some tools propose items, some only read. Personal apps stay outside: we learn from them, we never connect them. Next: see the Register at work.',
@@ -137,4 +138,9 @@ export function renderPlan(){
  const t=ids=>`<span class="fx-toks">${ids.map(id=>personToken(id,'S')).join('')}</span>`;
  const who=[['<span class="fx-n67" aria-hidden="true">N67</span>','Nine-67 engineers build with your people.'],[t(['daniel']),'Your IT approves every connector and access.'],[t(['nina','priya','marcus']),'Every tool has a named owner.'],[t(['dana','leah']),'Leadership picks the priorities.']];
  return `<section class="fx fx-plan" aria-label="How Nine-67 builds it with your people: discover, prioritize, build, measure"><ol class="fx-steps">${steps}</ol><ul class="fx-who">${who.map(([a,b])=>`<li>${a}<p>${b}</p></li>`).join('')}</ul><div class="sh-cta fx-cta"><div><h2>Book an AI Workflow Discovery Session.</h2><p>Type “discovery” in the webinar chat</p></div><ul><li>Bring IT, Operations and two department leaders whose teams depend on each other.</li><li>Built only on the AI you already license. Personal accounts are never connected.</li></ul></div></section>`;
+}
+
+export function renderQA(){
+ const people=[['SR','Suuchi Ramesh','CEO · Forward Deployed Engineer'],['JL','Josh Lee','COO · Forward Deployed Engineer']];
+ return `<section class="qa" aria-label="Questions and answers"><div class="qa-left"><p class="qa-big">Ask us anything.</p><p class="qa-sub">Drop your question in the webinar chat.</p><ul class="qa-people">${people.map(([i,n,r])=>`<li><span>${i}</span><div><b>${n}</b><small>${r}</small></div></li>`).join('')}</ul><p class="qa-chat">Want a discovery session? Type <b>“discovery”</b> in the chat.</p></div><figure class="qa-qr"><img src="assets/demo-qr.png" alt="QR code to this interactive demo"><figcaption><b>Explore this demo yourself</b><span>Scan to click through every screen at your own pace.</span></figcaption></figure></section>`;
 }

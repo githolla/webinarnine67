@@ -261,3 +261,18 @@ tr.fx-new th,tr.fx-new td{font-weight:800}
 .fx3 .fx-outlook .rx-title span{color:#dbeafe}
 .fx3-track{max-height:540px}
 .fx3 .rx-title b{color:#fff}
+/* Q&A */
+.qa{height:100%;display:grid;grid-template-columns:1fr 620px;gap:48px;align-items:center}
+.qa-big{margin:0;font-size:84px;line-height:1.05;font-weight:800;letter-spacing:-.03em;color:#0e1726}
+.qa-sub{margin:16px 0 0;font-size:30px;color:#475467}
+.qa-people{list-style:none;margin:48px 0 0;padding:0;display:flex;gap:40px}
+.qa-people li{display:flex;align-items:center;gap:16px}
+.qa-people span{display:grid;place-items:center;width:72px;height:72px;border-radius:50%;background:#0e1726;color:#fff;font-size:26px;font-weight:800}
+.qa-people b{display:block;font-size:26px;color:#0e1726}
+.qa-people small{display:block;font-size:18px;color:#475467}
+.qa-chat{margin:48px 0 0;display:inline-block;padding:16px 24px;border-radius:16px;background:#eaf0ff;font-size:24px;color:#1f4fd8;font-weight:600}
+.qa-chat b{color:#0e1726}
+.qa-qr{margin:0;padding:32px;background:#fff;border-radius:28px;box-shadow:0 24px 50px #2f6bff26,0 2px 6px #0e17260d;display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center}
+.qa-qr img{width:420px;height:420px;display:block}
+.qa-qr b{display:block;font-size:32px;color:#0e1726}
+.qa-qr span{display:block;font-size:22px;color:#475467;margin-top:6px}

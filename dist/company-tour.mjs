@@ -13,7 +13,8 @@ export const tourStops = [
  {scene:7, view:'build', label:'The AI Register'},
  {scene:7, view:'watch', label:'The AI Register, live'},
  {scene:2, networkMode:'connected', improvement:'nina', label:'See the connected company'},
- {scene:8, view:'plan', label:'How we build it'}
+ {scene:8, view:'plan', label:'How we build it'},
+ {scene:8, view:'qa', label:'Q&A'}
 ];
 
 export function enterTourStop(current, index) {

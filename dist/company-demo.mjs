@@ -1,6 +1,6 @@
 import { initialState, transition, people } from './company-model.mjs';
 import { renderStack, renderCrowd, scenes, cues, renderScene, renderDetail, primaryAction, rosterStrip, tourPeople, discoveryPeople, viewCopy } from './company-view.mjs';
-import { renderBuildMap, renderWatch, renderPlan, fixCopy, fixCues, WATCH_LAST } from './company-fix.mjs';
+import { renderBuildMap, renderWatch, renderPlan, fixCopy, fixCues, WATCH_LAST, renderQA } from './company-fix.mjs';
 import { mapHeading } from './company-map.mjs';
 import { tourStops, enterTourStop, firstStopForScene } from './company-tour.mjs';
 import { workspaceHeading } from './company-workspaces.mjs';
@@ -11,7 +11,7 @@ const acts=['Belief','Evidence','The people','The fix','Connected'];
 const actStarts=[0,1,3,9,11];
 const actOf=i=>i===0?0:i<3?1:i<9?2:i<11?3:4;
 const sceneAct=[0,1,2,2,2,2,3,3,4];
-const nextNames={0:'The research',1:'Parkside’s AI stack',2:'All 150 people',3:'Nine of them',8:'The AI Register',9:'See the Register at work',10:'The connected company',11:'How we build it'};
+const nextNames={0:'The research',1:'Parkside’s AI stack',2:'All 150 people',3:'Nine of them',8:'The AI Register',9:'See the Register at work',10:'The connected company',11:'How we build it',12:'Q&A'};
 const tourView=()=>guided&&!state.workspace?tourStops[tourIndex]?.view:undefined;const onStack=()=>tourView()==='stack';
 const tourWorkspaces=tourStops.filter(stop=>stop.workspace).map(stop=>stop.workspace);
 const buildOrder=['priya','elena','nina'];
@@ -57,7 +57,7 @@ function tourAction(){
   if(footerPrimary())return {label:'Next step →',action:'build-forward'};
   if(recommendedChoice())return {label:'Next step →',action:'build-choose'};
  }
- if(tourIndex===tourStops.length-1)return {label:'Book a discovery session →',action:'discovery'};
+ if(tourIndex===tourStops.length-1)return {label:'Q&A',action:'review-required'};
  return {label:`Next: ${nextName(tourIndex)} →`,action:'tour-next'};
 }
 function goTour(index){
@@ -90,7 +90,7 @@ function roster(){
 function armIdle(){clearTimeout(idleTimer);document.body.classList.remove('controls-idle');if(guided&&tourIndex===tourStops.length-1)idleTimer=setTimeout(()=>document.body.classList.add('controls-idle'),4000);}
 function render(navigate=false){
  document.body.classList.toggle('guided-tour',guided);document.body.classList.toggle('is-tour',guided);
- $('stage').innerHTML=onStack()?renderStack():tourView()==='crowd'?renderCrowd():tourView()==='build'?renderBuildMap():tourView()==='watch'?renderWatch(fixStep):tourView()==='plan'?renderPlan():renderScene(state);
+ $('stage').innerHTML=onStack()?renderStack():tourView()==='crowd'?renderCrowd():tourView()==='build'?renderBuildMap():tourView()==='watch'?renderWatch(fixStep):tourView()==='plan'?renderPlan():tourView()==='qa'?renderQA():renderScene(state);
  if(guided)markTourFocus();
  const head=heading();
  $('eyebrow').textContent=head.eyebrow;$('eyebrow').hidden=!head.eyebrow;$('title').textContent=head.title;$('lead').textContent=head.lead;$('lead').hidden=!head.lead;
@@ -102,7 +102,7 @@ function render(navigate=false){
  const action=tourAction();$('next').textContent=action.label;$('next').dataset.action=action.action;$('next').disabled=false;$('next').title=action.label;
  $('hint').hidden=action.action!=='build-choose';
  $('back').disabled=guided?tourIndex===0:state.scene===0;$('counter').textContent=guided?`${tourIndex+1} / ${tourStops.length}`:`${state.scene+1} / ${scenes.length}`;
- $('presenter-cue').textContent={stack:viewCopy.stack.cue,crowd:viewCopy.crowd.cue,build:fixCues.build,watch:fixCues.watch[fixStep],plan:fixCues.plan}[tourView()]??(state.scene===2&&state.networkMode==='connected'?fixCues.connected:state.workspace==='elena'?'Josh: Elena has company Copilot and wants to use it. A broad prompt got a generic answer, so she went back to updating the tracker by hand. She needs a tool built around her real tracker, not more training.':cues[state.scene]);document.body.dataset.scene=String(state.scene);document.body.dataset.stop=guided?String(tourIndex+1):'';
+ $('presenter-cue').textContent={stack:viewCopy.stack.cue,crowd:viewCopy.crowd.cue,build:fixCues.build,watch:fixCues.watch[fixStep],plan:fixCues.plan,qa:'Josh: Open it up. Read questions from the chat. The QR code opens this demo so people can click through on their own. If someone wants a session, they type discovery in the chat.'}[tourView()]??(state.scene===2&&state.networkMode==='connected'?fixCues.connected:state.workspace==='elena'?'Josh: Elena has company Copilot and wants to use it. A broad prompt got a generic answer, so she went back to updating the tracker by hand. She needs a tool built around her real tracker, not more training.':cues[state.scene]);document.body.dataset.scene=String(state.scene);document.body.dataset.stop=guided?String(tourIndex+1):'';
  if(navigate){history.replaceState(null,'',guided?`#stop-${tourIndex+1}`:`#slide-${state.scene+1}`);$('title').focus({preventScroll:true});window.scrollTo(0,0);}
  if(detailKey)updateDetail();$('announcement').textContent=head.title||'Dana’s view: “We gave everyone AI. I thought we were in pretty good shape.”';
  armIdle();
