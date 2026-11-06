@@ -43,19 +43,37 @@ function link(x1,y1,x2,y2,verb,labelX){
  const mx=(x1+x2)/2;const d=`M${x1} ${y1} C${mx} ${y1} ${mx} ${y2} ${x2} ${y2}`;
  return `<path class="fx-link is-${verb}" d="${d}"/>`+`<g class="fx-linklabel is-${verb}" transform="translate(${labelX} ${(y1+y2)/2})"><rect x="-52" y="-15" width="104" height="30" rx="15"/><text text-anchor="middle" dy="6">${verb}</text></g>`;
 }
+const flowIn=[
+ ['copilot.webp','Project Tracker Assist','Elena · Copilot Studio'],
+ ['ms-teams.svg','Ask Ops','Nina · Copilot Studio'],
+ ['copilot.webp','Friday Brief','Leah · Copilot Studio'],
+ ['ms-teams.svg','Ask Parkside','Daniel · Copilot Studio'],
+ ['claude.svg','Month-End Reconciliation','Priya · Claude'],
+ ['claude.svg','Board prep','Dana · Claude'],
+ ['openai.svg','Call Prep Coach','Marcus · ChatGPT']
+];
+const flowOut=[
+ ['ms-teams.svg','Teams','Approvals and channels'],
+ ['ms-excel.svg','Excel','Trackers and month-end files'],
+ ['hubspot.svg','HubSpot','Account notes'],
+ ['ms-outlook.svg','Outlook','Leah’s Friday brief']
+];
+function curve(x1,y1,x2,y2){const xm=(x1+x2)/2,ym=(y1+y2)/2,dx=x2-x1;return `<path class="fx2-link" d="M${x1} ${y1} C${x1+dx*.3} ${y1} ${xm-dx*.12} ${ym} ${xm} ${ym} C${xm+dx*.12} ${ym} ${x2-dx*.3} ${y2} ${x2} ${y2}" marker-mid="url(#fx2-arrow)"/>`;}
 export function renderBuildMap(){
- const left=tools.copilot.items,right=[...tools.claude.items,...tools.chatgpt.items];
- const hubIn=i=>HUB.y+90+i*76;
- const svg=[...left.map((t,i)=>link(L.x+L.w,leftY[i]+CARD/2,HUB.x,hubIn(i),t[3],590)),...right.map((t,i)=>link(R.x,rightY[i]+CARD/2,HUB.x+HUB.w,HUB.y+110+i*96,t[3],1170))].join('');
- const cards=[...left.map((t,i)=>toolCard(t,L.x,leftY[i],L)),...right.map((t,i)=>toolCard(t,R.x,rightY[i],R))].join('');
- const head=(p,x,y,w)=>`<p class="fx-plat" style="left:${x}px;top:${y}px;width:${w}px">${img(p.icon)}${p.name}</p>`;
- const rows=[['HF-01','Nina','Tue'],['REC-07','Priya','Fri'],['T-41','Nina','Tue'],['CALL-12','Marcus','Mon']];
- const hub=`<div class="fx-hub" style="left:${HUB.x}px;top:${HUB.y}px;width:${HUB.w}px;height:${HUB.h}px"><small>The one place</small><b>Parkside AI Register</b><span>A SharePoint list in your own Microsoft 365</span><ul>${rows.map(([id,o,d])=>`<li><i>${id}</i><span>${o}</span><span>${d}</span><em>✓</em></li>`).join('')}</ul></div>`;
- const personal=`<p class="fx-personal" style="left:${R.x}px;top:494px;width:${R.w}px">${img('grok.svg')}${img('openai.svg')}<span><b>Personal apps:</b> we learn from them, never connect them.</span></p>`;
- const map=`<div class="fx-map"><svg class="fx-links" viewBox="0 0 1760 560" aria-hidden="true">${svg}</svg>${head(tools.copilot,L.x,0,L.w)}${head(tools.claude,R.x,0,R.w)}${head(tools.chatgpt,R.x,318,R.w)}<ul class="fx-tools">${cards}</ul>${hub}${personal}</div>`;
+ const H=560,cx=880,cy=250,r=118;
+ const inY=flowIn.map((_,i)=>44+i*74),outY=flowOut.map((_,i)=>92+i*112);
+ const hubPt=(y,side)=>{const t=Math.max(-.62,Math.min(.62,(y-cy)/260));return [cx+side*r*Math.cos(Math.asin(t)),cy+r*t];};
+ const links=[...inY.map(y=>{const [x2,y2]=hubPt(y,-1);return curve(420,y,x2-6,y2);}),...outY.map(y=>{const [x1,y1]=hubPt(y,1);return curve(x1+6,y1,1338,y);})].join('');
+ const svg=`<svg class="fx2-links" viewBox="0 0 1760 ${H}" aria-hidden="true"><defs><linearGradient id="fx2-grad" x1="0" x2="1"><stop offset="0" stop-color="#6b8cff"/><stop offset="1" stop-color="#22c3ee"/></linearGradient><marker id="fx2-arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="13" markerHeight="13" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#22a8ee"/></marker></defs>${links}</svg>`;
+ const node=([icon,name,sub])=>`<li><span class="fx2-ring">${img(icon)}</span><div><b>${name}</b><small>${sub}</small></div></li>`;
+ const left=`<div class="fx2-col fx2-in"><p class="fx2-colhead">Company AI tools we build</p><ul>${flowIn.map(node).join('')}</ul></div>`;
+ const right=`<div class="fx2-col fx2-out"><p class="fx2-colhead">Lands where people work</p><ul>${flowOut.map(node).join('')}</ul></div>`;
+ const hub=`<div class="fx2-hub" style="left:${cx-r}px;top:${cy-r}px;width:${r*2}px;height:${r*2}px"><span class="fx2-dots" aria-hidden="true">${Array.from({length:15},(_,i)=>`<i style="height:${[10,22,34,22,10][i%5]}px"></i>`).join('')}</span><b>AI Register</b></div><div class="fx2-hublabel" style="left:${cx-260}px;top:${cy+r+18}px;width:520px"><b>Parkside AI Register</b><span>One SharePoint list in your Microsoft 365. Tools propose, a named owner approves, everyone reads.</span></div>`;
+ const personal=`<p class="fx2-personal" style="left:${cx-260}px;top:${cy+r+118}px;width:520px">${img('grok.svg')}${img('openai.svg')}<span><b>Personal apps:</b> we learn from them, never connect them.</span></p>`;
+ const map=`<div class="fx-map fx2-map">${svg}${left}${hub}${right}${personal}</div>`;
  const how=`<div class="fx-how"><p class="fx-howlabel">How it works</p><ol>${['A company tool <b>proposes</b>','A named owner <b>approves</b> in Teams','It <b>lands</b> in the tool people use, with owner and due date'].map((t,i)=>`<li><i>${i+1}</i><span>${t}</span></li>`).join('')}</ol></div>`;
  const who=`<ul class="fx-whoband">${[['<span class="fx-n67" aria-hidden="true">N67</span>','Nine-67 builds it with your people'],[personToken('daniel','S'),'Your IT approves every connector'],['<span class="fx-ownmark" aria-hidden="true">✓</span>','Every tool has a named owner']].map(([a,b])=>`<li>${a}<span>${b}</span></li>`).join('')}</ul>`;
- return `<section class="fx fx-build" aria-label="What Nine-67 builds: company AI tools on Copilot, Claude and ChatGPT, all connected through the Parkside AI Register">${map}<div class="fx-bottom">${how}${who}</div></section>`;
+ return `<section class="fx fx-build" aria-label="What Nine-67 builds: company AI tools on Copilot, Claude and ChatGPT flow into the Parkside AI Register and out to Teams, Excel, HubSpot and Outlook">${map}<div class="fx-bottom">${how}${who}</div></section>`;
 }
 
 const items=[
