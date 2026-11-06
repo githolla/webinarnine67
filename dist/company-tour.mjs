@@ -10,10 +10,10 @@ export const tourStops = [
  {scene:4, workspace:'marcus', label:'Marcus · Accounts'},
  {scene:4, workspace:'elena', label:'Elena · Coordination'},
  {scene:5, workspace:'leah', label:'Leah · Chief of staff'},
- {scene:7, view:'how', label:'How it works'},
- {scene:7, improvement:'nina', label:'The fix · Nina’s connected finding'},
+ {scene:7, view:'build', label:'What we build'},
+ {scene:7, view:'watch', label:'Watch it happen'},
  {scene:2, networkMode:'connected', improvement:'nina', label:'See the connected company'},
- {scene:8, label:'Where to start'}
+ {scene:8, view:'plan', label:'How we build it'}
 ];
 
 export function enterTourStop(current, index) {
