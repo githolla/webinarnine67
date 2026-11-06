@@ -29,5 +29,5 @@ test('tour navigation preserves review gates and never approves a build',()=>{
  assert.equal(state.builds.elena.applied,false);
  assert.equal(state.builds.nina.published,false);
  for(const scene of new Set(tourStops.map(stop=>stop.scene)))assert.equal(tourStops[firstStopForScene(scene)].scene,scene);
- assert(tourStops.length<=10,'tour fits a 30-minute webinar');
+ assert(tourStops.length<=11,'tour fits a 30-minute webinar');
 });

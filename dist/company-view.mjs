@@ -90,3 +90,21 @@ export function renderDetail(state,key){
  if(key==='discovery')return {title:'Book an AI Workflow Discovery Session',html:'<p>Bring Operations, IT and two department leaders whose teams depend on each other.</p><p>Each brings one example where AI helps and one piece of work they still chase.</p><div id="booking-content"><b>Type “discovery” in the webinar chat to arrange the session.</b></div><p>Start with company-wide discovery, prioritize a build plan, then implement with the employees who will use it.</p>'};
  return {title:'About this demonstration',html:'<p>Parkside, its employees and every record are fictional. Interfaces, AI responses, file processing and integrations are simulated locally. No live business records or private AI chats are accessed.</p><p>A real build requires approved sources, scoped access, validation, accountable owners and testing with the people doing the work.</p>'};
 }
+const stackOfficial=[
+ {icon:'microsoft.svg',name:'Microsoft 365',note:'Teams · Outlook · Excel · PowerPoint · SharePoint'},
+ {icon:'copilot.webp',name:'Copilot',note:'150 licenses, one per employee'},
+ {icon:'hubspot.svg',name:'HubSpot',note:'Sales'},
+ {icon:'zendesk.svg',name:'Zendesk',note:'Customer Service'}
+];
+const stackActual=[
+ {icon:'copilot.webp',name:'Copilot',how:'Rolled out',kind:'official',people:['ben','ava','elena','leah']},
+ {icon:'claude.svg',name:'Claude',how:'Bought separately',kind:'separate',people:['dana','priya']},
+ {icon:'ms-teams.svg',name:'Ask Parkside',how:'Built by IT in Copilot Studio',kind:'built',people:['daniel']},
+ {icon:'ms-teams.svg',name:'Ask Ops',how:'Built by Operations in Teams',kind:'built',people:['nina']},
+ {icon:'grok.svg',name:'Grok',how:'Personal phone',kind:'personal',people:['marcus']}
+];
+export function renderStack(){
+ const official=stackOfficial.map(t=>`<li><img src="assets/${t.icon}" alt=""><div><b>${t.name}</b><span>${t.note}</span></div></li>`).join('');
+ const actual=stackActual.map(t=>`<li class="stk-${t.kind}"><img src="assets/${t.icon}" alt=""><div class="stk-tool"><b>${t.name}</b><span class="stk-how">${t.how}</span></div><div class="stk-people">${t.people.map(id=>personToken(id,'S')).join('')}</div></li>`).join('');
+ return `<section class="stk"><div class="stk-cols"><article class="stk-card stk-plan"><small>What leadership rolled out</small><ul>${official}</ul><p>The stack on Dana’s rollout slide.</p></article><span class="stk-arrow" aria-hidden="true">→</span><article class="stk-card stk-real"><small>What people actually use</small><ul>${actual}</ul></article></div><p class="stk-band"><b>5</b> AI tools <i>·</i> <b>2</b> homegrown bots <i>·</i> <b>1</b> personal phone <i>·</i> <b class="stk-zero">0</b> shared between teams</p></section>`;
+}
