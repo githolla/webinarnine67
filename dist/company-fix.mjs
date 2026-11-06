@@ -1,7 +1,7 @@
 import { personToken, escapeHtml } from './company-view.mjs';
 export const WATCH_LAST=4;
 export const fixCopy={
- build:{eyebrow:'The fix · 1 of 3',title:'Meet the Parkside AI Register.',lead:'Nine-67 builds on the AI you already license and connects it through one Register your team controls.'},
+ build:{eyebrow:'The fix · 1 of 3',title:'Meet the Parkside AI Register.',lead:''},
  watch:{eyebrow:'The fix · 2 of 3 · Simulated',title:'The AI Register we built, live for one week.',lead:''},
  connected:{eyebrow:'The fix · 3 of 3',title:'Same people, same AI. Now the work connects.',lead:'Every tool reads one Register. Nothing counts until a named owner approves it.'},
  plan:{eyebrow:'Where to start',title:'How we build it, with your people.',lead:''}
