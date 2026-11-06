@@ -5,11 +5,12 @@ import { workspaceHeading } from './company-workspaces.mjs';
 let guided=true;let tourIndex=0;let mapReturn=null;
 let state=initialState();let detailKey='';let detailTrigger;let playback=[];let idleTimer;
 const $=id=>document.getElementById(id);const dialog=$('detail-dialog');
-const acts=['Belief','Evidence','The nine','Discover & build','Connected'];
-const actStarts=[0,1,2,12,18];
-const actOf=i=>i===0?0:i===1?1:i<12?2:i<18?3:4;
+const acts=['Belief','Evidence','The people','The fix','Connected'];
+const actStarts=[0,1,2,7,8];
+const actOf=i=>i===0?0:i===1?1:i<7?2:i<8?3:4;
 const sceneAct=[0,1,2,2,2,2,3,3,4];
-const nextNames={0:'The research',1:'Meet Parkside',11:'What discovery finds',12:'Finding 2 of 3',13:'Finding 3 of 3',14:'Build 1 of 3',15:'Build 2 of 3',16:'Build 3 of 3',17:'The connected company',18:'Where to start'};
+const nextNames={0:'The research',1:'Meet Parkside',6:'The fix',7:'The connected company',8:'Where to start'};
+const tourWorkspaces=tourStops.filter(stop=>stop.workspace).map(stop=>stop.workspace);
 const buildOrder=['priya','elena','nina'];
 const buildPeople={priya:['priya'],elena:['elena','nina'],nina:['nina','marcus','leah']};
 const discoveryOrder=['reuse','needs','handoff'];
@@ -61,15 +62,21 @@ function goTour(index){
  state=enterTourStop(state,tourIndex);render(true);
 }
 function heading(){
- if(state.workspace)return {eyebrow:`The nine · Person ${tourPeople.indexOf(state.workspace)+1} of 9`,title:workspaceHeading(state),lead:''};
+ if(state.workspace)return {eyebrow:guided&&tourWorkspaces.includes(state.workspace)?`Meet the people · ${tourWorkspaces.indexOf(state.workspace)+1} of ${tourWorkspaces.length}`:`The nine · Person ${tourPeople.indexOf(state.workspace)+1} of 9`,title:workspaceHeading(state),lead:''};
  if(state.scene===2)return state.networkMode==='connected'?{eyebrow:'',title:'Same nine people. Now the work connects.',lead:'Same tools. Methods get reused, and findings reach the next owner.'}:{eyebrow:'',title:scenes[2].title,lead:scenes[2].lead};
  if(state.scene===6){const id=discoveryOrder.includes(state.discovery)?state.discovery:'reuse';return {eyebrow:`What discovery finds · ${discoveryOrder.indexOf(id)+1} of 3`,title:discoveryTitles[id],lead:''};}
- if(state.scene===7){const lifted=$('stage').querySelector('[data-stage-title], .build-heading h2');if(lifted)lifted.classList.add('sh-lifted');return {eyebrow:`Discover & build · Build ${Math.max(0,buildOrder.indexOf(state.improvement))+1} of 3`,title:lifted?.textContent||scenes[7].title,lead:''};}
+ if(state.scene===7){const lifted=$('stage').querySelector('[data-stage-title], .build-heading h2');if(lifted)lifted.classList.add('sh-lifted');return {eyebrow:guided?'The fix':`Discover & build · Build ${Math.max(0,buildOrder.indexOf(state.improvement))+1} of 3`,title:lifted?.textContent||scenes[7].title,lead:''};}
  return {eyebrow:'',title:scenes[state.scene].title,lead:scenes[state.scene].lead};
 }
+function markTourFocus(){
+ const stage=$('stage');
+ stage.querySelectorAll('.org-graph.is-today .pg-card').forEach(card=>{const order=tourWorkspaces.indexOf(card.dataset.workspace);const num=card.querySelector('.pg-num');card.classList.toggle('is-featured',order>=0);if(num)num.textContent=order>=0?String(order+1):'';});
+ const eyebrow=stage.querySelector('.bx-eyebrow');if(eyebrow)eyebrow.textContent='The fix';
+}
 function roster(){
- if(state.workspace){const idx=tourPeople.indexOf(state.workspace);return rosterStrip({current:state.workspace,visited:guided?tourPeople.slice(0,idx+1):tourPeople});}
+ if(state.workspace){return rosterStrip({current:state.workspace,visited:tourPeople});}
  if(state.scene===6){const d=discoveryPeople(state.discovery);return rosterStrip({visited:tourPeople,focus:d.people,ghost:d.ghost});}
+ if(state.scene===7&&guided)return '';
  if(state.scene===7)return rosterStrip({visited:tourPeople,focus:buildPeople[state.improvement]||[],ghost:state.improvement==='priya'});
  return '';
 }
@@ -77,6 +84,7 @@ function armIdle(){clearTimeout(idleTimer);document.body.classList.remove('contr
 function render(navigate=false){
  document.body.classList.toggle('guided-tour',guided);document.body.classList.toggle('is-tour',guided);
  $('stage').innerHTML=renderScene(state);
+ if(guided)markTourFocus();
  const head=heading();
  $('eyebrow').textContent=head.eyebrow;$('eyebrow').hidden=!head.eyebrow;$('title').textContent=head.title;$('lead').textContent=head.lead;$('lead').hidden=!head.lead;
  const strip=roster();$('roster').innerHTML=strip;$('roster').hidden=!strip;

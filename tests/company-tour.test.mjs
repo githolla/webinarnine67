@@ -5,14 +5,15 @@ import { tourStops, enterTourStop, firstStopForScene } from '../dist/company-tou
 import { workspaceStories } from '../dist/company-workspaces.mjs';
 import { renderScene } from '../dist/company-view.mjs';
 
-test('guided path shows every employee with their work already visible',()=>{
+test('guided path shows one person per verdict with their work already visible',()=>{
  let state=initialState();const seen=[];
  for(let i=0;i<tourStops.length;i++){
   state=enterTourStop(state,i);
   assert.doesNotMatch(renderScene(state),/undefined|NaN/);
   if(state.workspace){seen.push(state.workspace);assert.equal(state.workSteps[state.workspace],workspaceStories[state.workspace].max);}
  }
- assert.deepEqual(seen.slice().sort(),people.map(person=>person.id).sort());
+ assert.deepEqual(seen,['priya','marcus','elena','leah']);
+ assert(people.every(person=>workspaceStories[person.id]),'every employee keeps a workspace for explore mode');
 });
 test('research follows the opening and connected graph concludes the builds',()=>{
  assert.equal(tourStops[1].scene,1);
@@ -27,5 +28,6 @@ test('tour navigation preserves review gates and never approves a build',()=>{
  assert.equal(state.builds.priya.published,false);
  assert.equal(state.builds.elena.applied,false);
  assert.equal(state.builds.nina.published,false);
- for(let scene=0;scene<9;scene++)assert.equal(tourStops[firstStopForScene(scene)].scene,scene);
+ for(const scene of new Set(tourStops.map(stop=>stop.scene)))assert.equal(tourStops[firstStopForScene(scene)].scene,scene);
+ assert(tourStops.length<=10,'tour fits a 30-minute webinar');
 });
