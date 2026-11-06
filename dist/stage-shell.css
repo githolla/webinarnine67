@@ -440,3 +440,14 @@ p.sh-tie{display:block;margin:auto 0 0;padding-top:20px;font-size:28px;line-heig
 .dn .dn-tag b{display:block;font-size:36px;color:#0e1726;line-height:1.1}
 .dn-copy blockquote{font-size:54px}
 .dn-left{align-items:flex-start}.dn-who{align-self:flex-start}
+/* Parkside snapshot */
+.dn-left{gap:22px}
+.dn .dn-photo{width:170px;height:170px;background-position:-76px -14px}
+.dn-copy blockquote{font-size:48px}
+.dn-copy p{margin-top:14px;font-size:22px}
+.dn-snap{margin:22px 0 0;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.dn-snap div{padding:10px 14px;border-radius:12px;background:#fff;border:1px solid #e4e7ec}
+.dn-snap div:last-child{grid-column:span 1}
+.dn-snap dt{font-size:14px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#667085}
+.dn-snap dd{margin:2px 0 0;font-size:22px;line-height:1.2;font-weight:750;color:#0e1726}
+.dn-snap div:last-child dd{font-size:17px}
