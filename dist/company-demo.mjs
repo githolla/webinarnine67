@@ -11,7 +11,7 @@ const acts=['Belief','Evidence','The people','The fix','Connected'];
 const actStarts=[0,1,3,9,11];
 const actOf=i=>i===0?0:i<3?1:i<9?2:i<11?3:4;
 const sceneAct=[0,1,2,2,2,2,3,3,4];
-const nextNames={0:'The research',1:'Parkside’s AI stack',2:'All 150 people',3:'Nine of them',8:'What we build',9:'Watch it happen',10:'The connected company',11:'How we build it'};
+const nextNames={0:'The research',1:'Parkside’s AI stack',2:'All 150 people',3:'Nine of them',8:'What we build',9:'See the Register at work',10:'The connected company',11:'How we build it'};
 const tourView=()=>guided&&!state.workspace?tourStops[tourIndex]?.view:undefined;const onStack=()=>tourView()==='stack';
 const tourWorkspaces=tourStops.filter(stop=>stop.workspace).map(stop=>stop.workspace);
 const buildOrder=['priya','elena','nina'];
@@ -68,7 +68,7 @@ function heading(){
  const view=tourView();
  if(fixCopy[view])return fixCopy[view];
  if(view==='crowd'||view==='stack'){const {eyebrow,title,lead}=viewCopy[view];return {eyebrow,title,lead};}
- if(state.scene===2&&state.networkMode==='connected')return {eyebrow:guided?'The fix · 3 of 3':'',...mapHeading(state)};
+ if(state.scene===2&&state.networkMode==='connected')return guided?fixCopy.connected:{eyebrow:'',...mapHeading(state)};
  if(state.workspace)return {eyebrow:guided&&tourWorkspaces.includes(state.workspace)?`Meet the people · ${tourWorkspaces.indexOf(state.workspace)+1} of ${tourWorkspaces.length}`:`The nine · Person ${tourPeople.indexOf(state.workspace)+1} of 9`,title:workspaceHeading(state),lead:''};
  if(state.scene===2)return {eyebrow:'',title:scenes[2].title,lead:guided?'Nine of the 150, with the AI each one uses. We’ll sit beside the four outlined.':scenes[2].lead};
  if(state.scene===6){const id=discoveryOrder.includes(state.discovery)?state.discovery:'reuse';return {eyebrow:`What discovery finds · ${discoveryOrder.indexOf(id)+1} of 3`,title:discoveryTitles[id],lead:''};}
@@ -78,7 +78,7 @@ function heading(){
 function markTourFocus(){
  const stage=$('stage');
  stage.querySelectorAll('.org-graph.is-today .pg-card').forEach(card=>{const order=tourWorkspaces.indexOf(card.dataset.workspace);const num=card.querySelector('.pg-num');card.classList.toggle('is-featured',order>=0);if(num)num.textContent=order>=0?String(order+1):'';});
- const eyebrow=stage.querySelector('.bx-eyebrow');if(eyebrow)eyebrow.textContent='See it work · No new AI vendor';
+ const eyebrow=stage.querySelector('.bx-eyebrow');if(eyebrow)eyebrow.textContent='See it work';
 }
 function roster(){
  if(state.workspace){return rosterStrip({current:state.workspace,visited:tourPeople});}
