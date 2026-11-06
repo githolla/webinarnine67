@@ -11,7 +11,7 @@ const acts=['Belief','Evidence','The people','The fix','Connected'];
 const actStarts=[0,1,3,9,11];
 const actOf=i=>i===0?0:i<3?1:i<9?2:i<11?3:4;
 const sceneAct=[0,1,2,2,2,2,3,3,4];
-const nextNames={0:'The research',1:'Parkside’s AI stack',2:'All 150 people',3:'Nine of them',8:'The AI Register',9:'See the Register at work',10:'The connected company',11:'How we build it',12:'Q&A'};
+const nextNames={0:'The research',1:'Parkside’s AI stack',2:'All 150 people',3:'Nine of them',8:'The AI Register',9:'How it works',10:'The connected company',11:'How it gets built',12:'Q&A'};
 const tourView=()=>guided&&!state.workspace?tourStops[tourIndex]?.view:undefined;const onStack=()=>tourView()==='stack';
 const tourWorkspaces=tourStops.filter(stop=>stop.workspace).map(stop=>stop.workspace);
 const buildOrder=['priya','elena','nina'];
