@@ -1,10 +1,13 @@
 export const people = [
-  { id: 'ava', name: 'Ava', department: 'Customer Service', ai: 'Copilot', system: 'Outlook', icon: 'copilot.webp' },
-  { id: 'ben', name: 'Ben', department: 'Head of Sales', ai: 'Copilot', system: 'Excel', icon: 'copilot.webp' },
-  { id: 'nina', name: 'Nina', department: 'Operations', ai: 'Ask Ops', system: 'Teams', icon: 'ms-teams.svg' },
-  { id: 'marcus', name: 'Marcus', department: 'Account Manager', ai: 'Grok', system: 'Personal phone' },
-  { id: 'daniel', name: 'Daniel', department: 'IT', ai: 'Internal assistant', system: 'Company documents' },
-  { id: 'suuchi', name: 'Suuchi', department: 'CEO (role-play)', ai: 'Claude', system: 'Friday department updates', icon: 'claude.svg' }
+  { id: 'dana', name: 'Dana', department: 'CEO', ai: 'Claude', system: 'PowerPoint · Microsoft 365 reports', icon: 'claude.svg' },
+  { id: 'daniel', name: 'Daniel', department: 'IT', ai: 'Ask Parkside', system: 'Copilot Studio · Teams · SharePoint' },
+  { id: 'ben', name: 'Ben', department: 'Head of Sales', ai: 'Copilot', system: 'Excel · HubSpot', icon: 'copilot.webp' },
+  { id: 'priya', name: 'Priya', department: 'Finance Analyst', ai: 'Claude', system: 'Excel · Power Query', icon: 'claude.svg' },
+  { id: 'nina', name: 'Nina', department: 'Operations', ai: 'Ask Ops', system: 'Teams · Power Automate · SharePoint List', icon: 'ms-teams.svg' },
+  { id: 'marcus', name: 'Marcus', department: 'Account Manager', ai: 'Grok', system: 'Personal phone · HubSpot · Outlook' },
+  { id: 'ava', name: 'Ava', department: 'Customer Service', ai: 'Copilot', system: 'Zendesk · Outlook', icon: 'copilot.webp' },
+  { id: 'elena', name: 'Elena', department: 'Project Coordinator', ai: 'Copilot', system: 'Teams · Outlook · Excel', icon: 'copilot.webp' },
+  { id: 'leah', name: 'Leah', department: 'Chief of Staff', ai: 'Copilot', system: 'Teams · Outlook · Excel · PowerPoint', icon: 'copilot.webp' }
 ];
 const candidateRows = [
   ['CASE-201', 'Northwind', 'Implementation handoff has no receiving owner'],
@@ -33,7 +36,7 @@ export const cases = Object.freeze([
   ...Array.from({ length: 4 }, (_, index) => Object.freeze({ id: `CASE-${214 + index}`, account: index % 2 ? 'Cedar' : 'Brightline', title: ['Account access request', 'Login reset'][index % 2], description: 'The service record concerns an account-access request handled by the access team. It is outside the proposed ownership-handoff finding.', category: 'access', candidate: false, relevant: false, source: 'Service case record', version: 1 }))
 ]);
 export function initialState() {
-  return { scene: 0, person: 'ava', pilotView: 'teams', excluded: [], approved: false, reviewed: false, assigned: null, owner: null, due: null, progress: 'unassigned', progressNote: '', accountObservation: null, stage: 0, revision: 1, inspected: [], audit: [] };
+  return { scene: 0, person: 'priya', networkMode: 'fragmented', mapNode: 'person:priya', financeRefreshed: false, elenaCoached: false, pilotView: 'teams', excluded: [], approved: false, reviewed: false, assigned: null, owner: null, due: null, progress: 'unassigned', progressNote: '', accountObservation: null, stage: 0, revision: 1, inspected: [], audit: [] };
 }
 function retainedCases(state) {
   return cases.filter(row => row.candidate && !state.excluded.includes(row.id));
@@ -81,11 +84,34 @@ export function transition(current, action) {
   if (action.type === 'RESET') return initialState();
   const state = { ...current, excluded: [...current.excluded], inspected: [...current.inspected], audit: [...current.audit] };
   if (action.type === 'SCENE') {
-    if (Number.isInteger(action.index)) state.scene = Math.max(0, Math.min(6, action.index));
+    if (Number.isInteger(action.index)) state.scene = Math.max(0, Math.min(8, action.index));
   } else if (action.type === 'NEXT_SCENE') {
-    state.scene = Math.min(6, state.scene + 1);
+    state.scene = Math.min(8, state.scene + 1);
   } else if (action.type === 'PERSON') {
-    if (people.some(person => person.id === action.id)) state.person = action.id;
+    if (people.some(person => person.id === action.id)) {
+      state.person = action.id;
+      state.mapNode = `person:${action.id}`;
+    }
+  } else if (action.type === 'NETWORK_MODE') {
+    if (['fragmented', 'connected'].includes(action.mode)) state.networkMode = action.mode;
+  } else if (action.type === 'MAP_NODE') {
+    if (['hub','hub:records'].includes(action.id)) {
+      state.mapNode = 'hub:records';
+    } else if (typeof action.id === 'string') {
+      const match = action.id.match(/^(person|ai|output):([a-z]+)$/);
+      if (match && people.some(person => person.id === match[2])) {
+        state.mapNode = action.id;
+        state.person = match[2];
+      }
+    }
+  } else if (action.type === 'MAP_RESET') {
+    state.mapNode = 'person:priya';
+    state.person = 'priya';
+    state.networkMode = state.scene === 6 ? 'connected' : 'fragmented';
+  } else if (action.type === 'REFRESH_FINANCE') {
+    state.financeRefreshed = true;
+  } else if (action.type === 'SHOW_COACHING') {
+    state.elenaCoached = true;
   } else if (action.type === 'PILOT_VIEW') {
     if (['teams', 'crm', 'executive'].includes(action.view)) state.pilotView = action.view;
   } else if (action.type === 'INSPECT') {
@@ -128,6 +154,10 @@ export function transition(current, action) {
     state.progressNote = 'Handoff mapped; change being tested';
     state.stage = 4;
     record(state, 'Nina posted a human progress update: handoff mapped; change being tested. The issue remains open.');
+  }
+  if (action.type === 'SCENE' || action.type === 'NEXT_SCENE') {
+    if (state.scene === 2) state.networkMode = 'fragmented';
+    if (state.scene === 6) state.networkMode = 'connected';
   }
   return state;
 }

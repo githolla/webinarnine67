@@ -6,7 +6,7 @@ function reviewedState() {
 }
 test('company pilot separates candidate pattern from reviewed evidence', () => {
   const state = initialState();
-  assert.equal(people.length, 6);
+  assert.equal(people.length, 9);
   assert.equal(cases.length, 18);
   assert.equal(new Set(cases.map(row => row.id)).size, 18);
   assert.equal(summary(state).candidateCount, 8);
@@ -93,9 +93,9 @@ test('read-only surfaces cannot make management decisions and approvals freeze e
   }
   assert.deepEqual(transition(state, { type: 'RESET' }), initialState());
   state = transition(state, { type: 'SCENE', index: 999 });
-  assert.equal(state.scene, 6);
-  assert.equal(transition(state, { type: 'SCENE', index: NaN }).scene, 6);
-  assert.equal(transition(state, { type: 'PERSON', id: 'invalid' }).person, 'ava');
+  assert.equal(state.scene, 8);
+  assert.equal(transition(state, { type: 'SCENE', index: NaN }).scene, 8);
+  assert.equal(transition(state, { type: 'PERSON', id: 'invalid' }).person, 'priya');
 });
 
 test('Marcus contributes a business observation without exposing his personal AI history', () => {
@@ -136,4 +136,63 @@ test('excluded account cases do not return as reviewed CRM evidence',()=>{
  state=transition(state,{type:'APPROVE_FINDING'});
  assert.equal(summary(state).caseCount,6);
  assert.deepEqual(visibleCases(state,'crm').map(row=>row.id),['CASE-202','CASE-203']);
+});
+
+test('Parkside has nine distinct people and the CEO is Dana', () => {
+  assert.deepEqual(people.map(person => person.id), ['dana', 'daniel', 'ben', 'priya', 'nina', 'marcus', 'ava', 'elena', 'leah']);
+  assert.equal(people.find(person => person.id === 'dana').department, 'CEO');
+  assert.equal(people.some(person => person.id === 'suuchi'), false);
+  assert.equal(people.find(person => person.id === 'priya').system, 'Excel · Power Query');
+});
+test('company map navigation selects people, AI and outputs without changing pilot evidence', () => {
+  let state = reviewedState();
+  const finding = summary(state);
+  assert.equal(state.networkMode, 'fragmented');
+  assert.equal(state.mapNode, 'person:priya');
+  for (const id of ['person:ava', 'ai:priya', 'output:leah']) {
+    state = transition(state, { type: 'MAP_NODE', id });
+    assert.equal(state.mapNode, id);
+    assert.equal(state.person, id.split(':')[1]);
+    assert.deepEqual(summary(state), finding);
+  }
+  state = transition(state, { type: 'MAP_NODE', id: 'hub' });
+  assert.equal(state.mapNode, 'hub:records');
+  assert.equal(state.person, 'leah');
+  for (const id of ['person:unknown', 'ai:suuchi', 'unknown:ava', '', null]) assert.deepEqual(transition(state, { type: 'MAP_NODE', id }), state);
+});
+test('scene entry and map reset establish the right network mode', () => {
+  let state = transition(initialState(), { type: 'SCENE', index: 6 });
+  assert.equal(state.networkMode, 'connected');
+  state = transition(state, { type: 'NETWORK_MODE', mode: 'fragmented' });
+  assert.equal(state.networkMode, 'fragmented');
+  state = transition(state, { type: 'MAP_NODE', id: 'output:ben' });
+  state = transition(state, { type: 'MAP_RESET' });
+  assert.equal(state.networkMode, 'connected');
+  assert.equal(state.mapNode, 'person:priya');
+  assert.equal(state.person, 'priya');
+  state = transition(state, { type: 'SCENE', index: 2 });
+  assert.equal(state.networkMode, 'fragmented');
+  state = transition(state, { type: 'SCENE', index: 5 });
+  state = transition(state, { type: 'NEXT_SCENE' });
+  assert.equal(state.scene, 6);
+  assert.equal(state.networkMode, 'connected');
+  state = transition(state, { type: 'SCENE', index: 8 });
+  assert.equal(transition(state, { type: 'NEXT_SCENE' }).scene, 8);
+  assert.deepEqual(transition(state, { type: 'NETWORK_MODE', mode: 'invalid' }), state);
+});
+test('finance refresh and coaching are independent local demonstrations', () => {
+  const initial = initialState();
+  let state = transition(initial, { type: 'REFRESH_FINANCE' });
+  assert.equal(state.financeRefreshed, true);
+  assert.equal(state.elenaCoached, false);
+  state = transition(state, { type: 'SHOW_COACHING' });
+  assert.equal(state.elenaCoached, true);
+  assert.equal(state.approved, false);
+  assert.equal(state.stage, 0);
+  assert.equal(initial.financeRefreshed, false);
+  assert.equal(initial.elenaCoached, false);
+  const resetMap = transition(state, { type: 'MAP_RESET' });
+  assert.equal(resetMap.financeRefreshed, true);
+  assert.equal(resetMap.elenaCoached, true);
+  assert.deepEqual(transition(resetMap, { type: 'RESET' }), initialState());
 });

@@ -2,7 +2,7 @@
 
 The website for **Your team has AI. Why is the work still manual?**
 
-The current demonstration is **“We Bought Copilot. Then We Asked People to Show Us Last Tuesday.”** At fictional Northstar, a 150-person company, six employees show how they actually use AI. Their chief of staff still reconciles the separate updates. Nine-67 then demonstrates company-wide discovery, opportunity prioritization and a focused connected-work pilot.
+The current demonstration follows **nine people at fictional Parkside**. Everyone has a company Copilot license, but their actual AI use and results differ. A clickable company map reveals local successes, skills gaps and manual handoffs. A connected version illustrates how approved business outputs could move between people and systems after company-wide discovery and prioritization.
 
 The editable application source is in `dist/`. This is a static HTML, CSS and JavaScript application with no third-party npm dependencies, database or backend service.
 
@@ -18,8 +18,8 @@ Open:
 
 - `http://localhost:3000/` for the webinar cover.
 - `http://localhost:3000/stats.html` for the standalone research introduction.
-- `http://localhost:3000/live.html` for the current seven-scene demo.
-- `http://localhost:3000/host-guide.html` for Josh and Suuchi’s flexible ten-minute walkthrough.
+- `http://localhost:3000/live.html` for the current nine-scene demo.
+- `http://localhost:3000/host-guide.html` for Josh and Suuchi’s flexible twelve-minute walkthrough.
 
 Set `PORT` if 3000 is occupied. Stop the server with Ctrl+C. Serve the app over HTTP so ES modules load with the correct MIME type. No `npm install` is needed.
 
@@ -36,37 +36,48 @@ The tests exercise application behavior. The check validates JavaScript syntax a
 
 ## Current story
 
-1. **The CEO’s view.** Suuchi plays Northstar’s CEO. The company bought Copilot, Sales has shown useful work, IT built an assistant, and the CEO uses Claude for board preparation. Josh asks what he would see beside employees on an ordinary Tuesday.
-2. **Last Tuesday.** Six workspaces reveal distinct uses of AI: email tone, forecast analysis, ticket grouping, conversation rehearsal, policy retrieval and board preparation.
-3. **What reaches the CEO.** Compare those workspaces with the Friday material that reaches Claude. Faster updates do not automatically carry their cross-department context.
-4. **Leah’s Friday.** The chief of staff still has to establish which updates concern the same work and chase the missing context and ownership.
-5. **Nine-67 discovery.** Inventory current AI use across the company, map handoffs and prioritize opportunities. Broad discovery leads to a focused first build.
-6. **A connected service pilot.** A manager reviews eight candidate cases and excludes one unrelated case. Seven reviewed cases affect three accounts. Work is assigned to Nina; Marcus sees the approved context, owner and due date in the CRM; progress flows into the weekly review.
-7. **The discovery invitation.** Discover, Prioritize, Build, Measure. Invite operations, IT and two interdependent department leaders. Each brings one useful AI example and one piece of work they still chase.
+1. **Dana’s CEO view.** Suuchi plays Dana, Parkside’s CEO. Dana sees company Copilot adoption, a useful Sales demo and an internal assistant. She uses Claude to critique an approved board deck.
+2. **The research.** Immediately after the opening, show Miro’s 83% and 69% findings and Atlassian’s 85% versus 29%. The figures frame the question; they do not measure Parkside.
+3. **The fragmented company map.** Click nine people to inspect what they do with AI, the useful result and where it stops.
+4. **Three different reports.** Priya’s Refresh workflow, Elena’s manual Thursday tracker and Dana’s Copilot adoption view show why equal licenses do not mean equal outcomes.
+5. **What reaches the CEO.** Contrast local business outputs with the material reaching Dana. Her Claude session receives the approved deck, not all private employee activity.
+6. **Leah’s Friday.** The chief of staff manually reconciles updates before Copilot tightens the deck. The two-hour reconciliation is a fictional scenario detail, not a measured saving.
+7. **The connected map and discovery.** Show a proposed design for approved business outputs, source records, owners and decisions. Discover company-wide; decide what to teach, reuse, connect and build; prioritize with leadership.
+8. **A reviewed service pilot.** A manager checks eight candidate cases and excludes one unrelated address issue. Seven reviewed cases affect three accounts. Nina owns the investigation, Marcus sees permitted account context, and progress reaches the weekly review.
+9. **The invitation.** Discover, Prioritize, Build, Measure. Bring operations, IT and two interdependent department leaders. Each brings one useful AI example and one piece of work they still chase.
 
-The first half shows what people actually do. The second half explains how Nine-67 works. Keep the distinction between AI-assisted individual productivity and completed cross-company work clear.
+## Nine people, different uses
 
-## The six workspaces
+Every featured person has a company Copilot license. Their featured task may use Copilot, another approved tool, a local workflow or a personal technique.
 
-| Person | Department | AI use |
+| Person | Department | What the walkthrough reveals |
 | --- | --- | --- |
-| Ava | Customer Service | Copilot helps with the tone of a customer email |
-| Ben | Sales | Copilot in Excel helps analyze forecast slippage |
-| Nina | Operations | The team’s AskOps bot in Teams groups 18 tickets into three issues |
-| Marcus | Account Management | Personal Grok on mobile supports a roleplay without identifying client details |
-| Daniel | IT | An internal assistant retrieves policy information; tool ownership does not provide complete visibility into actual AI use |
-| Suuchi | CEO | Claude helps prepare for the board using Leah’s Friday updates |
+| Dana | CEO | Claude critiques the approved board deck; license adoption and a Sales demo shape her view of progress |
+| Daniel | IT | AskParkside in Teams retrieves a license request form and approver; usage does not show business value |
+| Ben | Sales | Copilot in Excel compares four weekly HubSpot snapshots; Ben checks repeated slips and absent buyer activity, then coaches three reps |
+| Priya | Finance | Approved Claude and synthetic rows helped her write Power Query; Refresh normalizes three branch files and flags duplicates and unmatched items for human review |
+| Nina | Operations | A local Teams, Power Automate and SharePoint-list workflow groups reopened cases for six users’ morning huddle; IT has not seen it |
+| Marcus | Account Management | Personal Grok on mobile supports generic objection roleplay without names or client details; unclear policy keeps the useful technique private |
+| Ava | Customer Service | Copilot helps with tone twenty times a day; Ava still opens six tickets to find the facts |
+| Elena | Project Coordination | A generic Copilot prompt disappointed her; she still copies Thursday’s tracker and needs coaching on the real task |
+| Leah | Chief of Staff | Manual Friday reconciliation precedes Copilot’s deck editing; Dana then uses the deck in Claude |
 
-Leah is the chief of staff who manually reconciles those updates. Do not portray every employee as using the same workflow or imply every useful AI task requires integration. The discovery should preserve working practices while identifying where information, decisions and work stop at department boundaries.
+Priya’s method is a repeatable preparation step with human exception review, not autonomous financial judgment. Marcus’s roleplay is not presented as a data leak. Nina’s local tool is a useful discovery candidate, not automatically a system to replace. Elena may need coaching before a build.
+
+## What the maps mean
+
+The fragmented map shows fictional local practices and manual handoffs. The connected map shows a **simulated proposed design** for carrying approved business outputs and decisions to authorized people and systems. It does not collect private AI chat histories or represent a live deployment.
+
+A line on the connected map is an opportunity to validate, not proof that an integration exists or should be built. Review source access, ownership, feasibility, permissions and the intended business outcome. Company-wide discovery produces the map and priorities; the first implementation remains focused.
 
 ## Where to edit
 
 | File | Purpose |
 | --- | --- |
 | `dist/site.js` | Shared event and presenter configuration |
-| `dist/live.html` | Current seven-scene application shell |
+| `dist/live.html` | Current nine-scene application shell |
 | `dist/company-model.mjs` | Fictional company data, pilot decisions and workflow state |
-| `dist/company-view.mjs` | Scenes, employee workspaces, discovery map and pilot artifacts |
+| `dist/company-view.mjs` | Nine scenes, employee workspaces, fragmented and connected company maps, and pilot artifacts |
 | `dist/company-demo.mjs` | Interactive controls and navigation |
 | `dist/company.css` | Current demo styling |
 | `tests/company*.mjs` | Current company-demo behavioral and rendering checks |
@@ -91,7 +102,7 @@ Discovery is company-wide. It produces a current-use inventory, a handoff map an
 
 ## Demonstration boundaries
 
-Northstar, its people, workspaces, service cases and account records are fictional. Suuchi plays the fictional CEO during the opening, then speaks as Nine-67’s CEO during the methods discussion. The exchanges are illustrative, not accounts of an actual client assessment.
+Parkside, its people, workspaces, service cases and account records are fictional. Suuchi plays Dana, the fictional CEO, during the opening, then speaks as Nine-67’s CEO during the methods discussion. The exchanges and connected graph are illustrative, not accounts of an actual client assessment or live integration.
 
 AI responses, saved outputs, approvals, assignments, CRM updates and weekly-review changes are simulated. No live account record, customer message or AI-provider session is changed. The prototype is not evidence of measured ROI or a deployed integration.
 
@@ -99,7 +110,7 @@ The manager reviews eight candidate cases and excludes one unrelated case. The a
 
 The workflow uses authorized business sources and approved work products. It does not silently read private AI histories. Production implementation would require appropriate identity, permission controls, connectors, source linking, human review, reliable workflow execution and recovery behavior.
 
-Research figures frame the broader problem. Miro’s 83% and 69% findings and Atlassian’s 85% and 29% findings come from separate, vendor-sponsored, self-reported surveys. They do not measure Northstar or prove Nine-67’s results. Source links are included on the research screen and in the presenter guide.
+Research figures frame the broader problem. Miro’s 83% and 69% findings and Atlassian’s 85% and 29% findings come from separate, vendor-sponsored, self-reported surveys. They do not measure Parkside or prove Nine-67’s results. Source links are included on the research screen and in the presenter guide.
 
 ## Webinar configuration
 
