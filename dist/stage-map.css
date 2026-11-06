@@ -1,1 +1,67 @@
-/* stage-map: design pass overrides */
+/* stage-map: company graph, stop 3 (today) and stop 19 (connected). Sizes are canvas px times --u. */
+.org-graph{--paper:#f5f1e9;--card:#fffdf9;--line:#ded6c8;--ink:#151820;--muted:#5f5a50;--dark:#1b1e24;--dark-text:#f5f1e9;--dark-muted:#c9c2b4;--win:#2f6b4f;--win-tint:#e3f0e8;--diff:#1f5f99;--diff-tint:#e2ecf6;--stuck:#a45a12;--stuck-tint:#fbecd9;--glue:#7a3b8a;--glue-tint:#f1e4f4;--broken:#b3261e;--connected:#2f6b4f;--glue-on-dark:#c99bd6;--connected-on-dark:#5cbf8a;--broken-on-dark:#f06b5f;container-type:inline-size;width:100%;font-family:"DM Sans",system-ui,sans-serif}
+.org-graph .pg-canvas{--u:calc(100cqw / 1760);position:relative;width:100%;aspect-ratio:1760/732;background:var(--dark);color:var(--dark-text);border-radius:calc(var(--u) * 16);overflow:hidden}
+.org-graph .pg-lines{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.org-graph .pg-edge{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.org-graph .pg-edge.manual{stroke:var(--glue-on-dark);stroke-width:3.5;stroke-dasharray:12 9}
+.org-graph .pg-edge.connected{stroke:var(--connected-on-dark);stroke-width:5;stroke-dasharray:1 0;animation:pg-draw .6s ease-out both}
+.org-graph .pg-edge.e-leah-dana.manual{stroke-width:4}
+@keyframes pg-draw{from{stroke-dasharray:1 1;stroke-dashoffset:1}to{stroke-dasharray:1 1;stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.org-graph .pg-edge.connected{animation:none}}
+.org-graph .pg-stub{stroke:var(--broken-on-dark);stroke-width:3;stroke-dasharray:5 5}
+.org-graph .pg-dead circle{fill:var(--broken)}
+.org-graph .pg-dead path{stroke:#fff;stroke-width:2.6;stroke-linecap:round}
+
+.org-graph .pg-card{position:absolute;box-sizing:border-box;display:flex;flex-direction:column;align-items:stretch;gap:calc(var(--u) * 8);margin:0;padding:calc(var(--u) * 26) calc(var(--u) * 13) calc(var(--u) * 14) calc(var(--u) * 16);background:var(--card);color:var(--ink);border:calc(var(--u) * 1) solid var(--line);border-radius:calc(var(--u) * 16);box-shadow:0 1px 0 #0000000a,0 8px 24px #00000040;text-align:left;font:inherit;cursor:pointer;overflow:visible;transition:transform .15s,box-shadow .15s}
+.org-graph .pg-card:hover{background:var(--card);transform:translateY(-2px);box-shadow:0 1px 0 #0000000a,0 14px 30px #00000059}
+.org-graph .pg-card:focus-visible{outline:calc(var(--u) * 4) solid var(--highlight,#fff1c2);outline-offset:calc(var(--u) * 3)}
+.org-graph .pg-card.is-linked{border:calc(var(--u) * 3) solid var(--connected-on-dark);padding:calc(var(--u) * 24) calc(var(--u) * 11) calc(var(--u) * 12) calc(var(--u) * 14)}
+.org-graph .pg-num{position:absolute;left:calc(var(--u) * -14);top:calc(var(--u) * -14);width:calc(var(--u) * 34);height:calc(var(--u) * 34);border-radius:50%;display:grid;place-items:center;background:var(--dark-text);color:var(--ink);border:calc(var(--u) * 3) solid var(--dark);font-size:calc(var(--u) * 18);font-weight:750;line-height:1}
+.org-graph .pg-verdict,.org-graph .pg-chip{display:inline-block;padding:calc(var(--u) * 5) calc(var(--u) * 12);border-radius:999px;font-size:calc(var(--u) * 18);line-height:1.2;font-weight:700;letter-spacing:.06em;white-space:nowrap}
+.org-graph .pg-verdict{position:absolute;top:calc(var(--u) * -15);left:calc(var(--u) * 30);border:calc(var(--u) * 2) solid var(--card)}
+.org-graph .v-win .pg-verdict,.org-graph .pg-chip.v-win{background:var(--win-tint);color:var(--win)}
+.org-graph .v-diff .pg-verdict,.org-graph .pg-chip.v-diff{background:var(--diff-tint);color:var(--diff)}
+.org-graph .v-stuck .pg-verdict,.org-graph .pg-chip.v-stuck{background:var(--stuck-tint);color:var(--stuck)}
+.org-graph .v-glue .pg-verdict,.org-graph .pg-chip.v-glue{background:var(--glue-tint);color:var(--glue)}
+.org-graph .pg-who{display:flex;align-items:center;gap:calc(var(--u) * 12);min-width:0}
+.org-graph .pg-av{flex:none;width:calc(var(--u) * 48);height:calc(var(--u) * 48);border-radius:50%;display:grid;place-items:center;color:#fff;font-size:calc(var(--u) * 22);font-weight:750;line-height:1}
+.org-graph .v-win .pg-av{background:var(--win)}.org-graph .v-diff .pg-av{background:var(--diff)}.org-graph .v-stuck .pg-av{background:var(--stuck)}.org-graph .v-glue .pg-av{background:var(--glue)}
+.org-graph .pg-name{display:flex;flex-direction:column;min-width:0}
+.org-graph .pg-name b{font-size:calc(var(--u) * 26);line-height:1.05;font-weight:750;letter-spacing:-.01em}
+.org-graph .pg-name small{font-size:calc(var(--u) * 18);line-height:1.25;color:var(--muted);font-weight:500;white-space:nowrap}
+.org-graph .pg-tool{display:flex;align-items:center;gap:calc(var(--u) * 8);font-size:calc(var(--u) * 18);line-height:1.2;font-weight:600;color:var(--ink);white-space:nowrap}
+.org-graph .pg-tool img{width:calc(var(--u) * 24);height:calc(var(--u) * 24);object-fit:contain}
+.org-graph .pg-tool em{margin-left:calc(var(--u) * 4);padding:calc(var(--u) * 2) calc(var(--u) * 10);border-radius:999px;background:var(--stuck-tint);color:var(--stuck);font-style:normal;font-weight:700}
+.org-graph .pg-line{font-size:calc(var(--u) * 20);line-height:1.25;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-.012em}
+.org-graph .pg-card.is-linked .pg-line{color:var(--win)}
+
+.org-graph .pg-stays,.org-graph .pg-pill,.org-graph .pg-hand{position:absolute;transform:translateY(-50%);white-space:nowrap;line-height:1.2}
+.org-graph .pg-stays{padding:calc(var(--u) * 4) calc(var(--u) * 12);border-radius:999px;background:#3a1f1d;color:#ffd9d4;border:calc(var(--u) * 1) solid var(--broken-on-dark);font-size:calc(var(--u) * 18);font-weight:600}
+.org-graph .pg-pill{transform:translate(-50%,-50%);padding:calc(var(--u) * 6) calc(var(--u) * 16);border-radius:999px;background:var(--dark);border:calc(var(--u) * 2) solid var(--connected-on-dark);color:var(--dark-text);font-size:calc(var(--u) * 18);font-weight:700}
+.org-graph .pg-pill.glue{border-color:var(--glue-on-dark);font-size:calc(var(--u) * 20)}
+.org-graph .pg-hand{transform:translate(-50%,-50%);width:calc(var(--u) * 34);height:calc(var(--u) * 34);border-radius:50%;display:grid;place-items:center;background:var(--glue);border:calc(var(--u) * 2) solid var(--glue-on-dark);font-size:calc(var(--u) * 18)}
+.org-graph .pg-maya{position:absolute;display:flex;flex-direction:column;align-items:flex-start;gap:calc(var(--u) * 8);font-size:calc(var(--u) * 18);font-weight:600;color:var(--dark-text);white-space:nowrap}
+.org-graph .pg-maya .pg-av{width:calc(var(--u) * 64);height:calc(var(--u) * 64);background:transparent;border:calc(var(--u) * 3) dashed var(--connected-on-dark);color:var(--dark-text);font-size:calc(var(--u) * 26)}
+.org-graph .pg-legend{position:absolute;display:flex;flex-direction:column;gap:calc(var(--u) * 10)}
+.org-graph .pg-legend>div{display:flex;gap:calc(var(--u) * 8)}
+.org-graph .pg-legend p{margin:0;display:flex;align-items:center;gap:calc(var(--u) * 8);font-size:calc(var(--u) * 18);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--dark-text);white-space:nowrap}
+.org-graph .pg-key-x{display:inline-grid;place-items:center;width:calc(var(--u) * 24);height:calc(var(--u) * 24);border-radius:50%;background:var(--broken);color:#fff;font-size:calc(var(--u) * 14)}
+.org-graph .pg-key-dash,.org-graph .pg-key-solid{display:inline-block;width:calc(var(--u) * 36);border-top:calc(var(--u) * 3) dashed var(--glue-on-dark);margin-left:calc(var(--u) * 8)}
+.org-graph .pg-key-solid{border-top:calc(var(--u) * 5) solid var(--connected-on-dark);margin-left:0}
+.org-graph .pg-foot{position:absolute;right:calc(var(--u) * 24);bottom:calc(var(--u) * 20);margin:0;font-size:calc(var(--u) * 18);font-weight:500;color:var(--dark-muted)}
+
+/* Explore-mode controls. Hidden while presenting. */
+.org-graph .map-explore{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:0 0 12px}
+.org-graph .map-explore button{font:inherit;font-size:16px;font-weight:600;padding:8px 14px;border-radius:12px;border:1px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
+.org-graph .map-explore button[aria-pressed=true],.org-graph .map-explore .primary{background:var(--ink);color:#fff}
+.org-graph .map-explore .map-mode,.org-graph .map-explore .improvement-selector{display:flex;gap:6px}
+body.guided-tour .org-graph .map-explore,body.is-tour .org-graph .map-explore{display:none}
+
+/* Header zone: show the h1 on the graph stops (older CSS hid it). Copy until the shell reads mapHeading(). */
+body[data-scene="2"]:has(.org-graph) .page-heading{display:block}
+body[data-scene="2"]:has(.org-graph) #stage{margin-top:0}
+body:has(.org-graph.is-today) #lead{display:block!important;font-size:0!important}
+body:has(.org-graph.is-today) #lead::before{content:"150 people. One Copilot rollout. Useful work stays local.";display:block;font-size:var(--lead-size,28px);line-height:1.35;font-weight:500;color:var(--ink,#151820)}
+body:has(.org-graph.is-connected) #title{font-size:0!important;letter-spacing:0!important}
+body:has(.org-graph.is-connected) #title::before{content:"Same nine people. Now the work connects.";display:block;font-size:var(--h1-size,52px);line-height:1.12;letter-spacing:-.02em}
+body:has(.org-graph.is-connected) #lead{display:none}

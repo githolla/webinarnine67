@@ -19,28 +19,6 @@ export const networkConnections = Object.freeze([
   { from: 'leah', to: 'dana', why: 'The CEO sees the reviewed finding and who owns the next step.' },
   { from: 'daniel', to: 'elena', why: 'IT supports a guided tracker workflow that Elena can review and use.' }
 ]);
-const toolMarks = {
- dana: [['claude.svg','Claude'],['ms-powerpoint.svg','PowerPoint']],
- daniel: [['ms-teams.svg','Teams · Ask Parkside'],['ms-sharepoint.svg','SharePoint']],
- ben: [['copilot.webp','Copilot'],['ms-excel.svg','Excel']],
- priya: [['claude.svg','Claude'],['ms-excel.svg','Excel · Power Query']],
- nina: [['ms-teams.svg','Teams · Ask Ops'],['ms-sharepoint.svg','SharePoint List']],
- marcus: [['grok.svg','Grok'],['hubspot.svg','HubSpot']],
- ava: [['copilot.webp','Copilot'],['zendesk.svg','Zendesk']],
- elena: [['copilot.webp','Copilot'],['ms-excel.svg','Excel']],
- leah: [['copilot.webp','Copilot'],['ms-powerpoint.svg','PowerPoint']]
-};
-const cardData = {
-  dana: {quote:'“We bought Copilot for everyone. I use Claude.”',kind:'chat',label:'Claude · Board preparation',left:'Challenge these claims',right:'What evidence supports them?'},
-  daniel: {quote:'“We launched an assistant. We need feedback.”',kind:'chat',label:'Ask Parkside · Company guidance',left:'How do I escalate this?' ,right:'Procedure §3 cited'},
-  ben: {quote:'“I figured out a better forecast review.”',kind:'table',label:'Excel · Forecast review',left:'Atlas renewal',right:'Close date moved twice'},
-  priya: {quote:'“I built this with AI. It runs every month.”',kind:'table',label:'Excel · Power Query',left:'3 branch formats',right:'Refresh → review exceptions'},
-  nina: {quote:'“Six of us use this bot every morning.”',kind:'table',label:'Ask Ops · Ticket review',left:'18 tickets',right:'8 possible handoffs'},
-  marcus: {quote:'“I use it on my phone. I haven’t mentioned it.”',kind:'chat',label:'Grok · Generic practice only',left:'Play a frustrated customer',right:'Who owns my issue?'},
-  ava: {quote:'“Writing is faster. Finding the answer isn’t.”',kind:'chat',label:'Copilot · Reply after checking tickets',left:'Make this warmer',right:'You shouldn’t have to repeat it'},
-  elena: {quote:'“I want to use it. Where do I start?”',kind:'tracker',label:'Excel · Still updated manually',left:'Thursday tracker',right:'Copy dates + owners'},
-  leah: {quote:'“I still pull everyone’s work together.”',kind:'tracker',label:'PowerPoint · After manual assembly',left:'Three follow-ups',right:'Assemble → polish slides'}
-};
 export const improvements = Object.freeze({
   priya: {label:'Priya · Reuse a proven method',people:['priya'],steps:[['Branch files','Approved input folder'],['Validated workflow','Priya’s reviewed transformation'],['Human review · Maya','Another branch checks exceptions'],['Reviewed branch report','Priya owns the supported workflow']],note:'Reuse the method Priya already built. Keep exceptions visible.',build:'priya'},
   elena: {label:'Elena · A guided update workflow',people:['elena','daniel'],steps:[['Notes + tracker','Her actual Thursday inputs'],['Proposed changes','AI compares owners and dates'],['Elena confirms','She checks each suggested change'],['Updated tracker','Confirmed changes only']],note:'A guided workflow proposes changes and asks Elena to resolve uncertainty.',build:'elena'},
@@ -57,30 +35,66 @@ export function buildNetwork(mode='fragmented', improvement='priya') {
   if(mode==='connected') edges.push(...selected.steps.slice(1).map((step,index)=>({from:`step:${index}`,to:`step:${index+1}`,type:'proposed',label:`${selected.steps[index][0]} → ${step[0]}`})));
   return {nodes,edges,improvement:mode==='connected'?selected:null};
 }
-const mapStories = {
- priya:{before:'A useful method stops at Priya’s desk.',after:'Another branch can use what Priya built.',gap:'Maya still cleans a comparable file by hand.',gain:'Maya runs the supported workflow and reviews its exceptions.',tag:'Reuse a method'},
- elena:{before:'Elena has access. Her tracker is still manual.',after:'Elena gets a workflow she can actually use.',gap:'Generic advice never reaches her real Thursday task.',gain:'Notes become proposed updates. Elena confirms the unclear owner.',tag:'Guide the work'},
- nina:{before:'Ops sees the pattern. Everyone else chases it.',after:'One reviewed finding reaches the next person.',gap:'Marcus needs account context. Leah asks for another update.',gain:'Marcus gets the account context. Leah sees the owner and due date.',tag:'Connect the finding'}
-};
-const badges={dana:'Personal value',daniel:'Useful foundation',ben:'Private success',priya:'Reusable method',nina:'Team-built tool',marcus:'Quiet practice',ava:'Hidden effort',elena:'Wants a way in',leah:'Manual assembly'};
-const shortQuotes={dana:'“I use Claude before every board meeting.”',daniel:'“It’s live. Tell us what helps.”',ben:'“This changed how I coach my team.”',priya:'“I built it once. It runs every month.”',nina:'“Six of us use this every morning.”',marcus:'“I practice on my phone. Quietly.”',ava:'“Writing is fast. Finding facts isn’t.”',elena:'“I want to use it. Show me how.”',leah:'“I still pull everyone’s work together.”'};
-function card(person,connected,improvement) {
- const data=cardData[person.id];const involved=improvement.people.includes(person.id);
- const changed=connected&&involved;
- const markers=toolMarks[person.id].map(([file,label])=>`<span><img src="assets/${file}" alt="">${escapeHtml(label)}</span>`).join('');
- const after={priya:['Reviewed method','Maya can run it too'],elena:['Notes + tracker','Elena reviews → applies'],daniel:['Approved sources','A supported workflow'],nina:['Nina reviews','Publishes with owner + date'],marcus:['Northwind account','Reviewed finding attached'],leah:['Weekly briefing','Owner + next update visible']};
- const preview=changed&&after[person.id]?after[person.id]:[data.left,data.right];
- return `<button class="employee-work ${involved?'map-focus':''} ${changed?'improvement-member':''}" data-workspace="${person.id}" aria-label="Open ${person.name}’s actual workspace" style="--department:${person.color}"><header><h2>${person.name}</h2><span>${person.role}</span><small aria-hidden="true">↗</small></header><p class="employee-quote">${escapeHtml(shortQuotes[person.id])}</p><div class="employee-tools">${markers}<small>${changed?'Proposed improvement':badges[person.id]}</small></div><div class="work-mini ${data.kind} ${changed?'upgraded':['elena','leah'].includes(person.id)?'manual':'existing'}" aria-label="${escapeHtml(data.label)}"><span>${escapeHtml(preview[0])}</span><i aria-hidden="true">→</i><b>${escapeHtml(preview[1])}</b></div></button>`;
+export const badges={dana:'Personal value',daniel:'Useful foundation',ben:'Private success',priya:'Reusable method',nina:'Team-built tool',marcus:'Quiet practice',ava:'Hidden effort',elena:'Wants a way in',leah:'Manual assembly'};
+export const verdicts={dana:'win',ben:'win',priya:'win',nina:'win',daniel:'diff',marcus:'diff',ava:'stuck',elena:'stuck',leah:'glue'};
+const verdictLabels={win:'AI WIN',diff:'DIFFERENT WAY',stuck:'STRUGGLING',glue:'THE GLUE'};
+const tourOrder=['dana','daniel','ben','priya','nina','ava','elena','marcus','leah'];
+const tools={dana:['claude.svg','Claude'],daniel:['ms-teams.svg','Ask Parkside'],ben:['copilot.webp','Copilot'],priya:['claude.svg','Claude'],nina:['ms-teams.svg','Ask Ops'],marcus:['grok.svg','Grok'],ava:['copilot.webp','Copilot'],elena:['copilot.webp','Copilot'],leah:['copilot.webp','Copilot']};
+const todayLines={dana:'Board prep in Claude',daniel:'Built Ask Parkside',ben:'Saved forecast review',priya:'Reusable Excel method',nina:'Team bot, 6 use it daily',ava:'Six records for one reply',elena:'Broad prompt, generic answer',marcus:'Practices calls on his phone',leah:'Stitches the Friday brief'};
+const connectedLines={priya:'Reused by Maya ✓',nina:'Publishes with owner + date',elena:'Three tracker rows updated',marcus:'Reviewed finding attached',leah:'Owner + next update visible'};
+const linked=['dana','ben','priya','nina','ava','elena','marcus','leah'];
+// Fixed 1760x732 canvas: five 320px columns, three bands. Dana sits directly above Leah.
+const W=1760,H=732,CW=320,CH=160,cols=[24,372,720,1068,1416];
+const slots={priya:[1,72],dana:[2,72],nina:[3,72],ben:[4,72],daniel:[0,328],marcus:[1,328],elena:[3,328],ava:[4,328],leah:[2,548]};
+const stubs={priya:'up',dana:'up',nina:'up',ben:'up',daniel:'down',marcus:'down',elena:'down',ava:'down'};
+const stubOffset={ava:120};
+const pct=(v,total)=>`${(v/total*100).toFixed(4)}%`;
+const at=(x,y)=>`left:${pct(x,W)};top:${pct(y,H)}`;
+const todayPaths=[
+ ['nina','M1100 232 C1100 290 990 270 990 330 V542'],
+ ['ben','M1440 232 C1404 236 1402 250 1402 270 V572 Q1402 596 1378 596 H1048'],
+ ['ava','M1440 488 V638 Q1440 662 1416 662 H1048'],
+ ['leah-dana','M880 548 V240']
+];
+const connectedPaths=[
+ ['priya-maya','M372 128 H120'],
+ ['nina-marcus','M1228 72 V54 Q1228 36 1210 36 H724 Q706 36 706 54 V392 Q706 408 700 408'],
+ ['nina-leah','M1100 232 C1100 290 990 270 990 330 V542'],
+ ['leah-dana','M880 548 V240'],
+ ['nina-elena','M1228 232 V320'],
+ ['ben-elena','M1460 232 C1460 290 1360 270 1360 320'],
+ ['ava-elena','M1416 408 H1396']
+];
+const hands=[[990,446],[1240,596],[1300,662]];
+const pill=(text,x,y,cls='')=>`<span class="pg-pill ${cls}" style="${at(x,y)}">${escapeHtml(text)}</span>`;
+function token(person,connected){
+ const id=person.id,v=verdicts[id],[c,y]=slots[id],[icon,tool]=tools[id],n=tourOrder.indexOf(id)+1;
+ const line=connected&&connectedLines[id]?connectedLines[id]:todayLines[id];
+ return `<button class="pg-card v-${v} ${connected&&linked.includes(id)?'is-linked':''}" data-workspace="${id}" style="${at(cols[c],y)};width:${pct(CW,W)};height:${pct(CH,H)}" aria-label="${n}. ${person.name}, ${person.role}, ${verdictLabels[v]}: ${escapeHtml(line)}. Open workspace"><span class="pg-num" aria-hidden="true">${n}</span><span class="pg-verdict">${verdictLabels[v]}</span><span class="pg-who"><span class="pg-av" aria-hidden="true">${person.name[0]}</span><span class="pg-name"><b>${person.name}</b><small>${person.role}</small></span></span><span class="pg-tool"><img src="assets/${icon}" alt="">${escapeHtml(tool)}${id==='marcus'?'<em>Personal phone</em>':''}</span><span class="pg-line">${escapeHtml(line)}</span></button>`;
 }
-function routes(connected,id){
- const proposed=id==='nina'?'M950 325 Q850 250 730 385 M950 325 Q720 270 470 385':id==='elena'?'M950 50 Q780 140 250 325':'M250 50 Q250 200 470 250';
- return `<svg class="card-connection-graph" viewBox="0 0 1200 440" preserveAspectRatio="none" aria-hidden="true"><defs>${[['existing','#b6ad9d'],['manual','#c5a779'],['proposed','#7ee2bc']].map(([type,color])=>`<marker id="map-arrow-${type}" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="${color}"/></marker>`).join('')}</defs><ellipse class="org-boundary" cx="600" cy="220" rx="510" ry="175"/><path class="card-edge existing" d="M470 340 Q370 180 600 95" marker-end="url(#map-arrow-existing)"/><path class="card-edge manual" d="M1100 140 Q800 90 350 50" marker-end="url(#map-arrow-manual)"/><path class="card-edge manual" d="M850 325 Q700 290 470 340" marker-end="url(#map-arrow-manual)"/>${connected?`<path class="card-edge proposed" d="${proposed}" marker-end="url(#map-arrow-proposed)"/>`:''}</svg>`;
+function stub(person){
+ const id=person.id,dir=stubs[id];if(!dir)return null;
+ const [c,y]=slots[id],x=cols[c]+(stubOffset[id]||56),edge=dir==='up'?y:y+CH,end=dir==='up'?edge-28:edge+28,mark=dir==='up'?end-13:end+13;
+ return {svg:`<path class="pg-stub" d="M${x} ${edge} V${end}"/><g class="pg-dead" transform="translate(${x} ${mark})"><circle r="13"/><path d="M-5 -5 L5 5 M5 -5 L-5 5"/></g>`,html:`<span class="pg-stays" style="${at(x+22,mark)}">Stays with ${person.name}</span>`};
 }
-function selectedFlow(state,connected){
- const id=Object.hasOwn(improvements,state.improvement)?state.improvement:'priya';const selected=improvements[id];const story=mapStories[id];
- return `<section class="map-payoff ${connected?'selected-improvement':''}" aria-label="${connected?'One proposed improvement':'Where the useful work stops'}"><div class="map-payoff-copy"><small>${connected?'AFTER NINE-67 · PROPOSED':'TODAY · THE MISSED OPPORTUNITY'}</small><h3>${connected?story.after:story.before}</h3><p>${connected?story.gain:story.gap}</p></div><div class="map-payoff-action">${connected?`<button data-build="${id}">Watch this improvement work →</button>`:'<button data-network-mode="connected">Show what could change →</button>'}<span>${connected?'Human review stays visible. Private chats stay private.':'Select an employee card to open their real work.'}</span></div></section>${connected?`<ol class="improvement-flow">${selected.steps.map(([title,detail],i)=>`<li><span class="flow-step-number">${i+1}</span><div><b>${title}</b><small>${detail}</small></div></li>`).join('')}</ol>`:''}`;
+const arrow=(id,color)=>`<marker id="pg-arrow-${id}" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="${color}"/></marker>`;
+function legend(connected){
+ return `<div class="pg-legend" style="${at(24,644)}"><div>${Object.entries(verdictLabels).map(([v,label])=>`<span class="pg-chip v-${v}">${label}</span>`).join('')}</div><p>${connected?'<i class="pg-key-solid"></i>Green line = the work connects':'<b class="pg-key-x">✕</b>stays here · <i class="pg-key-dash"></i>purple dashed = done by hand'}</p></div>`;
+}
+export function mapHeading(state={}){
+ return state.networkMode==='connected'?{title:'Same nine people. Now the work connects.',lead:''}:{title:'Same tools. Very different work.',lead:'150 people. One Copilot rollout. Useful work stays local.'};
+}
+function explore(connected,id){
+ return `<nav class="map-explore" aria-label="Explore the company graph"><div class="map-mode" role="group" aria-label="Connection mode"><button data-network-mode="fragmented" aria-pressed="${!connected}">Today’s company</button><button data-network-mode="connected" aria-pressed="${connected}">After Nine-67</button></div>${connected?`<div class="improvement-selector" role="group" aria-label="Choose one improvement">${Object.entries(improvements).map(([key,item])=>`<button data-improvement="${key}" aria-pressed="${key===id}">${escapeHtml(item.label)}</button>`).join('')}</div><button class="primary" data-build="${id}">Watch this improvement work →</button>`:''}</nav>`;
 }
 export function renderCompanyMap(state={}){
- const connected=state.networkMode==='connected';const id=Object.hasOwn(improvements,state.improvement)?state.improvement:'priya';const improvement=improvements[id];
- return `<section class="company-network map-v2 org-map ${connected?'is-connected':'is-today'}" aria-label="Company graph: nine employee workspaces"><header class="map-toolbar"><div><b>Parkside · Company graph <span>150 people. One Copilot rollout.</span></b><small>COMPANY GRAPH · CLICK A PERSON TO SEE THE WORK</small></div><div class="map-mode" role="group" aria-label="Connection mode"><button data-network-mode="fragmented" aria-pressed="${!connected}">Today’s company</button><button data-network-mode="connected" aria-pressed="${connected}">After Nine-67</button></div><div class="improvement-selector" role="group" aria-label="Choose one improvement">${Object.keys(mapStories).map(key=>`<button data-improvement="${key}" aria-pressed="${key===id}">${key==='priya'?'Priya':key==='elena'?'Elena':'Nina'}<span>${mapStories[key].tag}</span></button>`).join('')}</div></header><div class="employee-map"><div class="employee-grid-wrap">${routes(connected,id)}<div class="org-center"><small>ONE COMPANY · DIFFERENT WAYS OF WORKING</small><h2>Everyone has access.<br>${connected?"Useful work can travel.":"Useful work stays local."}</h2><p>150 employees · 9 workdays explored</p>${connected&&id==='priya'?'<div class="reuse-beneficiary">Maya · Another branch can run Priya’s method</div>':''}</div><div class="map-route-label route-forecast">Manual: Ben exports → Priya reconciles</div><div class="map-route-label route-ops">${connected&&id==='nina'?'Reviewed finding → Marcus + Leah':'Manual: Nina sends → Leah chases'}</div><div class="map-route-label route-brief">Existing: Leah’s board brief → Dana</div><div class="employee-grid">${networkPeople.map(p=>card(p,connected,improvement)).join('')}</div></div></div>${selectedFlow(state,connected)}<p class="map-simulation"><span>Solid: existing work · Dashed: manual handoff · Green: proposed improvement</span>Illustrative company · ${connected?'Proposed workflows, not live integrations':'Local successes and the work between them'}</p></section>`;
+ const connected=state.networkMode==='connected';const id=Object.hasOwn(improvements,state.improvement)?state.improvement:'priya';
+ const parts=connected?[]:networkPeople.map(stub).filter(Boolean);
+ const kind=connected?'connected':'manual';
+ const paths=(connected?connectedPaths:todayPaths).map(([key,d])=>`<path class="pg-edge ${kind} e-${key}" d="${d}" pathLength="1" marker-end="url(#pg-arrow-${kind})"/>`).join('');
+ const marks=connected?'':hands.map(([x,y])=>`<span class="pg-hand" style="${at(x,y)}" aria-hidden="true">✋</span>`).join('');
+ const pills=connected?pill('Method reused',246,128)+pill('Reviewed finding',966,36)+pill('Notes update the tracker',1250,280):pill('By hand',880,392,'glue');
+ const maya=connected?`<div class="pg-maya" style="${at(48,96)}"><span class="pg-av" aria-hidden="true">M</span><span>Maya · other branch</span></div>`:'';
+ const description=connected?'Priya’s method reaches Maya; Nina, Ben and Ava update Elena’s tracker; Nina’s reviewed finding reaches Marcus and Leah; Leah’s brief reaches Dana.':'Each person’s AI work stays with them. Only Leah connects Ben, Nina and Ava to Dana, by hand.';
+ return `<section class="org-graph ${connected?'is-connected':'is-today'}" aria-label="Company graph. ${escapeHtml(description)}">${explore(connected,id)}<div class="pg-canvas"><svg class="pg-lines" viewBox="0 0 ${W} ${H}" aria-hidden="true"><defs>${arrow('manual','#c99bd6')}${arrow('connected','#5cbf8a')}</defs>${parts.map(p=>p.svg).join('')}${paths}</svg>${networkPeople.map(p=>token(p,connected)).join('')}${parts.map(p=>p.html).join('')}${marks}${pills}${maya}${legend(connected)}${connected?`<p class="pg-foot">Proposed workflows, not live integrations</p>`:''}</div></section>`;
 }
