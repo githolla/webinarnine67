@@ -14,7 +14,7 @@ const steps=[
 const lands=[
  {id:'marcus',icon:'hubspot.svg',text:'A note on the Northwind account in HubSpot'},
  {id:'elena',icon:'ms-excel.svg',text:'Tracker rows updated with owners and dates'},
- {id:'leah',icon:'ms-outlook.svg',text:'Friday brief arrives already reconciled'},
+ {id:'leah',icon:'ms-powerpoint.svg',text:'Friday briefing arrives already reconciled'},
  {ghost:true,icon:'ms-excel.svg',text:'Maya runs Priya’s method at her branch'}
 ];
 const answers=[['Switch AI tools?','No'],['Read private chats?','Never'],['Who approves?','A named owner'],['What gets built?','The connections, not another chatbot']];
