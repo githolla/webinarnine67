@@ -5,15 +5,15 @@
 <title>We Bought Copilot. Then We Asked People to Show Us Last Tuesday. · Nine-67</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&display=swap">
-<link rel="stylesheet" href="company.css"><link rel="stylesheet" href="company-map.css"><script src="site.js"></script><script type="module" src="company-demo.mjs"></script>
+<link rel="stylesheet" href="company.css"><link rel="stylesheet" href="company-map.css"><link rel="stylesheet" href="company-workspaces.css"><link rel="stylesheet" href="company-builds.css"><link rel="stylesheet" href="company-presentation.css"><script src="site.js"></script><script type="module" src="company-demo.mjs"></script>
 </head>
 <body>
 <header class="mast"><a class="brand" href="./#webinar-1">Nine-67</a><span>Your team has AI. Why is the work still manual?</span><button class="text-button" data-detail="about">Fictional company · Illustrative demo ⓘ</button></header>
 <main id="company-app">
-<nav class="story-progress" aria-label="Story progress"><button data-scene="0">01 <span>The CEO</span></button><button data-scene="1">02 <span>The research</span></button><button data-scene="2">03 <span>Inside Parkside</span></button><button data-scene="3">04 <span>What stays hidden</span></button><button data-scene="6">05 <span>Connect the work</span></button><button data-scene="8">06 <span>Start here</span></button></nav>
+<nav class="story-progress" aria-label="Nine-part story"><button data-scene="0"><b>01</b> <span>Dana’s view</span></button><button data-scene="1"><b>02</b> <span>Research</span></button><button data-scene="2"><b>03</b> <span>The company</span></button><button data-scene="3"><b>04</b> <span>Successes</span></button><button data-scene="4"><b>05</b> <span>Different needs</span></button><button data-scene="5"><b>06</b> <span>Between teams</span></button><button data-scene="6"><b>07</b> <span>Discover</span></button><button data-scene="7"><b>08</b> <span>Build</span></button><button data-scene="8"><b>09</b> <span>Start here</span></button></nav>
 <header class="page-heading"><h1 id="title" tabindex="-1"></h1><p id="lead"></p></header>
 <section id="stage" class="stage" aria-label="Interactive company walkthrough"></section>
-<footer class="controls"><button id="back" class="text-button">← Back</button><span id="counter"></span><button id="reset" class="text-button">Restart</button><button id="notes" class="text-button" aria-pressed="false">Speaker cue</button><button data-detail="research" class="text-button">Research</button><small class="key-hint">Space / →</small><button id="next" class="primary">Continue →</button></footer>
+<footer class="controls"><button id="back">← Previous</button><span id="counter"></span><details class="presenter-menu"><summary>Presenter controls</summary><div><button id="reset">Restart</button><button id="notes" aria-pressed="false">Speaker cue</button><button data-detail="research">Research details</button><a href="host-guide.html" target="_blank" rel="noopener">Host guide ↗</a></div></details><button id="next" class="primary">Continue →</button></footer>
 <aside id="presenter-cue" aria-label="Speaker cue"></aside><p id="announcement" class="sr-only" role="status" aria-live="polite"></p>
 </main>
 <dialog id="detail-dialog"><header class="modal-header"><h2 id="detail-title"></h2><button id="close-detail" aria-label="Close details">✕</button></header><div id="detail-content" class="modal-body"></div></dialog>

@@ -1,3 +1,4 @@
+import { initialBuildState, transitionBuild } from './company-builds.mjs';
 export const people = [
   { id: 'dana', name: 'Dana', department: 'CEO', ai: 'Claude', system: 'PowerPoint · Microsoft 365 reports', icon: 'claude.svg' },
   { id: 'daniel', name: 'Daniel', department: 'IT', ai: 'Ask Parkside', system: 'Copilot Studio · Teams · SharePoint' },
@@ -36,7 +37,7 @@ export const cases = Object.freeze([
   ...Array.from({ length: 4 }, (_, index) => Object.freeze({ id: `CASE-${214 + index}`, account: index % 2 ? 'Cedar' : 'Brightline', title: ['Account access request', 'Login reset'][index % 2], description: 'The service record concerns an account-access request handled by the access team. It is outside the proposed ownership-handoff finding.', category: 'access', candidate: false, relevant: false, source: 'Service case record', version: 1 }))
 ]);
 export function initialState() {
-  return { scene: 0, person: 'priya', networkMode: 'fragmented', mapNode: 'person:priya', financeRefreshed: false, elenaCoached: false, pilotView: 'teams', excluded: [], approved: false, reviewed: false, assigned: null, owner: null, due: null, progress: 'unassigned', progressNote: '', accountObservation: null, stage: 0, revision: 1, inspected: [], audit: [] };
+  return { workspace: null, workSteps: {}, peer: null, improvement: 'priya', discovery: 'reuse', builds: initialBuildState(), scene: 0, person: 'priya', networkMode: 'fragmented', mapNode: 'person:priya', financeRefreshed: false, elenaCoached: false, pilotView: 'teams', excluded: [], approved: false, reviewed: false, assigned: null, owner: null, due: null, progress: 'unassigned', progressNote: '', accountObservation: null, stage: 0, revision: 1, inspected: [], audit: [] };
 }
 function retainedCases(state) {
   return cases.filter(row => row.candidate && !state.excluded.includes(row.id));
@@ -82,8 +83,26 @@ function record(state, message) {
 }
 export function transition(current, action) {
   if (action.type === 'RESET') return initialState();
-  const state = { ...current, excluded: [...current.excluded], inspected: [...current.inspected], audit: [...current.audit] };
-  if (action.type === 'SCENE') {
+  const state = { ...current, workSteps: {...current.workSteps}, excluded: [...current.excluded], inspected: [...current.inspected], audit: [...current.audit] };
+  if (action.type === 'WORKSPACE') {
+    if(people.some(p=>p.id===action.id)){state.workspace=action.id;state.person=action.id;state.peer=null;}
+  } else if(action.type === 'CLOSE_WORKSPACE') {
+    state.workspace=null;state.scene=2;state.peer=null;
+  } else if(action.type === 'WORK_STEP') {
+    const max={dana:1,daniel:2,ben:1,priya:2,nina:1,marcus:3,ava:2,elena:2,leah:2};
+    if(Object.hasOwn(max,action.id))state.workSteps[action.id]=Math.min(max[action.id],(state.workSteps[action.id]||0)+1);
+  } else if(action.type === 'WORK_REPLAY') {
+    if(action.id==='marcus')state.workSteps.marcus=1;
+  } else if(action.type === 'PEER') {
+    if(['ben','priya','nina','marcus'].includes(action.id))state.peer=state.peer===action.id?null:action.id;
+  } else if(action.type === 'IMPROVEMENT' || action.type === 'BUILD_OPEN') {
+    if(['priya','elena','nina'].includes(action.id)){state.improvement=action.id;if(action.type==='BUILD_OPEN'){state.scene=7;state.workspace=null;}}
+  } else if(action.type === 'DISCOVERY') {
+    if(['reuse','needs','handoff'].includes(action.id))state.discovery=action.id;
+  } else if(action.type === 'BUILD') {
+    state.builds=transitionBuild(current.builds,action);
+    if(action.action==='ops-restore-source')state.excluded=state.excluded.filter(id=>id!=='CASE-201');
+  } else if (action.type === 'SCENE') {
     if (Number.isInteger(action.index)) state.scene = Math.max(0, Math.min(8, action.index));
   } else if (action.type === 'NEXT_SCENE') {
     state.scene = Math.min(8, state.scene + 1);
@@ -122,6 +141,7 @@ export function transition(current, action) {
   } else if (action.type === 'EXCLUDE') {
     if (!state.approved && state.pilotView === 'teams' && cases.some(row => row.id === action.id && row.candidate) && !state.excluded.includes(action.id)) {
       state.excluded.push(action.id);
+      if(action.id==='CASE-201')state.builds=transitionBuild(state.builds,{type:'ops-exclude-source'});
       record(state, `Service manager excluded ${action.id} from this finding after source review. The original case remains unchanged.`);
     }
   } else if (action.type === 'APPROVE_FINDING') {
@@ -156,6 +176,7 @@ export function transition(current, action) {
     record(state, 'Nina posted a human progress update: handoff mapped; change being tested. The issue remains open.');
   }
   if (action.type === 'SCENE' || action.type === 'NEXT_SCENE') {
+    state.workspace=({3:'priya',4:'ava',5:'leah'})[state.scene]||null;state.peer=null;
     if (state.scene === 2) state.networkMode = 'fragmented';
     if (state.scene === 6) state.networkMode = 'connected';
   }

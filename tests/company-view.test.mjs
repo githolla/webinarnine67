@@ -1,51 +1,53 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
-import { initialState, transition, people, summary } from '../dist/company-model.mjs';
-import { renderScene, renderDetail, primaryAction } from '../dist/company-view.mjs';
-function review(state=initialState()) {
- state=transition(state,{type:'EXCLUDE',id:'CASE-218'});
- return transition(state,{type:'APPROVE_FINDING'});
-}
-test('nine scenes preserve all nine workspaces and valid source links',()=>{
- for(const state of [initialState(),review()])for(let scene=0;scene<9;scene++)for(const person of people){
-  const html=renderScene({...state,scene,person:person.id});
-  assert.doesNotMatch(html,/undefined|NaN/);
-  for(const match of html.matchAll(/src="(assets\/[^\"]+)"/g))assert(existsSync('dist/'+match[1]),match[1]);
+import { initialState, transition, people } from '../dist/company-model.mjs';
+import { renderScene, renderDetail, primaryAction, scenes } from '../dist/company-view.mjs';
+import { renderWorkspace, workspaceStories } from '../dist/company-workspaces.mjs';
+test('nine scenes and every employee task render valid content and local assets',()=>{
+ let state=initialState();
+ for(let scene=0;scene<9;scene++){
+  state=transition(state,{type:'SCENE',index:scene});
+  const html=renderScene(state);assert.doesNotMatch(html,/undefined|NaN/);
+  for(const match of html.matchAll(/(?:src|href)="(assets\/[^"]+)"/g))assert(existsSync('dist/'+match[1]),match[1]);
  }
- for(const person of people){const html=renderDetail(initialState(),'workspace:'+person.id).html;assert.match(html,new RegExp(person.ai));assert.match(html,/source-strip/);assert.match(html,/quote-caption/);}
- const nina=renderDetail(initialState(),'workspace:nina').html;assert.match(nina,/source:CASE-201/);assert.doesNotMatch(nina,/source:CASE-211/);
- const shell=readFileSync('dist/live.html','utf8');assert.match(shell,/company-demo\.mjs/);assert.equal([...shell.matchAll(/data-scene="/g)].length,6);
+ for(const p of people)for(let step=0;step<=workspaceStories[p.id].max;step++){
+  const html=renderWorkspace({...initialState(),workspace:p.id,workSteps:{[p.id]:step}},p.id);
+  assert.doesNotMatch(html,/undefined|NaN/);assert.match(html,/employee-strip/);assert.match(html,new RegExp(p.name));
+  for(const match of html.matchAll(/src="(assets\/[^"]+)"/g))assert(existsSync('dist/'+match[1]),match[1]);
+ }
+ const shell=readFileSync('dist/live.html','utf8');assert.equal([...shell.matchAll(/data-scene="/g)].length,scenes.length);assert.match(shell,/presenter-menu/);
 });
-test('private AI work becomes context only through authorized business records',()=>{
- const marcus=renderDetail(initialState(),'workspace:marcus').html;assert.match(marcus,/No customer names/);
- let state=transition(review(),{type:'ASSIGN'});state=transition(state,{type:'PILOT_VIEW',view:'crm'});
- let html=renderScene({...state,scene:7});assert.match(html,/No private Grok conversation is imported/);assert.match(html,/Nina/);assert.match(html,/Tuesday/);
- state=transition(state,{type:'RECORD_ACCOUNT_OBSERVATION'});html=renderScene({...state,scene:7});assert.match(html,/Saved to the account/);
- state=transition(state,{type:'PILOT_VIEW',view:'executive'});html=renderScene({...state,scene:7});assert.match(html,/Marcus’s observation attached/);
+test('workspaces distinguish reusable automation, hidden context and practical support',()=>{
+ const base=initialState();
+ const priya=renderWorkspace({...base,workSteps:{priya:1}},'priya');assert.match(priya,/Claude helped build/);assert.match(priya,/Excel runs the saved transformation/);assert.match(priya,/Possible duplicate/);
+ const ava=renderWorkspace({...base,workSteps:{ava:2}},'ava');assert.match(ava,/Six records inspected/);assert.doesNotMatch(ava,/COPILOT · AVA REVIEWS/);
+ const elena=renderWorkspace({...base,workSteps:{elena:2}},'elena');assert.match(elena,/3:42 PM/);assert.match(elena,/Set clear goals/);
+ const leah=renderWorkspace({...base,workSteps:{leah:2}},'leah');assert.match(leah,/BASED ON WHAT WAS PROVIDED/);assert.match(leah,/never assembled/);
 });
-test('source review changes the shared case count and blocks premature publication',()=>{
- let state={...initialState(),scene:7};assert.equal(primaryAction(state).action,'outlier');
- assert.match(renderScene({...state,pilotView:'crm'}),/No reviewed finding/);assert.match(renderScene({...state,pilotView:'executive'}),/No reviewed finding/);
- assert.match(renderDetail(state,'source:CASE-218').html,/address correction/);
- state=transition(state,{type:'EXCLUDE',id:'CASE-218'});assert.equal(primaryAction(state).action,'approve');
- state=transition(state,{type:'APPROVE_FINDING'});assert.match(renderScene(state),/7 reviewed cases · 3 accounts/);assert.match(renderScene(state),/reviewed-label">Excluded/);
- assert.equal(primaryAction(state).action,'assign');
+test('peer reveals name who benefits without importing private chats',()=>{
+ for(const id of ['ben','priya','nina','marcus']){
+  const html=renderWorkspace({...initialState(),peer:id},id);assert.match(html,/WHO ELSE COULD USE THIS/);assert.match(html,/peer-task/);
+ }
+ assert.match(renderWorkspace({...initialState(),peer:'priya'},'priya'),/Maya/);
+ assert.match(renderWorkspace(initialState(),'marcus'),/Private chat stays private/);
 });
-test('source dialogs enforce CRM and executive evidence scope',()=>{
- const state={...review(),scene:7};
- assert.match(renderDetail({...state,pilotView:'crm'},'source:CASE-201').html,/receiving service-owner/);
- assert.match(renderDetail({...state,pilotView:'crm'},'source:CASE-204').html,/only its permitted/);
- assert.match(renderDetail({...state,pilotView:'executive'},'source:CASE-204').html,/receiving service owner/);
- assert.match(renderDetail({...state,pilotView:'executive'},'source:CASE-202').html,/only its permitted/);
- assert.match(renderDetail({...state,pilotView:'executive'},'evidence').html,/source:CASE-206/);
+test('research follows the CEO without introducing unseen employees or role play',()=>{
+ const html=renderScene({...initialState(),scene:1});assert.match(html,/83%/);assert.match(html,/69%/);assert.match(html,/85%/);assert.match(html,/29%/);assert.doesNotMatch(html,/Priya|Ben|Leah|Nina/);
+ assert.doesNotMatch(renderScene(initialState()),/Suuchi|role.play/i);
 });
-test('approved count is derived when the reviewer excludes additional cases',()=>{
- let state=transition(initialState(),{type:'EXCLUDE',id:'CASE-201'});state=review(state);
- const html=renderScene({...state,scene:7});assert.equal(summary(state).caseCount,6);assert.match(html,/6 cases reviewed/);assert.doesNotMatch(html,/7 cases reviewed/);
+test('optional source review does not reveal the unrelated record before it is opened',()=>{
+ const state=initialState();const detail=renderDetail(state,'supporting-cases');assert.match(detail.html,/source:CASE-218/);assert.doesNotMatch(detail.html,/unrelated|does not support|address correction.*exclude/i);
+ assert.match(renderDetail(state,'source:CASE-218').html,/retained ownership/);
+ const excluded=transition(state,{type:'EXCLUDE',id:'CASE-218'});assert.match(renderDetail(excluded,'supporting-cases').html,/Excluded/);assert.equal(excluded.builds.nina.published,false);
 });
-test('the pilot ends with a measured next step rather than a false resolution',()=>{
- let state=transition(review(),{type:'ASSIGN'});state=transition(state,{type:'PILOT_VIEW',view:'crm'});state=transition(state,{type:'RECORD_ACCOUNT_OBSERVATION'});state=transition(state,{type:'PILOT_VIEW',view:'executive'});state=transition(state,{type:'START_INVESTIGATION'});state=transition(state,{type:'UPDATE_PROGRESS'});
- const html=renderScene({...state,scene:7});assert.match(html,/change being tested/);assert.match(html,/Outcome not yet established/);assert.equal(primaryAction({...state,scene:7}).action,'next');
- const offer=renderScene({...state,scene:8});assert.match(offer,/Operations \+ IT/);assert.match(offer,/company-wide roadmap/);assert.match(offer,/AI Workflow Discovery Session/);
+test('main path advances sections without repeated service status screens',()=>{
+ for(let scene=0;scene<8;scene++)assert.equal(primaryAction({...initialState(),scene}).action,'next');
+ assert.equal(primaryAction({...initialState(),scene:8}).action,'discovery');
+ const offer=renderScene({...initialState(),scene:8});assert.match(offer,/Operations \+ IT/);assert.match(offer,/company-wide roadmap/);
+});
+test('three discoveries open the people and the matching build',()=>{
+ for(const [discovery,person] of [['reuse','priya'],['needs','elena'],['handoff','nina']]){
+  const html=renderScene({...initialState(),scene:6,discovery});assert.match(html,new RegExp(`data-build="${person}"`));assert.match(html,/Dana’s adoption report/);assert.match(html,/data-workspace/);
+ }
 });

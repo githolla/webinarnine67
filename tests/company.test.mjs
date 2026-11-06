@@ -196,3 +196,18 @@ test('finance refresh and coaching are independent local demonstrations', () => 
   assert.equal(resetMap.elenaCoached, true);
   assert.deepEqual(transition(resetMap, { type: 'RESET' }), initialState());
 });
+
+test('workspace interactions stay local, persist between people and reset cleanly',()=>{
+ const initial=initialState();let state=transition(initial,{type:'WORKSPACE',id:'priya'});
+ state=transition(state,{type:'WORK_STEP',id:'priya'});state=transition(state,{type:'PEER',id:'priya'});
+ assert.equal(state.workSteps.priya,1);assert.equal(initial.workSteps.priya,undefined);assert.equal(state.peer,'priya');
+ state=transition(state,{type:'WORKSPACE',id:'elena'});assert.equal(state.peer,null);assert.equal(state.workSteps.priya,1);
+ state=transition(state,{type:'SCENE',index:4});assert.equal(state.workspace,'ava');
+ state=transition(state,{type:'BUILD_OPEN',id:'elena'});assert.equal(state.scene,7);assert.equal(state.workspace,null);assert.equal(state.improvement,'elena');
+ assert.equal(state.builds.elena.applied,false);assert.deepEqual(transition(state,{type:'RESET'}),initial);
+});
+test('expanded tasks do not autoapprove a proposed company build',()=>{
+ let state=initialState();for(let i=0;i<10;i++)state=transition(state,{type:'WORK_STEP',id:'priya'});
+ assert.equal(state.workSteps.priya,2);assert.equal(state.builds.priya.published,false);
+ state=transition(state,{type:'BUILD',action:'tracker-apply'});assert.equal(state.builds.elena.applied,false);
+});

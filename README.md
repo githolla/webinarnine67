@@ -36,15 +36,15 @@ The tests exercise application behavior. The check validates JavaScript syntax a
 
 ## Current story
 
-1. **Dana’s CEO view.** Suuchi plays Dana, Parkside’s CEO. Dana sees company Copilot adoption, a useful Sales demo and an internal assistant. She uses Claude to critique an approved board deck.
-2. **The research.** Immediately after the opening, show Miro’s 83% and 69% findings and Atlassian’s 85% versus 29%. The figures frame the question; they do not measure Parkside.
-3. **The fragmented company map.** Click nine people to inspect what they do with AI, the useful result and where it stops.
-4. **Three different reports.** Priya’s Refresh workflow, Elena’s manual Thursday tracker and Dana’s Copilot adoption view show why equal licenses do not mean equal outcomes.
-5. **What reaches the CEO.** Contrast local business outputs with the material reaching Dana. Her Claude session receives the approved deck, not all private employee activity.
-6. **Leah’s Friday.** The chief of staff manually reconciles updates before Copilot tightens the deck. The two-hour reconciliation is a fictional scenario detail, not a measured saving.
-7. **The connected map and discovery.** Show a proposed design for approved business outputs, source records, owners and decisions. Discover company-wide; decide what to teach, reuse, connect and build; prioritize with leadership.
-8. **A reviewed service pilot.** A manager checks eight candidate cases and excludes one unrelated address issue. Seven reviewed cases affect three accounts. Nina owns the investigation, Marcus sees permitted account context, and progress reaches the weekly review.
-9. **The invitation.** Discover, Prioritize, Build, Measure. Bring operations, IT and two interdependent department leaders. Each brings one useful AI example and one piece of work they still chase.
+1. **Dana’s confident CEO view.** Dana sees company Copilot adoption, Ben’s successful demo and an internal assistant. She uses Claude to critique an approved board deck. Dana is Parkside’s fictional CEO, not a presenter role label in the interface.
+2. **The research.** Show Miro’s 83% and 69% findings and Atlassian’s 85% versus 29% immediately after the opening. This screen explains the general pattern without introducing employee examples.
+3. **Meet Parkside.** A large employee-card graph introduces nine people. Card positions remain fixed between today’s view and the proposed improvements. Click a person to inspect the workspace. Show one improvement at a time, without a central AI hub.
+4. **Local successes.** Explore Ben’s forecast coaching, Priya’s Refresh workflow and Nina’s team-built case workflow. Each works locally; discovery identifies what could be reused or connected.
+5. **Different needs.** Ava uses AI for tone but still gathers context manually. Elena needs help with a real tracker task. Marcus needs clear guidance around his anonymized personal roleplay. Equal access does not call for identical support.
+6. **Friday’s summary.** Leah reconciles the updates manually before Copilot tightens the deck. Then show the summary Dana receives. The two-hour reconciliation is a fictional scenario detail, not a measured saving.
+7. **What Nine-67 discovers.** Three findings: a reusable method, different needs behind the same access, and local information that does not travel to the next owner.
+8. **What Nine-67 could build.** Three focused examples: make Priya’s method reusable by another branch; guide Elena through the actual tracker task; publish Nina’s reviewed finding to Marcus and Leah with ownership and context. The service example’s main path is inspect and confirm, assign and publish, then show the three recipient views together. Full source-case review is optional.
+9. **The engagement.** Company-wide assessment, prioritized build and focused pilot. Discover, Prioritize, Build, Measure. Invite operations, IT and two interdependent department leaders, each with one useful AI example and one piece of work they still chase.
 
 ## Nine people, different uses
 
@@ -82,7 +82,7 @@ A line on the connected map is an opportunity to validate, not proof that an int
 | `dist/company.css` | Current demo styling |
 | `tests/company*.mjs` | Current company-demo behavioral and rendering checks |
 | `dist/stats.html` | Standalone research introduction with source links |
-| `dist/host-guide.html` | Josh’s host script, Suuchi’s CEO roleplay and the second-half build discussion |
+| `dist/host-guide.html` | Josh’s host script and Suuchi’s discovery and build discussion |
 | `dist/webinar.js`, `dist/index.html` | Webinar cover and retained earlier presentation code |
 | `dist/webinar.css`, `dist/brand.css` | Cover and brand styling |
 | `dist/assets/` | Local logos, images and attribution |
@@ -102,11 +102,11 @@ Discovery is company-wide. It produces a current-use inventory, a handoff map an
 
 ## Demonstration boundaries
 
-Parkside, its people, workspaces, service cases and account records are fictional. Suuchi plays Dana, the fictional CEO, during the opening, then speaks as Nine-67’s CEO during the methods discussion. The exchanges and connected graph are illustrative, not accounts of an actual client assessment or live integration.
+Parkside, its people, workspaces, service cases and account records are fictional. Dana is the fictional CEO shown in the story. Josh hosts and operates the demo; Suuchi explains Nine-67’s discovery and build approach. The exchanges and connected graph are illustrative, not accounts of an actual client assessment or live integration.
 
 AI responses, saved outputs, approvals, assignments, CRM updates and weekly-review changes are simulated. No live account record, customer message or AI-provider session is changed. The prototype is not evidence of measured ROI or a deployed integration.
 
-The manager reviews eight candidate cases and excludes one unrelated case. The approved result is seven cases across three accounts. Do not call all eight related cases or imply the AI makes the final classification. Marcus’s rehearsal uses no identifying client details; it is not presented as a data leak.
+In the optional source detail, the manager reviews eight candidate cases and excludes one unrelated case. The approved result is seven cases across three accounts. Do not call all eight related cases or imply the AI makes the final classification. Marcus’s rehearsal uses no identifying client details; it is not presented as a data leak.
 
 The workflow uses authorized business sources and approved work products. It does not silently read private AI histories. Production implementation would require appropriate identity, permission controls, connectors, source linking, human review, reliable workflow execution and recovery behavior.
 
@@ -114,7 +114,7 @@ Research figures frame the broader problem. Miro’s 83% and 69% findings and At
 
 ## Webinar configuration
 
-Edit the event settings in `dist/site.js`, including the booking URL, label and presenter information. The CTA should identify the AI Workflow Discovery Session. Josh hosts and operates the demo; Suuchi supports the opening roleplay, explains Nine-67’s method and answers questions.
+Edit the event settings in `dist/site.js`, including the booking URL, label and presenter information. The CTA should identify the AI Workflow Discovery Session. Josh hosts and operates the demo; Suuchi explains Nine-67’s method and answers questions.
 
 ## Deploy
 

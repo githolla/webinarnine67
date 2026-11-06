@@ -1,65 +1,58 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { buildNetwork, networkPeople, networkConnections, renderCompanyMap } from '../dist/company-map.mjs';
+import { existsSync } from 'node:fs';
+import { buildNetwork, networkPeople, improvements, renderCompanyMap } from '../dist/company-map.mjs';
 
-test('fragmented map contains nine isolated employee clusters', () => {
-  const graph = buildNetwork('fragmented');
+test('all nine employees stay in the same three-by-three positions', () => {
   assert.equal(networkPeople.length, 9);
-  assert.equal(graph.nodes.length, 27);
-  assert.equal(graph.edges.length, 18);
-  const nodes = new Map(graph.nodes.map(node => [node.id, node]));
-  for (const edge of graph.edges) {
-    assert.equal(edge.type, 'local');
-    assert.equal(nodes.get(edge.from).owner, nodes.get(edge.to).owner);
-  }
-});
-
-test('connected mode preserves positions and connects business outputs only', () => {
   const original = buildNetwork('fragmented');
-  const connected = buildNetwork('connected');
-  assert.equal(connected.nodes.length, 28);
-  const updates = new Map(connected.nodes.map(node => [node.id, node]));
-  for (const node of original.nodes) {
-    assert.equal(updates.get(node.id).x, node.x);
-    assert.equal(updates.get(node.id).y, node.y);
+  for (const id of Object.keys(improvements)) {
+    const connected = buildNetwork('connected', id);
+    assert.deepEqual(connected.nodes, original.nodes);
+    assert.equal(connected.nodes.length, 9);
+    assert.equal(connected.edges.filter(edge => edge.type === 'proposed').length, 3);
+    assert.equal(connected.nodes.some(node => node.id.startsWith('hub:')), false);
   }
-  const edges = connected.edges.filter(edge => edge.type === 'proposed');
-  assert.equal(edges.length, 9);
-  for (const edge of edges) {
-    assert.equal(updates.get(edge.from).type, 'output');
-    assert.equal(edge.to, 'hub:records');
-  }
-  assert.match(edges.find(edge => edge.from === 'output:priya').label, /Power Query transformation/);
-  assert.match(edges.find(edge => edge.from === 'output:marcus').label, /private Grok chats stay private/);
-  assert.equal(connected.edges.some(edge => edge.from === 'ai:marcus' && edge.to === 'output:marcus'), false);
+  assert.deepEqual(original.nodes.map(node => [node.row, node.column]), [[0,0],[0,1],[0,2],[1,0],[1,1],[1,2],[2,0],[2,1],[2,2]]);
 });
 
-test('map controls expose selection and workspace detail access', () => {
-  const html = renderCompanyMap({ networkMode: 'connected', mapNode: 'output:priya' });
-  assert.match(html, /data-detail="workspace:priya"/);
-  assert.match(html, /Proposed design · Not live integrations/);
-  assert.match(html, /data-network-mode="connected" aria-pressed="true"/);
-  assert.equal([...html.matchAll(/role="button" tabindex="0"/g)].length, 28);
-  assert.match(html, /role="button" tabindex="0"/);
-  assert.doesNotMatch(html, /undefined|NaN/);
-  assert.match(renderCompanyMap({ mapNode: 'missing' }), /data-detail="workspace:priya"/);
+test('employee cards expose real workspaces, tool marks and work previews', () => {
+  const html = renderCompanyMap({});
+  assert.equal([...html.matchAll(/data-workspace="/g)].length, 9);
+  assert.equal([...html.matchAll(/class="employee-quote"/g)].length, 9);
+  assert.equal([...html.matchAll(/class="work-mini /g)].length, 9);
+  for (const person of networkPeople) assert.match(html, new RegExp(`data-workspace="${person.id}"`));
+  for (const [,file] of html.matchAll(/src="([^\"]+)"/g)) assert(existsSync(`dist/${file}`));
+  assert.doesNotMatch(html, /<svg|map-inspector|hub:records|undefined|NaN/);
+  assert.match(html, /Ben exports the forecast\. Priya reconciles it/);
+  assert.match(html, /Nina sends case links\. Leah follows up/);
 });
 
-test('manual work stays person-owned and useful recipient paths are explicit', () => {
-  const graph = buildNetwork('connected');
-  for (const id of ['elena', 'leah', 'marcus']) {
-    assert(graph.edges.some(edge => edge.from === `person:${id}` && edge.to === `output:${id}`));
-    assert.equal(graph.edges.some(edge => edge.from === `ai:${id}` && edge.to === `output:${id}`), false);
+test('connected view reveals only the selected improvement', () => {
+  const names = {priya:'Branch files',elena:'Notes + tracker',nina:'Ticket finding'};
+  for (const [id,title] of Object.entries(names)) {
+    const html = renderCompanyMap({networkMode:'connected',improvement:id});
+    assert.match(html, new RegExp(`data-improvement="${id}" aria-pressed="true"`));
+    assert.match(html, new RegExp(`data-build="${id}"`));
+    assert.match(html, new RegExp(`<b>${title.replace('+','\\+')}</b>`));
+    assert.equal([...html.matchAll(/class="flow-step-number"/g)].length, 4);
+    assert.equal([...html.matchAll(/class="selected-improvement"/g)].length, 1);
+    assert.doesNotMatch(html, /undefined|NaN/);
   }
-  const nina = networkConnections.filter(link => link.from === 'nina');
-  assert.deepEqual(nina.map(link => link.to), ['ava', 'marcus', 'leah']);
-  for (const link of networkConnections) {
-    assert(graph.edges.some(edge => edge.from === `output:${link.from}` && edge.to === `person:${link.to}` && edge.type === 'handoff'));
-  }
-  const html = renderCompanyMap({ networkMode: 'connected', mapNode: 'person:nina' });
-  assert.match(html, /WHO CAN USE THIS NEXT/);
-  assert.match(html, /Service reviews the recurring customer issue with Ops/);
-  assert.match(html, /data-map-node="person:ava"/);
-  assert.match(renderCompanyMap({ mapNode: 'person:elena' }), /Barely uses Copilot/);
-  assert.match(renderCompanyMap({ mapNode: 'person:leah' }), /after manually assembling/);
+  assert.doesNotMatch(renderCompanyMap({networkMode:'fragmented'}), /class="selected-improvement"/);
+  assert.match(renderCompanyMap({networkMode:'connected',improvement:'unknown'}), /data-build="priya"/);
+});
+
+test('manual work and human review remain explicit', () => {
+  const today = renderCompanyMap({});
+  assert.match(today, /Still updated manually/);
+  assert.match(today, /After manual assembly/);
+  const elena = renderCompanyMap({networkMode:'connected',improvement:'elena'});
+  assert.match(elena, /Elena confirms/);
+  assert.match(elena, /Confirmed changes only/);
+  const priya = renderCompanyMap({networkMode:'connected',improvement:'priya'});
+  assert.match(priya, /Human review/);
+  const nina = renderCompanyMap({networkMode:'connected',improvement:'nina'});
+  assert.match(nina, /Nina reviews/);
+  assert.match(nina, /Private chats stay private/);
 });
