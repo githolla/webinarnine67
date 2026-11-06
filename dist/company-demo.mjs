@@ -1,16 +1,16 @@
 import { initialState, transition, people } from './company-model.mjs';
-import { renderStack, scenes, cues, renderScene, renderDetail, primaryAction, rosterStrip, tourPeople, discoveryPeople } from './company-view.mjs';
+import { renderStack, renderCrowd, scenes, cues, renderScene, renderDetail, primaryAction, rosterStrip, tourPeople, discoveryPeople } from './company-view.mjs';
 import { tourStops, enterTourStop, firstStopForScene } from './company-tour.mjs';
 import { workspaceHeading } from './company-workspaces.mjs';
 let guided=true;let tourIndex=0;let mapReturn=null;
 let state=initialState();let detailKey='';let detailTrigger;let playback=[];let idleTimer;
 const $=id=>document.getElementById(id);const dialog=$('detail-dialog');
 const acts=['Belief','Evidence','The people','The fix','Connected'];
-const actStarts=[0,1,3,8,9];
-const actOf=i=>i===0?0:i<3?1:i<8?2:i<9?3:4;
+const actStarts=[0,1,3,9,10];
+const actOf=i=>i===0?0:i<3?1:i<9?2:i<10?3:4;
 const sceneAct=[0,1,2,2,2,2,3,3,4];
-const nextNames={0:'The research',1:'Parkside’s AI stack',2:'Who uses what',7:'The fix',8:'The connected company',9:'Where to start'};
-const onStack=()=>guided&&tourStops[tourIndex]?.view==='stack'&&!state.workspace;
+const nextNames={0:'The research',1:'Parkside’s AI stack',2:'All 150 people',3:'Nine of them',8:'The fix',9:'The connected company',10:'Where to start'};
+const tourView=()=>guided&&!state.workspace?tourStops[tourIndex]?.view:undefined;const onStack=()=>tourView()==='stack';
 const tourWorkspaces=tourStops.filter(stop=>stop.workspace).map(stop=>stop.workspace);
 const buildOrder=['priya','elena','nina'];
 const buildPeople={priya:['priya'],elena:['elena','nina'],nina:['nina','marcus','leah']};
@@ -63,6 +63,7 @@ function goTour(index){
  state=enterTourStop(state,tourIndex);render(true);
 }
 function heading(){
+ if(tourView()==='crowd')return {eyebrow:'The company',title:'150 people. Most use AI. Not all.',lead:'Each dot is a person, colored by the AI they use most. Close to the 85% in the research.'};
  if(onStack())return {eyebrow:'The company',title:'Parkside’s AI stack. Approved vs. actually used.',lead:'150 people. Microsoft 365 and Copilot for everyone. Then everything else.'};
  if(state.workspace)return {eyebrow:guided&&tourWorkspaces.includes(state.workspace)?`Meet the people · ${tourWorkspaces.indexOf(state.workspace)+1} of ${tourWorkspaces.length}`:`The nine · Person ${tourPeople.indexOf(state.workspace)+1} of 9`,title:workspaceHeading(state),lead:''};
  if(state.scene===2)return state.networkMode==='connected'?{eyebrow:'',title:'Same nine people. Now the work connects.',lead:'Same tools. Methods get reused, and findings reach the next owner.'}:{eyebrow:'',title:scenes[2].title,lead:scenes[2].lead};
@@ -85,7 +86,7 @@ function roster(){
 function armIdle(){clearTimeout(idleTimer);document.body.classList.remove('controls-idle');if(guided&&tourIndex===tourStops.length-1)idleTimer=setTimeout(()=>document.body.classList.add('controls-idle'),4000);}
 function render(navigate=false){
  document.body.classList.toggle('guided-tour',guided);document.body.classList.toggle('is-tour',guided);
- $('stage').innerHTML=onStack()?renderStack():renderScene(state);
+ $('stage').innerHTML=onStack()?renderStack():tourView()==='crowd'?renderCrowd():renderScene(state);
  if(guided)markTourFocus();
  const head=heading();
  $('eyebrow').textContent=head.eyebrow;$('eyebrow').hidden=!head.eyebrow;$('title').textContent=head.title;$('lead').textContent=head.lead;$('lead').hidden=!head.lead;
@@ -97,7 +98,7 @@ function render(navigate=false){
  const action=tourAction();$('next').textContent=action.label;$('next').dataset.action=action.action;$('next').disabled=false;$('next').title=action.label;
  $('hint').hidden=action.action!=='build-choose';
  $('back').disabled=guided?tourIndex===0:state.scene===0;$('counter').textContent=guided?`${tourIndex+1} / ${tourStops.length}`:`${state.scene+1} / ${scenes.length}`;
- $('presenter-cue').textContent=onStack()?'Josh: This is how most companies look now. One official rollout, then department bots and personal tools nobody tracks. Next: who uses what.':cues[state.scene];document.body.dataset.scene=String(state.scene);document.body.dataset.stop=guided?String(tourIndex+1):'';
+ $('presenter-cue').textContent=tourView()==='crowd'?'Josh: Zoom out to the whole company. Most people use something. Seven different tools, and some people none at all. Then we follow nine of them.':onStack()?'Josh: This is how most companies look now. One official rollout, then department bots and personal tools nobody tracks. Next: who uses what.':cues[state.scene];document.body.dataset.scene=String(state.scene);document.body.dataset.stop=guided?String(tourIndex+1):'';
  if(navigate){history.replaceState(null,'',guided?`#stop-${tourIndex+1}`:`#slide-${state.scene+1}`);$('title').focus({preventScroll:true});window.scrollTo(0,0);}
  if(detailKey)updateDetail();$('announcement').textContent=head.title||'Dana’s view: “We gave everyone AI. I thought we were in pretty good shape.”';
  armIdle();

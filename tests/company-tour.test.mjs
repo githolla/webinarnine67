@@ -29,5 +29,10 @@ test('tour navigation preserves review gates and never approves a build',()=>{
  assert.equal(state.builds.elena.applied,false);
  assert.equal(state.builds.nina.published,false);
  for(const scene of new Set(tourStops.map(stop=>stop.scene)))assert.equal(tourStops[firstStopForScene(scene)].scene,scene);
- assert(tourStops.length<=11,'tour fits a 30-minute webinar');
+ assert(tourStops.length<=12,'tour fits a 30-minute webinar');
+});
+test('company overview adds up to 150 people with most but not all using AI',async()=>{
+ const { crowdTotals }=await import('../dist/company-view.mjs');
+ const t=crowdTotals();const all=Object.values(t).reduce((a,b)=>a+b,0);
+ assert.equal(all,150);assert.equal(all-t.none,128);assert(t.none>0);
 });

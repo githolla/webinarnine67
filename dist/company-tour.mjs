@@ -4,6 +4,7 @@ export const tourStops = [
  {scene:0, label:'Dana’s view'},
  {scene:1, label:'The research'},
  {scene:1, view:'stack', label:'Parkside’s AI stack'},
+ {scene:2, view:'crowd', label:'All 150 people'},
  {scene:2, label:'Meet the company'},
  {scene:3, workspace:'priya', label:'Priya · Finance'},
  {scene:4, workspace:'marcus', label:'Marcus · Accounts'},

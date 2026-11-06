@@ -110,3 +110,25 @@ export function renderStack(){
  const actual=stackActual.map(t=>`<li class="stk-${t.kind}"><img src="assets/${t.icon}" alt=""><div class="stk-tool"><b>${t.name}</b><span class="stk-how">${t.how}</span></div><div class="stk-people">${t.people.map(id=>personToken(id,'S')).join('')}${t.others?`<span class="stk-others">${t.others}</span>`:''}</div></li>`).join('');
  return `<section class="stk"><div class="stk-cols"><article class="stk-card stk-plan"><small>What leadership rolled out</small><ul>${official}</ul><p>The stack on Dana’s rollout slide.</p></article><span class="stk-arrow" aria-hidden="true">→</span><article class="stk-card stk-real"><small>What people actually use</small><ul>${actual}</ul></article></div><p class="stk-band"><b>7</b> AI tools <i>·</i> <b>2</b> homegrown bots <i>·</i> <b>3</b> on personal accounts <i>·</i> <b class="stk-zero">0</b> shared between teams</p></section>`;
 }
+const crowdTools={copilot:{name:'Copilot',color:'#2f6bff'},chatgpt:{name:'ChatGPT',color:'#0e9384'},claude:{name:'Claude',color:'#e07a3f'},perplexity:{name:'Perplexity',color:'#06aed4'},askops:{name:'Ask Ops',color:'#7a5af8'},askparkside:{name:'Ask Parkside',color:'#b692f6'},grok:{name:'Grok',color:'#344054'},none:{name:'No AI use yet',color:''}};
+const crowdDepts=[
+ {name:'Operations',mix:[['askops',11],['copilot',18],['chatgpt',4],['none',7]],featured:{nina:'askops'}},
+ {name:'Customer Service',mix:[['copilot',18],['chatgpt',5],['none',7]],featured:{ava:'copilot'}},
+ {name:'Sales',mix:[['copilot',12],['chatgpt',7],['grok',3],['perplexity',2]],featured:{ben:'copilot',marcus:'grok'}},
+ {name:'Leadership & admin',mix:[['copilot',8],['claude',4],['chatgpt',1],['perplexity',2],['none',3]],featured:{dana:'claude',leah:'copilot'}},
+ {name:'Projects',mix:[['copilot',10],['chatgpt',2],['perplexity',1],['none',3]],featured:{elena:'copilot'}},
+ {name:'Finance',mix:[['copilot',5],['claude',5],['chatgpt',2],['none',2]],featured:{priya:'claude'}},
+ {name:'IT',mix:[['copilot',3],['askparkside',4],['perplexity',1]],featured:{daniel:'askparkside'}}
+];
+export function crowdTotals(){const totals={};crowdDepts.forEach(d=>d.mix.forEach(([tool,n])=>{totals[tool]=(totals[tool]||0)+n;}));return totals;}
+export function renderCrowd(){
+ const totals=crowdTotals();const all=Object.values(totals).reduce((a,b)=>a+b,0);const usingAi=all-(totals.none||0);
+ const dept=d=>{const featured=Object.entries(d.featured);const dots=[];
+  d.mix.forEach(([tool,n])=>{const mine=featured.filter(([,t])=>t===tool).map(([id])=>id);for(let i=0;i<n;i++){const id=mine[i];const p=id&&person(id);
+   dots.push(`<i class="cr-dot${tool==='none'?' is-none':''}${p?' is-featured':''}" style="${tool==='none'?'':`--c:${crowdTools[tool].color}`}"${p?` title="${p.name}"`:''}>${p?p.name[0]:''}</i>`);}});
+  const size=d.mix.reduce((a,[,n])=>a+n,0);const ai=size-(d.mix.find(([t])=>t==='none')?.[1]||0);
+  return `<article class="cr-dept"><header><b>${d.name}</b><span>${ai} of ${size} use AI</span></header><div class="cr-dots">${dots.join('')}</div></article>`;};
+ const order=['copilot','chatgpt','claude','perplexity','askops','askparkside','grok','none'];
+ const legend=order.map(t=>`<li><i class="cr-dot${t==='none'?' is-none':''}" style="${t==='none'?'':`--c:${crowdTools[t].color}`}"></i><b>${crowdTools[t].name}</b><span>${totals[t]||0}</span></li>`).join('');
+ return `<section class="cr" role="img" aria-label="${all} people at Parkside. ${usingAi} use some form of AI, across ${order.length-1} different tools. ${totals.none} do not yet."><aside class="cr-legend"><p class="cr-big"><b>${usingAi}</b><span>of ${all} use some form of AI</span></p><ul>${legend}</ul><p class="cr-key"><i class="cr-dot is-featured" style="--c:#0e1726">D</i>The nine we’ll follow</p></aside><div class="cr-grid">${crowdDepts.map(dept).join('')}<article class="cr-take"><b>${order.length-1} different AI tools.</b><span>Nobody chose them together.</span><span class="cr-none">${totals.none} people use none yet.</span></article></div></section>`;
+}
