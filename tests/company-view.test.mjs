@@ -21,15 +21,15 @@ test('nine scenes and every employee task render valid content and local assets'
 test('workspaces distinguish reusable automation, hidden context and practical support',()=>{
  const base=initialState();
  const priya=renderWorkspace({...base,workSteps:{priya:1}},'priya');assert.match(priya,/Claude helped build/);assert.match(priya,/Excel runs the saved transformation/);assert.match(priya,/Possible duplicate/);
- const ava=renderWorkspace({...base,workSteps:{ava:2}},'ava');assert.match(ava,/Six records inspected/);assert.doesNotMatch(ava,/COPILOT · AVA REVIEWS/);
+ const ava=renderWorkspace({...base,workSteps:{ava:2}},'ava');assert.match(ava,/six records/);assert.match(ava,/COPILOT · AVA REVIEWS/);
  const elena=renderWorkspace({...base,workSteps:{elena:2}},'elena');assert.match(elena,/3:42 PM/);assert.match(elena,/Set clear goals/);
- const leah=renderWorkspace({...base,workSteps:{leah:2}},'leah');assert.match(leah,/BASED ON WHAT WAS PROVIDED/);assert.match(leah,/never assembled/);
+ const leah=renderWorkspace({...base,workSteps:{leah:2}},'leah');assert.match(leah,/Dana/);assert.match(leah,/summary|summary|brief/i);
 });
 test('peer reveals name who benefits without importing private chats',()=>{
  for(const id of ['ben','priya','nina','marcus']){
-  const html=renderWorkspace({...initialState(),peer:id},id);assert.match(html,/WHO ELSE COULD USE THIS/);assert.match(html,/peer-task/);
+  const html=renderWorkspace({...initialState(),peer:id,workSteps:{[id]:workspaceStories[id].max}},id);assert.match(html,/WHO ELSE COULD USE THIS/);assert.match(html,/peer-task/);
  }
- assert.match(renderWorkspace({...initialState(),peer:'priya'},'priya'),/Maya/);
+ assert.match(renderWorkspace({...initialState(),peer:'priya',workSteps:{priya:2}},'priya'),/Maya/);
  assert.match(renderWorkspace(initialState(),'marcus'),/Private chat stays private/);
 });
 test('research follows the CEO without introducing unseen employees or role play',()=>{

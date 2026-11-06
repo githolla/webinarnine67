@@ -211,3 +211,9 @@ test('expanded tasks do not autoapprove a proposed company build',()=>{
  assert.equal(state.workSteps.priya,2);assert.equal(state.builds.priya.published,false);
  state=transition(state,{type:'BUILD',action:'tracker-apply'});assert.equal(state.builds.elena.applied,false);
 });
+
+test('one reveal shows the employee result and beneficiary without approving a build',()=>{
+ const original=initialState();const state=transition(original,{type:'WORK_REVEAL',id:'priya'});
+ assert.equal(state.workSteps.priya,2);assert.equal(state.peer,'priya');assert.equal(state.builds.priya.published,false);assert.deepEqual(original.workSteps,{});
+ assert.deepEqual(transition(state,{type:'WORK_REVEAL',id:'unknown'}),state);
+});

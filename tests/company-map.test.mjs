@@ -23,9 +23,9 @@ test('employee cards expose real workspaces, tool marks and work previews', () =
   assert.equal([...html.matchAll(/class="work-mini /g)].length, 9);
   for (const person of networkPeople) assert.match(html, new RegExp(`data-workspace="${person.id}"`));
   for (const [,file] of html.matchAll(/src="([^\"]+)"/g)) assert(existsSync(`dist/${file}`));
-  assert.doesNotMatch(html, /<svg|map-inspector|hub:records|undefined|NaN/);
-  assert.match(html, /Ben exports the forecast\. Priya reconciles it/);
-  assert.match(html, /Nina sends case links\. Leah follows up/);
+  assert.doesNotMatch(html, /map-inspector|hub:records|undefined|NaN/);
+  assert.match(html, /Manual: Ben exports → Priya reconciles/);
+  assert.match(html, /Manual: Nina sends → Leah chases/);
 });
 
 test('connected view reveals only the selected improvement', () => {
@@ -55,4 +55,13 @@ test('manual work and human review remain explicit', () => {
   const nina = renderCompanyMap({networkMode:'connected',improvement:'nina'});
   assert.match(nina, /Nina reviews/);
   assert.match(nina, /Private chats stay private/);
+});
+
+test('company graph exposes visible connections and highlights only proposed mode', () => {
+  const today = renderCompanyMap({});
+  assert.match(today, /Company graph/);
+  assert.match(today, /card-connection-graph/);
+  assert.equal([...today.matchAll(/class="card-edge manual"/g)].length, 2);
+  assert.doesNotMatch(today, /class="card-edge proposed"/);
+  assert.match(renderCompanyMap({networkMode:'connected',improvement:'nina'}), /class="card-edge proposed"/);
 });

@@ -88,6 +88,9 @@ export function transition(current, action) {
     if(people.some(p=>p.id===action.id)){state.workspace=action.id;state.person=action.id;state.peer=null;}
   } else if(action.type === 'CLOSE_WORKSPACE') {
     state.workspace=null;state.scene=2;state.peer=null;
+  } else if(action.type === 'WORK_REVEAL') {
+    const max={dana:1,daniel:2,ben:1,priya:2,nina:1,marcus:3,ava:2,elena:2,leah:2};
+    if(Object.hasOwn(max,action.id)){state.workSteps[action.id]=max[action.id];state.peer=['ben','priya','nina','marcus'].includes(action.id)?action.id:null;}
   } else if(action.type === 'WORK_STEP') {
     const max={dana:1,daniel:2,ben:1,priya:2,nina:1,marcus:3,ava:2,elena:2,leah:2};
     if(Object.hasOwn(max,action.id))state.workSteps[action.id]=Math.min(max[action.id],(state.workSteps[action.id]||0)+1);

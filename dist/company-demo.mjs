@@ -29,6 +29,7 @@ document.addEventListener('click',event=>{
  if(b.dataset.detail)return showDetail(b.dataset.detail,b);
  if(b.dataset.workspace){stopPlayback();return dispatch({type:'WORKSPACE',id:b.dataset.workspace});}
  if(b.hasAttribute('data-close-workspace')){stopPlayback();return dispatch({type:'CLOSE_WORKSPACE'});}
+ if(b.dataset.workReveal){stopPlayback();return dispatch({type:'WORK_REVEAL',id:b.dataset.workReveal});}
  if(b.dataset.workAction)return workAction(b.dataset.workAction);
  if(b.dataset.peer)return dispatch({type:'PEER',id:b.dataset.peer});
  if(b.dataset.improvement)return dispatch({type:'IMPROVEMENT',id:b.dataset.improvement});
