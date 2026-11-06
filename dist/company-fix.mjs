@@ -1,7 +1,7 @@
 import { personToken, escapeHtml } from './company-view.mjs';
 export const WATCH_LAST=4;
 export const fixCopy={
- build:{eyebrow:'The fix · 1 of 3',title:'Meet the Parkside AI Register.',lead:'Nine-67 builds on the AI you already license and connects it through one Register your team controls.'},
+ build:{eyebrow:'The fix · 1 of 3',title:'Meet the Parkside AI Register.',lead:''},
  watch:{eyebrow:'The fix · 2 of 3 · Simulated',title:'The AI Register we built, live for one week.',lead:''},
  connected:{eyebrow:'The fix · 3 of 3',title:'Same people, same AI. Now the work connects.',lead:'Every tool reads one Register. Nothing counts until a named owner approves it.'},
  plan:{eyebrow:'Where to start',title:'How we build it, with your people.',lead:''}
@@ -9,12 +9,13 @@ export const fixCopy={
 export const fixCues={
  build:'Josh: This is what we build. In the middle, one Register: a SharePoint list in your own Microsoft 365. Around it, tools built from each person’s real work, on the AI Parkside already pays for. Left side, Copilot agents. Right side, a shared Claude project and a company GPT. Some tools propose items, some only read. Personal apps stay outside: we learn from them, we never connect them. Next: see the Register at work.',
  watch:[
-  'Josh: Same pattern every time, left to right. A tool proposes. A named owner approves in Teams. It becomes a row in the Register. It lands in the tool that person already uses. HF-01 is already in. Press →.',
-  'Josh: Priya’s shared Claude project finds the duplicate invoice. It only proposes. Priya approves, and only then does it count. Press →.',
-  'Josh: Elena’s Copilot agent finds a tracker row with no owner and proposes Nina. Nina is the owner, so Nina approves. Elena’s tracker updates itself. Press →.',
-  'Josh: Marcus’s company GPT preps the Northwind call with what the Register already knows. He approves the call note and it lands in HubSpot. Press →.',
-  'Josh: Friday. The Friday Brief agent writes Leah’s draft from approved rows only, and flags the one thing it cannot know. Leah edits instead of stitching. Simulated here, built in your tenant for real.'
+  'Josh: Monday morning. A customer emails a simple question: setup is done, who do we call now? Today this sits in someone’s inbox. Press →.',
+  'Josh: Ask Ops, the Operations agent, reads the case and sees nobody owns the next step. It does not act on its own. It proposes an owner. Press →.',
+  'Josh: Nina gets the proposal in Teams. One click. Nothing counts until a named person approves it. Press →.',
+  'Josh: Now it is in the AI Register, and it shows up where people already work: the Ops channel, and Marcus sees it on the Northwind record in HubSpot. Press →.',
+  'Josh: Friday. Priya’s Claude project, Elena’s Copilot agent and Marcus’s company GPT added their approved items too. Leah’s brief writes itself from the Register and flags the one thing it cannot know. Leah edits instead of stitching.'
  ],
+
  connected:'Josh: Same nine people, same company AI. The by-hand lines into Leah are gone. Every tool reads the Register, and nothing counts until a named owner approves it. Personal apps sit outside, never connected. Daniel’s team approves every connector.',
  plan:'Josh: Four steps. We discover, you prioritize, we build with your people, and we measure what the Register records. Your IT approves access, every tool has a named owner, and leadership picks what comes next. Timelines and scope come out of the Discovery Session. Type “discovery” in the chat. Leave this up for Q&A.'
 };
@@ -110,12 +111,19 @@ function register(s){
  const empty=s<3?`<tr class="fx-empty"><td colspan="5">Next: ${escapeHtml(items[s+1].pill)} waits for an owner</td></tr>`:'';
  return `<section class="rx-win rx-teams fx-win fx-register"><header class="rx-title">${img('ms-sharepoint.svg')}<b>Parkside AI Register</b><span>SharePoint list · Microsoft 365</span>${ctl}</header><table><thead><tr><th scope="col">ID</th><th scope="col">Item</th><th scope="col">Owner</th><th scope="col">Due</th><th scope="col">Status</th></tr></thead><tbody>${body}${empty}</tbody></table></section>`;
 }
+const story=[
+ {time:'Mon 8:47 AM',label:'A customer asks',caption:'Monday morning, a customer asks a simple question.',body:()=>win('fx3-mail fx-outlook','ms-outlook.svg','Outlook','Northwind · Service inbox',`<p class="fx3-from"><b>Sam Ortiz, Northwind</b><span>to Service</span></p><p class="fx3-quote">“Your team says setup is done. Who do we call now?”</p>`)},
+ {time:'Mon 8:52 AM',label:'Ask Ops spots it',caption:'Ask Ops sees that nobody owns the next step, and proposes an owner.',body:()=>win('rx-teams fx3-bot','ms-teams.svg','Ask Ops','Operations agent',`<p class="fx3-flag">Nobody owns Northwind’s next step.</p><p class="fx3-prop"><small>Proposes</small>Owner: Nina<br>Due: Tue Nov 10</p>`)},
+ {time:'Mon 9:05 AM',label:'Nina approves',caption:'Nina approves it in Teams. One click. Nothing counts until a person says yes.',body:()=>win('rx-teams fx3-approve','ms-teams.svg','Teams','Approvals',`<p class="fx3-item">Northwind: own the next step</p><p class="fx3-yes">✓ Approved by Nina</p>`)},
+ {time:'Mon 9:06 AM',label:'Everyone can see it',caption:'It lands in the AI Register, and in the tools people already use.',body:()=>`<div class="fx3-landing"><div class="fx3-reg"><small>Parkside AI Register</small><b>HF-01 · Northwind next step</b><span>Nina · Tue Nov 10 · ✓ Approved</span></div><p class="fx3-dest">${img('ms-teams.svg')}Ops channel</p><p class="fx3-dest">${img('hubspot.svg')}Marcus’s Northwind record</p></div>`},
+ {time:'Fri 7:30 AM',label:'Leah’s brief writes itself',caption:'Friday: Leah’s brief writes itself from everything approved this week.',body:()=>win('fx3-brief fx-outlook','ms-outlook.svg','Outlook','Draft · Friday brief',`<ul>${[['HF-01','Nina owns Northwind’s next step'],['REC-07','Duplicate invoice held (Priya)'],['T-41','Rollout scope owned (Nina)'],['CALL-12','One setup contact (Marcus)']].map(([id,t])=>`<li><i>${id}</i>${t}</li>`).join('')}</ul><p class="fx3-confirm">⚑ Leah to confirm: “NW Services” = Northwind?</p>`)}
+];
 export function renderWatch(step=0){
  const s=Math.max(0,Math.min(WATCH_LAST,Number(step)||0));
- const stepper=`<ol class="fx-stepper" aria-label="Steps">${pills.map((p,i)=>`<li class="${i<s?'is-done':i===s?'is-current':''}"${i===s?' aria-current="step"':''}><span aria-hidden="true">${i<s?'✓':i+1}</span>${p}</li>`).join('')}</ol>`;
- const main=s<4?flow(items[s]):brief();
- const footer=s<4?`<footer class="build-footer"><button class="build-primary" data-step-forward data-fix-step="${s+1}" aria-label="Next step: ${escapeHtml(pills[s+1])}">Next step →</button></footer>`:'<footer class="build-footer"><span class="build-complete">Every line traces to an approved row.</span></footer>';
- return `<section class="fx fx-watch" aria-label="Simulated week in the Parkside AI Register: a tool proposes, a named owner approves, it lands where people work">${stepper}<p class="fx-caption" aria-live="polite">${captions[s]}</p>${main}${s<4?register(s):''}<div class="fx-footrow"><p class="fx-gov">Nothing counts until a named owner approves it. Every change is kept in the list history. IT approves each connector.</p>${footer}</div></section>`;
+ const panels=story.map((p,i)=>`<li class="fx3-panel ${i<s?'is-done':i===s?'is-current':'is-next'}"${i===s?' aria-current="step"':''}><header><i>${i+1}</i><div><b>${p.label}</b><time>${p.time}</time></div></header>${i<=s?p.body():'<div class="fx3-ghost" aria-hidden="true"></div>'}</li>`).join('<li class="fx3-arrow" aria-hidden="true">→</li>');
+ const footer=s<WATCH_LAST?`<footer class="build-footer"><button class="build-primary" data-step-forward data-fix-step="${s+1}" aria-label="Next step: ${escapeHtml(story[s+1].label)}">Next step →</button></footer>`:'';
+ const band=s===WATCH_LAST?'<p class="fx3-band"><b>One customer question. Four AI tools. One Register.</b><span>Leah edits instead of stitching.</span></p>':'';
+ return `<section class="fx fx-watch fx3" aria-label="One week in the Parkside AI Register, step ${s+1} of ${WATCH_LAST+1}"><p class="fx3-caption" aria-live="polite">${story[s].caption}</p><ol class="fx3-track">${panels}</ol>${band}${footer}</section>`;
 }
 
 const plan=[
