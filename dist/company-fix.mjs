@@ -33,7 +33,7 @@ const platforms=[
   ['priya','Month-End Reconciliation','Shared project. Her method is the instructions.','Owner: Priya','Proposes exceptions'],
   'maya',
   ['dana','Board prep project','Starts board questions from reviewed items.','Owner: Dana','Reads only']],
-  foot:'Reads company files through the Microsoft 365 connector IT enables. Proposes through an IT-approved connector.'},
+  foot:'Built with Nine-67. Reads company files IT allows.'},
  {icon:'openai.svg',name:'ChatGPT · company plan',sub:'Custom GPTs shared in the Parkside workspace',cards:[
   ['marcus','Call Prep Coach','Custom GPT built from his rehearsal technique.','Owner: Marcus','Reads HubSpot with his own access']],
   personal:true}
@@ -54,14 +54,14 @@ const pills=['HF-01 already in','Priya · Claude','Elena · Copilot','Marcus · 
 const captions=[
  'Monday. One reviewed finding is already in the Register: HF-01 from Ask Ops, reviewed by Nina.',
  'Priya’s Claude project proposes an exception. Priya approves it in Teams. Only then does it count.',
- 'Elena’s Copilot agent reads HF-01 and proposes a tracker row. Elena approves.',
+ 'Elena’s Copilot agent proposes an owner for her open tracker row. Nina, the named owner, accepts it.',
  'Marcus’s company GPT knows HF-01 before the call. His approved note goes to HubSpot and the Register.',
  'The Friday Brief agent reads only reviewed rows. Every line has an owner, a due date and a source.'
 ];
 const rows=[
  {id:'HF-01',finding:'Northwind handoff has no receiving owner',src:'CASE-201 · Zendesk',icon:'ms-teams.svg',tool:'Ask Ops',by:'Nina',owner:'Nina · Tue Nov 10'},
  {id:'REC-07',finding:'East: invoice N101 posted twice',src:'East.xlsx · row 3',icon:'claude.svg',tool:'Month-End Reconciliation',by:'Priya',owner:'Priya · Fri Nov 13',at:'9:14 AM'},
- {id:'T-41',finding:'Confirm Northwind rollout scope',src:'Ops sync recap · Nov 5',icon:'copilot.webp',tool:'Project Tracker Assist',by:'Elena',owner:'Nina · Tue Nov 10',at:'10:02 AM'},
+ {id:'T-41',finding:'Confirm Northwind rollout scope',src:'Ops sync recap · Nov 5',icon:'copilot.webp',tool:'Project Tracker Assist',by:'Nina',owner:'Nina · Tue Nov 10',at:'10:02 AM'},
  {id:'CALL-12',finding:'Northwind wants one setup contact',src:'HubSpot call note',icon:'openai.svg',tool:'Call Prep Coach',by:'Marcus',owner:'Marcus · Mon Nov 9',at:'2:40 PM'}
 ];
 function register(step){
@@ -75,9 +75,9 @@ const approved=name=>`<span class="fx-approved">✓ Approved by ${name}</span>`;
 function leftPane(step){
  if(step===0)return `<article class="fx-card fx-waiting"><b class="fx-cardtitle">Three company tools, three people</b><ul>${[['priya','claude.svg','Month-End Reconciliation'],['elena','copilot.webp','Project Tracker Assist'],['marcus','openai.svg','Call Prep Coach']].map(([id,icon,t])=>`<li>${personToken(id,'S')}<span class="fx-by">${img(icon)}${t}</span><em>Waiting</em></li>`).join('')}</ul></article>`;
  if(step===1)return `${win('fx-claude','claude.svg','Claude · Parkside','Shared project',`<p class="fx-wpath">Projects › Month-End Reconciliation</p><span class="fx-wchip">Shared with Finance · rules v1 · owner Priya</span>${say('PRIYA','November files are in: North.csv, East.xlsx, West.csv.','is-user')}${say('CLAUDE','Reconciled 3 files with rules v1. 1 exception: invoice N101 appears twice in East.xlsx ($1,200). I have not removed it. Proposed to the Register as REC-07 for your review.')}`)}<div class="rx-card is-done fx-approval"><p class="rx-kicker">Approvals · REC-07</p><p>East: invoice N101 posted twice · Requested by Month-End Reconciliation</p>${approved('Priya')}</div>`;
- if(step===2)return win('rx-teams fx-tall','ms-teams.svg','Teams','Project Tracker Assist',`<p class="rx-from"><b>Project Tracker Assist</b><span class="rx-app">APP</span></p>${say('','From Thursday’s Ops sync recap: “Confirm Northwind rollout scope” has no owner. The Register lists Nina on HF-01. Proposed update for T-41: owner Nina, due Tue Nov 10.')}<p class="fx-row">${approved('Elena')}<span class="rx-btn is-ghost">Edit</span></p>`);
+ if(step===2)return win('rx-teams fx-tall','ms-teams.svg','Teams','Project Tracker Assist',`<p class="rx-from"><b>Project Tracker Assist</b><span class="rx-app">APP</span></p>${say('','From Thursday’s Ops sync recap: “Confirm Northwind rollout scope” has no owner. The Register lists Nina on HF-01. Proposed update for T-41: owner Nina, due Tue Nov 10.')}<p class="fx-row">${approved('Nina')}<span class="rx-btn is-ghost">Edit</span></p>`);
  if(step===3)return win('fx-gpt fx-tall','openai.svg','ChatGPT · Parkside workspace','',`<p class="fx-wpath">Call Prep Coach</p><span class="fx-wchip">Company GPT · built from Marcus’s technique</span>${say('GPT','Before your Northwind call. Open in the Register: HF-01, handoff owner, Nina, Tue Nov 10. Likely pushback: “Who is actually helping me?”')}${say('MARCUS','I’m your contact. Nina confirms the setup owner by Tuesday.','is-user')}${say('GPT','Draft call note: Northwind wants one contact for setup. Save to HubSpot and propose to the Register?')}<p class="fx-row">${approved('Marcus')}<small class="fx-micro">Reads HubSpot with Marcus’s own access.</small></p>`);
- return `<article class="fx-card fx-checks"><b class="fx-cardtitle">Four reviewed items</b><ul>${['HF-01 · Ask Ops · Nina','REC-07 · Claude · Priya','T-41 · Copilot · Elena','CALL-12 · ChatGPT · Marcus'].map(t=>`<li>✓ ${t}</li>`).join('')}</ul></article>`;
+ return `<article class="fx-card fx-checks"><b class="fx-cardtitle">Four reviewed items</b><ul>${['HF-01 · Ask Ops · Nina','REC-07 · Claude · Priya','T-41 · Copilot · Elena → Nina','CALL-12 · ChatGPT · Marcus'].map(t=>`<li>✓ ${t}</li>`).join('')}</ul></article>`;
 }
 const mini=(cls,icon,title,text,isNew)=>`<section class="rx-win fx-mini ${cls}${isNew?' fx-new':''}"><header class="rx-title">${img(icon)}<b>${title}</b></header><div class="rx-body"><p>${text}</p></div></section>`;
 function rightPane(step){
@@ -93,7 +93,7 @@ function rightPane(step){
 export function renderWatch(step=0){
  const s=Math.max(0,Math.min(WATCH_LAST,Number(step)||0));
  const stepper=`<ol class="fx-stepper" aria-label="Steps">${pills.map((p,i)=>`<li class="${i<s?'is-done':i===s?'is-current':''}"${i===s?' aria-current="step"':''}><span aria-hidden="true">${i<s?'✓':i+1}</span>${p}</li>`).join('')}</ol>`;
- const labels=['1 · A company tool proposes','2 · A named owner reviews, in one place','3 · It lands where people work'];
+ const labels=['1 · Company tools propose','2 · A named owner reviews, in one place','3 · It lands where people work'];
  const grid=`<div class="fx-watch-grid"><div class="fx-pane"><small class="fx-label">${labels[0]}</small>${leftPane(s)}</div><div class="fx-pane"><small class="fx-label">${labels[1]}</small>${register(s)}</div><div class="fx-pane"><small class="fx-label">${labels[2]}</small>${rightPane(s)}</div></div>`;
  const band=s===4?'<div class="fx-band"><p>Four reviewed items. Three company AI platforms. One place.</p><small>Leah edits instead of stitching.</small></div>':'';
  const footer=s<4?`<footer class="build-footer"><button class="build-primary" data-step-forward data-fix-step="${s+1}" aria-label="Next step: ${escapeHtml(pills[s+1])}">Next step →</button></footer>`:'<footer class="build-footer"><span class="build-complete">Every line traces to a reviewed row.</span></footer>';
@@ -109,6 +109,6 @@ const plan=[
 export function renderPlan(){
  const steps=plan.map(([name,one,n67,park,get],i)=>`<li class="fx-step"><header><i>${i+1}</i><b>${name}</b></header><p class="fx-one">${one}</p><dl><div><dt>Nine-67</dt><dd>${n67}</dd></div><div><dt>Parkside</dt><dd>${park}</dd></div><div><dt>You get</dt><dd>${get}</dd></div></dl></li>`).join('');
  const t=ids=>`<span class="fx-toks">${ids.map(id=>personToken(id,'S')).join('')}</span>`;
- const who=[['<span class="fx-n67" aria-hidden="true">N67</span>','Nine-67 engineers build in your tenant, beside your people.'],[t(['daniel']),'Your IT approves every connector and access.'],[t(['nina','priya','elena','marcus']),'Department owners own their tools and review their findings.'],[t(['leah','dana']),'Leah reviews the brief. Dana sponsors and picks priorities.']];
+ const who=[['<span class="fx-n67" aria-hidden="true">N67</span>','Nine-67 engineers build in your tenant, beside your people.'],[t(['daniel']),'Your IT approves every connector and access.'],[t(['nina','priya','elena','marcus']),'Each tool has a named owner who reviews its findings.'],[t(['leah','dana']),'Leah reviews the brief. Dana sponsors and picks priorities.']];
  return `<section class="fx fx-plan" aria-label="How Nine-67 builds it with your people: discover, prioritize, build, measure"><ol class="fx-steps">${steps}</ol><ul class="fx-who">${who.map(([a,b])=>`<li>${a}<p>${b}</p></li>`).join('')}</ul><div class="sh-cta fx-cta"><div><h2>Book an AI Workflow Discovery Session.</h2><p>Type “discovery” in the webinar chat</p></div><ul><li>Bring: IT, Operations and two department leaders whose teams depend on each other.</li><li>And your AI inventory if you have one: licenses, agents, custom GPTs, projects.</li></ul></div><p class="fx-rule">Built only on the AI you already license. Personal accounts are never connected.</p></section>`;
 }
