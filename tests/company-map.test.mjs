@@ -16,52 +16,47 @@ test('all nine employees stay in the same three-by-three positions', () => {
   assert.deepEqual(original.nodes.map(node => [node.row, node.column]), [[0,0],[0,1],[0,2],[1,0],[1,1],[1,2],[2,0],[2,1],[2,2]]);
 });
 
-test('employee cards expose real workspaces, tool marks and work previews', () => {
+test('employee cards expose real workspaces, verdicts, tools and one-line work', () => {
   const html = renderCompanyMap({});
   assert.equal([...html.matchAll(/data-workspace="/g)].length, 9);
-  assert.equal([...html.matchAll(/class="employee-quote"/g)].length, 9);
-  assert.equal([...html.matchAll(/class="work-mini /g)].length, 9);
+  assert.equal([...html.matchAll(/class="pg-line"/g)].length, 9);
   for (const person of networkPeople) assert.match(html, new RegExp(`data-workspace="${person.id}"`));
   for (const [,file] of html.matchAll(/src="([^\"]+)"/g)) assert(existsSync(`dist/${file}`));
   assert.doesNotMatch(html, /map-inspector|hub:records|undefined|NaN/);
-  assert.match(html, /Manual: Ben exports → Priya reconciles/);
-  assert.match(html, /Manual: Nina sends → Leah chases/);
+  assert.equal([...html.matchAll(/class="pg-verdict">AI WIN</g)].length, 4);
+  assert.equal([...html.matchAll(/class="pg-verdict">DIFFERENT WAY</g)].length, 2);
+  assert.equal([...html.matchAll(/class="pg-verdict">STRUGGLING</g)].length, 2);
+  assert.equal([...html.matchAll(/class="pg-verdict">THE GLUE</g)].length, 1);
+  assert.match(html, /Personal phone/);
 });
 
-test('connected view reveals only the selected improvement', () => {
-  const names = {priya:'Branch files',elena:'Notes + tracker',nina:'Ticket finding'};
-  for (const [id,title] of Object.entries(names)) {
+test('today shows dead ends and only hand-made links through Leah', () => {
+  const today = renderCompanyMap({});
+  assert.match(today, /Company graph/);
+  assert.equal([...today.matchAll(/class="pg-stays"/g)].length, 8);
+  assert.doesNotMatch(today, /Stays with Leah/);
+  assert.equal([...today.matchAll(/class="pg-edge manual/g)].length, 4);
+  assert.match(today, />By hand</);
+  assert.doesNotMatch(today, /class="pg-edge connected|pg-maya|data-build=/);
+});
+
+test('connected view mirrors today with solid links and the existing build results', () => {
+  const html = renderCompanyMap({networkMode:'connected',improvement:'nina'});
+  assert.equal([...html.matchAll(/class="pg-edge connected/g)].length, 7);
+  assert.doesNotMatch(html, /pg-stays|pg-edge manual|By hand/);
+  for (const text of ['Method reused','Notes update the tracker','Reviewed finding','Maya · other branch','Reused by Maya','Reviewed finding attached','Proposed workflows, not live integrations']) assert.match(html, new RegExp(text));
+  assert.equal([...html.matchAll(/pg-card v-\w+ is-linked/g)].length, 8);
+  const positions = h => [...h.matchAll(/data-workspace="(\w+)" style="([^"]+)"/g)].map(m => m.slice(1).join(' '));
+  assert.deepEqual(positions(html), positions(renderCompanyMap({})));
+});
+
+test('explore controls keep improvement selection and build hooks', () => {
+  for (const id of Object.keys(improvements)) {
     const html = renderCompanyMap({networkMode:'connected',improvement:id});
     assert.match(html, new RegExp(`data-improvement="${id}" aria-pressed="true"`));
     assert.match(html, new RegExp(`data-build="${id}"`));
-    assert.match(html, new RegExp(`<b>${title.replace('+','\\+')}</b>`));
-    assert.equal([...html.matchAll(/class="flow-step-number"/g)].length, 4);
-    assert.equal([...html.matchAll(/class="map-payoff selected-improvement"/g)].length, 1);
     assert.doesNotMatch(html, /undefined|NaN/);
   }
-  assert.doesNotMatch(renderCompanyMap({networkMode:'fragmented'}), /class="map-payoff selected-improvement"/);
+  assert.match(renderCompanyMap({}), /data-network-mode="connected"/);
   assert.match(renderCompanyMap({networkMode:'connected',improvement:'unknown'}), /data-build="priya"/);
-});
-
-test('manual work and human review remain explicit', () => {
-  const today = renderCompanyMap({});
-  assert.match(today, /Still updated manually/);
-  assert.match(today, /After manual assembly/);
-  const elena = renderCompanyMap({networkMode:'connected',improvement:'elena'});
-  assert.match(elena, /Elena confirms/);
-  assert.match(elena, /Confirmed changes only/);
-  const priya = renderCompanyMap({networkMode:'connected',improvement:'priya'});
-  assert.match(priya, /Human review/);
-  const nina = renderCompanyMap({networkMode:'connected',improvement:'nina'});
-  assert.match(nina, /Nina reviews/);
-  assert.match(nina, /Private chats stay private/);
-});
-
-test('company graph exposes visible connections and highlights only proposed mode', () => {
-  const today = renderCompanyMap({});
-  assert.match(today, /Company graph/);
-  assert.match(today, /card-connection-graph/);
-  assert.equal([...today.matchAll(/class="card-edge manual"/g)].length, 2);
-  assert.doesNotMatch(today, /class="card-edge proposed"/);
-  assert.match(renderCompanyMap({networkMode:'connected',improvement:'nina'}), /class="card-edge proposed"/);
 });
