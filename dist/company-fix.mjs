@@ -59,30 +59,30 @@ export function renderBuildMap(){
 }
 
 const items=[
- {id:'HF-01',who:'nina',pill:'HF-01 · Ask Ops',tool:['ms-teams.svg','Ask Ops','Copilot Studio agent','Case CASE-201: the Northwind handoff has no receiving owner. Propose to the Register?'],approver:'Nina',at:'Mon 9:05 AM',item:'Northwind handoff has no receiving owner',owner:'Nina',due:'Tue Nov 10',land:['ms-teams.svg','Teams','Operations channel','HF-01 posted. Owner Nina, due Tue Nov 10.']},
- {id:'REC-07',who:'priya',pill:'REC-07 · Priya',tool:['claude.svg','Claude','Month-End Reconciliation','Invoice N101 appears twice in East.xlsx ($1,200). Not removed. Propose as REC-07?'],approver:'Priya',at:'Tue 9:14 AM',item:'East: invoice N101 posted twice',owner:'Priya',due:'Fri Nov 13',land:['ms-excel.svg','Excel','Month-end exceptions.xlsx','N101 held for review. Owner Priya.']},
- {id:'T-41',who:'elena',pill:'T-41 · Elena → Nina',tool:['copilot.webp','Project Tracker Assist','Copilot Studio agent','“Confirm Northwind rollout scope” has no owner. HF-01 lists Nina. Propose owner Nina, due Tue Nov 10?'],approver:'Nina',at:'Wed 10:02 AM',item:'Confirm Northwind rollout scope',owner:'Nina',due:'Tue Nov 10',land:['ms-excel.svg','Excel','Elena’s tracker','Row updated: owner Nina, due Nov 10.']},
- {id:'CALL-12',who:'marcus',pill:'CALL-12 · Marcus',tool:['openai.svg','Call Prep Coach','Company GPT','Before the Northwind call: HF-01 is open and Nina owns it. Draft note: Northwind wants one setup contact.'],approver:'Marcus',at:'Thu 2:40 PM',item:'Northwind wants one setup contact',owner:'Marcus',due:'Mon Nov 9',land:['hubspot.svg','HubSpot','Companies › Northwind','Call note saved to the Northwind record.']}
+ {id:'HF-01',proposedAt:'Mon 8:52 AM',landedAt:'Mon 9:06 AM',who:'nina',pill:'HF-01 · Ask Ops',tool:['ms-teams.svg','Ask Ops','Copilot Studio agent','Make Nina the owner of Northwind’s next step, due Tue Nov 10.'],came:['Customer email','“Your team says setup is done. Who do we call now?”'],problem:'Setup marked complete. Nobody owns what happens next.',approver:'Nina',at:'Mon 9:05 AM',item:'Northwind: nobody owns the next step',owner:'Nina',due:'Tue Nov 10',land:['ms-teams.svg','Teams','Operations channel','HF-01 posted. Owner Nina, due Tue Nov 10.']},
+ {id:'REC-07',proposedAt:'Tue 8:40 AM',landedAt:'Tue 9:15 AM',who:'priya',pill:'REC-07 · Priya',came:['Three branch files','North.csv · East.xlsx · West.csv'],problem:'Invoice N101 ($1,200) appears twice.',tool:['claude.svg','Claude','Month-End Reconciliation','Hold the East row for Priya’s review. Nothing is removed.'],approver:'Priya',at:'Tue 9:14 AM',item:'East: invoice N101 posted twice',owner:'Priya',due:'Fri Nov 13',land:['ms-excel.svg','Excel','Month-end exceptions.xlsx','N101 held for review. Owner Priya.']},
+ {id:'T-41',proposedAt:'Wed 9:48 AM',landedAt:'Wed 10:03 AM',who:'elena',pill:'T-41 · Elena → Nina',came:['Ops sync recap','“Confirm Northwind rollout scope”'],problem:'The tracker row has no owner.',tool:['copilot.webp','Project Tracker Assist','Copilot Studio agent','Owner Nina, due Tue Nov 10.'],approver:'Nina',at:'Wed 10:02 AM',item:'Confirm Northwind rollout scope',owner:'Nina',due:'Tue Nov 10',land:['ms-excel.svg','Excel','Elena’s tracker','Row updated: owner Nina, due Nov 10.']},
+ {id:'CALL-12',proposedAt:'Thu 2:31 PM',landedAt:'Thu 2:41 PM',who:'marcus',pill:'CALL-12 · Marcus',came:['Call prep','Monday call with Northwind'],problem:'Northwind wants one setup contact.',tool:['openai.svg','Call Prep Coach','Company GPT','Log it on Northwind in HubSpot. Owner Marcus.'],approver:'Marcus',at:'Thu 2:40 PM',item:'Northwind wants one setup contact',owner:'Marcus',due:'Mon Nov 9',land:['hubspot.svg','HubSpot','Companies › Northwind','Call note saved to the Northwind record.']}
 ];
-const pills=[...items.map(i=>i.pill),'Friday brief'];
+const pills=[...items.map(i=>`${i.at.split(' ')[0]} · ${i.pill}`),'Fri · Friday brief'];
 const captions=[
- 'The pattern. Ask Ops proposed HF-01, Nina approved it, and it landed in the Register and the Operations channel.',
+ 'Northwind asked who to call next, and nobody owned it. Ask Ops spotted it, Nina took it, and now everyone can see it.',
  'Priya’s shared Claude project proposes. Priya approves. The Register and her Excel file update.',
  'Elena’s Copilot agent proposes an owner. Nina, the named owner, approves. Elena’s tracker updates.',
  'Marcus’s company GPT preps the call. Marcus approves the note. HubSpot and the Register update.',
  'Friday. The Friday Brief agent writes Leah’s draft from approved rows only.'
 ];
-const stage=(n,label,body)=>`<div class="fx-stage"><p class="fx-stagelabel"><i>${n}</i>${label}</p>${body}</div>`;
+const stage=(n,label,body,when='')=>`<div class="fx-stage"><p class="fx-stagelabel"><i>${n}</i>${label}${when?`<time>${when}</time>`:''}</p>${body}</div>`;
 function flow(it){
  const [ticon,tapp,tpath,ttext]=it.tool,[licon,lapp,lpath,ltext]=it.land;
- const propose=win(`fx-propose fx-app-${ticon.split('.')[0]}`,ticon,tapp,tpath,`<p class="fx-msg">${ttext}</p><p class="fx-msgfoot">${personToken(it.who,'S')}<span>Proposed for ${it.owner}</span></p>`);
+ const propose=win(`fx-propose fx-app-${ticon.split('.')[0]}`,ticon,tapp,tpath,`${it.came?`<div class="fx-in"><small>What came in · ${it.came[0]}</small><p>${it.came[1]}</p></div><div class="fx-prob"><small>The problem</small><p>${it.problem}</p></div><div class="fx-prop"><small>${tapp} proposes</small><p>${ttext}</p></div>`:`<p class="fx-msg">${ttext}</p>`}${it.came?'':`<p class="fx-msgfoot">${personToken(it.who,'S')}<span>Proposed for ${it.owner}</span></p>`}`);
  const approve=win('rx-teams fx-approve','ms-teams.svg','Teams','Approvals',`<p class="fx-apid">${it.id}</p><p class="fx-apitem">${it.item}</p><p class="fx-approved">✓ Approved by ${it.approver}</p><small class="fx-apat">${it.at}</small>`);
  const land=win(`fx-land fx-app-${licon.split('.')[0]}`,licon,lapp,lpath,`<p class="fx-msg">${ltext}</p>`);
  const arrow='<span class="fx-arrow" aria-hidden="true">→</span>';
- return `<div class="fx-flow4">${stage(1,'A tool proposes',propose)}${arrow}${stage(2,'The owner approves',approve)}${arrow}${stage(3,'A row in the Register',`<div class="fx-rowcard"><i>${it.id}</i><b>${it.item}</b><span>${it.owner} · ${it.due}</span><em>✓ Approved</em></div>`)}${arrow}${stage(4,'It lands where they work',land)}</div>`;
+ return `<div class="fx-flow4">${stage(1,`${tapp.replace('Project ','')} proposes`,propose,it.proposedAt)}${arrow}${stage(2,`${it.approver} approves`,approve,it.at)}${arrow}${stage(3,'Row in the Register',`<div class="fx-rowcard"><i>${it.id}</i><b>${it.item}</b><span>${it.owner} · ${it.due}</span><em>✓ Approved</em></div>`,it.at)}${arrow}${stage(4,`Lands in ${lapp}`,land,it.landedAt)}</div>`;
 }
 function brief(){
- const lines=[['Operations: Northwind handoff needs a receiving owner. Nina, Tue Nov 10.','HF-01'],['Finance: East duplicate invoice N101 held. Priya, Fri Nov 13.','REC-07'],['Projects: Northwind rollout scope assigned to Nina, Tue Nov 10.','T-41'],['Accounts: Northwind asked for one setup contact. Marcus, Mon Nov 9.','CALL-12']];
+ const lines=[['Operations: Nina owns Northwind’s next step. Tue Nov 10.','HF-01'],['Finance: East duplicate invoice N101 held. Priya, Fri Nov 13.','REC-07'],['Projects: Northwind rollout scope assigned to Nina, Tue Nov 10.','T-41'],['Accounts: Northwind asked for one setup contact. Marcus, Mon Nov 9.','CALL-12']];
  const mail=win('fx-outlook fx-brief','ms-outlook.svg','Outlook','Draft · Friday brief · Week of Nov 2',`<p class="fx-to">From Leah · To Dana · <span class="fx-wchip">${img('copilot.webp')}Written by Friday Brief from 4 approved rows</span></p><ul class="fx-lines">${lines.map(([t,id])=>`<li><span>${t}</span><i>${id}</i></li>`).join('')}</ul><p class="fx-flag">⚑ Leah to confirm: Service wrote “NW Services”. Same account as Northwind?</p>`);
  return `<div class="fx-final">${mail}<div class="fx-take"><b>Four approved items. Three company AI platforms. One Register.</b><span>Leah edits instead of stitching.</span></div></div>`;
 }

@@ -166,3 +166,21 @@ tr.fx-new th,tr.fx-new td{font-weight:800}
 .fx-flow4 .fx-apitem{font-size:24px}
 .fx-flow4 .fx-rowcard b{font-size:26px}
 .fx-flow4 .fx-land .fx-msg{font-size:24px}
+/* proposal window: what came in, the problem, the proposal */
+.fx-propose .fx-in,.fx-propose .fx-prob,.fx-propose .fx-prop{margin:0 0 10px;padding:10px 14px;border-radius:10px}
+.fx-propose small{display:block;font-size:15px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px}
+.fx-propose .fx-in{background:#f2f4f7}
+.fx-propose .fx-in small{color:#475467}
+.fx-propose .fx-in p{font-size:20px;line-height:1.3;font-weight:600;color:#0e1726;margin:0}
+.fx-propose .fx-prob{background:#fee4e2}
+.fx-propose .fx-prob small{color:#b42318}
+.fx-propose .fx-prob p{font-size:20px;line-height:1.3;font-weight:700;color:#912018;margin:0}
+.fx-propose .fx-prop{background:#e0eaff;margin-bottom:0}
+.fx-propose .fx-prop small{color:#1f4fd8}
+.fx-propose .fx-prop p{font-size:20px;line-height:1.3;font-weight:700;color:#0e1726;margin:0}
+.fx-propose .fx-in,.fx-propose .fx-prob,.fx-propose .fx-prop{margin:0 0 8px;padding:8px 12px}
+.fx-propose .fx-in p,.fx-propose .fx-prob p,.fx-propose .fx-prop p{font-size:19px;line-height:1.25}
+.fx-stagelabel time{margin-left:auto;font-size:16px;font-weight:700;color:#475467;background:#eef1f6;padding:2px 10px;border-radius:999px;white-space:nowrap}
+.fx-stagelabel{display:flex;align-items:center;gap:8px}
+.fx-propose .fx-in,.fx-propose .fx-prob,.fx-propose .fx-prop{margin-bottom:6px;padding:6px 12px}
+.fx-propose small{font-size:14px;margin-bottom:2px}
