@@ -2,8 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
 import { initialState, transition, people } from '../dist/company-model.mjs';
-import { renderScene, renderDetail, primaryAction, scenes } from '../dist/company-view.mjs';
-import { renderWorkspace, workspaceStories } from '../dist/company-workspaces.mjs';
+import { renderScene, renderDetail, primaryAction, scenes, renderStack, renderCrowd, crowdByKind, viewCopy } from '../dist/company-view.mjs';
+import { renderWorkspace, workspaceStories, weeklyUseList } from '../dist/company-workspaces.mjs';
 test('nine scenes and every employee task render valid content and local assets',()=>{
  let state=initialState();
  for(let scene=0;scene<9;scene++){
@@ -45,6 +45,15 @@ test('main path advances sections without repeated service status screens',()=>{
  for(let scene=0;scene<8;scene++)assert.equal(primaryAction({...initialState(),scene}).action,'next');
  assert.equal(primaryAction({...initialState(),scene:8}).action,'discovery');
  const offer=renderScene({...initialState(),scene:8});assert.match(offer,/Operations \+ IT/);assert.match(offer,/company-wide roadmap/);
+});
+test('stack and crowd tell the licensed, agent and personal story by construction',()=>{
+ const stack=renderStack();assert.match(stack,/<b>3<\/b> company AI platforms/);assert.match(stack,/<b>4<\/b> department agents/);assert.match(stack,/<b>3<\/b> personal apps/);
+ const kinds=crowdByKind();assert.equal(kinds.company,111);assert.equal(kinds.personal,17);assert.equal(kinds.company+kinds.personal,128);
+ const crowd=renderCrowd();assert.match(crowd,/<b>111<\/b> mostly on company AI/);assert.match(crowd,/is-personal/);
+ const marcus=renderWorkspace(initialState(),'marcus');assert.match(marcus,/from before the rollout/);assert.match(marcus,/Private chat stays private/);
+ assert.doesNotMatch(weeklyUseList('priya'),/Personal account/);
+ for(let scene=0;scene<9;scene++)assert.doesNotMatch(renderScene({...initialState(),scene}),/\u2014/);
+ assert.doesNotMatch(stack+crowd+JSON.stringify(viewCopy),/\u2014/);
 });
 test('three discoveries open the people and the matching build',()=>{
  for(const [discovery,person] of [['reuse','priya'],['needs','elena'],['handoff','nina']]){

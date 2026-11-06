@@ -4,17 +4,17 @@
   const liveUrl = 'live.html#slide-1';
   const verdicts = { win: 'AI win', diff: 'Different way', stuck: 'Struggling', glue: 'The glue' };
   const parkside = [
-    ['Dana', 'CEO', 'Claude', 'claude.svg', 'win'],
-    ['Daniel', 'IT', 'Ask Parkside', 'ms-teams.svg', 'diff'],
+    ['Dana', 'CEO', 'Claude (company plan)', 'claude.svg', 'win'],
+    ['Daniel', 'IT', 'Ask Parkside (Copilot Studio)', 'ms-teams.svg', 'diff'],
     ['Ben', 'Head of Sales', 'Copilot', 'copilot.webp', 'win'],
-    ['Priya', 'Finance Analyst', 'Claude', 'claude.svg', 'win'],
-    ['Nina', 'Operations', 'Ask Ops', 'ms-teams.svg', 'win'],
+    ['Priya', 'Finance Analyst', 'Claude (company plan)', 'claude.svg', 'win'],
+    ['Nina', 'Operations', 'Ask Ops (Copilot Studio)', 'ms-teams.svg', 'win'],
     ['Ava', 'Customer Service', 'Copilot', 'copilot.webp', 'stuck'],
     ['Elena', 'Project Coordinator', 'Copilot', 'copilot.webp', 'stuck'],
-    ['Marcus', 'Account Manager', 'Grok', 'grok.svg', 'diff'],
+    ['Marcus', 'Account Manager', 'Grok · personal phone', 'grok.svg', 'diff'],
     ['Leah', 'Chief of Staff', 'Copilot', 'copilot.webp', 'glue']
   ];
-  const tools = [['ChatGPT', 'openai.svg'], ['Claude', 'claude.svg'], ['Copilot', 'copilot.webp'], ['Microsoft 365', 'microsoft.svg'], ['Gemini', 'gemini.svg'], ['Perplexity', 'perplexity.svg']];
+  const tools = [['Microsoft 365 Copilot', 'copilot.webp'], ['Copilot Studio agents', 'ms-teams.svg'], ['Claude', 'claude.svg'], ['ChatGPT', 'openai.svg'], ['Grok', 'grok.svg'], ['Perplexity', 'perplexity.svg']];
   const esc = value => String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
   const fill = (id, html) => { const el = document.getElementById(id); if (el) el.innerHTML = html; };
 

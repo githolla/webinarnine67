@@ -352,3 +352,12 @@ body:not(.guided-tour):not(.is-tour) .employee-workspace>.employee-strip span{di
 .ws-leah-uses li.ws-use-personal{border-color:#fda29b}
 .ws-leah-uses em{margin-left:4px;font-size:16px}
 .ws-leah-mid{gap:12px;padding:20px 28px}.ws-questions{gap:4px;font-size:26px}.ws-leah-mid blockquote{font-size:24px}
+.ws-phone-scene{gap:20px;padding:16px 20px}
+.ws-phone-scene .ws-company-box{width:256px;box-sizing:border-box;padding:16px;gap:12px;flex:none}
+.ws-phone-scene .ws-company-box small{white-space:normal;line-height:1.25}
+.ws-phone-scene .ws-company-box .ws-app{font-size:19px}
+.ws-phone-scene .ap-iphone{width:380px}
+.ws-phone-scene .ws-phone-col{width:380px;flex:none}.ws-phone-scene .ws-phone-label{white-space:normal;text-align:center;font-size:20px;line-height:1.2;margin:0}
+.ws-phone-scene .ws-annotations{margin-left:28px;gap:16px;flex:none}
+.ws-phone-scene .ws-annotations li{padding:8px 14px;font-size:19px}
+.ws-phone-scene .ws-annotations li:before{width:28px}

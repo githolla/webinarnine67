@@ -142,7 +142,7 @@ test('Parkside has nine distinct people and the CEO is Dana', () => {
   assert.deepEqual(people.map(person => person.id), ['dana', 'daniel', 'ben', 'priya', 'nina', 'marcus', 'ava', 'elena', 'leah']);
   assert.equal(people.find(person => person.id === 'dana').department, 'CEO');
   assert.equal(people.some(person => person.id === 'suuchi'), false);
-  assert.equal(people.find(person => person.id === 'priya').system, 'Excel · Power Query');
+  assert.equal(people.find(person => person.id === 'priya').system, 'Excel · Power Query · Claude company plan');
 });
 test('company map navigation selects people, AI and outputs without changing pilot evidence', () => {
   let state = reviewedState();

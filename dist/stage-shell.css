@@ -344,3 +344,47 @@ p.sh-tie{display:block;margin:auto 0 0;padding-top:20px;font-size:28px;line-heig
 .pp-slide li span{font-size:22px;line-height:1.3;color:#242424}
 .pp-status{flex:none;display:flex;gap:24px;padding:6px 16px;background:#f3f2f1;border-top:1px solid #e1dfdd;font-size:13px;color:#616161}
 .pp-status span:last-child{margin-left:auto}
+/* Stack: company platforms, department agents, personal holdovers */
+.stk{gap:20px}
+.stk-cols{grid-template-columns:560px 48px minmax(0,1fr)}
+.stk-plan li{padding:6px 0}.stk-plan li b{font-size:26px}.stk-plan li span{font-size:19px}
+.stk-real{padding:20px 28px;gap:12px;min-width:0;overflow:hidden}
+.stk-group{display:flex;flex-direction:column;gap:6px;flex:none}
+.stk-group h3{margin:0;font-size:20px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.stk-card .stk-list,.stk-card .stk-agents,.stk-card .stk-plist{margin:0;flex:none;justify-content:flex-start}
+.stk-card .stk-list li{height:54px;padding:0;box-sizing:border-box}
+.stk-real .stk-list .stk-tool{width:440px}.stk-real .stk-list .stk-tool b{width:130px}
+.stk-card .stk-agents{display:grid;grid-template-columns:minmax(0,1fr) 36px minmax(0,1fr);gap:10px 0;align-items:center}
+.stk-card .stk-agents li.stk-agent{height:84px;box-sizing:border-box;padding:8px 14px;border:1px solid var(--line);border-radius:14px;background:#fafbfd;gap:12px}
+.stk-agent>img{width:32px;height:32px}
+.stk-agent-id{display:flex;flex-direction:column;min-width:0;flex:1}
+.stk-agent-id b{font-size:22px;font-weight:750;color:var(--ink);line-height:1.1}
+.stk-agent-id span{font-size:18px;color:var(--muted);line-height:1.25;white-space:nowrap}
+.stk-agent-side{display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;align-self:stretch;flex:none}
+.stk-agent-side em{font-style:normal;font-size:16px;font-weight:700;padding:2px 10px;border-radius:999px;background:var(--glue-tint);color:var(--glue);white-space:nowrap}
+.stk-agent-side .sh-pt-s .sh-pt-av,.stk-plist .sh-pt-s .sh-pt-av{width:36px;height:36px;font-size:17px}
+.stk-agent-side .sh-pt-s .sh-pt-av img,.stk-plist .sh-pt-s .sh-pt-av img{width:18px;height:18px}
+.stk-card .stk-agents li.stk-x{justify-self:center;display:grid;place-items:center;width:26px;height:26px;padding:0;border:0;border-radius:50%;background:var(--broken);color:#fff;font-size:15px;font-weight:800}
+.stk-pgroup{border:2px dashed #98a2b3;background:#f8f9fb;border-radius:14px;padding:8px 16px 10px}
+.stk-card .stk-plist{display:flex;flex-direction:row;justify-content:space-between;gap:16px}
+.stk-card .stk-plist li.stk-personal{border:0;padding:0;gap:10px;align-items:flex-start}
+.stk-personal>img{width:30px;height:30px;margin-top:2px}
+.stk-ptool{display:flex;flex-direction:column;gap:4px;min-width:0}
+.stk-ptool p{margin:0;display:flex;align-items:center;gap:10px}
+.stk-ptool b{font-size:22px;font-weight:750;color:var(--ink);line-height:1.1}
+.stk-phow{font-size:18px;color:var(--muted);white-space:nowrap}
+.stk-plist .stk-people{gap:10px}
+.stk-plist .stk-others{height:32px;padding:0 12px;font-size:18px}
+.stk-ptag{font-style:normal;font-size:16px;font-weight:700;padding:2px 10px;border-radius:999px;background:#fee4e2;color:var(--broken)}
+.stk-band{padding:20px 40px;font-size:36px}
+/* Crowd: company solid, personal ring */
+.cr-dot.is-personal{background:#fff;box-shadow:inset 0 0 0 4px var(--c)}
+.cr-dot.is-personal.is-featured{color:var(--ink);box-shadow:inset 0 0 0 4px var(--c),0 0 0 3px #fff,0 0 0 6px #0e1726}
+.cr-split{margin:0 0 14px;font-size:20px;line-height:1.35;font-weight:600;color:var(--muted)}.cr-split b{color:var(--ink);font-weight:800}
+.cr-legend ul{gap:6px}
+.cr-legend li{font-size:20px}
+.cr-legend li.cr-lgroup{margin-top:6px;font-size:18px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.cr-legend li.cr-lgroup:first-child{margin-top:0}
+.cr-legend li.cr-lgap{height:4px}
+.cr-big{margin-bottom:6px}.cr-big b{font-size:88px}
+.sh-pt-extra{background:#f2f4f7;color:#344054}.sh-pt-extra.is-personal{background:var(--stuck-tint);color:var(--stuck)}

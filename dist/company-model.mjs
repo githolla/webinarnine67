@@ -1,11 +1,11 @@
 import { initialBuildState, transitionBuild } from './company-builds.mjs';
 export const people = [
-  { id: 'dana', name: 'Dana', department: 'CEO', ai: 'Claude', system: 'PowerPoint · Microsoft 365 reports', icon: 'claude.svg' },
+  { id: 'dana', name: 'Dana', department: 'CEO', ai: 'Claude', system: 'PowerPoint · Claude company plan', icon: 'claude.svg' },
   { id: 'daniel', name: 'Daniel', department: 'IT', ai: 'Ask Parkside', system: 'Copilot Studio · Teams · SharePoint' },
-  { id: 'ben', name: 'Ben', department: 'Head of Sales', ai: 'Copilot', system: 'Excel · HubSpot', icon: 'copilot.webp' },
-  { id: 'priya', name: 'Priya', department: 'Finance Analyst', ai: 'Claude', system: 'Excel · Power Query', icon: 'claude.svg' },
-  { id: 'nina', name: 'Nina', department: 'Operations', ai: 'Ask Ops', system: 'Teams · Power Automate · SharePoint List', icon: 'ms-teams.svg' },
-  { id: 'marcus', name: 'Marcus', department: 'Account Manager', ai: 'Grok', system: 'Personal phone · HubSpot · Outlook' },
+  { id: 'ben', name: 'Ben', department: 'Head of Sales', ai: 'Copilot', system: 'Excel · HubSpot · Copilot', icon: 'copilot.webp' },
+  { id: 'priya', name: 'Priya', department: 'Finance Analyst', ai: 'Claude', system: 'Excel · Power Query · Claude company plan', icon: 'claude.svg' },
+  { id: 'nina', name: 'Nina', department: 'Operations', ai: 'Ask Ops', system: 'Copilot Studio agent in Teams · Power Automate · SharePoint list', icon: 'ms-teams.svg' },
+  { id: 'marcus', name: 'Marcus', department: 'Account Manager', ai: 'Grok', system: 'HubSpot · Outlook · company ChatGPT seat · Grok on personal phone' },
   { id: 'ava', name: 'Ava', department: 'Customer Service', ai: 'Copilot', system: 'Zendesk · Outlook', icon: 'copilot.webp' },
   { id: 'elena', name: 'Elena', department: 'Project Coordinator', ai: 'Copilot', system: 'Teams · Outlook · Excel', icon: 'copilot.webp' },
   { id: 'leah', name: 'Leah', department: 'Chief of Staff', ai: 'Copilot', system: 'Teams · Outlook · Excel · PowerPoint', icon: 'copilot.webp' }
