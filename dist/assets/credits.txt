@@ -1,5 +1,13 @@
 Product marks identify the products discussed; no endorsement or partnership is implied.
 Microsoft Copilot: Microsoft Adoption, https://adoption.microsoft.com/wp-content/uploads/webp/2026/08/icon-microsoft-copilot.png.webp
 Other product marks: @lobehub/icons-static-svg 1.101.0 (OpenAI, Anthropic, Microsoft, Google, Perplexity retain their respective marks).
-Microsoft Word, Teams, Excel, SharePoint and OneNote product icons: Microsoft, via the Microsoft Cloud Product Icons collection, https://github.com/DamoBird365/microsoft-cloud-icons/tree/master/icons/microsoft-365
+Microsoft Word, Teams, Outlook, Excel, SharePoint and OneNote product icons: Microsoft, via the Microsoft Cloud Product Icons collection, https://github.com/DamoBird365/microsoft-cloud-icons/tree/master/icons/microsoft-365
 Kantata mark: vendor site favicon, https://www.kantata.com/images/favicon.ico (original 48 px artwork, losslessly converted to PNG).
+
+HubSpot mark: Simple Icons, https://cdn.simpleicons.org/hubspot/FF7A59. HubSpot retains its trademark rights.
+
+Jira mark: Simple Icons, https://cdn.simpleicons.org/jira/0052CC. Atlassian retains its trademark rights.
+
+Grok mark: @lobehub/icons-static-svg 1.101.0. Zendesk mark: Simple Icons, https://cdn.simpleicons.org/zendesk/03363D. PowerPoint: Microsoft via the Microsoft Cloud Product Icons collection listed above. Each vendor retains its trademark rights.
+
+editorial-work.png: AI-generated fictional workplace photography, created with OpenAI imagegen for Nine-67.

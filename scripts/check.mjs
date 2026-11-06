@@ -13,8 +13,8 @@ function walk(dir) {
 }
 walk(root);
 let errors = [];
-function syntax(text, label) {
-  const result = spawnSync(process.execPath, ['--check', '--input-type=commonjs'], { input: text, encoding: 'utf8' });
+function syntax(text, label, module = false) {
+  const result = spawnSync(process.execPath, ['--check', module ? '--input-type=module' : '--input-type=commonjs'], { input: text, encoding: 'utf8' });
   if (result.status !== 0) errors.push(`${label}: ${result.stderr || result.error || 'JavaScript syntax check failed'}`);
 }
 function localReference(value, file) {
@@ -25,7 +25,7 @@ function localReference(value, file) {
   if (!existsSync(target)) errors.push(`${relative(root, file)} references missing file ${value}`);
 }
 for (const file of files) {
-  if (file.endsWith('.js')) syntax(readFileSync(file, 'utf8'), relative(root, file));
+  if (file.endsWith('.js') || file.endsWith('.mjs')) syntax(readFileSync(file, 'utf8'), relative(root, file), file.endsWith('.mjs'));
   if (file.endsWith('.html')) {
     const html = readFileSync(file, 'utf8');
     for (const match of html.matchAll(/<(?:script|link|img|a)\b[^>]*?\b(?:src|href)\s*=\s*["']([^"']+)["'][^>]*>/gi)) localReference(match[1], file);

@@ -1,23 +1,146 @@
 'use strict';
-const DESK = 3;
-const DONE = 4;
+const DESK = 4;
+const DONE = 5;
 const scenes = [
-  {kicker:'Forma Digital · Monday, November 2 · 9:02 AM',title:'A request comes in.',lead:'Forma Digital builds customer apps. Marcus needs one answer before he can confirm a client launch.',next:'See what the desk finds →',time:'1:04:30–1:05:30',say:'“Monday, 9:02. Marcus asks one simple question: can Alex do the Rally launch? This is the kind of message your team answers by hand every week.”',point:'Point to the message, then the desk card. Suuchi asks: “Who answers this in your company?”'},
-  {kicker:'Forma Digital · Two client launches · November 9–13',title:'Two plans. Both written with AI.',lead:'Leah planned Luma Hotels with ChatGPT. Marcus planned Rally Fitness with Copilot. Each plan looks fine on its own.',next:'Check Alex’s week →',time:'1:05:30–1:06:30',say:'“Two good AI outputs. Leah used ChatGPT, Marcus used Copilot. You’re the COO. Would you confirm both launch dates?”',point:'Point to Alex and 40 hours on each plan. Pause, then advance.'},
-  {kicker:'Forma Digital · Alex’s week · November 9–13',title:'Alex has 80 hours promised. And a 40-hour week.',lead:'ChatGPT helped Leah. Copilot helped Marcus. Nobody checked across the two teams.',next:'Show what the desk did →',time:'1:06:30–1:07:45',say:'“Every day next week, Alex is expected on both projects. Without a shared check, Maya has four handoffs to chase. Who discovers this in your company, and when?”',point:'Trace one day down the two rows, then read the four handoffs left to right. Suuchi asks the question.'},
-  {kicker:'Launch Desk · Monday, November 2 · 9:04 AM',title:'The desk catches the collision before the promises go out.',lead:'',next:'Approve as COO →',time:'1:07:45–1:09:30',say:'“The desk read both plans, checked capacity, and found Jamie. Maya confirmed. Now I have one decision, and I can see exactly what approving will do. Nothing is written until a person approves.”',point:'Let the work log finish. Point to “Approving will”. Click Approve as COO inside the card. Use Change one fact only in Q&A.'},
-  {kicker:'Launch Desk · Monday, November 2 · 9:07 AM',title:'Request completed. One approval.',lead:'Alex keeps Luma. Jamie takes Rally. Every team works from the same approved plan.',next:'Find your handoffs →',time:'1:09:30–1:11:00',say:'“Five minutes after Marcus asked, the request is done: plan updated, allocation recorded, both managers told, Marcus answered, and a full audit trail. Four handoffs became one approval.”',point:'Point to the reply to Marcus, then the before and after strip. Say the Kantata write is simulated here and uses its API in a real build.'},
-  {kicker:'Complimentary workflow assessment',title:'Find your manual handoffs.',lead:'Bring one workflow. We will map it the way we just mapped Marcus’s request.',next:'Back to the start ↺',time:'1:16:00 and 1:27:30',say:'“What you typed in chat is step one of the assessment. Type ‘assessment’ and your workflow, or use the link if you’d rather keep it private.”',point:'Leave this screen up through Q&A and the close.'}
+  {
+    "kicker": "The customer request",
+    "title": "Your team has AI. Why is the work still manual?",
+    "lead": "Meet Keystone Fabrication. A customer changes the material, quantity and delivery split on an active order.",
+    "next": "Follow the handoffs →",
+    "time": "1:04:30–1:05:15",
+    "say": "Introduce Rachel as the customer and Leah as account manager. Read the full request, the accurate acknowledgment and Rachel’s positive reply. Leah has not promised an unverified date.",
+    "point": "Introduce Rachel as the customer and Leah as account manager. Read the full request, the accurate acknowledgment and Rachel’s positive reply. Leah has not promised an unverified date."
+  },
+  {
+    "kicker": "AI in every department",
+    "title": "Everyone completes a different check.",
+    "lead": "Request captured. Commercial scope updated. Capacity checked. Material and engineering reviews requested.",
+    "next": "Compare the records →",
+    "time": "1:05:15–1:07:00",
+    "say": "Read the extended AI conversations. Each assistant accurately distinguishes its completed local check from the unresolved delivery decision. Show Leah’s follow-up tasks, Dana’s conditional amendment and Sam’s submitted PUR-91 and ECO-27 requests. Everyone saves the right update and communicates the limits.",
+    "point": "Read the extended AI conversations. Each assistant accurately distinguishes its completed local check from the unresolved delivery decision. Show Leah’s follow-up tasks, Dana’s conditional amendment and Sam’s submitted PUR-91 and ECO-27 requests. Everyone saves the right update and communicates the limits."
+  },
+  {
+    "kicker": "The manufacturing dependency",
+    "title": "The open checks are known. Their answers are disconnected.",
+    "lead": "A 316L price is not a material allocation. Available hours are not a verified delivery plan.",
+    "next": "See the delay →",
+    "time": "1:07:00–1:08:00",
+    "say": "State clearly: Sam already requested material and engineering validation. Page 3 is not a hidden problem his AI failed to mention. The purchasing record belongs to revision A; revision B needs a new supply commitment. Point to the three queues and their owners. Their results do not automatically trigger reconciliation or update the other systems. A Teams channel shares awareness, but people still need to collect evidence, compare revisions and complete the updates.",
+    "point": "State clearly: Sam already requested material and engineering validation. Page 3 is not a hidden problem his AI failed to mention. The purchasing record belongs to revision A; revision B needs a new supply commitment. Point to the three queues and their owners. Their results do not automatically trigger reconciliation or update the other systems. A Teams channel shares awareness, but people still need to collect evidence, compare revisions and complete the updates."
+  },
+  {
+    "kicker": "The cost of disconnected work",
+    "title": "Everyone did their job. The order still stalled.",
+    "lead": "The missing capability was completing the handoffs between their jobs.",
+    "next": "Connect the workflow →",
+    "time": "1:08:00–1:09:00",
+    "say": "Each department completed its assigned task accurately. The workflow had separate queues but no shared dependency state, deadline handling or automatic continuation. People still had to collect and reconcile the results. The resulting wait loses an earlier supply option in this fictional case. Show that the customer cannot schedule installation even though every local update was saved.",
+    "point": "Point to what worked, what broke down and the business consequence before reading the timeline."
+  },
+  {
+    "kicker": "Rewind · Connected workflow",
+    "title": "Here is what we would build.",
+    "lead": "One change coordinator connects the evidence, tracks the checks and verifies the approved updates.",
+    "next": "Approve coordinated update →",
+    "time": "1:09:00–1:10:00",
+    "say": "Show the six build components: permitted system connections, a shared change record, durable dependency tracking, AI with relevant source evidence, approved writes and verification, and an operational view. Open the implementation detail if asked how it is built. Walk the example coordinator log. This is a proposed workflow and simulated interface, not a claim that live integrations already exist. The coordinator cannot create material supply; it follows up, escalates, holds or replans. Demonstrate the missing acceptance, unavailable supply, changed revision and failed-write cases using Change one fact.",
+    "point": "Start with the build blueprint, then the coordinator view. Explain that local assistants remain useful, while the coordinator carries the shared work across systems. Use the approval control after discussing the exception cases."
+  },
+  {
+    "kicker": "Request → completed work",
+    "title": "Now the customer can act on the answer.",
+    "lead": "The approved scope, material allocation, manufacturing plan and customer commitment agree.",
+    "next": "Find your handoffs →",
+    "time": "1:10:00–1:11:00",
+    "say": "Read the verified records and customer correspondence. The same people and AI now work with reconciled evidence. The customer can schedule installation. All writes and approvals in this demo are simulated.",
+    "point": "Read the verified records and customer correspondence. The same people and AI now work with reconciled evidence. The customer can schedule installation. All writes and approvals in this demo are simulated."
+  },
+  {
+    "kicker": "Complimentary workflow assessment",
+    "title": "Find your manual handoffs.",
+    "lead": "Bring one workflow. We will map the systems, decisions and dependencies that keep it manual.",
+    "next": "Back to the start ↺",
+    "time": "1:16:00 and 1:27:30",
+    "say": "Offer the complimentary workflow assessment, scheduled separately after the webinar. Map one workflow, its dependencies and one measurable outcome.",
+    "point": "Offer the complimentary workflow assessment, scheduled separately after the webinar. Map one workflow, its dependencies and one measurable outcome."
+  }
 ];
-const leads = {
-  ready:'The desk read both plans, checked capacity and found a qualified replacement. Maya confirmed. You approve.',
-  unknown:'The desk found a qualified replacement. Maya has not confirmed availability yet, so the desk holds.',
-  booked:'The desk’s first choice is committed elsewhere. Maya must find another qualified person or change a launch date.'
-};
+const clocks = [[{"d": "Mon, Nov 2", "t": "8:55 AM", "n": "Request acknowledged"}], [{"d": "Mon, Nov 2", "t": "9:20 AM", "n": "Three local updates saved"}], [{"d": "Mon, Nov 2", "t": "9:20 AM", "n": "Cross-system validation pending", "tone": "warn"}], [{"d": "Wed, Nov 4", "t": "10:25 AM", "n": "Customer still waiting", "tone": "warn"}], [{"d": "Mon, Nov 2", "t": "11:15 AM", "n": "Dependencies verified", "tone": "calm"}], [{"d": "Mon, Nov 2", "t": "11:28 AM", "n": "Customer can schedule installation", "tone": "calm"}], null];
+const rewindDays = ["Wed, Nov 4","Tue, Nov 3","Mon, Nov 2"];
+const rewindTo = "Mon, Nov 2 · 8:41 AM";
+const leads = {"ready": "Approve the coordinated plan.", "unknown": "Hold: customer acceptance pending.", "booked": "Replan: 316L cannot arrive in time.", "stale": "Hold: the customer changed the revision.", "write_failed": "Hold: the commercial update did not save."};
 const deskCopy = {
-  ready:{headline:'Give Jamie the second launch.',proof:'Confirmed by Maya · 40 free hours',source:'Kantata export · Confirmed by Maya · No live sync',bench:'Jamie: launch skill ✓ · reviewed the Rally brief ✓ · 40h free ✓',confirm:'Maya confirmed Jamie · 9:04 AM',note:'Resource manager checked the current snapshot.',hold:''},
-  unknown:{headline:'Hold: confirm Jamie first.',proof:'Not confirmed yet',source:'Kantata export · Not yet confirmed · No live sync',bench:'Jamie: launch skill ✓ · reviewed the Rally brief ✓ · hours unconfirmed',confirm:'Waiting on Maya',note:'A blank calendar alone does not prove availability.',hold:'Held for Maya. Approval opens once Jamie’s availability is confirmed.'},
-  booked:{headline:'Hold: Jamie is committed elsewhere.',proof:'0 free hours',source:'Kantata export · Jamie fully booked · No live sync',bench:'Jamie: 0h free. Searching for another qualified person.',confirm:'Maya notified · decision needed',note:'Find another qualified person or move a launch date.',hold:'Held. Jamie is already committed. Maya must find another qualified person or change a launch date.'}
+  "ready": {
+    "headline": "Approve the coordinated plan.",
+    "proof": "Rachel approved amendment B",
+    "source": "Simulation · no live writes",
+    "bench": "316L supply confirmed · BOM B validated · split delivery feasible",
+    "confirm": "Customer accepted the revised price and split delivery",
+    "note": "Supplier, engineering, capacity and customer evidence are linked to revision B.",
+    "hold": "",
+    "state": "Evidence verified",
+    "nextAction": "Awaiting coordinated-update approval",
+    "material": "316L allocation confirmed",
+    "engineering": "BOM + routing B validated",
+    "delivery": "400 Fri / 800 next Fri"
+  },
+  "unknown": {
+    "headline": "Hold: customer acceptance pending.",
+    "proof": "Amendment B not yet accepted",
+    "source": "Acceptance pending",
+    "bench": "Material and capacity checked; commercial acceptance still needed.",
+    "confirm": "Leah requests customer acceptance",
+    "note": "Keep the manufacturing release on hold until the revised terms are accepted.",
+    "hold": "Held. No coordinated release until Rachel accepts the amended scope, price and delivery plan.",
+    "state": "Customer acceptance pending",
+    "nextAction": "Leah follows up with Rachel",
+    "material": "316L allocation confirmed",
+    "engineering": "BOM + routing B validated",
+    "delivery": "Proposed split; not accepted"
+  },
+  "booked": {
+    "headline": "Replan: 316L cannot arrive in time.",
+    "proof": "Delivery proposal must change",
+    "source": "Supply conflict",
+    "bench": "316L arrival misses the first production window.",
+    "confirm": "Sam prepares a feasible alternative",
+    "note": "Dana updates the amendment; Leah asks Rachel to approve the new split or date.",
+    "hold": "Held. Machine capacity cannot compensate for unavailable material. Replan and get customer acceptance before release.",
+    "state": "Material dependency blocked",
+    "nextAction": "Sam replans against supplier availability",
+    "material": "316L cannot arrive in time",
+    "engineering": "BOM + routing B validated",
+    "delivery": "Replan required"
+  },
+  "stale": {
+    "headline": "Hold: the customer changed the revision.",
+    "proof": "Revision B acceptance is no longer sufficient",
+    "source": "Revision changed",
+    "bench": "Revision C received. Earlier evidence must be checked against the new requirements.",
+    "confirm": "Leah reviews the new request",
+    "note": "Reopen affected checks and approvals. Preserve the audit trail; do not reuse a stale release decision.",
+    "hold": "Held. Source versions changed during approval. Reconcile revision C and obtain the required acceptance before applying updates.",
+    "state": "Revision changed",
+    "nextAction": "Reopen affected checks for revision C",
+    "material": "Revalidation required",
+    "engineering": "Revision C review required",
+    "delivery": "Revalidation required"
+  },
+  "write_failed": {
+    "headline": "Hold: the commercial update did not save.",
+    "proof": "Customer accepted B; system update incomplete",
+    "source": "Write verification failed",
+    "bench": "Jira saved; HubSpot write failed. The ERP release remains held.",
+    "confirm": "Integration owner receives a failed-update task",
+    "note": "Retry the failed step safely and read back the result. Do not repeat completed writes or issue the customer confirmation.",
+    "hold": "Held. One required system update failed. Show the partial state, retry or assign recovery, and verify all prerequisites before release.",
+    "state": "Partial update; release held",
+    "nextAction": "Integration owner retries or recovers failed write",
+    "material": "316L allocation confirmed",
+    "engineering": "BOM + routing B validated",
+    "delivery": "Do not confirm until recovery"
+  }
 };
 const byId = id => document.getElementById(id);
 const panels = Array.from(document.querySelectorAll('.scene'));
@@ -26,28 +149,9 @@ const presenter = window.N67_PRESENTER === true;
 let current = 0;
 let rehearsal = false;
 let availability = 'ready';
-
-function fillWeek(id, labels) {
-  const week = byId(id);
-  const blank = document.createElement('span');
-  blank.className = 'weekday';
-  blank.textContent = 'Nov 9–13';
-  week.append(blank);
-  const days = ['Mon','Tue','Wed','Thu','Fri'];
-  for (const day of days) {
-    const cell = document.createElement('span');
-    cell.className = 'weekday'; cell.textContent = day; week.append(cell);
-  }
-  labels.forEach((label, row) => {
-    const name = document.createElement('strong'); name.className='row-label'; name.textContent=label; week.append(name);
-    for (const day of days) {
-      const cell = document.createElement('div'); cell.className='slot ' + (row === 0 ? 'hotel' : 'fitness'); cell.dataset.day=day;
-      cell.textContent='8h'; cell.setAttribute('aria-label', label + ', ' + day + ', eight hours'); week.append(cell);
-    }
-  });
-}
-fillWeek('conflict-week',['Alex · Luma','Alex · Rally']);
-fillWeek('resolved-week',['Alex · Luma','Jamie · Rally']);
+let timers = [];
+const calm = window.matchMedia('(prefers-reduced-motion: reduce)');
+const later = (ms,fn) => timers.push(setTimeout(fn,ms));
 
 function fillAssessment() {
   const event = window.N67_EVENT;
@@ -82,6 +186,7 @@ function render() {
   byId('kicker').textContent=s.kicker;
   byId('title').textContent=s.title;
   byId('lead').textContent=current===DESK?leads[availability]:s.lead;
+  byId('lead').hidden=current===DESK;
   byId('next').textContent=s.next;
   byId('next').disabled=current===DESK && availability!=='ready';
   byId('approve').disabled=availability!=='ready';
@@ -89,6 +194,12 @@ function render() {
   byId('cuebox').hidden=!(presenter && rehearsal); byId('mode').textContent=rehearsal?'Mode: Rehearsal':'Mode: Live';
   byId('time').textContent=s.time; byId('say').textContent=s.say; byId('point').textContent=s.point;
   byId('availability').value=availability;
+  byId('coordinator-state').textContent=d.state;
+  byId('sidebar-coordinator-state').textContent=d.state;
+  byId('coordinator-next').textContent=d.nextAction;
+  byId('approval-material').textContent=d.material;
+  byId('approval-engineering').textContent=d.engineering;
+  byId('approval-delivery').textContent=d.delivery;
   byId('proposal-headline').textContent=d.headline;
   byId('availability-proof').textContent=d.proof;
   byId('proposal-source').textContent=d.source;
@@ -99,12 +210,40 @@ function render() {
   byId('hold').hidden=availability==='ready';
   byId('hold').textContent=d.hold;
 }
+function setClock(f) {
+  const clock=byId('clock');
+  clock.hidden=!f;
+  if(!f)return;
+  byId('clock-day').textContent=f.d; byId('clock-time').textContent=f.t; byId('clock-note').textContent=f.n;
+  clock.className='clock'; void clock.offsetWidth; clock.className='clock flip'+(f.tone?' '+f.tone:'');
+}
+function playClock(index) {
+  const frames=clocks[index];
+  if(!frames||calm.matches){setClock(frames?frames[frames.length-1]:null);return;}
+  frames.forEach(f=>f.at?later(f.at,()=>setClock(f)):setClock(f));
+}
+function rewind() {
+  const overlay=byId('rewind');
+  overlay.hidden=false;
+  setClock(clocks[DESK][0]);
+  rewindDays.forEach((day,i)=>later(i*180,()=>{byId('rewind-day').textContent=day;}));
+  later(rewindDays.length*180+150,()=>{byId('rewind-day').textContent=rewindTo;});
+  later(1900,()=>{
+    overlay.hidden=true;
+    const panel=panels[DESK]; panel.hidden=true; void panel.offsetWidth; panel.hidden=false;
+    playClock(DESK);
+  });
+}
 function show(index,navigate=false) {
   if(index<0 || index>=scenes.length)return;
   if(index===DONE && current===DESK && availability!=='ready')return;
+  const from=current;
   current=index;
   if(current!==DESK){availability='ready';byId('qa-controls').open=false;}
+  timers.forEach(clearTimeout); timers=[];
+  byId('rewind').hidden=true;
   render();
+  if(navigate && index===DESK && from===DESK-1 && !calm.matches)rewind(); else playClock(index);
   if(navigate){history.replaceState(null,'','#slide-'+(index+1));byId('title').focus({preventScroll:true});window.scrollTo(0,0);byId('announcement').textContent=scenes[index].title;}
 }
 function advance(){if(!byId('next').disabled)show((current+1)%scenes.length,true);}
@@ -115,6 +254,7 @@ function followHash(){
   if(new URLSearchParams(location.search).has('qa')&&i===DESK)byId('qa-controls').open=true;
 }
 byId('next').addEventListener('click',advance);
+steps.forEach((step,i)=>step.querySelector('button').addEventListener('click',()=>show(i,true)));
 byId('approve').addEventListener('click',()=>{if(availability==='ready')show(DONE,true);});
 byId('back').addEventListener('click',()=>show(current-1,true));
 byId('mode').addEventListener('click',()=>{rehearsal=!rehearsal;if(!rehearsal)show(0,true);else render();});

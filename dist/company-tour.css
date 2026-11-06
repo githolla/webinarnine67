@@ -1,0 +1,24 @@
+.guided-tour .employee-strip,.guided-tour .workspace-actions,.guided-tour .opening-copy>button,.guided-tour .build-footer>.build-primary,.guided-tour .discovery-people,.guided-tour .discovery-content aside>button{display:none}
+.guided-tour .workspace-top{border-bottom:1px solid #d9d1c3;padding-bottom:10px;margin-bottom:4px}
+.guided-tour .workspace-columns{grid-template-columns:minmax(0,2.2fr) minmax(280px,1fr);gap:24px}
+.guided-tour .work-story{display:flex;flex-direction:column;justify-content:center;padding:24px;background:#ece3d4}
+.guided-tour .work-story>blockquote{display:none}
+.guided-tour .work-story p{font-size:20px;line-height:1.45}
+.guided-tour .work-story small{color:#796444;font-size:11px;letter-spacing:.07em}
+.guided-tour .work-story .peer-reveal{padding:0;background:transparent;border:0}
+.guided-tour .work-story .peer-reveal h3{font-size:26px;line-height:1.15;margin-top:10px}
+.guided-tour .workspace-complete{display:none}
+.guided-tour .controls #next{min-width:280px;max-width:60%;text-align:center;font-size:16px;padding:13px 24px}
+.guided-tour .story-progress{background:transparent;padding:0;border-radius:0;border-bottom:1px solid #ded6c8;gap:10px}
+.guided-tour .story-progress button{border-radius:0;background:transparent;padding:8px 0;color:#82786a;font-size:11px;border-bottom:3px solid transparent}
+.guided-tour .story-progress button[aria-current=step]{background:transparent;color:#191917;border-bottom-color:#191917}
+.guided-tour .discovery-tabs button{border:0;border-bottom:2px solid transparent;border-radius:0;background:transparent;font-size:16px;color:#81786b;padding:10px}
+.guided-tour .discovery-tabs button[aria-pressed=true]{border-color:#191917;color:#191917;background:transparent}
+.guided-tour .discovery-tabs button[aria-pressed=true] small{color:#796444}
+.guided-tour .discovery-content aside:before{display:none}
+.guided-tour .discovery-content{min-height:350px;align-items:center}
+.guided-tour .build-primary{background:#191917;border-radius:9px}
+.guided-tour .build-footer{min-height:40px}
+.guided-tour .controls button:disabled{opacity:.55}
+@media(min-width:1000px) and (max-height:800px){.guided-tour .work-story{padding:17px}.guided-tour .work-story p{font-size:18px}.guided-tour .work-story .peer-reveal h3{font-size:23px}.guided-tour .page-heading{padding:10px 0}.guided-tour .workspace-top{padding-bottom:6px}.guided-tour .controls #next{padding:10px 20px}.guided-tour .discovery-content{min-height:330px}}
+@media(max-width:999px){.guided-tour .workspace-columns{grid-template-columns:1fr}.guided-tour .controls #next{min-width:0;max-width:100%}.guided-tour .story-progress{gap:14px}}
