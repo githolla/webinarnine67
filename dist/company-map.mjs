@@ -19,6 +19,17 @@ export const networkConnections = Object.freeze([
   { from: 'leah', to: 'dana', why: 'The CEO sees the reviewed finding and who owns the next step.' },
   { from: 'daniel', to: 'elena', why: 'IT offers ten-minute coaching on Elena’s real tracker task.' }
 ]);
+const toolMarks = {
+ dana: [['claude.svg','Claude'],['ms-powerpoint.svg','PowerPoint']],
+ daniel: [['ms-teams.svg','Teams · Ask Parkside'],['ms-sharepoint.svg','SharePoint']],
+ ben: [['copilot.webp','Copilot'],['ms-excel.svg','Excel']],
+ priya: [['claude.svg','Claude'],['ms-excel.svg','Excel · Power Query']],
+ nina: [['ms-teams.svg','Teams · Ask Ops'],['ms-sharepoint.svg','SharePoint List']],
+ marcus: [['grok.svg','Grok'],['hubspot.svg','HubSpot']],
+ ava: [['copilot.webp','Copilot'],['zendesk.svg','Zendesk']],
+ elena: [['copilot.webp','Copilot'],['ms-excel.svg','Excel']],
+ leah: [['copilot.webp','Copilot'],['ms-powerpoint.svg','PowerPoint']]
+};
 const point = (angle, rx, ry) => ({ x: 450 + Math.cos(angle) * rx, y: 280 + Math.sin(angle) * ry });
 export function buildNetwork(mode = 'fragmented') {
   const connected = mode === 'connected';
@@ -44,17 +55,18 @@ function nodeMarkup(node, selected, focused) {
   const classes = ['map-node', `map-node-${node.type}`, selected ? 'selected' : '', focused ? 'in-focus' : 'outside-focus'].filter(Boolean).join(' ');
   const description = isHub ? 'Shared business records. Proposed connection with human review and scoped access.' : `${node.label}, ${node.type === 'ai' ? 'AI workspace' : node.type === 'output' ? 'business output' : node.sublabel}. Select to inspect.`;
   if (isHub) return `<a href="#" class="${classes}" data-map-node="${node.id}" role="button" tabindex="0" aria-label="${escapeHtml(description)}" aria-pressed="${selected}"><rect class="node-hit" x="${node.x-75}" y="${node.y-26}" width="150" height="52" rx="5"/><rect class="hub-shape" x="${node.x-68}" y="${node.y-22}" width="136" height="44" rx="4"/><text class="hub-label" x="${node.x}" y="${node.y-2}" text-anchor="middle">Shared business</text><text class="hub-label" x="${node.x}" y="${node.y+13}" text-anchor="middle">records</text></a>`;
-  const radius = isPerson ? 11 : node.type === 'ai' ? 6 : 4;
+  const radius = isPerson ? 11 : 14;
+  const mark = isPerson ? null : toolMarks[node.owner][node.type === 'ai' ? 0 : 1];
   const horizontal = Math.abs(Math.cos(node.angle)) > .32;
   const labelOnRight = Math.cos(node.angle) > 0;
   const anchor = horizontal ? (labelOnRight ? 'start' : 'end') : 'middle';
-  const labelX = node.x + (horizontal ? (labelOnRight ? 17 : -17) : 0);
-  const labelY = node.y + (horizontal ? -2 : node.type === 'ai' ? -15 : isPerson ? 26 : 20);
+  const labelX = node.x + (horizontal ? (labelOnRight ? 23 : -23) : 0);
+  const labelY = node.y + (horizontal ? -2 : node.type === 'ai' ? -22 : isPerson ? 26 : 26);
   const labelWidth = Math.max(48, node.label.length * (isPerson ? 7.3 : 5.5));
   const labelLeft = anchor === 'middle' ? labelX-labelWidth/2-5 : anchor === 'end' ? labelX-labelWidth-5 : labelX-5;
   const boundsLeft = Math.min(node.x-17, labelLeft);
   const boundsRight = Math.max(node.x+17, labelLeft+labelWidth+10);
-  return `<a href="#" class="${classes}" data-map-node="${node.id}" role="button" tabindex="0" aria-label="${escapeHtml(description)}" aria-pressed="${selected}" style="--cluster:${node.color}"><title>${escapeHtml(description)}</title><rect class="node-hit" x="${boundsLeft.toFixed(1)}" y="${Math.min(node.y-18,labelY-16).toFixed(1)}" width="${(boundsRight-boundsLeft).toFixed(1)}" height="${isPerson?55:42}" rx="3"/>${selected?`<rect class="selected-label" x="${labelLeft.toFixed(1)}" y="${labelY-13}" width="${labelWidth+10}" height="${isPerson?34:21}" rx="3"/>`:''}${node.type==='output'?`<rect class="node-shape" x="${node.x-radius}" y="${node.y-radius}" width="${radius*2}" height="${radius*2}" rx="1"/>`:`<circle class="node-shape" cx="${node.x}" cy="${node.y}" r="${radius}"/>`}<text class="node-label" x="${labelX.toFixed(1)}" y="${labelY.toFixed(1)}" text-anchor="${anchor}">${escapeHtml(node.label)}</text>${isPerson?`<text class="node-sublabel" x="${labelX.toFixed(1)}" y="${labelY+14}" text-anchor="${anchor}">${escapeHtml(node.sublabel)}</text>`:''}</a>`;
+  return `<a href="#" class="${classes}" data-map-node="${node.id}" role="button" tabindex="0" aria-label="${escapeHtml(description)}" aria-pressed="${selected}" style="--cluster:${node.color}"><title>${escapeHtml(description)}</title><rect class="node-hit" x="${boundsLeft.toFixed(1)}" y="${Math.min(node.y-18,labelY-16).toFixed(1)}" width="${(boundsRight-boundsLeft).toFixed(1)}" height="${isPerson?55:42}" rx="3"/>${selected?`<rect class="selected-label" x="${labelLeft.toFixed(1)}" y="${labelY-13}" width="${labelWidth+10}" height="${isPerson?34:21}" rx="3"/>`:''}${mark?`<rect class="logo-tile" x="${node.x-16}" y="${node.y-16}" width="32" height="32" rx="7"/><image class="map-tool-logo" href="assets/${mark[0]}" x="${node.x-12}" y="${node.y-12}" width="24" height="24" aria-hidden="true"><title>${escapeHtml(mark[1])}</title></image>`:`<circle class="node-shape" cx="${node.x}" cy="${node.y}" r="${radius}"/>`}<text class="node-label" x="${labelX.toFixed(1)}" y="${labelY.toFixed(1)}" text-anchor="${anchor}">${escapeHtml(node.label)}</text>${isPerson?`<text class="node-sublabel" x="${labelX.toFixed(1)}" y="${labelY+14}" text-anchor="${anchor}">${escapeHtml(node.sublabel)}</text>`:''}</a>`;
 }
 function inspector(node, connected) {
   if (node.type === 'hub') return `<aside class="map-inspector" aria-label="Selected network node"><div class="map-inspector-top"><small>PROPOSED DESIGN</small><h2>Shared business records</h2><p>Connect the work people choose to share.</p></div><dl><div><dt>What moves</dt><dd>Reviewed findings, approved transformations, account observations, owners and progress.</dd></div><div><dt>What stays private</dt><dd>Personal AI conversations and unapproved working material.</dd></div><div><dt>How it is controlled</dt><dd>Source links, permissions, human review and verified updates.</dd></div></dl><p class="map-proposal-note">These lines show a proposed design. No live integration or private-chat access is implied.</p><button class="text-button" data-detail="architecture">Inspect the connection design ↗</button></aside>`;
@@ -64,7 +76,7 @@ function inspector(node, connected) {
   const relevant = outgoing.length ? outgoing.map(link => ({ id: link.to, label: link.why })) : incoming.map(link => ({ id: link.from, label: link.why }));
   const recipients = connected && relevant.length ? `<div class="map-recipients"><small>${outgoing.length ? 'WHO CAN USE THIS NEXT' : 'WHAT COULD REACH THIS PERSON'}</small>${relevant.map(link => { const recipient = networkPeople.find(row => row.id === link.id); return `<button data-map-node="person:${recipient.id}"><b>${recipient.name} · ${recipient.role}</b><span>${escapeHtml(link.label)}</span></button>`; }).join('')}</div>` : '';
   const type = node.type === 'person' ? 'EMPLOYEE' : node.type === 'ai' ? 'AI WORKSPACE' : 'BUSINESS OUTPUT';
-  return `<aside class="map-inspector" aria-label="Selected network node"><div class="map-inspector-top"><small>${type} · ${escapeHtml(person.role)}</small><h2>${escapeHtml(node.type === 'person' ? person.name : node.label)}</h2><p>${escapeHtml(person.name)} · ${escapeHtml(person.system)}</p></div>${connected?`<dl><div class="map-inspector-emphasis"><dt>What we could connect</dt><dd>${escapeHtml(person.next)}</dd></div></dl>${recipients}<details class="map-current-detail"><summary>Current work and value</summary><p>${escapeHtml(person.current)}</p><p>${escapeHtml(person.value)}</p><p>${escapeHtml(person.gap)}</p></details>`:`<dl><div><dt>What happens today</dt><dd>${escapeHtml(person.current)}</dd></div><div><dt>The work today</dt><dd>${escapeHtml(person.value)}</dd></div><div class="map-inspector-emphasis"><dt>What stays local</dt><dd>${escapeHtml(person.gap)}</dd></div></dl>`}<p class="map-proposal-note">${connected?'Proposed design · Approved business outputs only.':'Everyone has a Copilot license. Actual AI use varies by person.'}</p><button class="map-workspace-link" data-detail="workspace:${person.id}">Open ${escapeHtml(person.name)}’s workspace ↗</button></aside>`;
+  return `<aside class="map-inspector" aria-label="Selected network node"><div class="map-inspector-top"><small>${type} · ${escapeHtml(person.role)}</small><h2>${escapeHtml(node.type === 'person' ? person.name : node.label)}</h2><p>${escapeHtml(person.name)} · ${escapeHtml(person.system)}</p><div class="map-tool-strip">${toolMarks[person.id].map(([file,label])=>`<span><img src="assets/${file}" alt="">${escapeHtml(label)}</span>`).join('')}</div></div>${connected?`<dl><div class="map-inspector-emphasis"><dt>What we could connect</dt><dd>${escapeHtml(person.next)}</dd></div></dl>${recipients}<details class="map-current-detail"><summary>Current work and value</summary><p>${escapeHtml(person.current)}</p><p>${escapeHtml(person.value)}</p><p>${escapeHtml(person.gap)}</p></details>`:`<dl><div><dt>What happens today</dt><dd>${escapeHtml(person.current)}</dd></div><div><dt>The work today</dt><dd>${escapeHtml(person.value)}</dd></div><div class="map-inspector-emphasis"><dt>What stays local</dt><dd>${escapeHtml(person.gap)}</dd></div></dl>`}<p class="map-proposal-note">${connected?'Proposed design · Approved business outputs only.':'Everyone has a Copilot license. Actual AI use varies by person.'}</p><button class="map-workspace-link" data-detail="workspace:${person.id}">Open ${escapeHtml(person.name)}’s workspace ↗</button></aside>`;
 }
 export function renderCompanyMap(state = {}) {
   const mode = state.networkMode === 'connected' ? 'connected' : 'fragmented';

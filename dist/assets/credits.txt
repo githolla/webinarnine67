@@ -7,3 +7,5 @@ Kantata mark: vendor site favicon, https://www.kantata.com/images/favicon.ico (o
 HubSpot mark: Simple Icons, https://cdn.simpleicons.org/hubspot/FF7A59. HubSpot retains its trademark rights.
 
 Jira mark: Simple Icons, https://cdn.simpleicons.org/jira/0052CC. Atlassian retains its trademark rights.
+
+Grok mark: @lobehub/icons-static-svg 1.101.0. Zendesk mark: Simple Icons, https://cdn.simpleicons.org/zendesk/03363D. PowerPoint: Microsoft via the Microsoft Cloud Product Icons collection listed above. Each vendor retains its trademark rights.
