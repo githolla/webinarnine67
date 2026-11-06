@@ -85,3 +85,15 @@ body.guided-tour .org-graph.is-today .pg-card.is-featured .pg-num{background:#2f
 body.guided-tour .org-graph.is-connected .pg-num{display:none}
 .org-graph .pg-hub span i{font-style:normal;white-space:nowrap}
 .org-graph .pg-card .sh-pt-extra,.org-graph .pg-card [class*="chip"]{max-width:calc(100% - 12px)}
+/* Today: nine islands, walls between neighbours, one caption */
+.org-graph.is-today .pg-card{box-shadow:0 0 0 calc(var(--u) * 6) #ffffff12}
+.org-graph.is-today .pg-tool img{width:calc(var(--u) * 30);height:calc(var(--u) * 30)}
+.org-graph .pg-wall{position:absolute;transform:translate(-50%,-50%);display:grid;place-items:center;width:calc(var(--u) * 26);height:calc(var(--u) * 26);border-radius:50%;background:#d92d2033;border:calc(var(--u) * 2) solid #f97066aa;color:#f97066;font-size:calc(var(--u) * 15);font-weight:800;line-height:1}
+.org-graph .pg-caption{position:absolute;margin:0;width:calc(var(--u) * 660);display:flex;flex-direction:column;gap:calc(var(--u) * 6)}
+.org-graph .pg-caption b{font-size:calc(var(--u) * 30);line-height:1.15;font-weight:800;color:#fff;letter-spacing:-.01em}
+.org-graph .pg-caption span{font-size:calc(var(--u) * 22);line-height:1.3;font-weight:600;color:var(--dark-muted,#a9b4c8)}
+.pg-legend .pg-key-sep{display:inline-block;width:calc(var(--u) * 14)}
+.org-graph .pg-caption{width:calc(var(--u) * 330)}
+.org-graph .pg-caption b{font-size:calc(var(--u) * 32);line-height:1.12}
+.org-graph .pg-caption span{font-size:calc(var(--u) * 20)}
+.org-graph .pg-wall{z-index:3;width:calc(var(--u) * 34);height:calc(var(--u) * 34);background:#3a1414;border-color:#f97066;font-size:calc(var(--u) * 18)}

@@ -93,37 +93,39 @@ export function renderDetail(state,key){
  return {title:'About this demonstration',html:'<p>Parkside, its employees and every record are fictional. Interfaces, AI responses, file processing and integrations are simulated locally. No live business records or private AI chats are accessed.</p><p>A real build requires approved sources, scoped access, validation, accountable owners and testing with the people doing the work.</p>'};
 }
 const stackOfficial=[
- {icon:'microsoft.svg',name:'Microsoft 365',note:'Teams · Outlook · Excel · PowerPoint · SharePoint'},
- {icon:'copilot.webp',name:'Microsoft 365 Copilot',note:'150 licenses · Copilot Studio for agents'},
- {icon:'claude.svg',name:'Claude',note:'Company plan'},
- {icon:'openai.svg',name:'ChatGPT',note:'Company plan'},
- {icon:'hubspot.svg',name:'HubSpot',note:'Sales'},
- {icon:'zendesk.svg',name:'Zendesk',note:'Customer Service'}
+ {icon:'microsoft.svg',name:'Microsoft 365'},
+ {icon:'copilot.webp',name:'Copilot',note:'150 seats + Copilot Studio'},
+ {icon:'claude.svg',name:'Claude',note:'company plan'},
+ {icon:'openai.svg',name:'ChatGPT',note:'company plan'},
+ {icon:'hubspot.svg',name:'HubSpot'},
+ {icon:'zendesk.svg',name:'Zendesk'}
 ];
 const stackActual=[
- {icon:'copilot.webp',name:'Copilot',how:'Each person in their own chats',kind:'company',people:['ben','ava','elena','leah']},
- {icon:'claude.svg',name:'Claude',how:'Own chats and private projects',kind:'company',people:['dana','priya']},
- {icon:'openai.svg',name:'ChatGPT',how:'Own chats and private GPTs',kind:'company',people:['leah'],others:'Sales and Marketing'},
- {icon:'ms-teams.svg',name:'Ask Parkside',owner:'IT · Daniel',sources:'Policies library',kind:'agent',people:['daniel']},
- {icon:'ms-teams.svg',name:'Ask Ops',owner:'Operations · Nina',sources:'Ops SOPs + case list',kind:'agent',people:['nina']},
- {icon:'ms-teams.svg',name:'Ask Sales',owner:'Sales Ops',sources:'Pricing + playbooks',kind:'agent',people:[]},
- {icon:'ms-teams.svg',name:'Ask Service',owner:'Customer Service',sources:'Zendesk macros',kind:'agent',people:[]},
- {icon:'grok.svg',name:'Grok',how:'Personal phone',kind:'personal',people:['marcus']},
- {icon:'openai.svg',name:'ChatGPT',how:'Personal logins',kind:'personal',people:['marcus','elena'],others:'Others'},
- {icon:'perplexity.svg',name:'Perplexity',how:'Personal accounts',kind:'personal',people:[],others:'Others'}
+ {icon:'copilot.webp',name:'Copilot',kind:'company',people:['ben','ava','elena','leah']},
+ {icon:'claude.svg',name:'Claude',kind:'company',people:['dana','priya']},
+ {icon:'openai.svg',name:'ChatGPT',kind:'company',people:['leah'],others:'+ Sales'},
+ {icon:'ms-teams.svg',name:'Ask Parkside',owner:'IT · Daniel',kind:'agent',people:['daniel']},
+ {icon:'ms-teams.svg',name:'Ask Ops',owner:'Operations · Nina',kind:'agent',people:['nina']},
+ {icon:'ms-teams.svg',name:'Ask Sales',owner:'Sales Ops',kind:'agent',people:[]},
+ {icon:'ms-teams.svg',name:'Ask Service',owner:'Customer Service',kind:'agent',people:[]},
+ {icon:'grok.svg',name:'Grok',kind:'personal',people:['marcus']},
+ {icon:'openai.svg',name:'ChatGPT',kind:'personal',people:['marcus','elena'],others:'+ others'},
+ {icon:'perplexity.svg',name:'Perplexity',kind:'personal',people:[],others:'A few people'}
 ];
 export const viewCopy={
- stack:{eyebrow:'The company',title:'Parkside’s AI stack. Licensed vs. actually used.',lead:'Three company AI platforms. Four department agents. And the apps people learned on first.',cue:'Josh: This is most companies now. Leadership licensed Copilot, Claude and ChatGPT. Departments built their own agents, each with its own sources and owner, none talking to each other. And some people still use the personal app they learned on first. Read the band. Next: who uses what.'},
+ stack:{eyebrow:'The company',title:'Parkside’s AI today. Three islands.',lead:'Company AI, department agents, and the personal apps people learned on first.',cue:'Josh: This is most companies now. Leadership licensed Copilot, Claude and ChatGPT. Departments built their own agents, each with its own sources and owner, none talking to each other. And some people still use the personal app they learned on first. Read the band. Next: who uses what.'},
  crowd:{eyebrow:'The company',title:'150 people. Most use AI. Mostly on company tools.',lead:'Each dot is a person, colored by the AI they use most. Solid: company license. Ring: personal account.',cue:'Josh: Zoom out. 128 of 150 use something, most of it on tools Parkside pays for. 17 still lean on a personal account. 22 use nothing yet. Bought together, used apart. Then we follow nine of them.'}
 };
 export function renderStack(){
  const n=k=>stackActual.filter(t=>t.kind===k).length;const of=k=>stackActual.filter(t=>t.kind===k);
- const who=t=>`${t.people.map(id=>personToken(id,'S')).join('')}${t.others?`<span class="stk-others">${t.others}</span>`:''}`;
- const official=stackOfficial.map(t=>`<li><img src="assets/${t.icon}" alt=""><div><b>${t.name}</b><span>${t.note}</span></div></li>`).join('');
- const company=of('company').map(t=>`<li class="stk-company"><img src="assets/${t.icon}" alt=""><div class="stk-tool"><b>${t.name}</b><span class="stk-how">${t.how}</span></div><div class="stk-people">${who(t)}</div></li>`).join('');
- const agents=of('agent').map((t,i)=>`${i%2?'<li class="stk-x" aria-hidden="true">✕</li>':''}<li class="stk-agent"><img src="assets/${t.icon}" alt=""><div class="stk-agent-id"><b>${t.name}</b><span>Owner: ${t.owner}</span><span>Sources: ${t.sources}</span></div><div class="stk-agent-side"><em>Own sources · own owner</em>${t.people.length?`<div class="stk-people">${who(t)}</div>`:''}</div></li>`).join('');
- const personal=of('personal').map(t=>`<li class="stk-personal"><img src="assets/${t.icon}" alt=""><div class="stk-ptool"><p><b>${t.name}</b><em class="stk-ptag">Personal</em></p><div class="stk-people"><span class="stk-phow">${t.how}</span>${who(t)}</div></div></li>`).join('');
- return `<section class="stk"><div class="stk-cols"><article class="stk-card stk-plan"><small>What leadership licensed</small><ul>${official}</ul><p>Three company AI platforms on Dana’s rollout slide.</p></article><span class="stk-arrow" aria-hidden="true">→</span><article class="stk-card stk-real"><small>What is actually in use</small><div class="stk-group"><h3>Company AI · each person in their own chats</h3><ul class="stk-list">${company}</ul></div><div class="stk-group"><h3>Department agents · Copilot Studio · not connected to each other</h3><ul class="stk-agents">${agents}</ul></div><div class="stk-group stk-pgroup"><h3>Personal holdovers · learned before the rollout · outside company admin control</h3><ul class="stk-plist">${personal}</ul></div></article></div><p class="stk-band"><b>${n('company')}</b> company AI platforms <i>·</i> <b>${n('agent')}</b> department agents <i>·</i> <b>${n('personal')}</b> personal apps <i>·</i> <b class="stk-zero">0</b> connected to each other</p></section>`;
+ const who=t=>`<div class="stk-who">${[...t.people.map(id=>`<em class="v-${verdicts[id]}">${person(id).name}</em>`),t.others?`<span>${t.others.replace(/^\+ /,'')}</span>`:''].filter(Boolean).join('')}</div>`;
+ const tool=t=>`<li class="stk-tool"><img src="assets/${t.icon}" alt=""><div><b>${t.name}</b>${who(t)}</div></li>`;
+ const licensed=stackOfficial.map(t=>`<li><img src="assets/${t.icon}" alt="">${t.name}${t.note?` <span>${t.note}</span>`:''}</li>`).join('');
+ const a=of('agent').map(t=>`<li class="stk-agent"><b><img src="assets/${t.icon}" alt="">${t.name}</b><span>Owner: ${t.owner}</span></li>`);
+ const x='<li class="stk-ax" aria-hidden="true">✕</li>';
+ const agents=[a[0],x,a[1],x,'<li aria-hidden="true"></li>',x,a[2],x,a[3]].join('');
+ const gap='<div class="stk-gap" aria-hidden="true"><i>✕</i></div>';
+ return `<section class="stk"><div class="stk-licensed"><b>Licensed</b><ul>${licensed}</ul></div><div class="stk-islands"><article class="stk-island stk-company"><h3>Company AI</h3><p>Everyone has it. Each person uses it in their own chats.</p><ul>${of('company').map(tool).join('')}</ul></article>${gap}<article class="stk-island stk-agents"><h3>Department agents</h3><p>Built in Copilot Studio. Each has its own owner.</p><ul>${agents}</ul></article>${gap}<article class="stk-island stk-personal"><h3>Personal apps</h3><p>Learned before the rollout. Outside company control.</p><ul>${of('personal').map(tool).join('')}</ul></article></div><p class="stk-band"><b>${n('company')}</b> company AI platforms <i>·</i> <b>${n('agent')}</b> department agents <i>·</i> <b>${n('personal')}</b> personal apps <i>·</i> <b class="stk-zero">0</b> connected to each other</p></section>`;
 }
 const crowdTools={copilot:{name:'Copilot',color:'#2f6bff',kind:'company'},agents:{name:'Department agents',color:'#7a5af8',kind:'company'},claude:{name:'Claude',color:'#e07a3f',kind:'company'},chatgpt:{name:'ChatGPT',color:'#0e9384',kind:'company'},chatgptp:{name:'ChatGPT · personal',color:'#0e9384',kind:'personal'},grok:{name:'Grok · personal',color:'#344054',kind:'personal'},perplexity:{name:'Perplexity · personal',color:'#06aed4',kind:'personal'},none:{name:'No AI use yet',color:'',kind:'none'}};
 const crowdDepts=[

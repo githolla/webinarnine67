@@ -17,7 +17,7 @@ const lands=[
  {id:'leah',icon:'ms-powerpoint.svg',text:'Friday briefing arrives already reconciled'},
  {ghost:true,icon:'ms-excel.svg',text:'Maya runs Priya’s method at her branch'}
 ];
-const answers=[['New AI vendor?','No'],['Personal accounts connected?','Never'],['Who approves?','A named owner'],['What gets built?','Company tools + one Register']];
+const answers=[['Built on','Your licensed AI'],['Personal accounts connected?','Never'],['Who approves?','A named owner'],['What gets built?','Company tools + one Register']];
 export function renderHow(){
  const left=keep.map(k=>`<li>${personToken(k.id,'S')}<div><b>${k.ai}</b><span><img src="assets/${k.icon}" alt="">Work lives in ${k.work}</span>${k.note?`<em class="hw-lock">${k.note}</em>`:''}</div></li>`).join('');
  const mid=steps.map(s=>`<li><i>${s.n}</i><div><b>${s.name}</b><p>${s.text}</p><small>${s.note}</small></div></li>`).join('');
