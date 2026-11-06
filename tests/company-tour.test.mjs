@@ -35,7 +35,7 @@ test('fix screens show what gets built, where, and how, with no invented numbers
  for(const id of ['HF-01','REC-07','T-41','CALL-12','Leah to confirm'])assert.match(last,new RegExp(id));
  assert.doesNotMatch(last,/Grok/);
  const build=renderBuildMap();
- for(const re of [/Parkside Work Register/,/Call Prep Coach/,/never connect them/,/proposes/,/approves/])assert.match(build,re);
+ for(const re of [/Parkside AI Register/,/Call Prep Coach/,/never connect them/,/proposes/,/approves/])assert.match(build,re);
  const plan=renderPlan();
  for(const re of [/Discover/,/Prioritize/,/Build/,/Measure/,/discovery/])assert.match(plan,re);
  const copy=JSON.stringify([fixCopy,fixCues]);

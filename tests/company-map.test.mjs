@@ -45,7 +45,7 @@ test('connected view links every company tool to one Register and leaves persona
   const html = renderCompanyMap({networkMode:'connected',improvement:'nina'});
   assert.equal([...html.matchAll(/class="pg-edge connected/g)].length, 9);
   assert.doesNotMatch(html, /pg-stays|pg-edge manual|By hand|hub:records/);
-  for (const text of ['Parkside Work Register','never connected','Maya · other branch','Shared Claude project · Maya ✓','Knows HF-01 before the call','Proposed design, simulated here']) assert.match(html, new RegExp(text));
+  for (const text of ['Parkside AI Register','never connected','Maya · other branch','Shared Claude project · Maya ✓','Knows HF-01 before the call','Proposed design, simulated here']) assert.match(html, new RegExp(text));
   assert.equal([...html.matchAll(/pg-card v-\w+ is-linked/g)].length, 9);
   const positions = h => [...h.matchAll(/data-workspace="(\w+)" style="([^"]+)"/g)].map(m => m.slice(1).join(' '));
   assert.deepEqual(positions(html), positions(renderCompanyMap({})));

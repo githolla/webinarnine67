@@ -1,8 +1,8 @@
 import { personToken, escapeHtml } from './company-view.mjs';
 export const WATCH_LAST=4;
 export const fixCopy={
- build:{eyebrow:'The fix · 1 of 3',title:'What we build: company tools, one Register.',lead:'Nine-67 builds on the AI you already license and connects it through one Register your team controls.'},
- watch:{eyebrow:'The fix · 2 of 3 · Simulated',title:'The Work Register we built, live for one week.',lead:''},
+ build:{eyebrow:'The fix · 1 of 3',title:'Meet the Parkside AI Register.',lead:'Nine-67 builds on the AI you already license and connects it through one Register your team controls.'},
+ watch:{eyebrow:'The fix · 2 of 3 · Simulated',title:'The AI Register we built, live for one week.',lead:''},
  connected:{eyebrow:'The fix · 3 of 3',title:'Same people, same AI. Now the work connects.',lead:'Every tool reads one Register. Nothing counts until a named owner approves it.'},
  plan:{eyebrow:'Where to start',title:'How we build it, with your people.',lead:''}
 };
@@ -50,12 +50,12 @@ export function renderBuildMap(){
  const cards=[...left.map((t,i)=>toolCard(t,L.x,leftY[i],L)),...right.map((t,i)=>toolCard(t,R.x,rightY[i],R))].join('');
  const head=(p,x,y,w)=>`<p class="fx-plat" style="left:${x}px;top:${y}px;width:${w}px">${img(p.icon)}${p.name}</p>`;
  const rows=[['HF-01','Nina','Tue'],['REC-07','Priya','Fri'],['T-41','Nina','Tue'],['CALL-12','Marcus','Mon']];
- const hub=`<div class="fx-hub" style="left:${HUB.x}px;top:${HUB.y}px;width:${HUB.w}px;height:${HUB.h}px"><small>The one place</small><b>Parkside Work Register</b><span>A SharePoint list in your own Microsoft 365</span><ul>${rows.map(([id,o,d])=>`<li><i>${id}</i><span>${o}</span><span>${d}</span><em>✓</em></li>`).join('')}</ul></div>`;
+ const hub=`<div class="fx-hub" style="left:${HUB.x}px;top:${HUB.y}px;width:${HUB.w}px;height:${HUB.h}px"><small>The one place</small><b>Parkside AI Register</b><span>A SharePoint list in your own Microsoft 365</span><ul>${rows.map(([id,o,d])=>`<li><i>${id}</i><span>${o}</span><span>${d}</span><em>✓</em></li>`).join('')}</ul></div>`;
  const personal=`<p class="fx-personal" style="left:${R.x}px;top:494px;width:${R.w}px">${img('grok.svg')}${img('openai.svg')}<span><b>Personal apps:</b> we learn from them, never connect them.</span></p>`;
  const map=`<div class="fx-map"><svg class="fx-links" viewBox="0 0 1760 560" aria-hidden="true">${svg}</svg>${head(tools.copilot,L.x,0,L.w)}${head(tools.claude,R.x,0,R.w)}${head(tools.chatgpt,R.x,318,R.w)}<ul class="fx-tools">${cards}</ul>${hub}${personal}</div>`;
  const how=`<div class="fx-how"><p class="fx-howlabel">How it works</p><ol>${['A company tool <b>proposes</b>','A named owner <b>approves</b> in Teams','It <b>lands</b> in the tool people use, with owner and due date'].map((t,i)=>`<li><i>${i+1}</i><span>${t}</span></li>`).join('')}</ol></div>`;
  const who=`<ul class="fx-whoband">${[['<span class="fx-n67" aria-hidden="true">N67</span>','Nine-67 builds it with your people'],[personToken('daniel','S'),'Your IT approves every connector'],['<span class="fx-ownmark" aria-hidden="true">✓</span>','Every tool has a named owner']].map(([a,b])=>`<li>${a}<span>${b}</span></li>`).join('')}</ul>`;
- return `<section class="fx fx-build" aria-label="What Nine-67 builds: company AI tools on Copilot, Claude and ChatGPT, all connected through the Parkside Work Register">${map}<div class="fx-bottom">${how}${who}</div></section>`;
+ return `<section class="fx fx-build" aria-label="What Nine-67 builds: company AI tools on Copilot, Claude and ChatGPT, all connected through the Parkside AI Register">${map}<div class="fx-bottom">${how}${who}</div></section>`;
 }
 
 const items=[
@@ -90,14 +90,14 @@ function register(s){
  const shown=items.slice(0,Math.min(s,3)+1);
  const body=shown.map((r,i)=>`<tr class="${i===s?'fx-new':''}"><th scope="row">${img(r.tool[0])}${r.id}</th><td>${r.item}</td><td>${r.owner}</td><td>${r.due}</td><td><span class="fx-ok">✓ Approved</span></td></tr>`).join('');
  const empty=s<3?`<tr class="fx-empty"><td colspan="5">Next: ${escapeHtml(items[s+1].pill)} waits for an owner</td></tr>`:'';
- return `<section class="rx-win rx-teams fx-win fx-register"><header class="rx-title">${img('ms-sharepoint.svg')}<b>Parkside Work Register</b><span>SharePoint list · Microsoft 365</span>${ctl}</header><table><thead><tr><th scope="col">ID</th><th scope="col">Item</th><th scope="col">Owner</th><th scope="col">Due</th><th scope="col">Status</th></tr></thead><tbody>${body}${empty}</tbody></table></section>`;
+ return `<section class="rx-win rx-teams fx-win fx-register"><header class="rx-title">${img('ms-sharepoint.svg')}<b>Parkside AI Register</b><span>SharePoint list · Microsoft 365</span>${ctl}</header><table><thead><tr><th scope="col">ID</th><th scope="col">Item</th><th scope="col">Owner</th><th scope="col">Due</th><th scope="col">Status</th></tr></thead><tbody>${body}${empty}</tbody></table></section>`;
 }
 export function renderWatch(step=0){
  const s=Math.max(0,Math.min(WATCH_LAST,Number(step)||0));
  const stepper=`<ol class="fx-stepper" aria-label="Steps">${pills.map((p,i)=>`<li class="${i<s?'is-done':i===s?'is-current':''}"${i===s?' aria-current="step"':''}><span aria-hidden="true">${i<s?'✓':i+1}</span>${p}</li>`).join('')}</ol>`;
  const main=s<4?flow(items[s]):brief();
  const footer=s<4?`<footer class="build-footer"><button class="build-primary" data-step-forward data-fix-step="${s+1}" aria-label="Next step: ${escapeHtml(pills[s+1])}">Next step →</button></footer>`:'<footer class="build-footer"><span class="build-complete">Every line traces to an approved row.</span></footer>';
- return `<section class="fx fx-watch" aria-label="Simulated week in the Parkside Work Register: a tool proposes, a named owner approves, it lands where people work">${stepper}<p class="fx-caption" aria-live="polite">${captions[s]}</p>${main}${s<4?register(s):''}<div class="fx-footrow"><p class="fx-gov">Nothing counts until a named owner approves it. Every change is kept in the list history. IT approves each connector.</p>${footer}</div></section>`;
+ return `<section class="fx fx-watch" aria-label="Simulated week in the Parkside AI Register: a tool proposes, a named owner approves, it lands where people work">${stepper}<p class="fx-caption" aria-live="polite">${captions[s]}</p>${main}${s<4?register(s):''}<div class="fx-footrow"><p class="fx-gov">Nothing counts until a named owner approves it. Every change is kept in the list history. IT approves each connector.</p>${footer}</div></section>`;
 }
 
 const plan=[
