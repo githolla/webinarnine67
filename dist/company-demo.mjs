@@ -78,7 +78,7 @@ function heading(){
 function markTourFocus(){
  const stage=$('stage');
  stage.querySelectorAll('.org-graph.is-today .pg-card').forEach(card=>{const order=tourWorkspaces.indexOf(card.dataset.workspace);const num=card.querySelector('.pg-num');card.classList.toggle('is-featured',order>=0);if(num)num.textContent=order>=0?String(order+1):'';});
- const eyebrow=stage.querySelector('.bx-eyebrow');if(eyebrow)eyebrow.textContent='See it work · No new AI tool';
+ const eyebrow=stage.querySelector('.bx-eyebrow');if(eyebrow)eyebrow.textContent='See it work · No new AI vendor';
 }
 function roster(){
  if(state.workspace){return rosterStrip({current:state.workspace,visited:tourPeople});}
@@ -102,7 +102,7 @@ function render(navigate=false){
  const action=tourAction();$('next').textContent=action.label;$('next').dataset.action=action.action;$('next').disabled=false;$('next').title=action.label;
  $('hint').hidden=action.action!=='build-choose';
  $('back').disabled=guided?tourIndex===0:state.scene===0;$('counter').textContent=guided?`${tourIndex+1} / ${tourStops.length}`:`${state.scene+1} / ${scenes.length}`;
- $('presenter-cue').textContent={stack:viewCopy.stack.cue,crowd:viewCopy.crowd.cue,build:fixCues.build,watch:fixCues.watch[fixStep],plan:fixCues.plan}[tourView()]??(state.scene===2&&state.networkMode==='connected'?fixCues.connected:cues[state.scene]);document.body.dataset.scene=String(state.scene);document.body.dataset.stop=guided?String(tourIndex+1):'';
+ $('presenter-cue').textContent={stack:viewCopy.stack.cue,crowd:viewCopy.crowd.cue,build:fixCues.build,watch:fixCues.watch[fixStep],plan:fixCues.plan}[tourView()]??(state.scene===2&&state.networkMode==='connected'?fixCues.connected:state.workspace==='elena'?'Josh: Elena has company Copilot and wants to use it. A broad prompt got a generic answer, so she went back to updating the tracker by hand. She needs a tool built around her real tracker, not more training.':cues[state.scene]);document.body.dataset.scene=String(state.scene);document.body.dataset.stop=guided?String(tourIndex+1):'';
  if(navigate){history.replaceState(null,'',guided?`#stop-${tourIndex+1}`:`#slide-${state.scene+1}`);$('title').focus({preventScroll:true});window.scrollTo(0,0);}
  if(detailKey)updateDetail();$('announcement').textContent=head.title||'Dana’s view: “We gave everyone AI. I thought we were in pretty good shape.”';
  armIdle();

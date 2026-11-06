@@ -20,7 +20,7 @@ export const scenes=[
 export const cues=[
  'Josh: Dana pays for three company AI platforms and IT built an agent. Her confidence is reasonable. Ask the question on the band, then press →.',
  'Josh: These are different surveys. People get more done; much of the work stays private; fewer people embed AI into workflows.',
- 'Josh: Nine of the 150. Company Copilot, Claude and ChatGPT, two department agents, and Marcus on his own phone. Every card ends the same way: it stays with them. We sit beside the four outlined. Press →.',
+ 'Josh: Nine of the 150. Company Copilot and Claude, two department agents, and Marcus on Grok on his own phone. Every card ends the same way: it stays with them. We sit beside the four outlined. Press →.',
  'Josh: Priya built this on the company Claude plan. It runs every month. It still lives in her own chats and workbook. Ask: who else in your company built something nobody else can use?',
  'Josh: Marcus has a company ChatGPT seat and still practices on Grok, because that is where he learned. No blame, that is normal. Elena has Copilot and gave up after one broad prompt. Different people need different help.',
  'Josh: Leah has every company tool and still stitches the week by hand. More licenses do not fix this. Read the band out loud.',
@@ -109,7 +109,7 @@ const stackActual=[
  {icon:'ms-teams.svg',name:'Ask Sales',owner:'Sales Ops',sources:'Pricing + playbooks',kind:'agent',people:[]},
  {icon:'ms-teams.svg',name:'Ask Service',owner:'Customer Service',sources:'Zendesk macros',kind:'agent',people:[]},
  {icon:'grok.svg',name:'Grok',how:'Personal phone',kind:'personal',people:['marcus']},
- {icon:'openai.svg',name:'ChatGPT',how:'Personal logins',kind:'personal',people:['elena'],others:'Others'},
+ {icon:'openai.svg',name:'ChatGPT',how:'Personal logins',kind:'personal',people:['marcus','elena'],others:'Others'},
  {icon:'perplexity.svg',name:'Perplexity',how:'Personal accounts',kind:'personal',people:[],others:'Others'}
 ];
 export const viewCopy={

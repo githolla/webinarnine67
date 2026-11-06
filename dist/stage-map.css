@@ -84,3 +84,4 @@ body.guided-tour .org-graph.is-today .pg-card.is-featured{box-shadow:0 0 0 calc(
 body.guided-tour .org-graph.is-today .pg-card.is-featured .pg-num{background:#2f6bff}
 body.guided-tour .org-graph.is-connected .pg-num{display:none}
 .org-graph .pg-hub span i{font-style:normal;white-space:nowrap}
+.org-graph .pg-card .sh-pt-extra,.org-graph .pg-card [class*="chip"]{max-width:calc(100% - 12px)}

@@ -361,3 +361,4 @@ body:not(.guided-tour):not(.is-tour) .employee-workspace>.employee-strip span{di
 .ws-phone-scene .ws-annotations{margin-left:28px;gap:16px;flex:none}
 .ws-phone-scene .ws-annotations li{padding:8px 14px;font-size:19px}
 .ws-phone-scene .ws-annotations li:before{width:28px}
+.ws-block-a.has-uses+.ws-block-b{padding-bottom:28px}

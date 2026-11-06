@@ -66,7 +66,7 @@ const rows=[
 ];
 function register(step){
  const shown=rows.slice(0,Math.min(step,3)+1);
- const body=shown.map((r,i)=>`<tr class="${i===step&&i>0?'fx-new':''}"><th scope="row">${r.id}</th><td><b>${r.finding}</b><small>${r.src}</small></td><td><span class="fx-by">${img(r.icon)}${r.tool}</span></td><td>${r.by}</td><td>${r.owner.split(' · ')[0]} ·<span class="fx-due">${r.owner.split(' · ')[1]}</span></td><td><span class="fx-ok">Reviewed</span>${i===step&&r.at?`<small>Approved in Teams · ${r.at}</small>`:''}</td></tr>`).join('');
+ const body=shown.map((r,i)=>`<tr class="${i===step&&i>0?'fx-new':''}"><th scope="row">${r.id}</th><td><b>${r.finding}</b><small>${r.src}</small></td><td><span class="fx-by">${img(r.icon)}${r.tool}</span></td><td>${r.by}</td><td>${r.owner.split(' · ')[0]} ·<span class="fx-due">${r.owner.split(' · ')[1]}</span></td><td><span class="fx-ok">Reviewed</span>${i===step&&r.at?`<small>Approved ${r.at}</small>`:''}</td></tr>`).join('');
  const empty=step<4?'<tr class="fx-empty"><td colspan="6">Next proposal waits for review</td></tr>':'';
  return `<section class="rx-win rx-teams fx-win fx-register"><header class="rx-title">${img('ms-teams.svg')}<b>Teams</b><span>Leadership › Work Register</span>${ctl}</header><nav class="fx-tab">${img('ms-sharepoint.svg')}<b>Work Register (SharePoint list)</b></nav><div class="fx-tablewrap"><table><caption>Parkside Work Register</caption><thead><tr><th scope="col">ID</th><th scope="col">Finding</th><th scope="col">Proposed by</th><th scope="col">Reviewed by</th><th scope="col">Owner · Due</th><th scope="col">Status</th></tr></thead><tbody>${body}${empty}</tbody></table></div></section>`;
 }
@@ -85,7 +85,7 @@ function rightPane(step){
  if(step<4)return [
   mini('fx-excel','ms-excel.svg','Month-end exceptions.xlsx','N101 held for review · Priya',step===1),
   step>=2?mini('fx-excel','ms-excel.svg','Thursday commitments.xlsx','T-41 · Confirm rollout scope · Nina · Nov 10 ✓',step===2):'',
-  step>=3?mini('rx-hubspot','hubspot.svg','Companies › Northwind','Note · Wants one contact for setup · Marcus · 2:41 PM',step===3):''
+  step>=3?mini('rx-hubspot','hubspot.svg','Companies › Northwind','Note · Wants one setup contact · Marcus · 2:41\u00a0PM',step===3):''
  ].join('');
  const lines=[['Operations: Northwind handoff needs a receiving owner. Nina, Tue Nov 10.','HF-01'],['Finance: East duplicate invoice N101 held. Priya, Fri Nov 13.','REC-07'],['Projects: Northwind rollout scope assigned to Nina, Tue Nov 10.','T-41'],['Accounts: Northwind asked for one setup contact. Marcus, Mon Nov 9.','CALL-12']];
  return win('fx-outlook fx-brief','ms-outlook.svg','Outlook','Draft · Friday brief · Week of Nov 2',`<p class="fx-to">To: Dana</p><span class="fx-wchip">${img('copilot.webp')}Drafted by Friday Brief from 4 reviewed Register items</span><ul class="fx-lines">${lines.map(([t,id])=>`<li><span>${t}</span><i>${id}</i></li>`).join('')}</ul><p class="fx-flag">⚑ Leah to confirm: Service wrote “NW Services”. Same account as Northwind?</p><p class="fx-sends">Leah edits and sends.</p>`);
