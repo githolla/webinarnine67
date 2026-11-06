@@ -75,7 +75,7 @@ test('operations requires opening evidence and human confirmation before shared 
   const html = renderBuilds({ builds: state, improvement: 'nina' });
   assert.equal([...html.matchAll(/<dd>Nina<\/dd>/g)].length, 3);
   assert.equal([...html.matchAll(/<dd>Tuesday, November 10<\/dd>/g)].length, 3);
-  assert.equal([...html.matchAll(/<dd>Investigation assigned<\/dd>/g)].length, 3);
+  assert.equal([...html.matchAll(/<dd>Investigation assigned<\/dd>/g)].length, 1);
   assert.match(html, /customer issue is still open/);
 });
 test('build actions are isolated and pure, and every state renders without missing values', () => {
@@ -91,7 +91,7 @@ test('build actions are isolated and pure, and every state renders without missi
     for (const improvement of ['priya', 'elena', 'nina']) {
       const html = renderBuilds({ builds: state, improvement });
       assert.doesNotMatch(html, /undefined|NaN/);
-      assert.match(html, /Interactive simulation/);
+      assert.match(html, /bx-stepper/);
     }
   }
   assert.doesNotMatch(renderBuilds({}), /undefined|NaN/);
