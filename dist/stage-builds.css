@@ -182,3 +182,69 @@ body.is-tour .concrete-builds .improvement-tabs,body.is-tour .concrete-builds .b
  @keyframes bx-rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
  @keyframes bx-draw{to{stroke-dashoffset:0}}
 }
+/* Realistic app windows for the ops build */
+.rx-win{--rx-font:'Segoe UI',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;min-width:0;display:flex;flex-direction:column;background:#fff;border:1px solid #d0d5dd;border-radius:10px;overflow:hidden;box-shadow:0 2px 4px #0e17260f,0 18px 40px #0e17261f;font-family:var(--rx-font);color:#242424}
+.rx-title{flex:none;height:48px;display:flex;align-items:center;gap:10px;padding:0 14px;color:#fff;font-size:16px}
+.rx-title img{width:24px;height:24px;object-fit:contain;background:#fff;border-radius:5px;padding:2px}
+.rx-title b{font-size:17px;font-weight:600;white-space:nowrap}
+.rx-title>span{font-size:16px;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rx-ctl{margin-left:auto;display:flex;gap:16px;font-style:normal;flex:none}
+.rx-ctl em{display:block;width:12px;height:12px;border:1.5px solid #ffffffb0;border-radius:2px}
+.rx-ctl em:first-child{height:0;border-width:1.5px 0 0;align-self:center}
+.rx-teams .rx-title{background:#464eb8}
+.rx-hubspot .rx-title{background:#2d3e50}
+.rx-ppt .rx-title{background:#c43e1c}
+.rx-body{flex:1;min-height:0;background:#f5f5f5;padding:14px 16px;display:flex;flex-direction:column;gap:10px}
+.rx-teams .bx-lock{margin-left:16px;background:#ffffff1f;border-color:#ffffff40;color:#fff;font-family:'DM Sans',Arial,sans-serif}
+.rx-teams .bx-lock svg{fill:#fff;stroke:#fff}
+.concrete-builds .bx-hub.rx-win{width:1320px;border-radius:12px}
+.concrete-builds .bx-hub.rx-win.is-changed{box-shadow:0 0 0 3px var(--win),0 18px 40px #0e17261f}
+.concrete-builds .bx-hub.rx-win.is-quiet{opacity:.7}
+.rx-msg{flex-direction:row;gap:14px;padding:16px 22px 18px;background:#fff}
+.rx-bot{flex:none;width:44px;height:44px;border-radius:8px;background:#e8ebfa;display:grid;place-items:center}
+.rx-bot img{width:28px;height:28px}
+.rx-msg-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:8px}
+.rx-from{display:flex;align-items:center;gap:10px;font-size:16px;color:#616161;margin:0}
+.rx-from b{font-size:18px;font-weight:600;color:#242424}
+.rx-app{font-size:12px;font-weight:700;letter-spacing:.04em;padding:1px 6px;border-radius:4px;background:#e0e0e0;color:#424242}
+.rx-card{border:1px solid #e0e0e0;border-left:4px solid #5b5fc7;border-radius:6px;background:#fafafa;padding:14px 20px;display:flex;flex-direction:column;gap:8px}
+.rx-card.is-done{border-left-color:var(--win)}
+.rx-kicker{margin:0;font-size:16px;font-weight:600;color:#5b5fc7;text-transform:uppercase;letter-spacing:.04em}
+.rx-card.is-done .rx-kicker{color:var(--win)}
+.concrete-builds .rx-card .bx-hub-title{margin:0;font-family:var(--rx-font);font-size:28px;font-weight:700;color:#242424}
+.concrete-builds .rx-card .bx-lede{margin:0;font-family:var(--rx-font);font-size:22px;color:#242424}
+.rx-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.rx-btn{display:inline-flex;align-items:center;height:36px;padding:0 16px;border-radius:4px;background:#5b5fc7;color:#fff;font-size:16px;font-weight:600}
+.rx-btn.is-ghost{background:#fff;color:#242424;border:1px solid #d1d1d1}
+.concrete-builds .rx-tile,.concrete-builds .rx-tile.is-shared,.concrete-builds .rx-tile:not(.is-shared){background:none;border:0;border-radius:0;box-shadow:none;padding:0;gap:10px;filter:none;opacity:1}
+.concrete-builds .rx-tile>header{align-items:center}
+.concrete-builds .rx-tile>header h3{font-size:18px!important;max-width:230px}
+.concrete-builds .rx-tile:not(.is-shared) .rx-win{filter:grayscale(1);opacity:.55}
+.concrete-builds .rx-tile.is-shared .rx-win{box-shadow:0 0 0 3px var(--win),0 18px 40px #0e17261f}
+.rx-tile>header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.concrete-builds .rx-tile>header h3{margin:0;font-size:18px!important;line-height:1.25!important;font-weight:700;text-align:right;color:var(--ink);max-width:230px}
+.rx-tile .rx-win{flex:1}
+.rx-tile .bx-empty{margin:auto 0;text-align:center;font-family:var(--rx-font)}
+.rx-post{display:flex;gap:12px;background:#fff;border-radius:6px;padding:12px 14px;box-shadow:0 1px 2px #0000001a}
+.rx-post-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
+.rx-av{flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;font-size:16px;background:var(--win)}
+.rx-attach{border:1px solid #e0e0e0;border-left:4px solid var(--win);border-radius:6px;padding:10px 14px;background:#fafafa}
+.rx-attach>b,.rx-hs-item>b{display:block;font-size:20px;font-weight:700;color:#242424;margin-bottom:4px}
+.rx-dl{margin:0;display:flex;flex-wrap:wrap;column-gap:20px;row-gap:2px}
+.rx-dl div{display:flex;align-items:baseline;gap:8px}
+.rx-dl dt{font-size:14px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#616161}
+.rx-dl dd{margin:0;font-size:20px;font-weight:700;color:#242424}
+.rx-hubspot .rx-body{background:#f5f8fa}
+.rx-hs-head{display:flex;align-items:center;gap:12px;padding-bottom:8px;border-bottom:1px solid #cbd6e2}
+.rx-hs-logo{width:32px;height:32px;border-radius:4px;background:#ff7a59;color:#fff;display:grid;place-items:center;font-weight:700;font-size:16px}
+.rx-hs-head>b{font-size:20px;font-weight:700;color:#33475b}
+.rx-hs-tabs{margin-left:auto;display:flex;gap:14px;font-size:15px;color:#516f90}
+.rx-hs-tabs i{font-style:normal;padding-bottom:4px}
+.rx-hs-tabs i.is-on{color:#33475b;font-weight:700;border-bottom:3px solid #ff7a59}
+.rx-hs-item{background:#fff;border:1px solid #cbd6e2;border-left:4px solid #ff7a59;border-radius:4px;padding:10px 14px}
+.rx-hs-type{margin:0 0 4px;font-size:14px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:#516f90}
+.rx-ppt .rx-body{background:#e6e6e6;align-items:stretch;justify-content:center}
+.rx-slide{background:#fff;box-shadow:0 2px 8px #00000026;padding:12px 18px;display:flex;flex-direction:column;gap:6px;border-top:6px solid #c43e1c}
+.rx-slide-title{margin:0;font-size:22px;font-weight:700;color:#242424}
+.rx-slide-line{margin:0;font-size:18px;color:#242424}
+.concrete-builds .rx-slide .bx-callback{margin-top:4px;font-size:17px;padding:4px 12px;font-family:'DM Sans',Arial,sans-serif}
