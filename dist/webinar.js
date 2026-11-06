@@ -24,7 +24,7 @@
   const presenters = (window.N67_EVENT && window.N67_EVENT.presenters) || [];
   fill('presenters', presenters.map(p => {
     const face = p.portrait ? `<img class="face" src="${esc(p.portrait)}" alt="">` : `<span class="face" aria-hidden="true">${esc(p.initials)}</span>`;
-    return `<figure class="presenter">${face}<figcaption><strong>${esc(p.name)}</strong><span>${esc(String(p.role).split(' · ')[0])}</span><em>Forward Deployed Engineer</em></figcaption></figure>`;
+    return `<figure class="presenter">${face}<figcaption><strong>${esc(p.name)}</strong><span>${esc(String(p.role).split(' · ')[0])} / FDE</span></figcaption></figure>`;
   }).join(''));
   if (window.N67_PRESENTER) fill('presenter-links', '<a href="host-guide.html" target="_blank" rel="noopener">Host guide ↗</a><a href="stats.html">Research backup</a>');
 

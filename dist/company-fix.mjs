@@ -141,6 +141,6 @@ export function renderPlan(){
 }
 
 export function renderQA(){
- const people=[['SR','Suuchi Ramesh','CEO · Forward Deployed Engineer'],['JL','Josh Lee','COO · Forward Deployed Engineer']];
+ const people=[['SR','Suuchi Ramesh','CEO / FDE'],['JL','Josh Lee','COO / FDE']];
  return `<section class="qa" aria-label="Questions and answers"><div class="qa-left"><p class="qa-big">Ask us anything.</p><p class="qa-sub">Drop your question in the webinar chat.</p><ul class="qa-people">${people.map(([i,n,r])=>`<li><span>${i}</span><div><b>${n}</b><small>${r}</small></div></li>`).join('')}</ul></div><figure class="qa-qr"><img src="assets/booking-qr.png" alt="QR code to book a time with Nine-67"><figcaption><b>Book a time with us</b><span>Scan to pick a time on our calendar.</span></figcaption></figure></section>`;
 }
