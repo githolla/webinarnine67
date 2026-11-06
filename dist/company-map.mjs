@@ -48,8 +48,6 @@ const linked=tourOrder;
 // Fixed 1760x732 canvas: five 320px columns, three bands. Dana sits directly above Leah.
 const W=1760,H=732,CW=320,CH=160,cols=[24,372,720,1068,1416];
 const slots={priya:[1,72],dana:[2,72],nina:[3,72],ben:[4,72],daniel:[0,328],marcus:[1,328],elena:[3,328],ava:[4,328],leah:[2,548]};
-const stubs={priya:'up',dana:'up',nina:'up',ben:'up',daniel:'down',marcus:'down',elena:'down',ava:'down'};
-const stubOffset={ava:120};
 const pct=(v,total)=>`${(v/total*100).toFixed(4)}%`;
 const at=(x,y)=>`left:${pct(x,W)};top:${pct(y,H)}`;
 const todayPaths=[
@@ -70,6 +68,7 @@ const connectedPaths=[
  ['leah','read','M880 488 V540']
 ];
 const hands=[[990,446],[1240,596],[1300,662]];
+const walls=[[706,152],[1054,152],[1402,152],[358,408],[532,280],[1290,280],[1576,280]];
 const hub=()=>`<div class="pg-hub" style="${at(720,328)};width:${pct(320,W)};height:${pct(160,H)}" role="img" aria-label="Parkside Work Register, a SharePoint list in Parkside’s Microsoft 365. IT approves every connector."><small>THE ONE PLACE</small><b>Parkside Work Register</b><span>SharePoint list · <i>Parkside’s Microsoft 365</i></span><em>Reviewed · Owner · Due date</em></div><span class="pg-it" style="${at(200,252)}">IT approves every connector</span>`;
 const pill=(text,x,y,cls='')=>`<span class="pg-pill ${cls}" style="${at(x,y)}">${escapeHtml(text)}</span>`;
 function token(person,connected){
@@ -78,14 +77,9 @@ function token(person,connected){
  const line=connected&&connectedLines[id]?connectedLines[id]:todayLines[id];
  return `<button class="pg-card v-${v} ${connected&&linked.includes(id)?'is-linked':''}" data-workspace="${id}" style="${at(cols[c],y)};width:${pct(CW,W)};height:${pct(CH,H)}" aria-label="${n}. ${person.name}, ${person.role}, ${(connected&&v==='stuck'?'NOW SUPPORTED':verdictLabels[v])}: ${escapeHtml(line)}. Open workspace"><span class="pg-num" aria-hidden="true">${n}</span><span class="pg-verdict">${(connected&&v==='stuck'?'NOW SUPPORTED':verdictLabels[v])}</span><span class="pg-who"><span class="pg-av" aria-hidden="true">${person.name[0]}</span><span class="pg-name"><b>${person.name}</b><small>${person.role}</small></span></span><span class="pg-tool"><img src="assets/${icon}" alt="">${escapeHtml(tool)}${note?`<em${note==='Personal phone'?' class="is-personal"':''}>${note}</em>`:''}</span><span class="pg-line">${escapeHtml(line)}</span></button>`;
 }
-function stub(person){
- const id=person.id,dir=stubs[id];if(!dir)return null;
- const [c,y]=slots[id],x=cols[c]+(stubOffset[id]||56),edge=dir==='up'?y:y+CH,end=dir==='up'?edge-28:edge+28,mark=dir==='up'?end-13:end+13;
- return {svg:`<path class="pg-stub" d="M${x} ${edge} V${end}"/><g class="pg-dead" transform="translate(${x} ${mark})"><circle r="13"/><path d="M-5 -5 L5 5 M5 -5 L-5 5"/></g>`,html:`<span class="pg-stays" style="${at(x+22,mark)}">Stays with ${person.name}</span>`};
-}
 const arrow=(id,color)=>`<marker id="pg-arrow-${id}" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="${color}"/></marker>`;
 function legend(connected){
- return `<div class="pg-legend" style="${at(24,connected?586:644)}"><div>${Object.entries(verdictLabels).map(([v,label])=>`<span class="pg-chip v-${v}">${label}</span>`).join('')}</div><p>${connected?'<i class="pg-key-read"></i>Blue: reads the Register</p><p><i class="pg-key-propose"></i>Green: proposes, a named owner reviews':'<b class="pg-key-x">✕</b>stays here · <i class="pg-key-dash"></i>purple dashed = done by hand'}</p></div>`;
+ return `<div class="pg-legend" style="${at(24,connected?586:644)}"><div>${Object.entries(verdictLabels).map(([v,label])=>`<span class="pg-chip v-${v}">${connected&&v==='stuck'?'NOW SUPPORTED':label}</span>`).join('')}</div><p>${connected?'<i class="pg-key-read"></i>Blue: reads the Register</p><p><i class="pg-key-propose"></i>Green: proposes, a named owner reviews':'<b class="pg-key-x">✕</b>not connected<i class="pg-key-sep"></i><i class="pg-key-dash"></i>purple dashed = done by hand'}</p></div>`;
 }
 export function mapHeading(state={}){
  return state.networkMode==='connected'?{title:'Same company AI. Now the work connects.',lead:'Every tool and agent reads one Register. Nothing counts until a named owner reviews it.'}:{title:'Same tools. Very different work.',lead:'150 people. Three company AI platforms. Useful work stays local.'};
@@ -95,9 +89,9 @@ function explore(connected,id){
 }
 export function renderCompanyMap(state={}){
  const connected=state.networkMode==='connected';const id=Object.hasOwn(improvements,state.improvement)?state.improvement:'priya';
- const parts=connected?[]:networkPeople.map(stub).filter(Boolean);
+ const parts=[];
   const paths=connected?connectedPaths.map(([key,k,d])=>`<path class="pg-edge connected ${k} e-${key}" d="${d}" pathLength="1" marker-end="url(#pg-arrow-${k})"/>`).join(''):todayPaths.map(([key,d])=>`<path class="pg-edge manual e-${key}" d="${d}" pathLength="1" marker-end="url(#pg-arrow-manual)"/>`).join('');
- const marks=connected?'':hands.map(([x,y])=>`<span class="pg-hand" style="${at(x,y)}" aria-hidden="true">✋</span>`).join('');
+ const marks=connected?'':hands.map(([x,y])=>`<span class="pg-hand" style="${at(x,y)}" aria-hidden="true">✋</span>`).join('')+walls.map(([x,y])=>`<span class="pg-wall" style="${at(x,y)}" aria-hidden="true">✕</span>`).join('')+`<p class="pg-caption" style="${at(24,64)}"><b>Nine people. Nine separate AI islands.</b><span>Nothing passes between them. The only bridge is Leah, by hand.</span></p>`;
  const pills=connected?hub()+pill('Personal Grok and ChatGPT: never connected',372,512,'personal'):pill('By hand',880,392,'glue');
  const maya=connected?`<div class="pg-maya" style="${at(48,96)}"><span class="pg-av" aria-hidden="true">M</span><span>Maya · other branch</span></div>`:'';
  const description=connected?'Every person’s company tool connects to one Parkside Work Register. Priya, Nina, Elena and Marcus propose reviewed items; Dana, Daniel, Ben, Ava and Leah read them. Personal apps are never connected.':'Each person’s AI work stays with them. Only Leah connects Ben, Nina and Ava to Dana, by hand.';

@@ -33,8 +33,9 @@ test('employee cards expose real workspaces, verdicts, tools and one-line work',
 test('today shows dead ends and only hand-made links through Leah', () => {
   const today = renderCompanyMap({});
   assert.match(today, /Company graph/);
-  assert.equal([...today.matchAll(/class="pg-stays"/g)].length, 8);
-  assert.doesNotMatch(today, /Stays with Leah/);
+  assert.equal([...today.matchAll(/class="pg-wall"/g)].length, 7);
+  assert.match(today, /Nine separate AI islands/);
+  assert.doesNotMatch(today, /pg-stays/);
   assert.equal([...today.matchAll(/class="pg-edge manual/g)].length, 4);
   assert.match(today, />By hand</);
   assert.doesNotMatch(today, /class="pg-edge connected|pg-maya|data-build=/);
