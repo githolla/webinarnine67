@@ -432,3 +432,11 @@ p.sh-tie{display:block;margin:auto 0 0;padding-top:20px;font-size:28px;line-heig
 .dn-claude .dn-slide strong{font-size:34px}
 .dn-claude .dn-slide li span{font-size:17px}
 .dn-claude .dn-status{margin-top:12px;font-size:17px}
+/* Dana circle portrait */
+.dn-left{display:flex;flex-direction:column;justify-content:center;gap:28px;grid-template-columns:none}
+.dn-who{display:flex;align-items:center;gap:24px}
+.dn .dn-photo{width:200px;height:200px;min-height:0;max-height:none;flex:none;border-radius:50%;background:#d0d5dd url('assets/editorial-work.png') -88px -18px/auto 150% no-repeat;box-shadow:0 0 0 6px #fff,0 0 0 9px #2f6bff,0 18px 40px #0e172626}
+.dn .dn-tag{position:static;background:none;backdrop-filter:none;padding:0;color:#475467;font-size:22px}
+.dn .dn-tag b{display:block;font-size:36px;color:#0e1726;line-height:1.1}
+.dn-copy blockquote{font-size:54px}
+.dn-left{align-items:flex-start}.dn-who{align-self:flex-start}
