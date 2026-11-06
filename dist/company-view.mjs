@@ -99,12 +99,14 @@ const stackOfficial=[
 const stackActual=[
  {icon:'copilot.webp',name:'Copilot',how:'Rolled out',kind:'official',people:['ben','ava','elena','leah']},
  {icon:'claude.svg',name:'Claude',how:'Bought separately',kind:'separate',people:['dana','priya']},
- {icon:'ms-teams.svg',name:'Ask Parkside',how:'Built by IT in Copilot Studio',kind:'built',people:['daniel']},
- {icon:'ms-teams.svg',name:'Ask Ops',how:'Built by Operations in Teams',kind:'built',people:['nina']},
- {icon:'grok.svg',name:'Grok',how:'Personal phone',kind:'personal',people:['marcus']}
+ {icon:'ms-teams.svg',name:'Ask Parkside',how:'Built by IT',kind:'built',people:['daniel']},
+ {icon:'ms-teams.svg',name:'Ask Ops',how:'Built by Operations',kind:'built',people:['nina']},
+ {icon:'grok.svg',name:'Grok',how:'Personal phone',kind:'personal',people:['marcus']},
+ {icon:'openai.svg',name:'ChatGPT',how:'Personal accounts',kind:'personal',people:[],others:'Others across the company'},
+ {icon:'perplexity.svg',name:'Perplexity',how:'Personal accounts',kind:'personal',people:[],others:'Others across the company'}
 ];
 export function renderStack(){
  const official=stackOfficial.map(t=>`<li><img src="assets/${t.icon}" alt=""><div><b>${t.name}</b><span>${t.note}</span></div></li>`).join('');
- const actual=stackActual.map(t=>`<li class="stk-${t.kind}"><img src="assets/${t.icon}" alt=""><div class="stk-tool"><b>${t.name}</b><span class="stk-how">${t.how}</span></div><div class="stk-people">${t.people.map(id=>personToken(id,'S')).join('')}</div></li>`).join('');
- return `<section class="stk"><div class="stk-cols"><article class="stk-card stk-plan"><small>What leadership rolled out</small><ul>${official}</ul><p>The stack on Dana’s rollout slide.</p></article><span class="stk-arrow" aria-hidden="true">→</span><article class="stk-card stk-real"><small>What people actually use</small><ul>${actual}</ul></article></div><p class="stk-band"><b>5</b> AI tools <i>·</i> <b>2</b> homegrown bots <i>·</i> <b>1</b> personal phone <i>·</i> <b class="stk-zero">0</b> shared between teams</p></section>`;
+ const actual=stackActual.map(t=>`<li class="stk-${t.kind}"><img src="assets/${t.icon}" alt=""><div class="stk-tool"><b>${t.name}</b><span class="stk-how">${t.how}</span></div><div class="stk-people">${t.people.map(id=>personToken(id,'S')).join('')}${t.others?`<span class="stk-others">${t.others}</span>`:''}</div></li>`).join('');
+ return `<section class="stk"><div class="stk-cols"><article class="stk-card stk-plan"><small>What leadership rolled out</small><ul>${official}</ul><p>The stack on Dana’s rollout slide.</p></article><span class="stk-arrow" aria-hidden="true">→</span><article class="stk-card stk-real"><small>What people actually use</small><ul>${actual}</ul></article></div><p class="stk-band"><b>7</b> AI tools <i>·</i> <b>2</b> homegrown bots <i>·</i> <b>3</b> on personal accounts <i>·</i> <b class="stk-zero">0</b> shared between teams</p></section>`;
 }

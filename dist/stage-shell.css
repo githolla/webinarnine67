@@ -266,3 +266,14 @@ body .deck .ws-thesis b{color:var(--accent-on-dark)}
 .stk-people .sh-pt-s b{font-size:18px;font-weight:700;color:var(--ink)}
 .stk-band{margin:0;padding:28px 40px;border-radius:20px;background:var(--dark);color:var(--dark-text);font-size:40px;font-weight:700;letter-spacing:-.01em;text-align:center}
 .stk-band b{font-weight:800;color:#fff}.stk-band i{font-style:normal;color:var(--dark-muted);margin:0 10px}.stk-band .stk-zero{color:var(--broken-on-dark,#f97066)}
+.stk-real li{padding:6px 0}
+.stk-real .stk-tool{display:flex;align-items:center;gap:16px;width:560px}
+.stk-real .stk-tool b{font-size:26px;width:200px;flex:none}
+.stk-real .stk-how{margin-top:0}
+.stk-real li>img{width:36px;height:36px}
+.stk-people{gap:20px;align-items:center}
+.stk-people .sh-pt-s{flex-direction:row;gap:8px}
+.stk-people .sh-pt-s .sh-pt-av{margin:0}
+.stk-others{display:inline-flex;align-items:center;height:44px;padding:0 18px;border:2px dashed #d0d5dd;border-radius:999px;font-size:18px;font-weight:600;color:var(--muted)}
+.stk-real .stk-tool{width:460px;gap:12px}.stk-real .stk-tool b{width:190px}.stk-people{gap:14px;flex-wrap:nowrap}
+.stk-how{white-space:nowrap}
