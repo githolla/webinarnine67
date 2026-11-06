@@ -18,11 +18,11 @@ test('guided path shows one person per verdict with their work already visible',
 });
 test('research follows the opening and connected graph follows the fix',()=>{
  assert.equal(tourStops[1].scene,1);
- assert.deepEqual(tourStops.map(s=>s.view).filter(Boolean),['stack','crowd','build','watch','plan']);
+ assert.deepEqual(tourStops.map(s=>s.view).filter(Boolean),['stack','crowd','build','watch','plan','qa']);
  const connected=tourStops.findIndex(stop=>stop.networkMode==='connected');
  assert(connected>tourStops.findIndex(stop=>stop.view==='watch'));
  assert.equal(enterTourStop(initialState(),connected).networkMode,'connected');
- assert.equal(tourStops.at(-1).scene,8);assert.equal(tourStops.at(-1).view,'plan');
+ assert.equal(tourStops.at(-1).scene,8);assert.equal(tourStops.at(-1).view,'qa');
 });
 test('fix screens show what gets built, where, and how, with no invented numbers',()=>{
  const outputs=[];
@@ -49,7 +49,7 @@ test('tour navigation preserves review gates and never approves a build',()=>{
  assert.equal(state.builds.elena.applied,false);
  assert.equal(state.builds.nina.published,false);
  for(const scene of new Set(tourStops.map(stop=>stop.scene)))assert.equal(tourStops[firstStopForScene(scene)].scene,scene);
- assert(tourStops.length<=13,'tour fits a 30-minute webinar');
+ assert(tourStops.length<=14,'tour fits a 30-minute webinar');
 });
 test('company overview adds up to 150 people with most but not all using AI',async()=>{
  const { crowdTotals }=await import('../dist/company-view.mjs');

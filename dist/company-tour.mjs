@@ -11,9 +11,10 @@ export const tourStops = [
  {scene:4, workspace:'elena', label:'Elena · Coordination'},
  {scene:5, workspace:'leah', label:'Leah · Chief of staff'},
  {scene:7, view:'build', label:'The AI Register'},
- {scene:7, view:'watch', label:'The AI Register, live'},
+ {scene:7, view:'watch', label:'How the AI Register works'},
  {scene:2, networkMode:'connected', improvement:'nina', label:'See the connected company'},
- {scene:8, view:'plan', label:'How we build it'}
+ {scene:8, view:'plan', label:'How it gets built'},
+ {scene:8, view:'qa', label:'Q&A'}
 ];
 
 export function enterTourStop(current, index) {

@@ -2,12 +2,13 @@ import { personToken, escapeHtml } from './company-view.mjs';
 export const WATCH_LAST=4;
 export const fixCopy={
  build:{eyebrow:'The fix · 1 of 3',title:'Meet the Parkside AI Register.',lead:''},
- watch:{eyebrow:'The fix · 2 of 3 · Simulated',title:'The AI Register we built, live for one week.',lead:''},
+ watch:{eyebrow:'The fix · 2 of 3 · Example',title:'How the AI Register works.',lead:''},
  connected:{eyebrow:'The fix · 3 of 3',title:'Same people, same AI. Now the work connects.',lead:'Every tool reads one Register. Nothing counts until a named owner approves it.'},
- plan:{eyebrow:'Where to start',title:'How we build it, with your people.',lead:''}
+ plan:{eyebrow:'Where to start',title:'How it gets built, with your people.',lead:''},
+ qa:{eyebrow:'Q&A',title:'',lead:''}
 };
 export const fixCues={
- build:'Josh: This is what we build. In the middle, one Register: a SharePoint list in your own Microsoft 365. Around it, tools built from each person’s real work, on the AI Parkside already pays for. Left side, Copilot agents. Right side, a shared Claude project and a company GPT. Some tools propose items, some only read. Personal apps stay outside: we learn from them, we never connect them. Next: see the Register at work.',
+ build:'Josh: This is the AI Register. In the middle, one Register: a SharePoint list in your own Microsoft 365. Around it, tools built from each person’s real work, on the AI Parkside already pays for. Left side, Copilot agents. Right side, a shared Claude project and a company GPT. Some tools propose items, some only read. Personal apps stay outside: we learn from them, we never connect them. Next: see the Register at work.',
  watch:[
   'Josh: Monday morning. A customer emails a simple question: setup is done, who do we call now? Today this sits in someone’s inbox. Press →.',
   'Josh: Ask Ops, the Operations agent, reads the case and sees nobody owns the next step. It does not act on its own. It proposes an owner. Press →.',
@@ -67,14 +68,14 @@ export function renderBuildMap(){
  const links=[...inY.map(y=>{const [x2,y2]=hubPt(y,-1);return curve(420,y,x2-6,y2);}),...outY.map(y=>{const [x1,y1]=hubPt(y,1);return curve(x1+6,y1,1338,y);})].join('');
  const svg=`<svg class="fx2-links" viewBox="0 0 1760 ${H}" aria-hidden="true"><defs><linearGradient id="fx2-grad" x1="0" x2="1"><stop offset="0" stop-color="#6b8cff"/><stop offset="1" stop-color="#22c3ee"/></linearGradient><marker id="fx2-arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="13" markerHeight="13" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#22a8ee"/></marker></defs>${links}</svg>`;
  const node=([icon,name,sub])=>`<li><span class="fx2-ring">${img(icon)}</span><div><b>${name}</b><small>${sub}</small></div></li>`;
- const left=`<div class="fx2-col fx2-in"><p class="fx2-colhead">Company AI tools we build</p><ul>${flowIn.map(node).join('')}</ul></div>`;
+ const left=`<div class="fx2-col fx2-in"><p class="fx2-colhead">Company AI tools</p><ul>${flowIn.map(node).join('')}</ul></div>`;
  const right=`<div class="fx2-col fx2-out"><p class="fx2-colhead">Lands where people work</p><ul>${flowOut.map(node).join('')}</ul></div>`;
  const hub=`<div class="fx2-hub" style="left:${cx-r}px;top:${cy-r}px;width:${r*2}px;height:${r*2}px"><span class="fx2-dots" aria-hidden="true">${Array.from({length:15},(_,i)=>`<i style="height:${[10,22,34,22,10][i%5]}px"></i>`).join('')}</span><b>AI Register</b></div><div class="fx2-hublabel" style="left:${cx-260}px;top:${cy+r+18}px;width:520px"><b>Parkside AI Register</b><span>One SharePoint list in your Microsoft 365. Tools propose, a named owner approves, everyone reads.</span></div>`;
  const personal=`<p class="fx2-personal" style="left:${cx-260}px;top:${cy+r+118}px;width:520px">${img('grok.svg')}${img('openai.svg')}<span><b>Personal apps:</b> we learn from them, never connect them.</span></p>`;
  const map=`<div class="fx-map fx2-map">${svg}${left}${hub}${right}${personal}</div>`;
  const how=`<div class="fx-how"><p class="fx-howlabel">How it works</p><ol>${['A company tool <b>proposes</b>','A named owner <b>approves</b> in Teams','It <b>lands</b> in the tool people use, with owner and due date'].map((t,i)=>`<li><i>${i+1}</i><span>${t}</span></li>`).join('')}</ol></div>`;
- const who=`<ul class="fx-whoband">${[['<span class="fx-n67" aria-hidden="true">N67</span>','Nine-67 builds it with your people'],[personToken('daniel','S'),'Your IT approves every connector'],['<span class="fx-ownmark" aria-hidden="true">✓</span>','Every tool has a named owner']].map(([a,b])=>`<li>${a}<span>${b}</span></li>`).join('')}</ul>`;
- return `<section class="fx fx-build" aria-label="What Nine-67 builds: company AI tools on Copilot, Claude and ChatGPT flow into the Parkside AI Register and out to Teams, Excel, HubSpot and Outlook">${map}<div class="fx-bottom">${how}${who}</div></section>`;
+ const who=`<ul class="fx-whoband">${[['<span class="fx-n67" aria-hidden="true">N67</span>','Built with your people'],[personToken('daniel','S'),'Your IT approves every connector'],['<span class="fx-ownmark" aria-hidden="true">✓</span>','Every tool has a named owner']].map(([a,b])=>`<li>${a}<span>${b}</span></li>`).join('')}</ul>`;
+ return `<section class="fx fx-build" aria-label="The Parkside AI Register: company AI tools on Copilot, Claude and ChatGPT flow into the Parkside AI Register and out to Teams, Excel, HubSpot and Outlook">${map}<div class="fx-bottom">${how}${who}</div></section>`;
 }
 
 const items=[
@@ -129,12 +130,17 @@ export function renderWatch(step=0){
 const plan=[
  ['Discover','We sit beside your people and inventory every license, agent and workaround.','A map of every hand-stitched handoff.'],
  ['Prioritize','You pick the handoffs that cost the most. Each gets a named owner.','A build plan: tool, platform, owner.'],
- ['Build','We build the Register and the tools on your licensed AI, with the people who use them.','Working tools in your Microsoft 365.'],
+ ['Build','Build the Register and the tools on your licensed AI, with the people who use them.','Working tools in your Microsoft 365.'],
  ['Measure','We track what the Register records: approved items, owners, dates and who keeps using each tool.','Proof, and the next build.']
 ];
 export function renderPlan(){
  const steps=plan.map(([name,does,get],i)=>`<li class="fx-step"><header><i>${i+1}</i><b>${name}</b></header><p class="fx-does">${does}</p><p class="fx-get"><small>You get</small>${get}</p></li>`).join('');
  const t=ids=>`<span class="fx-toks">${ids.map(id=>personToken(id,'S')).join('')}</span>`;
  const who=[['<span class="fx-n67" aria-hidden="true">N67</span>','Nine-67 engineers build with your people.'],[t(['daniel']),'Your IT approves every connector and access.'],[t(['nina','priya','marcus']),'Every tool has a named owner.'],[t(['dana','leah']),'Leadership picks the priorities.']];
- return `<section class="fx fx-plan" aria-label="How Nine-67 builds it with your people: discover, prioritize, build, measure"><ol class="fx-steps">${steps}</ol><ul class="fx-who">${who.map(([a,b])=>`<li>${a}<p>${b}</p></li>`).join('')}</ul><div class="sh-cta fx-cta"><div><h2>Book an AI Workflow Discovery Session.</h2><p>Type “discovery” in the webinar chat</p></div><ul><li>Bring IT, Operations and two department leaders whose teams depend on each other.</li><li>Built only on the AI you already license. Personal accounts are never connected.</li></ul></div></section>`;
+ return `<section class="fx fx-plan" aria-label="How it gets built, with your people: discover, prioritize, build, measure"><ol class="fx-steps">${steps}</ol><ul class="fx-who">${who.map(([a,b])=>`<li>${a}<p>${b}</p></li>`).join('')}</ul><div class="sh-cta fx-cta"><div><h2>Book an AI Workflow Discovery Session.</h2><p>Type “discovery” in the webinar chat</p></div><ul><li>Bring IT, Operations and two department leaders whose teams depend on each other.</li><li>Built only on the AI you already license. Personal accounts are never connected.</li></ul></div></section>`;
+}
+
+export function renderQA(){
+ const people=[['SR','Suuchi Ramesh','CEO · Forward Deployed Engineer'],['JL','Josh Lee','COO · Forward Deployed Engineer']];
+ return `<section class="qa" aria-label="Questions and answers"><div class="qa-left"><p class="qa-big">Ask us anything.</p><p class="qa-sub">Drop your question in the webinar chat.</p><ul class="qa-people">${people.map(([i,n,r])=>`<li><span>${i}</span><div><b>${n}</b><small>${r}</small></div></li>`).join('')}</ul><p class="qa-chat">Want a discovery session? Type <b>“discovery”</b> in the chat.</p></div><figure class="qa-qr"><img src="assets/demo-qr.png" alt="QR code to this interactive demo"><figcaption><b>Explore this demo yourself</b><span>Scan to click through every screen at your own pace.</span></figcaption></figure></section>`;
 }
