@@ -10,6 +10,7 @@ export const tourStops = [
  {scene:4, workspace:'marcus', label:'Marcus · Accounts'},
  {scene:4, workspace:'elena', label:'Elena · Coordination'},
  {scene:5, workspace:'leah', label:'Leah · Chief of staff'},
+ {scene:7, view:'how', label:'How it works'},
  {scene:7, improvement:'nina', label:'The fix · Nina’s connected finding'},
  {scene:2, networkMode:'connected', improvement:'nina', label:'See the connected company'},
  {scene:8, label:'Where to start'}
