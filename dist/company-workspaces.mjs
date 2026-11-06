@@ -4,7 +4,7 @@ export const tourOrder = ['dana','daniel','ben','priya','nina','ava','elena','ma
 export const verdicts = {dana:'win',daniel:'diff',ben:'win',priya:'win',nina:'win',marcus:'diff',ava:'stuck',elena:'stuck',leah:'glue'};
 const verdictLabels = {win:'AI WIN',diff:'DIFFERENT WAY',stuck:'STRUGGLING',glue:'THE GLUE'};
 const badges = {dana:'Personal value',daniel:'Useful foundation',ben:'Private success',priya:'Reusable method',nina:'Team-built tool',marcus:'Quiet practice',ava:'Hidden effort',elena:'Wants a way in',leah:'Manual assembly'};
-const toolIcons = {Claude:'claude.svg','Ask Parkside':'ms-teams.svg',Copilot:'copilot.webp','Ask Ops':'ms-teams.svg',Grok:'grok.svg',ChatGPT:'openai.svg'};
+const toolIcons = {Claude:'claude.svg','Ask Parkside':'parkside-logo.svg',Copilot:'copilot.webp','Ask Ops':'parkside-logo.svg',Grok:'grok.svg',ChatGPT:'openai.svg'};
 const toolNote = {dana:'Company plan',priya:'Company plan',daniel:'Copilot Studio agent',nina:'Copilot Studio agent',marcus:'Personal phone'};
 const shortRoles = {dana:'CEO',daniel:'IT',ben:'Sales',priya:'Finance',nina:'Operations',marcus:'Accounts',ava:'Service',elena:'Coordination',leah:'Chief of staff'};
 const person = id => people.find(p=>p.id===id);

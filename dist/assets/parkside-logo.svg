@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Parkside">
+  <defs>
+    <linearGradient id="pk-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#14805f"/>
+      <stop offset="1" stop-color="#0b4f3d"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="url(#pk-bg)"/>
+  <path d="M21 49V15h13.5a10.5 10.5 0 0 1 0 21H21" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M33.5 30.5c-4.6-.2-7.7-3.6-7.6-8.4 4.8-.1 8 3.2 7.6 8.4z" fill="#8ff0c8"/>
+  <path d="M40 49c3-6.8 9.4-10.6 15-10.5-1.5 6.8-7.7 10.9-15 10.5z" fill="#8ff0c8" opacity=".9"/>
+</svg>

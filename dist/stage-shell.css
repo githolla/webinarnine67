@@ -451,3 +451,10 @@ p.sh-tie{display:block;margin:auto 0 0;padding-top:20px;font-size:28px;line-heig
 .dn-snap dt{font-size:14px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#667085}
 .dn-snap dd{margin:2px 0 0;font-size:22px;line-height:1.2;font-weight:750;color:#0e1726}
 .dn-snap div:last-child dd{font-size:17px}
+.dn-brand{margin:18px 0 0;display:flex;align-items:center;gap:12px}
+.dn-brand img{width:40px;height:40px}
+.dn-brand b{font-size:26px;font-weight:800;color:#0b4f3d;letter-spacing:-.01em}
+.dn-brand span{font-size:16px;font-weight:700;color:#667085;text-transform:uppercase;letter-spacing:.06em;margin-left:4px}
+.dn-snap{margin-top:10px}
+.dn-claude header span{display:inline-flex;align-items:center;gap:6px}
+.dn-claude header span img{width:18px;height:18px}

@@ -400,3 +400,5 @@ tr.fx-new th,tr.fx-new td{font-weight:800}
 .fx4:has(.fx4-impact) .fx4-body{gap:6px;padding-top:12px;padding-bottom:10px}
 .fx4:has(.fx4-impact) .fx4-stage{max-height:520px}
 .fx4:has(.fx4-impact) .fx4-week li{padding:4px 10px}
+.fx2-pk{width:84px;height:84px;border-radius:20px;box-shadow:0 0 0 4px #ffffff59}
+.fx4-pk{width:30px;height:30px;border-radius:8px}

@@ -5,10 +5,10 @@
   const verdicts = { win: 'AI win', diff: 'Different way', stuck: 'Struggling', glue: 'The glue' };
   const parkside = [
     ['Dana', 'CEO', 'Claude (company plan)', 'claude.svg', 'win'],
-    ['Daniel', 'IT', 'Ask Parkside (Copilot Studio)', 'ms-teams.svg', 'diff'],
+    ['Daniel', 'IT', 'Ask Parkside (Copilot Studio)', 'parkside-logo.svg', 'diff'],
     ['Ben', 'Head of Sales', 'Copilot', 'copilot.webp', 'win'],
     ['Priya', 'Finance Analyst', 'Claude (company plan)', 'claude.svg', 'win'],
-    ['Nina', 'Operations', 'Ask Ops (Copilot Studio)', 'ms-teams.svg', 'win'],
+    ['Nina', 'Operations', 'Ask Ops (Copilot Studio)', 'parkside-logo.svg', 'win'],
     ['Ava', 'Customer Service', 'Copilot', 'copilot.webp', 'stuck'],
     ['Elena', 'Project Coordinator', 'Copilot', 'copilot.webp', 'stuck'],
     ['Marcus', 'Account Manager', 'Grok · personal phone', 'grok.svg', 'diff'],
